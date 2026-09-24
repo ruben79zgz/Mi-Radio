@@ -143,6 +143,16 @@ window.RADIO_STATIONS = [
     logo: 'https://www.google.com/s2/favicons?domain=lipetsktime.ru&sz=128',
     site: 'https://lipetsktime.ru/channels/fm/'
   },
+{
+    id: 'Rusia Radio', name: 'Rusia Radio', group: 'Lipetsk', country: 'RU',
+    subtitle: '90.7 FM · música + noticias locales',
+    description: 'Radio local de Lipetsk con programación propia, música e información de la ciudad y la región.',
+    radioBrowser: { name: 'Липецк FM', city: 'Липецк' },
+    streams: ['http://icecast.vgtrk.cdnvideo.ru/rrzonam_mp3_192kbps'],
+    logo: 'https://www.radio.es/100/radiorus.png?version=20b171ecdaebf43fd8cc0e83f38225280f914ece=128',
+    site: 'https://lipetsktime.ru/channels/fm/'
+  },
+
   {
     id: 'radio-russia-lipetsk', name: 'Радио России Липецк', group: 'Lipetsk', country: 'RU',
     subtitle: '89.1 FM · noticias y radio hablada local',
