@@ -1,0 +1,44 @@
+#EXTM3U
+#PLAYLIST:TV Rusa - SS IPTV
+
+#EXTINF:-1 tvg-id="ChannelOne.ru" tvg-name="Первый канал (experimental)" group-title="Principales" audio-track="rus" aspect-ratio="16:9",Первый канал (experimental)
+https://edge1.1internet.tv/dash-live2/streams/1tv-dvr/1tvdash.mpd
+
+#EXTINF:-1 tvg-id="Russia1.ru" tvg-name="Россия 1 HD" group-title="Principales" audio-track="rus" aspect-ratio="16:9",Россия 1 HD
+https://live.smotrim.ru/vgtrk/0/russia1-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="Russia24.ru" tvg-name="Россия 24 HD" group-title="Noticias" audio-track="rus" aspect-ratio="16:9",Россия 24 HD
+https://vgtrkregion-reg.cdnvideo.ru/vgtrk/0/russia24-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="RussiaK.ru" tvg-name="Россия-Культура HD" group-title="Cultura y familia" audio-track="rus" aspect-ratio="16:9",Россия-Культура HD
+https://live.smotrim.ru/vgtrk/0/kultura-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="NTV.ru" tvg-name="НТВ HD" group-title="Principales" audio-track="rus" aspect-ratio="16:9",НТВ HD
+https://cdn.ntv.ru/ntv0/playlist.m3u8
+
+#EXTINF:-1 tvg-id="TVCentr.ru" tvg-name="ТВ Центр" group-title="Principales" audio-track="rus" aspect-ratio="16:9",ТВ Центр
+https://tvc-hls.cdnvideo.ru/tvc-res/smil:vd9221.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-id="Mir.ru" tvg-name="МИР HD" group-title="Principales" audio-track="rus" aspect-ratio="16:9",МИР HD
+http://hls.mirtv.cdnvideo.ru/mirtv-parampublish/mirtv_2500/playlist.m3u8
+
+#EXTINF:-1 tvg-id="Mir24.ru" tvg-name="МИР 24" group-title="Noticias" audio-track="rus" aspect-ratio="16:9",МИР 24
+http://hls.mirtv.cdnvideo.ru/mirtv-parampublish/mir24_2500/playlist.m3u8
+
+#EXTINF:-1 tvg-id="Moskva24.ru" tvg-name="Москва 24" group-title="Noticias" audio-track="rus" aspect-ratio="16:9",Москва 24
+https://stream.smotrim.ru/hls2/moscow_24/playlist_3.m3u8
+
+#EXTINF:-1 tvg-id="LipetskoeVremya.ru" tvg-name="Липецкое время" group-title="Lipetsk" audio-track="rus" aspect-ratio="16:9",Липецкое время
+http://serv25.vintera.tv:8081/liptime/liptime/playlist.m3u8
+
+#EXTINF:-1 tvg-id="RBKTV.ru" tvg-name="РБК" group-title="Noticias" audio-track="rus" aspect-ratio="16:9",РБК
+https://online-video.rbc.ru/spb/rbctv_spb.m3u8
+
+#EXTINF:-1 tvg-id="Zvezda.ru" tvg-name="Звезда HD" group-title="Principales" audio-track="rus" aspect-ratio="16:9",Звезда HD
+https://tvchannelstream1.tvzvezda.ru/cdn/tvzvezda/playlist.m3u8
+
+#EXTINF:-1 tvg-id="Smotrim100Detskoe.ru" tvg-name="Смотрим 100% Детское" group-title="Cultura y familia" audio-track="rus" aspect-ratio="16:9",Смотрим 100% Детское
+https://stream.smotrim.ru/hls/fasttv05/playlist_3.m3u8
+
+#EXTINF:-1 tvg-id="Smotrim100Klassika.ru" tvg-name="Смотрим 100% Классика" group-title="Cultura y familia" audio-track="rus" aspect-ratio="16:9",Смотрим 100% Классика
+https://stream.smotrim.ru/hls/fasttv03/playlist_3.m3u8
