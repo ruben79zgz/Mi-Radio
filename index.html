@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="description" content="Radio online personal, sin publicidad de la app, para Zaragoza, España y Lipetsk." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <title>Mi Radio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">RADIO PERSONAL</div>
+      <h1>Mi Radio</h1>
+    </div>
+    <div class="top-actions">
+      <button id="refreshBtn" class="icon-btn" type="button" aria-label="Revisar enlaces" title="Revisar enlaces">↻</button>
+      <button id="settingsBtn" class="icon-btn" type="button" aria-label="Ajustes" title="Ajustes">⚙</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="pill">Sin anuncios de la app</span>
+        <h2>Directos de Zaragoza, España y Lipetsk</h2>
+        <p>La propia emisora puede emitir publicidad en su programación; esta app no añade anuncios, rastreadores ni suscripciones.</p>
+      </div>
+      <div id="healthSummary" class="health-summary">Enlaces listos</div>
+    </section>
+
+    <section class="toolbar">
+      <div id="filters" class="filters" role="tablist" aria-label="Filtros"></div>
+      <input id="searchInput" class="search" type="search" placeholder="Buscar emisora…" autocomplete="off" />
+    </section>
+
+    <section id="stationsGrid" class="stations-grid" aria-live="polite"></section>
+  </main>
+
+  <aside id="playerBar" class="player-bar hidden" aria-live="polite">
+    <img id="playerLogo" class="player-logo" alt="" />
+    <div class="player-meta">
+      <div id="playerName" class="player-name">—</div>
+      <div id="playerStatus" class="player-status">Preparado</div>
+    </div>
+    <div class="player-actions">
+      <button id="stopBtn" class="round-btn secondary" type="button" aria-label="Detener">■</button>
+      <button id="playPauseBtn" class="round-btn primary" type="button" aria-label="Reproducir o pausar">▶</button>
+    </div>
+  </aside>
+
+  <dialog id="detailsDialog" class="dialog">
+    <form method="dialog" class="dialog-card">
+      <div class="dialog-head">
+        <div>
+          <div class="eyebrow">EMISORA</div>
+          <h3 id="detailsTitle">Detalles</h3>
+        </div>
+        <button class="icon-btn" value="cancel" aria-label="Cerrar">✕</button>
+      </div>
+      <img id="detailsLogo" class="details-logo" alt="" />
+      <p id="detailsDesc" class="muted"></p>
+      <label class="field-label" for="streamField">Enlace de reproducción actual</label>
+      <textarea id="streamField" class="stream-field" rows="3" readonly></textarea>
+      <div class="dialog-actions">
+        <button id="copyStreamBtn" class="btn" type="button">Copiar enlace</button>
+        <button id="editStreamBtn" class="btn secondary-btn" type="button">Editar enlace</button>
+      </div>
+      <div id="editBox" class="edit-box hidden">
+        <label class="field-label" for="manualStreamInput">Enlace manual</label>
+        <input id="manualStreamInput" class="text-input" type="url" placeholder="https://…" />
+        <div class="dialog-actions">
+          <button id="saveManualBtn" class="btn" type="button">Guardar</button>
+          <button id="resetManualBtn" class="btn secondary-btn" type="button">Restaurar automático</button>
+        </div>
+      </div>
+      <div class="source-note" id="detailsSource"></div>
+    </form>
+  </dialog>
+
+  <dialog id="settingsDialog" class="dialog">
+    <form method="dialog" class="dialog-card">
+      <div class="dialog-head">
+        <div>
+          <div class="eyebrow">AJUSTES</div>
+          <h3>Mantenimiento</h3>
+        </div>
+        <button class="icon-btn" value="cancel" aria-label="Cerrar">✕</button>
+      </div>
+      <p class="muted">La app revisa los enlaces una vez al día. También puedes forzar una revisión ahora. Las emisoras españolas se contrastan con TDTChannels y las de Lipetsk con Radio Browser.</p>
+      <button id="refreshAllBtn" class="btn full" type="button">Revisar todos los enlaces</button>
+      <div class="setting-row">
+        <div>
+          <strong>Temporizador</strong>
+          <small>Detener la radio automáticamente.</small>
+        </div>
+        <select id="sleepSelect" class="select">
+          <option value="0">Desactivado</option>
+          <option value="15">15 min</option>
+          <option value="30">30 min</option>
+          <option value="60">60 min</option>
+          <option value="90">90 min</option>
+        </select>
+      </div>
+      <div class="setting-row">
+        <div>
+          <strong>Actualización automática</strong>
+          <small id="lastRefreshText">Todavía no revisado.</small>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <audio id="audio" preload="none"></audio>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>
+  <script src="stations.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
