@@ -121,7 +121,7 @@ window.RADIO_STATIONS = [
     subtitle: '102.1 FM · Липецк',
     description: 'Авторадио, emisora que emite en Lipetsk. La app intentará localizar automáticamente una señal regional si existe; si no, usa la señal online principal.',
     radioBrowser: { name: 'Авторадио', city: 'Липецк' },
-    streams: ['https://srv02.gpmradio.ru:8443/stream/air/aac/64/100'],
+    streams: ['https://hls-01-gpm.hostingradio.ru/avtoradio4742/128/playlist.m3u8'],
     logo: 'https://www.google.com/s2/favicons?domain=avtoradio.ru&sz=128',
     site: 'https://www.avtoradio.ru/station/city/99'
   },
