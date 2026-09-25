@@ -12,6 +12,9 @@
   const playerStatus = document.getElementById('playerStatus');
   const playPauseBtn = document.getElementById('playPauseBtn');
   const stopBtn = document.getElementById('stopBtn');
+  const muteBtn = document.getElementById('muteBtn');
+  const volumeSlider = document.getElementById('volumeSlider');
+  const volumeValue = document.getElementById('volumeValue');
   const settingsBtn = document.getElementById('settingsBtn');
   const settingsDialog = document.getElementById('settingsDialog');
   const detailsDialog = document.getElementById('detailsDialog');
@@ -35,6 +38,8 @@
   // encontrados automáticamente y NUNCA se coloca por delante de station.streams.
   const FALLBACK_KEY = 'mi-radio-fallback-v1';
   const SLEEP_KEY = 'mi-radio-sleep-v1';
+  const VOLUME_KEY = 'mi-radio-volume-v1';
+  const MUTED_KEY = 'mi-radio-muted-v1';
 
   // Elimina preferencias antiguas que podían sustituir a stations.js.
   for (const key of Object.keys(localStorage)) {
@@ -55,6 +60,7 @@
   let detailsStation = null;
   let sleepTimer = null;
   let toastTimer = null;
+  let lastAudibleVolume = 0.85;
 
   const fallbackCache = safeJson(localStorage.getItem(FALLBACK_KEY), {});
 
@@ -114,6 +120,52 @@
 
   function normalize(text) {
     return (text || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  }
+
+  function clampVolume(value) {
+    const n = Number(value);
+    return Number.isFinite(n) ? Math.min(1, Math.max(0, n)) : 0.85;
+  }
+
+  function volumeIcon() {
+    if (audio.muted || audio.volume === 0) return '🔇';
+    if (audio.volume < 0.45) return '🔈';
+    if (audio.volume < 0.8) return '🔉';
+    return '🔊';
+  }
+
+  function syncVolumeUi() {
+    const effective = audio.muted ? 0 : audio.volume;
+    const percent = Math.round(effective * 100);
+    volumeSlider.value = String(effective);
+    volumeSlider.style.setProperty('--volume', `${percent}%`);
+    volumeValue.textContent = `${percent}%`;
+    muteBtn.textContent = volumeIcon();
+    muteBtn.setAttribute('aria-label', audio.muted || audio.volume === 0 ? 'Activar sonido' : 'Silenciar');
+    muteBtn.title = audio.muted || audio.volume === 0 ? 'Activar sonido' : 'Silenciar';
+  }
+
+  function setAppVolume(value) {
+    const next = clampVolume(value);
+    audio.volume = next;
+    audio.muted = false;
+    if (next > 0) lastAudibleVolume = next;
+    localStorage.setItem(VOLUME_KEY, String(next));
+    localStorage.setItem(MUTED_KEY, '0');
+    syncVolumeUi();
+  }
+
+  function toggleMute() {
+    if (audio.muted || audio.volume === 0) {
+      if (audio.volume === 0) audio.volume = lastAudibleVolume || 0.85;
+      audio.muted = false;
+      localStorage.setItem(MUTED_KEY, '0');
+    } else {
+      lastAudibleVolume = audio.volume || lastAudibleVolume;
+      audio.muted = true;
+      localStorage.setItem(MUTED_KEY, '1');
+    }
+    syncVolumeUi();
   }
 
   function renderFilters() {
@@ -350,6 +402,17 @@
   audio.addEventListener('stalled', () => {
     if (currentStation && !audio.paused) playerStatus.textContent = 'Reconectando…';
   });
+  // Sincroniza el deslizador si el navegador cambia el volumen del elemento.
+  // En Android, los botones físicos suelen modificar el volumen multimedia del sistema
+  // y ese nivel no se expone a las PWA, por lo que no siempre generan este evento.
+  audio.addEventListener('volumechange', () => {
+    if (!audio.muted && audio.volume > 0) {
+      lastAudibleVolume = audio.volume;
+      localStorage.setItem(VOLUME_KEY, String(audio.volume));
+    }
+    localStorage.setItem(MUTED_KEY, audio.muted ? '1' : '0');
+    syncVolumeUi();
+  });
 
   async function repairStation(station) {
     // Solo se llama DESPUÉS de que fallen todos los streams de stations.js.
@@ -460,6 +523,8 @@
   searchInput.addEventListener('input', () => { query = searchInput.value; renderStations(); });
   playPauseBtn.addEventListener('click', () => { if (!currentStation) return; audio.paused ? resume() : pause(); });
   stopBtn.addEventListener('click', stop);
+  volumeSlider.addEventListener('input', () => setAppVolume(volumeSlider.value));
+  muteBtn.addEventListener('click', toggleMute);
   settingsBtn.addEventListener('click', () => settingsDialog.showModal());
   copyStreamBtn.addEventListener('click', async () => {
     try { await navigator.clipboard.writeText(streamField.value); showToast('Enlace copiado.'); }
@@ -478,8 +543,16 @@
   });
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=5').catch(console.warn));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=6').catch(console.warn));
   }
+
+  // Volumen propio de la app. En escritorio controla el audio directamente.
+  // En móvil, el volumen físico del teléfono sigue siendo un control adicional del sistema.
+  const storedVolume = clampVolume(localStorage.getItem(VOLUME_KEY) ?? 0.85);
+  lastAudibleVolume = storedVolume > 0 ? storedVolume : 0.85;
+  audio.volume = storedVolume;
+  audio.muted = localStorage.getItem(MUTED_KEY) === '1';
+  syncVolumeUi();
 
   renderFilters();
   renderStations();

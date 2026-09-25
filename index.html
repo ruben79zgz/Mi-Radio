@@ -10,7 +10,7 @@
   <link rel="icon" href="icons/icon-192.png" />
   <link rel="apple-touch-icon" href="icons/icon-192.png" />
   <title>Mi Radio</title>
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=6" />
 </head>
 <body>
   <header class="topbar">
@@ -36,6 +36,11 @@
     <div class="player-meta">
       <div id="playerName" class="player-name">—</div>
       <div id="playerStatus" class="player-status">Preparado</div>
+    </div>
+    <div class="volume-control" aria-label="Control de volumen">
+      <button id="muteBtn" class="volume-icon-btn" type="button" aria-label="Silenciar" title="Silenciar">🔊</button>
+      <input id="volumeSlider" class="volume-slider" type="range" min="0" max="1" step="0.01" value="0.85" aria-label="Volumen" />
+      <span id="volumeValue" class="volume-value">85%</span>
     </div>
     <div class="player-actions">
       <button id="stopBtn" class="round-btn secondary" type="button" aria-label="Detener">■</button>
@@ -93,7 +98,7 @@
 
   <audio id="audio" preload="none"></audio>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>
-  <script src="stations.js?v=5"></script>
-  <script src="app.js?v=5"></script>
+  <script src="stations.js?v=6"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>

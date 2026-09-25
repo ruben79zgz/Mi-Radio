@@ -1,5 +1,5 @@
-const CACHE = 'mi-radio-shell-v5';
-const SHELL = ['./','./index.html','./styles.css?v=5','./app.js?v=5','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png'];
+const CACHE = 'mi-radio-shell-v6';
+const SHELL = ['./','./index.html','./styles.css?v=6','./app.js?v=6','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
