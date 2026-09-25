@@ -40,7 +40,7 @@
     'https://at1.api.radio-browser.info'
   ];
 
-  const STORAGE_KEY = 'mi-radio-resolved-v2';
+  const STORAGE_KEY = 'mi-radio-resolved-v3';
   const MANUAL_KEY = 'mi-radio-manual-v2';
   const LAST_REFRESH_KEY = 'mi-radio-last-refresh-v2';
   const SLEEP_KEY = 'mi-radio-sleep-v1';
@@ -308,7 +308,7 @@
   async function refreshAll(showMessages = true) {
     refreshBtn.disabled = true;
     if (refreshAllBtn) refreshAllBtn.disabled = true;
-    healthSummary.textContent = 'Revisando enlaces…';
+    if (healthSummary) healthSummary.textContent = 'Revisando enlaces…';
     if (showMessages) showToast('Revisando enlaces de emisoras…');
 
     let tdtMarkdown = '';
@@ -330,7 +330,7 @@
     updateLastRefreshText();
     saveResolved();
     renderStations();
-    healthSummary.textContent = `${updated}/${stations.length} contrastadas`;
+    if (healthSummary) healthSummary.textContent = `${updated}/${stations.length} contrastadas`;
     refreshBtn.disabled = false;
     if (refreshAllBtn) refreshAllBtn.disabled = false;
     if (showMessages) showToast(`Revisión terminada: ${updated} emisoras actualizadas.`);

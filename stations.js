@@ -119,10 +119,9 @@ window.RADIO_STATIONS = [
   {
     id: 'avtoradio-lipetsk', name: 'Авторадио Липецк', group: 'Lipetsk', country: 'RU',
     subtitle: '102.1 FM · Липецк',
-    description: 'Авторадио, emisora que emite en Lipetsk. La app intentará localizar automáticamente una señal regional si existe; si no, usa la señal online principal.',
-    radioBrowser: { name: 'Авторадио', city: 'Липецк' },
+    description: 'Авторадио Липецк en directo.',
     streams: ['https://hls-01-gpm.hostingradio.ru/avtoradio4742/128/playlist.m3u8'],
-    logo: 'https://www.google.com/s2/favicons?domain=avtoradio.ru&sz=128',
+    logo: 'https://www.avtoradio.ru/favicon.ico',
     site: 'https://www.avtoradio.ru/station/city/99'
   },
   {
@@ -143,16 +142,6 @@ window.RADIO_STATIONS = [
     logo: 'https://www.google.com/s2/favicons?domain=lipetsktime.ru&sz=128',
     site: 'https://lipetsktime.ru/channels/fm/'
   },
-{
-    id: 'Rusia Radio', name: 'Rusia Radio', group: 'Lipetsk', country: 'RU',
-    subtitle: '90.7 FM · música + noticias locales',
-    description: 'Radio local de Lipetsk con programación propia, música e información de la ciudad y la región.',
-    radioBrowser: { name: 'Липецк FM', city: 'Липецк' },
-    streams: ['http://icecast.vgtrk.cdnvideo.ru/rrzonam_mp3_192kbps'],
-    logo: 'https://www.radio.es/100/radiorus.png?version=20b171ecdaebf43fd8cc0e83f38225280f914ece=128',
-    site: 'https://lipetsktime.ru/channels/fm/'
-  },
-
   {
     id: 'radio-russia-lipetsk', name: 'Радио России Липецк', group: 'Lipetsk', country: 'RU',
     subtitle: '89.1 FM · noticias y radio hablada local',
