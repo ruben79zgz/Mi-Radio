@@ -1,3 +1,4 @@
+window.RADIO_STATIONS_VERSION = '2026-09-25-v5';
 window.RADIO_STATIONS = [
   {
     id: 'marca-zaragoza', name: 'Radio Marca Zaragoza', group: 'Zaragoza', country: 'ES',
@@ -121,7 +122,8 @@ window.RADIO_STATIONS = [
     subtitle: '102.1 FM · Липецк',
     description: 'Авторадио Липецк en directo.',
     streams: ['https://hls-01-gpm.hostingradio.ru/avtoradio4742/128/playlist.m3u8'],
-    logo: 'https://www.avtoradio.ru/favicon.ico',
+    logo: 'https://www.gpmradio.ru/vardata/modules/dynalenta/files/41/2020/01/04/2f96b229e353b9f147565d655c449938.png',
+    logoFallbacks: ['https://commons.wikimedia.org/wiki/Special:Redirect/file/Avtoradio4.png','https://www.avtoradio.ru/favicon.ico'],
     site: 'https://www.avtoradio.ru/station/city/99'
   },
   {
@@ -130,7 +132,8 @@ window.RADIO_STATIONS = [
     description: 'Европа Плюс en Lipetsk. La app intenta localizar una señal regional y conserva la nacional como respaldo.',
     radioBrowser: { name: 'Европа Плюс', city: 'Липецк' },
     streams: ['https://hls-02-europaplus.emgsound.ru/11/112/playlist.m3u8','https://hls-02-europaplus.emgsound.ru/11/playlist.m3u8'],
-    logo: 'https://www.google.com/s2/favicons?domain=europaplus.ru&sz=128',
+    logo: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/%D0%95%D0%B2%D1%80%D0%BE%D0%BF%D0%B0_%D0%9F%D0%BB%D1%8E%D1%81.png',
+    logoFallbacks: ['https://papik.pro/grafic/uploads/posts/2023-04/1681542716_papik-pro-p-yevropa-plyus-logotip-vektor-1.png','https://www.google.com/s2/favicons?domain=europaplus.ru&sz=128'],
     site: 'https://europaplus.ru/programs/lipetsk-online'
   },
   {
@@ -139,7 +142,8 @@ window.RADIO_STATIONS = [
     description: 'Radio local de Lipetsk con programación propia, música e información de la ciudad y la región.',
     radioBrowser: { name: 'Липецк FM', city: 'Липецк' },
     streams: ['http://media.lipetsk.ru:9009/r_lt.mp3'],
-    logo: 'https://www.google.com/s2/favicons?domain=lipetsktime.ru&sz=128',
+    logo: 'https://topradio.me/lipeczk/assets/image/radio/180/lipeck-fm.png',
+    logoFallbacks: ['https://www.google.com/s2/favicons?domain=lipetsktime.ru&sz=128'],
     site: 'https://lipetsktime.ru/channels/fm/'
   },
   {
@@ -148,7 +152,8 @@ window.RADIO_STATIONS = [
     description: 'Radio Rusia con desconexión regional de Lipetsk; es la opción más orientada a noticias/información local de las cuatro.',
     radioBrowser: { name: 'Радио России Липецк', city: 'Липецк' },
     streams: ['https://vgtrkregion-reg.cdnvideo.ru/vgtrk/lipetsk/radio_russia/index.m3u8','https://podcast-gtrk.smotrim.ru/vgtrk/lipetsk/radio_russia/index.m3u8','http://icecast-vgtrk.cdnvideo.ru/lipetsk'],
-    logo: 'https://www.google.com/s2/favicons?domain=smotrim.ru&sz=128',
+    logo: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Radio_Rossii_logo.svg',
+    logoFallbacks: ['https://vestnikdvgnb.ru/images/2026/03_26/%D0%A0%D0%B0%D0%B4%D0%B8%D0%BE%20%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B8.jpg','https://www.google.com/s2/favicons?domain=smotrim.ru&sz=128'],
     site: 'https://vesti-lipetsk.ru/'
   }
 ];

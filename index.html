@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#0b1020" />
   <meta name="description" content="Mi Radio" />
+  <meta name="referrer" content="no-referrer" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icons/icon-192.png" />
   <link rel="apple-touch-icon" href="icons/icon-192.png" />
   <title>Mi Radio</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=5" />
 </head>
 <body>
   <header class="topbar">
@@ -18,7 +19,6 @@
       <h1>Mi Radio</h1>
     </div>
     <div class="top-actions">
-      <button id="refreshBtn" class="icon-btn" type="button" aria-label="Revisar enlaces" title="Revisar enlaces">↻</button>
       <button id="settingsBtn" class="icon-btn" type="button" aria-label="Ajustes" title="Ajustes">⚙</button>
     </div>
   </header>
@@ -28,12 +28,11 @@
       <div id="filters" class="filters" role="tablist" aria-label="Filtros"></div>
       <input id="searchInput" class="search" type="search" placeholder="Buscar emisora…" autocomplete="off" />
     </section>
-
     <section id="stationsGrid" class="stations-grid" aria-live="polite"></section>
   </main>
 
   <aside id="playerBar" class="player-bar hidden" aria-live="polite">
-    <img id="playerLogo" class="player-logo" alt="" />
+    <img id="playerLogo" class="player-logo" alt="" referrerpolicy="no-referrer" />
     <div class="player-meta">
       <div id="playerName" class="player-name">—</div>
       <div id="playerStatus" class="player-status">Preparado</div>
@@ -53,21 +52,12 @@
         </div>
         <button class="icon-btn" value="cancel" aria-label="Cerrar">✕</button>
       </div>
-      <img id="detailsLogo" class="details-logo" alt="" />
+      <img id="detailsLogo" class="details-logo" alt="" referrerpolicy="no-referrer" />
       <p id="detailsDesc" class="muted"></p>
-      <label class="field-label" for="streamField">Enlace de reproducción actual</label>
+      <label class="field-label" for="streamField">Enlace principal de stations.js</label>
       <textarea id="streamField" class="stream-field" rows="3" readonly></textarea>
       <div class="dialog-actions">
         <button id="copyStreamBtn" class="btn" type="button">Copiar enlace</button>
-        <button id="editStreamBtn" class="btn secondary-btn" type="button">Editar enlace</button>
-      </div>
-      <div id="editBox" class="edit-box hidden">
-        <label class="field-label" for="manualStreamInput">Enlace manual</label>
-        <input id="manualStreamInput" class="text-input" type="url" placeholder="https://…" />
-        <div class="dialog-actions">
-          <button id="saveManualBtn" class="btn" type="button">Guardar</button>
-          <button id="resetManualBtn" class="btn secondary-btn" type="button">Restaurar automático</button>
-        </div>
       </div>
       <div class="source-note" id="detailsSource"></div>
     </form>
@@ -78,12 +68,11 @@
       <div class="dialog-head">
         <div>
           <div class="eyebrow">AJUSTES</div>
-          <h3>Mantenimiento</h3>
+          <h3>Mi Radio</h3>
         </div>
         <button class="icon-btn" value="cancel" aria-label="Cerrar">✕</button>
       </div>
-      <p class="muted">La app revisa los enlaces una vez al día. También puedes forzar una revisión ahora. Las emisoras españolas se contrastan con TDTChannels y las de Lipetsk con Radio Browser.</p>
-      <button id="refreshAllBtn" class="btn full" type="button">Revisar todos los enlaces</button>
+      <p class="muted">Los enlaces definidos en <strong>stations.js</strong> siempre tienen prioridad. La app solo busca un respaldo automático cuando todos los enlaces de una emisora fallan.</p>
       <div class="setting-row">
         <div>
           <strong>Temporizador</strong>
@@ -97,12 +86,6 @@
           <option value="90">90 min</option>
         </select>
       </div>
-      <div class="setting-row">
-        <div>
-          <strong>Actualización automática</strong>
-          <small id="lastRefreshText">Todavía no revisado.</small>
-        </div>
-      </div>
     </form>
   </dialog>
 
@@ -110,7 +93,7 @@
 
   <audio id="audio" preload="none"></audio>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>
-  <script src="stations.js"></script>
-  <script src="app.js"></script>
+  <script src="stations.js?v=5"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>
