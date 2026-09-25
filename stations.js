@@ -141,7 +141,7 @@ window.RADIO_STATIONS = [
     subtitle: '90.7 FM · música + noticias locales',
     description: 'Radio local de Lipetsk con programación propia, música e información de la ciudad y la región.',
     radioBrowser: { name: 'Липецк FM', city: 'Липецк' },
-    streams: ['http://media.lipetsk.ru:9009/r_lt.mp3'],
+    streams: ['https://icecast-vgtrk.cdnvideo.ru/vestifm_mp3_192kbps'],
     logo: 'https://topradio.me/lipeczk/assets/image/radio/180/lipeck-fm.png',
     logoFallbacks: ['https://www.google.com/s2/favicons?domain=lipetsktime.ru&sz=128'],
     site: 'https://lipetsktime.ru/channels/fm/'
