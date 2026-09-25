@@ -1,4 +1,4 @@
-window.RADIO_STATIONS_VERSION = '2026-09-25-v5';
+window.RADIO_STATIONS_VERSION = '2026-09-25-v7';
 window.RADIO_STATIONS = [
   {
     id: 'marca-zaragoza', name: 'Radio Marca Zaragoza', group: 'Zaragoza', country: 'ES',
@@ -137,21 +137,21 @@ window.RADIO_STATIONS = [
     site: 'https://europaplus.ru/programs/lipetsk-online'
   },
   {
-    id: 'lipetsk-fm', name: 'Липецк FM', group: 'Lipetsk', country: 'RU',
-    subtitle: '90.7 FM · música + noticias locales',
-    description: 'Radio local de Lipetsk con programación propia, música e información de la ciudad y la región.',
-    radioBrowser: { name: 'Липецк FM', city: 'Липецк' },
+    id: 'vesti-fm', name: 'Вести ФМ', group: 'Lipetsk', country: 'RU',
+    subtitle: '90.3 FM · Липецк · новости',
+    description: 'Информационная радиостанция ВГТРК. В Липецке вещает на 90.3 FM.',
+    radioBrowser: { name: 'Вести ФМ', city: 'Липецк' },
     streams: ['https://icecast-vgtrk.cdnvideo.ru/vestifm_mp3_192kbps'],
-    logo: 'https://topradio.me/lipeczk/assets/image/radio/180/lipeck-fm.png',
-    logoFallbacks: ['https://www.google.com/s2/favicons?domain=lipetsktime.ru&sz=128'],
-    site: 'https://lipetsktime.ru/channels/fm/'
+    logo: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Vesti_FM_logo.svg',
+    logoFallbacks: ['https://commons.wikimedia.org/wiki/Special:Redirect/file/%D0%92%D0%B5%D1%81%D1%82%D0%B8FM2017.jpg','https://www.google.com/s2/favicons?domain=smotrim.ru&sz=128'],
+    site: 'https://smotrim.ru/channel/199'
   },
   {
     id: 'radio-russia-lipetsk', name: 'Радио России Липецк', group: 'Lipetsk', country: 'RU',
     subtitle: '89.1 FM · noticias y radio hablada local',
     description: 'Radio Rusia con desconexión regional de Lipetsk; es la opción más orientada a noticias/información local de las cuatro.',
     radioBrowser: { name: 'Радио России Липецк', city: 'Липецк' },
-    streams: ['https://podcast-gtrk.smotrim.ru/vgtrk/lipetsk/radio_russia/index.m3u8','http://icecast-vgtrk.cdnvideo.ru/lipetsk'],
+    streams: ['https://vgtrkregion-reg.cdnvideo.ru/vgtrk/lipetsk/radio_russia/index.m3u8','https://podcast-gtrk.smotrim.ru/vgtrk/lipetsk/radio_russia/index.m3u8','http://icecast-vgtrk.cdnvideo.ru/lipetsk'],
     logo: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Radio_Rossii_logo.svg',
     logoFallbacks: ['https://vestnikdvgnb.ru/images/2026/03_26/%D0%A0%D0%B0%D0%B4%D0%B8%D0%BE%20%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D0%B8.jpg','https://www.google.com/s2/favicons?domain=smotrim.ru&sz=128'],
     site: 'https://vesti-lipetsk.ru/'

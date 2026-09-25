@@ -10,7 +10,7 @@
   <link rel="icon" href="icons/icon-192.png" />
   <link rel="apple-touch-icon" href="icons/icon-192.png" />
   <title>Mi Radio</title>
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=7" />
 </head>
 <body>
   <header class="topbar">
@@ -48,25 +48,6 @@
     </div>
   </aside>
 
-  <dialog id="detailsDialog" class="dialog">
-    <form method="dialog" class="dialog-card">
-      <div class="dialog-head">
-        <div>
-          <div class="eyebrow">EMISORA</div>
-          <h3 id="detailsTitle">Detalles</h3>
-        </div>
-        <button class="icon-btn" value="cancel" aria-label="Cerrar">✕</button>
-      </div>
-      <img id="detailsLogo" class="details-logo" alt="" referrerpolicy="no-referrer" />
-      <p id="detailsDesc" class="muted"></p>
-      <label class="field-label" for="streamField">Enlace principal de stations.js</label>
-      <textarea id="streamField" class="stream-field" rows="3" readonly></textarea>
-      <div class="dialog-actions">
-        <button id="copyStreamBtn" class="btn" type="button">Copiar enlace</button>
-      </div>
-      <div class="source-note" id="detailsSource"></div>
-    </form>
-  </dialog>
 
   <dialog id="settingsDialog" class="dialog">
     <form method="dialog" class="dialog-card">
@@ -98,7 +79,7 @@
 
   <audio id="audio" preload="none"></audio>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>
-  <script src="stations.js?v=6"></script>
-  <script src="app.js?v=6"></script>
+  <script src="stations.js?v=7"></script>
+  <script src="app.js?v=7"></script>
 </body>
 </html>

@@ -17,13 +17,6 @@
   const volumeValue = document.getElementById('volumeValue');
   const settingsBtn = document.getElementById('settingsBtn');
   const settingsDialog = document.getElementById('settingsDialog');
-  const detailsDialog = document.getElementById('detailsDialog');
-  const detailsTitle = document.getElementById('detailsTitle');
-  const detailsLogo = document.getElementById('detailsLogo');
-  const detailsDesc = document.getElementById('detailsDesc');
-  const detailsSource = document.getElementById('detailsSource');
-  const streamField = document.getElementById('streamField');
-  const copyStreamBtn = document.getElementById('copyStreamBtn');
   const sleepSelect = document.getElementById('sleepSelect');
   const toast = document.getElementById('toast');
 
@@ -40,6 +33,7 @@
   const SLEEP_KEY = 'mi-radio-sleep-v1';
   const VOLUME_KEY = 'mi-radio-volume-v1';
   const MUTED_KEY = 'mi-radio-muted-v1';
+  const FAVORITES_KEY = 'mi-radio-favorites-v1';
 
   // Elimina preferencias antiguas que podían sustituir a stations.js.
   for (const key of Object.keys(localStorage)) {
@@ -57,12 +51,12 @@
   let hls = null;
   let repairing = false;
   let repairAttemptedForPlay = false;
-  let detailsStation = null;
   let sleepTimer = null;
   let toastTimer = null;
   let lastAudibleVolume = 0.85;
 
   const fallbackCache = safeJson(localStorage.getItem(FALLBACK_KEY), {});
+  const favorites = new Set(safeJson(localStorage.getItem(FAVORITES_KEY), []));
 
   function safeJson(value, fallback) {
     try { return value ? JSON.parse(value) : fallback; } catch { return fallback; }
@@ -70,6 +64,23 @@
 
   function saveFallbacks() {
     localStorage.setItem(FALLBACK_KEY, JSON.stringify(fallbackCache));
+  }
+
+
+  function saveFavorites() {
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites]));
+  }
+
+  function isFavorite(stationId) {
+    return favorites.has(stationId);
+  }
+
+  function toggleFavorite(stationId) {
+    if (favorites.has(stationId)) favorites.delete(stationId);
+    else favorites.add(stationId);
+    saveFavorites();
+    renderFilters();
+    renderStations();
   }
 
   function showToast(message) {
@@ -169,7 +180,7 @@
   }
 
   function renderFilters() {
-    const groups = ['Todas', 'Zaragoza', 'Nacional', 'Música', 'Lipetsk'];
+    const groups = ['Todas', 'Favoritos', 'Zaragoza', 'Nacional', 'Música', 'Lipetsk'];
     filtersEl.innerHTML = groups.map(group => `
       <button class="filter-btn ${group === currentFilter ? 'active' : ''}" data-filter="${group}" type="button">${group}</button>
     `).join('');
@@ -185,19 +196,20 @@
   function renderStations() {
     const q = normalize(query);
     const visible = stations.filter(station => {
-      const matchesGroup = currentFilter === 'Todas' || station.group === currentFilter;
+      const matchesGroup = currentFilter === 'Todas' || (currentFilter === 'Favoritos' ? isFavorite(station.id) : station.group === currentFilter);
       const haystack = normalize(`${station.name} ${station.subtitle} ${station.group}`);
       return matchesGroup && (!q || haystack.includes(q));
     });
 
     if (!visible.length) {
-      grid.innerHTML = '<div class="empty">No hay emisoras que coincidan.</div>';
+      grid.innerHTML = `<div class="empty">${currentFilter === 'Favoritos' && !query ? 'Todavía no tienes emisoras favoritas. Pulsa ☆ en una emisora para añadirla.' : 'No hay emisoras que coincidan.'}</div>`;
       return;
     }
 
     grid.innerHTML = visible.map(station => {
       const isPlaying = currentStation?.id === station.id && !audio.paused;
       const usingFallback = currentStation?.id === station.id && currentStream && !stationStreams(station).includes(currentStream);
+      const favorite = isFavorite(station.id);
       const label = usingFallback ? 'respaldo automático' : 'stations.js';
       const initials = station.name.split(/\s+/).slice(0, 2).map(x => x[0]).join('').toUpperCase();
       return `
@@ -213,7 +225,7 @@
           </div>
           <div class="card-actions">
             <button class="play-card" data-play="${station.id}" type="button" aria-label="Reproducir ${escapeAttr(station.name)}">${isPlaying ? '❚❚' : '▶'}</button>
-            <button class="more-card" data-more="${station.id}" type="button" aria-label="Detalles de ${escapeAttr(station.name)}">•••</button>
+            <button class="favorite-card ${favorite ? 'active' : ''}" data-favorite="${station.id}" type="button" aria-label="${favorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}: ${escapeAttr(station.name)}" aria-pressed="${favorite ? 'true' : 'false'}" title="${favorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}">${favorite ? '★' : '☆'}</button>
           </div>
         </article>`;
     }).join('');
@@ -229,9 +241,8 @@
       if (currentStation?.id === station.id && !audio.paused) pause(); else playStation(station);
     }));
 
-    grid.querySelectorAll('[data-more]').forEach(btn => btn.addEventListener('click', () => {
-      const station = stations.find(s => s.id === btn.dataset.more);
-      if (station) openDetails(station);
+    grid.querySelectorAll('[data-favorite]').forEach(btn => btn.addEventListener('click', () => {
+      toggleFavorite(btn.dataset.favorite);
     }));
   }
 
@@ -494,19 +505,6 @@
     return score;
   }
 
-  function openDetails(station) {
-    detailsStation = station;
-    detailsTitle.textContent = station.name;
-    setStationImage(detailsLogo, station);
-    detailsDesc.textContent = station.description;
-    streamField.value = primaryStream(station);
-    const fb = fallbackCache[station.id];
-    detailsSource.textContent = fb
-      ? `Prioridad: stations.js. Respaldo automático guardado: ${fb.source || 'alternativo'}. Sitio oficial/referencia: ${station.site}`
-      : `Prioridad: stations.js. Solo se buscará un respaldo si esos enlaces fallan. Sitio oficial/referencia: ${station.site}`;
-    detailsDialog.showModal();
-  }
-
   function setSleepTimer(minutes) {
     clearTimeout(sleepTimer);
     localStorage.setItem(SLEEP_KEY, String(minutes));
@@ -526,10 +524,6 @@
   volumeSlider.addEventListener('input', () => setAppVolume(volumeSlider.value));
   muteBtn.addEventListener('click', toggleMute);
   settingsBtn.addEventListener('click', () => settingsDialog.showModal());
-  copyStreamBtn.addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(streamField.value); showToast('Enlace copiado.'); }
-    catch { streamField.select(); document.execCommand('copy'); showToast('Enlace copiado.'); }
-  });
   sleepSelect.addEventListener('change', () => setSleepTimer(Number(sleepSelect.value)));
 
   window.addEventListener('online', () => {
@@ -543,7 +537,7 @@
   });
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=6').catch(console.warn));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=7').catch(console.warn));
   }
 
   // Volumen propio de la app. En escritorio controla el audio directamente.
