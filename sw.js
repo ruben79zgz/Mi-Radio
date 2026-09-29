@@ -1,11 +1,11 @@
-const CACHE = 'mi-radio-shell-v9';
+const CACHE = 'mi-radio-shell-v10';
 const SHELL = [
   './',
   './index.html',
-  './styles.css?v=9',
-  './app.js?v=9',
-  './stations.js?v=9',
-  './podcasts.js?v=9',
+  './styles.css?v=10',
+  './app.js?v=10',
+  './stations.js?v=10',
+  './podcasts.js?v=10',
   './manifest.webmanifest',
   './icons/icon-192.png',
   './icons/icon-512.png'
