@@ -1,0 +1,42 @@
+name: Actualizar podcasts
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */2 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'podcasts.js'
+      - 'scripts/update_podcasts.py'
+      - '.github/workflows/update-podcasts.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Leer RSS y generar podcasts-data.json
+        run: python scripts/update_podcasts.py
+
+      - name: Guardar cambios si hay episodios nuevos
+        run: |
+          if git diff --quiet -- podcasts-data.json; then
+            echo "Sin cambios"
+            exit 0
+          fi
+          git config user.name "Mi Radio Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add podcasts-data.json
+          git commit -m "Actualizar podcasts"
+          git push
