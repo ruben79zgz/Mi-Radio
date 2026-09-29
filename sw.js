@@ -1,5 +1,15 @@
-const CACHE = 'mi-radio-shell-v7';
-const SHELL = ['./','./index.html','./styles.css?v=7','./app.js?v=7','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png'];
+const CACHE = 'mi-radio-shell-v8';
+const SHELL = [
+  './',
+  './index.html',
+  './styles.css?v=8',
+  './app.js?v=8',
+  './stations.js?v=8',
+  './podcasts.js?v=8',
+  './manifest.webmanifest',
+  './icons/icon-192.png',
+  './icons/icon-512.png'
+];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -17,8 +27,8 @@ self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
 
-  // stations.js es la fuente de verdad: intentar SIEMPRE la red sin caché HTTP.
-  if (url.pathname.endsWith('/stations.js')) {
+  // stations.js y podcasts-data.json son datos vivos: red primero y caché solo como respaldo.
+  if (url.pathname.endsWith('/stations.js') || url.pathname.endsWith('/podcasts-data.json') || url.pathname.endsWith('/podcasts.js')) {
     event.respondWith(
       fetch(new Request(event.request, { cache: 'no-store' }))
         .then(response => {
@@ -31,7 +41,6 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // El resto de la interfaz usa network-first con respaldo local.
   event.respondWith(
     fetch(event.request)
       .then(response => {

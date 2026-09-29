@@ -10,12 +10,12 @@
   <link rel="icon" href="icons/icon-192.png" />
   <link rel="apple-touch-icon" href="icons/icon-192.png" />
   <title>Mi Radio</title>
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="styles.css?v=8" />
 </head>
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">RADIO PERSONAL</div>
+      <div id="eyebrow" class="eyebrow">RADIO PERSONAL</div>
       <h1>Mi Radio</h1>
     </div>
     <div class="top-actions">
@@ -24,30 +24,103 @@
   </header>
 
   <main>
-    <section class="toolbar">
-      <div id="filters" class="filters" role="tablist" aria-label="Filtros"></div>
-      <input id="searchInput" class="search" type="search" placeholder="Buscar emisora…" autocomplete="off" />
+    <nav class="mode-tabs" aria-label="Sección principal">
+      <button id="radioModeBtn" class="mode-tab active" type="button">Radio</button>
+      <button id="podcastModeBtn" class="mode-tab" type="button">Podcasts</button>
+    </nav>
+
+    <section id="radioView">
+      <section class="toolbar">
+        <div id="filters" class="filters" role="tablist" aria-label="Filtros"></div>
+        <input id="searchInput" class="search" type="search" placeholder="Buscar emisora…" autocomplete="off" />
+      </section>
+      <section id="stationsGrid" class="stations-grid" aria-live="polite"></section>
     </section>
-    <section id="stationsGrid" class="stations-grid" aria-live="polite"></section>
+
+    <section id="podcastView" class="hidden">
+      <div id="podcastLibraryView">
+        <div class="section-head compact-head">
+          <div>
+            <div class="eyebrow">BIBLIOTECA</div>
+            <h2>Podcasts</h2>
+          </div>
+          <button id="podcastRefreshBtn" class="icon-btn" type="button" aria-label="Actualizar podcasts" title="Actualizar">↻</button>
+        </div>
+        <div id="podcastUpdated" class="podcast-updated"></div>
+        <section id="podcastShows" class="podcast-shows-grid" aria-live="polite"></section>
+      </div>
+
+      <div id="podcastDetailView" class="hidden">
+        <button id="podcastBackBtn" class="back-btn" type="button">← Biblioteca</button>
+        <section class="podcast-show-head">
+          <img id="podcastShowImage" class="podcast-show-image" alt="" referrerpolicy="no-referrer" />
+          <div class="podcast-show-copy">
+            <div id="podcastShowAuthor" class="eyebrow"></div>
+            <h2 id="podcastShowName"></h2>
+            <p id="podcastShowDescription"></p>
+          </div>
+        </section>
+        <input id="episodeSearchInput" class="search podcast-search" type="search" placeholder="Buscar episodio…" autocomplete="off" />
+        <section id="episodesList" class="episodes-list" aria-live="polite"></section>
+      </div>
+    </section>
   </main>
 
   <aside id="playerBar" class="player-bar hidden" aria-live="polite">
     <img id="playerLogo" class="player-logo" alt="" referrerpolicy="no-referrer" />
-    <div class="player-meta">
-      <div id="playerName" class="player-name">—</div>
-      <div id="playerStatus" class="player-status">Preparado</div>
-    </div>
-    <div class="volume-control" aria-label="Control de volumen">
+    <button id="playerMetaButton" class="player-meta player-meta-button" type="button" aria-label="Abrir reproductor">
+      <span id="playerName" class="player-name">—</span>
+      <span id="playerStatus" class="player-status">Preparado</span>
+    </button>
+    <div id="volumeControl" class="volume-control" aria-label="Control de volumen">
       <button id="muteBtn" class="volume-icon-btn" type="button" aria-label="Silenciar" title="Silenciar">🔊</button>
       <input id="volumeSlider" class="volume-slider" type="range" min="0" max="1" step="0.01" value="0.85" aria-label="Volumen" />
       <span id="volumeValue" class="volume-value">85%</span>
     </div>
-    <div class="player-actions">
+    <div id="radioPlayerActions" class="player-actions">
       <button id="stopBtn" class="round-btn secondary" type="button" aria-label="Detener">■</button>
       <button id="playPauseBtn" class="round-btn primary" type="button" aria-label="Reproducir o pausar">▶</button>
     </div>
+    <div id="podcastPlayerActions" class="player-actions podcast-compact-actions hidden">
+      <button id="back30CompactBtn" class="round-btn secondary skip-btn" type="button" aria-label="Retroceder 30 segundos">−30</button>
+      <button id="podcastPlayPauseBtn" class="round-btn primary" type="button" aria-label="Reproducir o pausar">▶</button>
+      <button id="forward30CompactBtn" class="round-btn secondary skip-btn" type="button" aria-label="Adelantar 30 segundos">+30</button>
+    </div>
   </aside>
 
+  <dialog id="podcastPlayerDialog" class="podcast-player-dialog">
+    <div class="podcast-player-full">
+      <div class="podcast-player-top">
+        <button id="closePodcastPlayerBtn" class="icon-btn" type="button" aria-label="Cerrar">⌄</button>
+        <div class="podcast-player-top-title">REPRODUCIENDO</div>
+        <div class="top-spacer"></div>
+      </div>
+      <img id="podcastPlayerImage" class="podcast-player-image" alt="" referrerpolicy="no-referrer" />
+      <div id="podcastPlayerTitle" class="podcast-player-title">—</div>
+      <div id="podcastPlayerShow" class="podcast-player-show">—</div>
+      <div class="podcast-progress-wrap">
+        <input id="podcastSeekSlider" class="podcast-seek" type="range" min="0" max="100" step="0.1" value="0" aria-label="Posición del episodio" />
+        <div class="podcast-times"><span id="podcastCurrentTime">00:00</span><span id="podcastDuration">00:00</span></div>
+      </div>
+      <div class="podcast-big-controls">
+        <button id="back30Btn" class="podcast-skip-big" type="button" aria-label="Retroceder 30 segundos">↶<span>30</span></button>
+        <button id="podcastBigPlayPauseBtn" class="podcast-play-big" type="button" aria-label="Reproducir o pausar">▶</button>
+        <button id="forward30Btn" class="podcast-skip-big" type="button" aria-label="Adelantar 30 segundos">↷<span>30</span></button>
+      </div>
+      <div class="podcast-player-options">
+        <label for="playbackRateSelect">Velocidad</label>
+        <select id="playbackRateSelect" class="select compact-select">
+          <option value="0.9">0.9×</option>
+          <option value="1" selected>1×</option>
+          <option value="1.1">1.1×</option>
+          <option value="1.25">1.25×</option>
+          <option value="1.5">1.5×</option>
+          <option value="1.75">1.75×</option>
+          <option value="2">2×</option>
+        </select>
+      </div>
+    </div>
+  </dialog>
 
   <dialog id="settingsDialog" class="dialog">
     <form method="dialog" class="dialog-card">
@@ -59,10 +132,11 @@
         <button class="icon-btn" value="cancel" aria-label="Cerrar">✕</button>
       </div>
       <p class="muted">Los enlaces definidos en <strong>stations.js</strong> siempre tienen prioridad. La app solo busca un respaldo automático cuando todos los enlaces de una emisora fallan.</p>
+      <p class="muted">Los podcasts se leen de sus RSS públicos. No se guardan los audios en GitHub: solo la lista de episodios y sus enlaces.</p>
       <div class="setting-row">
         <div>
           <strong>Temporizador</strong>
-          <small>Detener la radio automáticamente.</small>
+          <small>Detener el audio automáticamente, tanto radio como podcasts.</small>
         </div>
         <select id="sleepSelect" class="select">
           <option value="0">Desactivado</option>
@@ -79,7 +153,8 @@
 
   <audio id="audio" preload="none"></audio>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>
-  <script src="stations.js?v=7"></script>
-  <script src="app.js?v=7"></script>
+  <script src="stations.js?v=8"></script>
+  <script src="podcasts.js?v=8"></script>
+  <script src="app.js?v=8"></script>
 </body>
 </html>
