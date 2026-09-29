@@ -862,9 +862,11 @@
             web: ch.official_page,
             source: 'Mi-TV',
             group: ch.group || 'Rusos',
+            directOnly: true,
             streams
           };
-        });
+        })
+        .filter(ch => ch.streams.length > 0);
     } catch (err) {
       console.warn('No se pudo cargar Mi-TV', err);
       tvRussianChannels = [];
@@ -922,11 +924,19 @@
     tvFallbackTitle.textContent = channel.name;
     const text = tvWebFallback.querySelector('p');
     if (text) text.textContent = message;
-    tvOpenWebBtn.disabled = !channel.web;
-    tvOpenWebBtn.onclick = () => {
-      if (channel.web) window.open(channel.web, '_blank', 'noopener');
-    };
-    tvPlayerStatus.textContent = 'Disponible en la web oficial';
+
+    if (channel.directOnly) {
+      tvOpenWebBtn.classList.add('hidden');
+      tvOpenWebBtn.onclick = null;
+      tvPlayerStatus.textContent = 'Señal directa no disponible';
+    } else {
+      tvOpenWebBtn.classList.remove('hidden');
+      tvOpenWebBtn.disabled = !channel.web;
+      tvOpenWebBtn.onclick = () => {
+        if (channel.web) window.open(channel.web, '_blank', 'noopener');
+      };
+      tvPlayerStatus.textContent = 'Disponible en la web oficial';
+    }
   }
 
   async function playTvChannel(channel) {
@@ -935,6 +945,7 @@
     tvPlayerName.textContent = channel.name;
     tvPlayerStatus.textContent = 'Conectando…';
     tvWebFallback.classList.add('hidden');
+    tvOpenWebBtn.classList.remove('hidden');
     tvVideo.classList.remove('hidden');
 
     if (mediaKind && !audio.paused) stopMedia();
@@ -953,8 +964,12 @@
     for (let i = 0; i < channel.streams.length; i += 1) {
       const candidate = channel.streams[i];
       try {
-        await loadTvStream(candidate);
-        tvPlayerStatus.textContent = channel.source === 'Mi-TV' ? 'En directo · Mi-TV' : 'En directo · TDTChannels';
+        const result = await loadTvStream(candidate);
+        if (result?.autoplay === false) {
+          tvPlayerStatus.textContent = 'Señal cargada · pulsa ▶';
+        } else {
+          tvPlayerStatus.textContent = channel.source === 'Mi-TV' ? 'En directo · Mi-TV' : 'En directo · TDTChannels';
+        }
         renderTvChannels();
         tvPlayerPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
         return;
@@ -964,7 +979,12 @@
       }
     }
 
-    showTvWebFallback(channel, 'La señal directa no ha podido reproducirse en este navegador. Puedes abrir la emisión oficial.');
+    showTvWebFallback(
+      channel,
+      channel.directOnly
+        ? 'No se ha podido abrir ninguna de las señales directas de este canal. No te enviaré a otra página.'
+        : 'La señal directa no ha podido reproducirse en este navegador. Puedes abrir la emisión oficial.'
+    );
     renderTvChannels();
   }
 
@@ -977,28 +997,81 @@
 
       const url = candidate.url;
       const format = candidate.format || (/\.mpd(?:$|\?)/i.test(url) ? 'dash' : 'hls');
+      let settled = false;
+
+      const finishOk = (autoplay = true) => {
+        if (settled) return;
+        settled = true;
+        resolve({ autoplay });
+      };
+      const finishError = (error) => {
+        if (settled) return;
+        settled = true;
+        reject(error instanceof Error ? error : new Error(String(error || 'TV')));
+      };
 
       if (format === 'dash') {
         if (!window.dashjs?.MediaPlayer) {
-          reject(new Error('DASH no disponible'));
+          finishError(new Error('DASH no disponible'));
           return;
         }
         try {
           tvDash = dashjs.MediaPlayer().create();
-          tvDash.initialize(tvVideo, url, true);
-          const onPlaying = () => { cleanup(); resolve(); };
-          const onError = () => { cleanup(); reject(new Error('Error DASH')); };
-          const timer = setTimeout(() => { cleanup(); reject(new Error('Timeout DASH')); }, 12000);
-          function cleanup() {
+          const events = dashjs.MediaPlayer.events || {};
+          const readyEvent = events.STREAM_INITIALIZED || 'streamInitialized';
+          const errorEvent = events.ERROR || 'error';
+          const timer = setTimeout(() => finishError(new Error('Timeout DASH')), 15000);
+
+          tvDash.on(readyEvent, async () => {
             clearTimeout(timer);
-            tvVideo.removeEventListener('playing', onPlaying);
-            tvVideo.removeEventListener('error', onError);
-          }
-          tvVideo.addEventListener('playing', onPlaying, { once: true });
-          tvVideo.addEventListener('error', onError, { once: true });
+            try {
+              await tvVideo.play();
+              finishOk(true);
+            } catch (err) {
+              // En móvil el navegador puede perder el gesto del usuario mientras
+              // carga el manifiesto. La señal está lista: dejamos el vídeo visible
+              // para que un toque en ▶ la arranque, en vez de mandarlo a otra web.
+              console.warn('Autoplay DASH bloqueado', err);
+              finishOk(false);
+            }
+          });
+          tvDash.on(errorEvent, event => {
+            if (!settled) {
+              clearTimeout(timer);
+              finishError(new Error(event?.error || 'Error DASH'));
+            }
+          });
+          tvDash.initialize(tvVideo, url, false);
+
+          // Intento temprano para conservar la activación del toque del usuario.
+          tvVideo.play().catch(() => {});
         } catch (err) {
-          reject(err);
+          clearTimeout?.();
+          finishError(err);
         }
+        return;
+      }
+
+      if (tvVideo.canPlayType('application/vnd.apple.mpegurl')) {
+        tvVideo.src = url;
+        const timer = setTimeout(() => finishError(new Error('Timeout HLS nativo')), 15000);
+        const onLoaded = async () => {
+          clearTimeout(timer);
+          try {
+            await tvVideo.play();
+            finishOk(true);
+          } catch (err) {
+            console.warn('Autoplay HLS nativo bloqueado', err);
+            finishOk(false);
+          }
+        };
+        const onError = () => {
+          clearTimeout(timer);
+          finishError(new Error('Error HLS nativo'));
+        };
+        tvVideo.addEventListener('loadedmetadata', onLoaded, { once: true });
+        tvVideo.addEventListener('error', onError, { once: true });
+        tvVideo.play().catch(() => {});
         return;
       }
 
@@ -1008,42 +1081,62 @@
           lowLatencyMode: false,
           maxBufferLength: 30,
           maxMaxBufferLength: 60,
-          backBufferLength: 20
+          backBufferLength: 20,
+          manifestLoadingTimeOut: 15000,
+          levelLoadingTimeOut: 15000,
+          fragLoadingTimeOut: 20000
         });
-        const timer = setTimeout(() => reject(new Error('Timeout HLS')), 12000);
+
+        const timer = setTimeout(() => finishError(new Error('Timeout HLS')), 16000);
+
         tvHls.on(Hls.Events.MANIFEST_PARSED, async () => {
+          clearTimeout(timer);
           try {
             await tvVideo.play();
-            clearTimeout(timer);
-            resolve();
+            finishOk(true);
           } catch (err) {
-            clearTimeout(timer);
-            reject(err);
+            console.warn('Autoplay HLS bloqueado', err);
+            finishOk(false);
           }
         });
+
         tvHls.on(Hls.Events.ERROR, (_event, data) => {
-          if (data?.fatal) {
+          if (data?.fatal && !settled) {
             clearTimeout(timer);
-            reject(new Error(data.type || 'HLS'));
+            finishError(new Error(data.details || data.type || 'HLS'));
+          } else if (data?.fatal) {
+            console.warn('Error HLS después de cargar', data);
+            tvPlayerStatus.textContent = 'Problema con la señal · prueba de nuevo';
           }
         });
+
         tvHls.loadSource(url);
         tvHls.attachMedia(tvVideo);
+
+        // Intento temprano: algunos móviles conservan así el gesto del toque.
+        tvVideo.play().catch(() => {});
         return;
       }
 
       tvVideo.src = url;
-      const timer = setTimeout(() => reject(new Error('Timeout vídeo')), 12000);
-      const onPlaying = () => { cleanup(); resolve(); };
-      const onError = () => { cleanup(); reject(new Error('Error de vídeo')); };
-      function cleanup() {
+      const timer = setTimeout(() => finishError(new Error('Timeout vídeo')), 15000);
+      const onLoaded = async () => {
         clearTimeout(timer);
-        tvVideo.removeEventListener('playing', onPlaying);
-        tvVideo.removeEventListener('error', onError);
-      }
-      tvVideo.addEventListener('playing', onPlaying, { once: true });
+        try {
+          await tvVideo.play();
+          finishOk(true);
+        } catch (err) {
+          console.warn('Autoplay vídeo bloqueado', err);
+          finishOk(false);
+        }
+      };
+      const onError = () => {
+        clearTimeout(timer);
+        finishError(new Error('Error de vídeo'));
+      };
+      tvVideo.addEventListener('loadedmetadata', onLoaded, { once: true });
       tvVideo.addEventListener('error', onError, { once: true });
-      tvVideo.play().catch(onError);
+      tvVideo.play().catch(() => {});
     });
   }
 
@@ -1807,7 +1900,7 @@
   }, 5000);
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=12').catch(console.warn));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=13').catch(console.warn));
   }
 
   /* ---------------- Inicio ---------------- */
