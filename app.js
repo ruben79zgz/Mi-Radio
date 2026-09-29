@@ -105,6 +105,8 @@
   let playIntent = false; // true mientras el usuario NO haya pulsado pausa/stop
   let sourceLoading = false;
   let reconnectTimer = null;
+  let stallCheckTimer = null;
+  let networkCheckTimer = null;
   let reconnectAttempt = 0;
   let lastProgressAt = Date.now();
   let lastAudioTime = 0;
@@ -724,6 +726,7 @@
   function pauseMedia() {
     playIntent = false;
     clearReconnect();
+    clearRecoveryChecks();
     saveEpisodePosition();
     audio.pause();
     if (mediaKind === 'radio') playerStatus.textContent = 'Pausado';
@@ -751,6 +754,7 @@
   function stopMedia() {
     playIntent = false;
     clearReconnect();
+    clearRecoveryChecks();
     saveEpisodePosition();
     audio.pause();
     destroyHls();
@@ -830,6 +834,33 @@
     reconnectTimer = null;
   }
 
+  function clearRecoveryChecks() {
+    clearTimeout(stallCheckTimer);
+    clearTimeout(networkCheckTimer);
+    stallCheckTimer = null;
+    networkCheckTimer = null;
+  }
+
+  function markPlaybackHealthy() {
+    lastProgressAt = Date.now();
+    reconnectAttempt = 0;
+    clearReconnect();
+    clearRecoveryChecks();
+  }
+
+  function scheduleNetworkHealthCheck(reason = 'cambio de red', delay = 3500) {
+    if (!playIntent || !mediaKind || !navigator.onLine) return;
+    clearTimeout(networkCheckTimer);
+    networkCheckTimer = setTimeout(() => {
+      networkCheckTimer = null;
+      if (!playIntent || !mediaKind || !navigator.onLine || sourceLoading) return;
+      const staleFor = Date.now() - lastProgressAt;
+      if (audio.paused || audio.readyState < 3 || staleFor > 5500) {
+        scheduleReconnect(reason, 250);
+      }
+    }, delay);
+  }
+
   function setReconnectStatus(text) {
     if (!playIntent) return;
     playerStatus.textContent = text;
@@ -890,8 +921,29 @@
 
   function notePossibleStall() {
     if (!playIntent || sourceLoading) return;
-    setReconnectStatus(navigator.onLine ? 'Conexión inestable · reconectando…' : 'Sin conexión · esperando Internet…');
-    if (navigator.onLine) scheduleReconnect('stream detenido', 4000);
+    if (!navigator.onLine) {
+      setReconnectStatus('Sin conexión · esperando Internet…');
+      return;
+    }
+
+    // waiting/stalled puede ocurrir durante un pequeño relleno de buffer.
+    // No reiniciamos el stream salvo que siga realmente parado varios segundos.
+    clearTimeout(stallCheckTimer);
+    const timeAtStall = Number.isFinite(audio.currentTime) ? audio.currentTime : 0;
+
+    stallCheckTimer = setTimeout(() => {
+      stallCheckTimer = null;
+      if (!playIntent || !mediaKind || !navigator.onLine || sourceLoading) return;
+
+      const nowTime = Number.isFinite(audio.currentTime) ? audio.currentTime : 0;
+      const advanced = nowTime > timeAtStall + 0.15;
+      const staleFor = Date.now() - lastProgressAt;
+
+      if (advanced || staleFor < 7500) return;
+
+      setReconnectStatus('Conexión detenida · reconectando…');
+      scheduleReconnect('stream realmente detenido', 300);
+    }, 8000);
   }
 
   /* ---------------- Respaldo automático de radio ---------------- */
@@ -1015,8 +1067,7 @@
   sleepSelect.addEventListener('change', () => setSleepTimer(Number(sleepSelect.value)));
 
   audio.addEventListener('playing', () => {
-    reconnectAttempt = 0;
-    lastProgressAt = Date.now();
+    markPlaybackHealthy();
     syncPlayButtons();
     if (mediaKind === 'radio' && currentStation) playerStatus.textContent = streamSourceText(currentStation);
     if (mediaKind === 'podcast') updatePodcastTimeUi();
@@ -1032,9 +1083,12 @@
 
   audio.addEventListener('timeupdate', () => {
     const now = Date.now();
-    if (audio.currentTime !== lastAudioTime) {
+    if (Math.abs(audio.currentTime - lastAudioTime) > 0.05) {
       lastAudioTime = audio.currentTime;
       lastProgressAt = now;
+      reconnectAttempt = 0;
+      clearReconnect();
+      clearRecoveryChecks();
     }
     if (mediaKind === 'podcast') {
       updatePodcastTimeUi();
@@ -1047,6 +1101,9 @@
 
   audio.addEventListener('loadedmetadata', () => { if (mediaKind === 'podcast') updatePodcastTimeUi(); });
   audio.addEventListener('durationchange', () => { if (mediaKind === 'podcast') updatePodcastTimeUi(); });
+  audio.addEventListener('canplay', () => {
+    if (playIntent && !audio.paused) markPlaybackHealthy();
+  });
   audio.addEventListener('waiting', notePossibleStall);
   audio.addEventListener('stalled', notePossibleStall);
   audio.addEventListener('error', () => {
@@ -1072,20 +1129,19 @@
 
   window.addEventListener('online', () => {
     if (playIntent && mediaKind) {
-      setReconnectStatus('Conexión recuperada · reconectando…');
-      scheduleReconnect('Internet recuperado', 700);
+      scheduleNetworkHealthCheck('Internet recuperado', 2500);
     }
   });
   window.addEventListener('offline', () => {
     clearReconnect();
+    clearRecoveryChecks();
     if (playIntent && mediaKind) setReconnectStatus('Sin conexión · esperando Internet…');
   });
 
   if (navigator.connection?.addEventListener) {
     navigator.connection.addEventListener('change', () => {
       if (playIntent && mediaKind && navigator.onLine) {
-        setReconnectStatus('Cambio de red · reconectando…');
-        scheduleReconnect('cambio Wi‑Fi/datos', 900);
+        scheduleNetworkHealthCheck('cambio Wi-Fi/datos', 3000);
       }
     });
   }
@@ -1099,14 +1155,16 @@
     if (playIntent && mediaKind && audio.paused && navigator.onLine) scheduleReconnect('pageshow', 300);
   });
 
-  // Vigilante: si el stream deja de avanzar durante 12 s, fuerza una conexión nueva.
+  // Vigilante de último recurso. Solo interviene tras una parada real y prolongada.
   setInterval(() => {
     if (!playIntent || !mediaKind || !navigator.onLine || sourceLoading || audio.paused) return;
-    if (Date.now() - lastProgressAt > 12000) scheduleReconnect('sin progreso', 100);
-  }, 4000);
+    if (Date.now() - lastProgressAt > 18000 && !reconnectTimer) {
+      scheduleReconnect('sin progreso prolongado', 250);
+    }
+  }, 5000);
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=8').catch(console.warn));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=9').catch(console.warn));
   }
 
   /* ---------------- Inicio ---------------- */
