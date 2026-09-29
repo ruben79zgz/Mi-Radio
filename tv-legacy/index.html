@@ -1,0 +1,265 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mi TV Philips</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html, body { margin:0; padding:0; background:#07101f; color:#f4f7fb; font-family:Arial, Helvetica, sans-serif; }
+    body { font-size:20px; }
+    .wrap { width:94%; max-width:1300px; margin:0 auto; padding:18px 0 30px; }
+    .top { border-bottom:1px solid #20304b; padding-bottom:14px; margin-bottom:16px; }
+    .small { color:#66e4c4; font-size:14px; font-weight:bold; letter-spacing:2px; }
+    h1 { margin:5px 0 0; font-size:30px; }
+    .tabs { margin:16px 0; }
+    .tab {
+      display:inline-block; min-width:160px; margin:0 8px 8px 0; padding:14px 20px;
+      border:2px solid #2a3b59; border-radius:12px; background:#111b2e; color:#fff;
+      font-size:20px; font-weight:bold; cursor:pointer;
+    }
+    .tab.active, .tab:focus { background:#66e4c4; color:#061019; border-color:#66e4c4; outline:none; }
+    .playerBox { background:#0d1728; border:2px solid #2a3b59; border-radius:16px; padding:14px; margin-bottom:18px; }
+    .now { font-size:24px; font-weight:bold; margin-bottom:8px; }
+    .status { color:#a9b6ca; font-size:16px; margin-bottom:10px; }
+    video { display:block; width:100%; height:560px; background:#000; border:0; }
+    .controls { margin-top:12px; }
+    .controlBtn {
+      display:inline-block; padding:13px 18px; margin:0 8px 8px 0;
+      background:#17243a; color:#fff; border:2px solid #314463; border-radius:10px;
+      font-size:18px; font-weight:bold; cursor:pointer;
+    }
+    .controlBtn.primary { background:#66e4c4; color:#061019; border-color:#66e4c4; }
+    .controlBtn:focus { outline:4px solid #fff; outline-offset:2px; }
+    .channels { margin-top:12px; }
+    .channel {
+      display:inline-block; vertical-align:top; width:46%; min-height:78px;
+      margin:0 2% 14px 0; padding:12px; box-sizing:border-box;
+      background:#111b2e; border:2px solid #243653; border-radius:14px;
+      cursor:pointer; color:#fff; text-align:left;
+    }
+    .channel:focus { outline:none; border-color:#66e4c4; background:#17243a; }
+    .logo {
+      display:inline-block; vertical-align:middle; width:64px; height:64px; margin-right:12px;
+      background:#fff; border-radius:10px; object-fit:contain;
+    }
+    .channelText { display:inline-block; vertical-align:middle; max-width:70%; }
+    .channelName { font-size:21px; font-weight:bold; }
+    .channelGroup { margin-top:4px; color:#a9b6ca; font-size:14px; }
+    .hint { color:#8fa1b9; font-size:14px; line-height:1.5; margin-top:12px; }
+    .hidden { display:none; }
+    #directBtn { display:none; }
+    @media screen and (max-width:900px) {
+      body { font-size:16px; }
+      video { height:360px; }
+      .channel { width:100%; margin-right:0; }
+      .tab { min-width:120px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="small">VERSIÓN PHILIPS / LEGACY</div>
+      <h1>Mi TV</h1>
+    </div>
+
+    <div class="tabs">
+      <button id="tabRu" class="tab active" onclick="showGroup('ru')">Rusos</button>
+      <button id="tabEs" class="tab" onclick="showGroup('es')">España</button>
+    </div>
+
+    <div class="playerBox">
+      <div id="now" class="now">Selecciona un canal</div>
+      <div id="status" class="status">Preparado</div>
+      <video id="video" controls></video>
+      <div class="controls">
+        <button class="controlBtn primary" onclick="togglePlay()">Play / Pausa</button>
+        <button class="controlBtn" onclick="stopVideo()">Detener</button>
+        <button class="controlBtn" onclick="fullScreen()">Pantalla completa</button>
+        <button id="directBtn" class="controlBtn" onclick="openDirect()">Abrir stream directo</button>
+      </div>
+    </div>
+
+    <div id="ru" class="channels"></div>
+    <div id="es" class="channels hidden"></div>
+
+    <div class="hint">
+      Esta versión está hecha para navegadores antiguos de Smart TV: sin frameworks, sin Service Worker y sin JavaScript moderno.
+      Si un canal no abre dentro del reproductor, prueba "Abrir stream directo": la Philips puede enviarlo a su reproductor multimedia nativo.
+    </div>
+  </div>
+
+  <script>
+    var channels = {
+      ru: [
+        {
+          name: 'НТВ HD',
+          group: 'Principales',
+          logo: 'https://i.imgur.com/DtQX5P2.png',
+          url: 'https://cdn.ntv.ru/ntv0/playlist.m3u8'
+        },
+        {
+          name: 'Россия 1 HD',
+          group: 'Principales',
+          logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Russia-1.svg/320px-Russia-1.svg.png',
+          url: 'https://live.smotrim.ru/vgtrk/0/russia1-hd/index.m3u8'
+        },
+        {
+          name: 'Россия 24 HD',
+          group: 'Noticias',
+          logo: 'https://www.google.com/s2/favicons?domain=smotrim.ru&sz=128',
+          url: 'https://stream8.cinerama.uz/1021/tracks-v1a1/mono.m3u8'
+        },
+        {
+          name: 'Россия-Культура',
+          group: 'Cultura',
+          logo: 'https://www.google.com/s2/favicons?domain=smotrim.ru&sz=128',
+          url: 'https://stream8.cinerama.uz/1048/tracks-v1a1/mono.m3u8'
+        },
+        {
+          name: 'Звезда HD',
+          group: 'Principales',
+          logo: 'https://i.imgur.com/c0L0ncA.png',
+          url: 'https://tvchannelstream1.tvzvezda.ru/cdn/tvzvezda/playlist_hdhigh.m3u8'
+        },
+        {
+          name: 'МИР HD',
+          group: 'Principales',
+          logo: 'https://i.imgur.com/L2slsbG.png',
+          url: 'https://hls-mirtv.cdnvideo.ru/mirtv-parampublish/mirtv_2500/tracks-v1a1/mono.m3u8'
+        },
+        {
+          name: 'МИР 24',
+          group: 'Noticias',
+          logo: 'https://i.imgur.com/CrFWXTD.png',
+          url: 'https://hls-mirtv.cdnvideo.ru/mirtv-parampublish/mir24_2500/playlist.m3u8'
+        },
+        {
+          name: 'РБК',
+          group: 'Noticias',
+          logo: 'https://www.google.com/s2/favicons?domain=rbc.ru&sz=128',
+          url: 'https://online-video.rbc.ru/online/rbctv.m3u8'
+        }
+      ],
+      es: [
+        {
+          name: 'La 1',
+          group: 'España',
+          logo: 'https://www.google.com/s2/favicons?domain=rtve.es&sz=128',
+          url: 'https://rtvelivestream.rtve.es/rtvesec/la1/la1_main_dvr.m3u8'
+        },
+        {
+          name: 'La 2',
+          group: 'España',
+          logo: 'https://www.google.com/s2/favicons?domain=rtve.es&sz=128',
+          url: 'https://rtvelivestream.rtve.es/rtvesec/la2/la2_main_dvr.m3u8'
+        }
+      ]
+    };
+
+    var currentUrl = '';
+    var currentName = '';
+    var video = document.getElementById('video');
+    var statusEl = document.getElementById('status');
+    var nowEl = document.getElementById('now');
+    var directBtn = document.getElementById('directBtn');
+
+    function esc(text) {
+      return String(text).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function render(group) {
+      var box = document.getElementById(group);
+      var list = channels[group];
+      var html = '';
+      var i;
+      for (i = 0; i < list.length; i++) {
+        html += '<button class="channel" onclick="playChannel(' + "'" + group + "'" + ',' + i + ')">';
+        html += '<img class="logo" src="' + esc(list[i].logo) + '" alt="">';
+        html += '<span class="channelText"><span class="channelName">' + esc(list[i].name) + '</span>';
+        html += '<span class="channelGroup">' + esc(list[i].group) + '</span></span>';
+        html += '</button>';
+      }
+      box.innerHTML = html;
+    }
+
+    function showGroup(group) {
+      document.getElementById('ru').className = group === 'ru' ? 'channels' : 'channels hidden';
+      document.getElementById('es').className = group === 'es' ? 'channels' : 'channels hidden';
+      document.getElementById('tabRu').className = group === 'ru' ? 'tab active' : 'tab';
+      document.getElementById('tabEs').className = group === 'es' ? 'tab active' : 'tab';
+    }
+
+    function playChannel(group, index) {
+      var channel = channels[group][index];
+      currentUrl = channel.url;
+      currentName = channel.name;
+      nowEl.innerHTML = esc(channel.name);
+      statusEl.innerHTML = 'Conectando...';
+      directBtn.style.display = 'none';
+
+      try { video.pause(); } catch(e) {}
+      video.src = channel.url;
+      try { video.load(); } catch(e2) {}
+
+      var result;
+      try { result = video.play(); } catch(e3) { result = null; }
+
+      statusEl.innerHTML = 'Cargando señal...';
+    }
+
+    function togglePlay() {
+      if (!currentUrl) return;
+      try {
+        if (video.paused) video.play();
+        else video.pause();
+      } catch(e) {}
+    }
+
+    function stopVideo() {
+      try { video.pause(); } catch(e) {}
+      try { video.removeAttribute('src'); video.load(); } catch(e2) {}
+      statusEl.innerHTML = 'Detenido';
+      directBtn.style.display = 'none';
+    }
+
+    function fullScreen() {
+      var el = video;
+      try {
+        if (el.requestFullscreen) el.requestFullscreen();
+        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+        else if (el.webkitEnterFullscreen) el.webkitEnterFullscreen();
+        else if (el.mozRequestFullScreen) el.mozRequestFullScreen();
+        else if (el.msRequestFullscreen) el.msRequestFullscreen();
+      } catch(e) {}
+    }
+
+    function openDirect() {
+      if (currentUrl) window.location.href = currentUrl;
+    }
+
+    function onPlaying() {
+      statusEl.innerHTML = 'En directo';
+      directBtn.style.display = 'none';
+    }
+    function onWaiting() {
+      statusEl.innerHTML = 'Cargando...';
+    }
+    function onError() {
+      statusEl.innerHTML = 'El reproductor web no ha podido abrir esta señal.';
+      directBtn.style.display = 'inline-block';
+    }
+
+    if (video.addEventListener) {
+      video.addEventListener('playing', onPlaying, false);
+      video.addEventListener('waiting', onWaiting, false);
+      video.addEventListener('stalled', onWaiting, false);
+      video.addEventListener('error', onError, false);
+    }
+
+    render('ru');
+    render('es');
+    showGroup('ru');
+  </script>
+</body>
+</html>
