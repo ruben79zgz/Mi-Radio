@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Mi Radio">
+  <rect width="512" height="512" rx="116" fill="#08101f"/>
+  <circle cx="256" cy="256" r="176" fill="#66e4c4"/>
+  <g fill="none" stroke="#08101f" stroke-linecap="round" stroke-width="24">
+    <path d="M256 229V152"/>
+    <path d="M207 199c-28 28-28 73 0 101"/>
+    <path d="M305 199c28 28 28 73 0 101"/>
+    <path d="M170 164c-48 50-48 134 0 184"/>
+    <path d="M342 164c48 50 48 134 0 184"/>
+  </g>
+  <circle cx="256" cy="256" r="31" fill="#08101f"/>
+  <rect x="171" y="337" width="170" height="64" rx="32" fill="#08101f"/>
+  <path d="M238 354l44 15-44 15z" fill="#f7f9fc"/>
+</svg>
