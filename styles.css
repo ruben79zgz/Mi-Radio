@@ -171,7 +171,7 @@ main { width: min(100%, 1040px); margin: 0 auto; padding: 18px; }
 /* ===== V8: navegación Radio / Podcasts ===== */
 .mode-tabs {
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:repeat(3,1fr);
   gap:8px;
   margin:0 0 14px;
   padding:5px;
@@ -558,4 +558,148 @@ main { width: min(100%, 1040px); margin: 0 auto; padding: 18px; }
 
 @media (max-width:760px) {
   .car-close-btn { width:52px; height:38px; }
+}
+
+
+/* ===== V12: Televisión ===== */
+.tv-head { margin-bottom:8px; }
+.tv-source-note {
+  color:var(--muted);
+  font-size:.76rem;
+  line-height:1.45;
+  margin-bottom:12px;
+}
+.tv-source-note a { color:var(--accent); text-decoration:none; }
+.tv-country-tabs {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-bottom:14px;
+}
+.tv-country-btn {
+  border:1px solid var(--line);
+  background:var(--panel);
+  color:var(--muted);
+  border-radius:13px;
+  padding:10px 12px;
+  font-weight:800;
+  cursor:pointer;
+}
+.tv-country-btn.active {
+  background:var(--accent);
+  color:#061019;
+  border-color:transparent;
+}
+.tv-player-panel {
+  border:1px solid rgba(102,228,196,.28);
+  border-radius:20px;
+  padding:12px;
+  background:rgba(10,18,34,.92);
+  margin-bottom:14px;
+  box-shadow:0 16px 44px rgba(0,0,0,.22);
+}
+.tv-player-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:10px;
+}
+.tv-player-copy { min-width:0; }
+.tv-player-name {
+  font-weight:900;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.tv-player-status { color:var(--muted); font-size:.76rem; margin-top:3px; }
+.tv-close-btn { flex:0 0 auto; }
+.tv-video {
+  width:100%;
+  aspect-ratio:16/9;
+  display:block;
+  border-radius:14px;
+  background:#000;
+}
+.tv-web-fallback {
+  min-height:220px;
+  display:grid;
+  grid-template-columns:120px 1fr;
+  align-items:center;
+  gap:18px;
+  padding:22px;
+  border-radius:14px;
+  background:linear-gradient(135deg,rgba(23,35,58,.92),rgba(8,16,31,.96));
+}
+.tv-fallback-logo {
+  width:120px;
+  height:120px;
+  object-fit:contain;
+  border-radius:18px;
+  background:#fff;
+  padding:10px;
+}
+.tv-web-fallback p { color:var(--muted); line-height:1.45; }
+.tv-channels-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:12px;
+}
+.tv-channel-card {
+  position:relative;
+  min-height:178px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(17,27,46,.9);
+  padding:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+.tv-channel-card.playing {
+  border-color:rgba(102,228,196,.7);
+  box-shadow:0 0 0 1px rgba(102,228,196,.12),0 14px 36px rgba(0,0,0,.22);
+}
+.tv-logo-wrap {
+  height:92px;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  background:#fff;
+  overflow:hidden;
+}
+.tv-logo-wrap img {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:7px;
+}
+.tv-card-name { font-weight:850; line-height:1.15; margin-top:9px; padding-right:42px; }
+.tv-card-source { color:var(--muted); font-size:.68rem; margin-top:5px; padding-right:42px; }
+.tv-play-card {
+  position:absolute;
+  right:10px;
+  bottom:10px;
+  width:40px;
+  height:40px;
+  border:0;
+  border-radius:13px;
+  background:var(--accent);
+  color:#061019;
+  font-weight:950;
+  cursor:pointer;
+}
+.tv-play-card.web-only {
+  background:var(--panel-2);
+  color:var(--text);
+  border:1px solid var(--line);
+}
+
+@media (max-width:760px) {
+  .mode-tabs { gap:5px; padding:4px; }
+  .mode-tab { padding:9px 7px; font-size:.88rem; }
+  .tv-channels-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+  .tv-channel-card { min-height:164px; padding:8px; }
+  .tv-logo-wrap { height:82px; }
+  .tv-card-name { font-size:.84rem; }
+  .tv-web-fallback { grid-template-columns:82px 1fr; gap:12px; padding:14px; min-height:170px; }
+  .tv-fallback-logo { width:82px; height:82px; border-radius:14px; }
 }
