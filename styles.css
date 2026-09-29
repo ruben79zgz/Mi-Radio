@@ -508,3 +508,54 @@ main { width: min(100%, 1040px); margin: 0 auto; padding: 18px; }
   .podcast-search-card img { width:48px; height:48px; }
   .podcast-subscribe-btn { grid-column:2; justify-self:start; }
 }
+
+
+/* ===== V11: botón minimizar e identidad PWA ===== */
+.car-close-btn {
+  width: 54px;
+  height: 40px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(23,35,58,.98), rgba(11,19,34,.98));
+  border: 1px solid rgba(102,228,196,.34);
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 22px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.04);
+  padding: 0;
+}
+.car-close-btn:hover {
+  border-color: rgba(102,228,196,.7);
+  background: linear-gradient(180deg, rgba(30,47,75,.98), rgba(14,25,43,.98));
+}
+.car-close-btn:active { transform: translateY(1px) scale(.98); }
+
+.minimize-glyph {
+  position: relative;
+  width: 22px;
+  height: 12px;
+  display: block;
+}
+.minimize-glyph::before,
+.minimize-glyph::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  width: 12px;
+  height: 2.5px;
+  border-radius: 999px;
+  background: currentColor;
+}
+.minimize-glyph::before {
+  left: 1px;
+  transform: rotate(38deg);
+  transform-origin: right center;
+}
+.minimize-glyph::after {
+  right: 1px;
+  transform: rotate(-38deg);
+  transform-origin: left center;
+}
+
+@media (max-width:760px) {
+  .car-close-btn { width:52px; height:38px; }
+}
