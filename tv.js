@@ -7,14 +7,20 @@ window.TV_CONFIG = {
       name: 'La 1',
       matches: ['La 1'],
       web: 'https://www.rtve.es/play/videos/directo/la-1/',
-      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKAkEfk96B4C3wdml0A6_Ewv8zhsVAj2AVDSLpS34DMw&s'
+      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKAkEfk96B4C3wdml0A6_Ewv8zhsVAj2AVDSLpS34DMw&s',
+      fallbackStreams: [
+        { format: 'm3u8', url: 'https://rtvelivestream.rtve.es/rtvesec/la1/la1_main_dvr.m3u8' }
+      ]
     },
     {
       id: 'la2',
       name: 'La 2',
       matches: ['La 2'],
       web: 'https://www.rtve.es/play/videos/directo/la-2/',
-      logo: 'https://yt3.googleusercontent.com/ytc/AIdro_kqgHWySi5xprs1VFCNCX0IKNT8yXBLZC43JMoB8j0JUto=s200'
+      logo: 'https://yt3.googleusercontent.com/ytc/AIdro_kqgHWySi5xprs1VFCNCX0IKNT8yXBLZC43JMoB8j0JUto=s200',
+      fallbackStreams: [
+        { format: 'm3u8', url: 'https://rtvelivestream.rtve.es/rtvesec/la2/la2_main_dvr.m3u8' }
+      ]
     },
     {
       id: 'antena3',
