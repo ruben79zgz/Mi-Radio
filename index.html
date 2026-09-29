@@ -6,11 +6,11 @@
   <meta name="theme-color" content="#0b1020" />
   <meta name="description" content="Mi Radio" />
   <meta name="referrer" content="no-referrer" />
-  <link rel="manifest" href="manifest.webmanifest?v=11" />
-  <link rel="icon" type="image/svg+xml" href="icons/mi-radio.svg?v=11" />
-  <link rel="apple-touch-icon" href="icons/mi-radio.svg?v=11" />
+  <link rel="manifest" href="manifest.webmanifest?v=12" />
+  <link rel="icon" type="image/svg+xml" href="icons/mi-radio.svg?v=12" />
+  <link rel="apple-touch-icon" href="icons/mi-radio.svg?v=12" />
   <title>Mi Radio</title>
-  <link rel="stylesheet" href="styles.css?v=11" />
+  <link rel="stylesheet" href="styles.css?v=12" />
 </head>
 <body>
   <header class="topbar">
@@ -27,6 +27,7 @@
     <nav class="mode-tabs" aria-label="Sección principal">
       <button id="radioModeBtn" class="mode-tab active" type="button">Radio</button>
       <button id="podcastModeBtn" class="mode-tab" type="button">Podcasts</button>
+      <button id="tvModeBtn" class="mode-tab" type="button">TV</button>
     </nav>
 
     <section id="radioView">
@@ -76,6 +77,50 @@
         <input id="episodeSearchInput" class="search podcast-search" type="search" placeholder="Buscar episodio…" autocomplete="off" />
         <section id="episodesList" class="episodes-list" aria-live="polite"></section>
       </div>
+    </section>
+
+    <section id="tvView" class="hidden">
+      <div class="section-head compact-head tv-head">
+        <div>
+          <div class="eyebrow">TELEVISIÓN</div>
+          <h2>TV en directo</h2>
+        </div>
+        <button id="tvRefreshBtn" class="icon-btn" type="button" aria-label="Actualizar canales" title="Actualizar">↻</button>
+      </div>
+
+      <div class="tv-source-note">
+        España usa enlaces oficiales recopilados por
+        <a href="https://www.tdtchannels.com/" target="_blank" rel="noopener">TDTChannels</a>.
+        Los rusos se leen de tu repositorio <strong>Mi-TV</strong>.
+      </div>
+
+      <div class="tv-country-tabs" role="tablist" aria-label="País">
+        <button class="tv-country-btn active" type="button" data-tv-country="España">España</button>
+        <button class="tv-country-btn" type="button" data-tv-country="Rusos">Rusos</button>
+      </div>
+
+      <section id="tvPlayerPanel" class="tv-player-panel hidden">
+        <div class="tv-player-head">
+          <div class="tv-player-copy">
+            <div id="tvPlayerName" class="tv-player-name">—</div>
+            <div id="tvPlayerStatus" class="tv-player-status">Preparado</div>
+          </div>
+          <button id="tvCloseBtn" class="car-close-btn tv-close-btn" type="button" aria-label="Cerrar reproductor" title="Cerrar">
+            <span class="minimize-glyph" aria-hidden="true"></span>
+          </button>
+        </div>
+        <video id="tvVideo" class="tv-video" controls playsinline preload="metadata"></video>
+        <div id="tvWebFallback" class="tv-web-fallback hidden">
+          <img id="tvFallbackLogo" class="tv-fallback-logo" alt="" referrerpolicy="no-referrer" />
+          <div>
+            <strong id="tvFallbackTitle">—</strong>
+            <p id="tvFallbackText">Este canal no ofrece ahora mismo un stream directo compatible para reproducir dentro de la app.</p>
+            <button id="tvOpenWebBtn" class="btn" type="button">Abrir emisión oficial</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="tvChannelsGrid" class="tv-channels-grid" aria-live="polite"></section>
     </section>
   </main>
 
@@ -187,8 +232,10 @@
 
   <audio id="audio" preload="none"></audio>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>
-  <script src="stations.js?v=10"></script>
-  <script src="podcasts.js?v=10"></script>
-  <script src="app.js?v=10"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dashjs@5/dist/dash.all.min.js"></script>
+  <script src="stations.js?v=12"></script>
+  <script src="tv.js?v=12"></script>
+  <script src="podcasts.js?v=12"></script>
+  <script src="app.js?v=12"></script>
 </body>
 </html>
