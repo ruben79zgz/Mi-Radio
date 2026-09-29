@@ -3,6 +3,7 @@
 
   const stations = window.RADIO_STATIONS || [];
   const podcastSources = window.PODCAST_SOURCES || [];
+  const tvConfig = window.TV_CONFIG || { spanish: [] };
 
   const audio = document.getElementById('audio');
   const grid = document.getElementById('stationsGrid');
@@ -10,8 +11,10 @@
   const searchInput = document.getElementById('searchInput');
   const radioView = document.getElementById('radioView');
   const podcastView = document.getElementById('podcastView');
+  const tvView = document.getElementById('tvView');
   const radioModeBtn = document.getElementById('radioModeBtn');
   const podcastModeBtn = document.getElementById('podcastModeBtn');
+  const tvModeBtn = document.getElementById('tvModeBtn');
   const eyebrow = document.getElementById('eyebrow');
 
   const podcastShows = document.getElementById('podcastShows');
@@ -72,6 +75,19 @@
   const radioStopBigBtn = document.getElementById('radioStopBigBtn');
   const radioBigPlayPauseBtn = document.getElementById('radioBigPlayPauseBtn');
 
+  const tvRefreshBtn = document.getElementById('tvRefreshBtn');
+  const tvChannelsGrid = document.getElementById('tvChannelsGrid');
+  const tvPlayerPanel = document.getElementById('tvPlayerPanel');
+  const tvVideo = document.getElementById('tvVideo');
+  const tvPlayerName = document.getElementById('tvPlayerName');
+  const tvPlayerStatus = document.getElementById('tvPlayerStatus');
+  const tvCloseBtn = document.getElementById('tvCloseBtn');
+  const tvWebFallback = document.getElementById('tvWebFallback');
+  const tvFallbackLogo = document.getElementById('tvFallbackLogo');
+  const tvFallbackTitle = document.getElementById('tvFallbackTitle');
+  const tvOpenWebBtn = document.getElementById('tvOpenWebBtn');
+  const tvCountryButtons = [...document.querySelectorAll('[data-tv-country]')];
+
   const settingsBtn = document.getElementById('settingsBtn');
   const settingsDialog = document.getElementById('settingsDialog');
   const sleepSelect = document.getElementById('sleepSelect');
@@ -119,6 +135,14 @@
   let currentEpisode = null;
   let podcastSearchResultsData = [];
   let podcastSearchBusy = false;
+
+  let tvCountry = 'España';
+  let tvSpanishChannels = [];
+  let tvRussianChannels = [];
+  let tvLoaded = false;
+  let currentTvChannel = null;
+  let tvHls = null;
+  let tvDash = null;
 
   let mediaKind = null; // radio | podcast
   let playIntent = false; // true mientras el usuario NO haya pulsado pausa/stop
@@ -555,17 +579,27 @@
     return loaded;
   }
 
-  /* ---------------- Vistas Radio / Podcasts ---------------- */
+  /* ---------------- Vistas Radio / Podcasts / TV ---------------- */
 
   function setUiMode(mode) {
+    if (currentUiMode === 'tv' && mode !== 'tv') stopTvPlayback(true);
+
     currentUiMode = mode;
     const radio = mode === 'radio';
+    const podcasts = mode === 'podcasts';
+    const tv = mode === 'tv';
+
     radioView.classList.toggle('hidden', !radio);
-    podcastView.classList.toggle('hidden', radio);
+    podcastView.classList.toggle('hidden', !podcasts);
+    tvView.classList.toggle('hidden', !tv);
+
     radioModeBtn.classList.toggle('active', radio);
-    podcastModeBtn.classList.toggle('active', !radio);
-    eyebrow.textContent = radio ? 'RADIO PERSONAL' : 'PODCASTS';
-    if (!radio) loadPodcastsData(false);
+    podcastModeBtn.classList.toggle('active', podcasts);
+    tvModeBtn.classList.toggle('active', tv);
+
+    eyebrow.textContent = radio ? 'RADIO PERSONAL' : podcasts ? 'PODCASTS' : 'TELEVISIÓN';
+    if (podcasts) loadPodcastsData(false);
+    if (tv) loadTvChannels(false);
   }
 
   async function loadPodcastsData(force = false) {
@@ -728,9 +762,307 @@
     return h ? `${h}:${m}:${s}` : `${m}:${s}`;
   }
 
+  /* ---------------- Televisión ---------------- */
+
+  function destroyTvEngines() {
+    if (tvHls) {
+      try { tvHls.destroy(); } catch {}
+      tvHls = null;
+    }
+    if (tvDash) {
+      try { tvDash.reset(); } catch {}
+      tvDash = null;
+    }
+  }
+
+  function flattenTdtChannels(data) {
+    const result = [];
+    for (const country of data?.countries || []) {
+      for (const ambit of country?.ambits || []) {
+        for (const channel of ambit?.channels || []) {
+          result.push({ ...channel, ambit: ambit.name, country: country.name });
+        }
+      }
+    }
+    return result;
+  }
+
+  function normalizeTvStreams(options = []) {
+    return options
+      .filter(opt => opt?.url && ['m3u8','mpd','dash'].includes(String(opt.format || '').toLowerCase()))
+      .map(opt => ({
+        url: opt.url,
+        format: String(opt.format || '').toLowerCase() === 'm3u8' ? 'hls' : 'dash'
+      }));
+  }
+
+  function faviconFor(url) {
+    try {
+      const host = new URL(url).hostname;
+      return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(host)}&sz=128`;
+    } catch {
+      return 'icons/mi-radio.svg';
+    }
+  }
+
+  async function loadTvChannels(force = false) {
+    if (tvLoaded && !force) {
+      renderTvChannels();
+      return;
+    }
+
+    tvChannelsGrid.innerHTML = '<div class="empty">Actualizando canales…</div>';
+
+    const spanishBase = (tvConfig.spanish || []).map(cfg => ({
+      ...cfg,
+      source: 'TDTChannels',
+      streams: cfg.fallbackStreams || []
+    }));
+
+    try {
+      const response = await fetch(`${tvConfig.tdtJson}?t=${Date.now()}`, { cache: 'no-store' });
+      if (response.ok) {
+        const data = await response.json();
+        const all = flattenTdtChannels(data);
+        tvSpanishChannels = spanishBase.map(cfg => {
+          const found = all.find(item => (cfg.matches || [cfg.name]).some(name => normalize(item.name) === normalize(name)));
+          const direct = normalizeTvStreams(found?.options || []);
+          return {
+            ...cfg,
+            name: found?.name || cfg.name,
+            logo: found?.logo || cfg.logo,
+            web: found?.web || cfg.web,
+            streams: direct.length ? direct : (cfg.fallbackStreams || []),
+            extraInfo: found?.extra_info || []
+          };
+        });
+      } else {
+        tvSpanishChannels = spanishBase;
+      }
+    } catch (err) {
+      console.warn('No se pudo actualizar TDTChannels', err);
+      tvSpanishChannels = spanishBase;
+    }
+
+    try {
+      const response = await fetch(`${tvConfig.russianJson}?t=${Date.now()}`, { cache: 'no-store' });
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      const data = await response.json();
+      tvRussianChannels = (data.channels || [])
+        .filter(ch => ch.enabled !== false)
+        .map(ch => {
+          const streams = (ch.candidates || [])
+            .filter(url => /^https:\/\//i.test(url))
+            .map(url => ({ url, format: ch.format === 'dash' ? 'dash' : 'hls' }));
+          const logo = /^https?:\/\//i.test(ch.logo || '') ? ch.logo : faviconFor(ch.official_page);
+          return {
+            id: ch.id,
+            name: ch.name,
+            logo,
+            web: ch.official_page,
+            source: 'Mi-TV',
+            group: ch.group || 'Rusos',
+            streams
+          };
+        });
+    } catch (err) {
+      console.warn('No se pudo cargar Mi-TV', err);
+      tvRussianChannels = [];
+    }
+
+    tvLoaded = true;
+    renderTvChannels();
+  }
+
+  function activeTvChannels() {
+    return tvCountry === 'Rusos' ? tvRussianChannels : tvSpanishChannels;
+  }
+
+  function renderTvChannels() {
+    const channels = activeTvChannels();
+    tvCountryButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.tvCountry === tvCountry));
+
+    if (!channels.length) {
+      tvChannelsGrid.innerHTML = '<div class="empty">No se pudieron cargar canales de esta sección.</div>';
+      return;
+    }
+
+    tvChannelsGrid.innerHTML = channels.map(channel => {
+      const direct = channel.streams?.length > 0;
+      const active = currentTvChannel?.id === channel.id && !tvVideo.paused;
+      return `
+        <article class="tv-channel-card ${active ? 'playing' : ''}">
+          <div class="tv-logo-wrap">
+            <img src="${escapeAttr(channel.logo || 'icons/mi-radio.svg')}" alt="Logo de ${escapeAttr(channel.name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='icons/mi-radio.svg'" />
+          </div>
+          <div class="tv-card-name">${escapeHtml(channel.name)}</div>
+          <div class="tv-card-source">${escapeHtml(channel.source || '')}</div>
+          <button class="tv-play-card ${direct ? '' : 'web-only'}" type="button" data-tv-id="${escapeAttr(channel.id)}" aria-label="${direct ? 'Ver ' : 'Abrir web de '}${escapeAttr(channel.name)}">
+            ${direct ? '▶' : '↗'}
+          </button>
+        </article>`;
+    }).join('');
+
+    tvChannelsGrid.querySelectorAll('[data-tv-id]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const channel = activeTvChannels().find(ch => ch.id === btn.dataset.tvId);
+        if (channel) playTvChannel(channel);
+      });
+    });
+  }
+
+  function showTvWebFallback(channel, message = 'Este canal no ofrece ahora mismo un stream directo compatible para reproducir dentro de la app.') {
+    destroyTvEngines();
+    try { tvVideo.pause(); } catch {}
+    tvVideo.removeAttribute('src');
+    tvVideo.load();
+    tvVideo.classList.add('hidden');
+    tvWebFallback.classList.remove('hidden');
+    setImage(tvFallbackLogo, channel.logo || 'icons/mi-radio.svg', 'icons/mi-radio.svg');
+    tvFallbackTitle.textContent = channel.name;
+    const text = tvWebFallback.querySelector('p');
+    if (text) text.textContent = message;
+    tvOpenWebBtn.disabled = !channel.web;
+    tvOpenWebBtn.onclick = () => {
+      if (channel.web) window.open(channel.web, '_blank', 'noopener');
+    };
+    tvPlayerStatus.textContent = 'Disponible en la web oficial';
+  }
+
+  async function playTvChannel(channel) {
+    currentTvChannel = channel;
+    tvPlayerPanel.classList.remove('hidden');
+    tvPlayerName.textContent = channel.name;
+    tvPlayerStatus.textContent = 'Conectando…';
+    tvWebFallback.classList.add('hidden');
+    tvVideo.classList.remove('hidden');
+
+    if (mediaKind && !audio.paused) stopMedia();
+    playerBar.classList.add('hidden');
+    try { podcastPlayerDialog.close(); } catch {}
+    try { radioPlayerDialog.close(); } catch {}
+
+    if (!channel.streams?.length) {
+      showTvWebFallback(channel);
+      renderTvChannels();
+      tvPlayerPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    destroyTvEngines();
+    for (let i = 0; i < channel.streams.length; i += 1) {
+      const candidate = channel.streams[i];
+      try {
+        await loadTvStream(candidate);
+        tvPlayerStatus.textContent = channel.source === 'Mi-TV' ? 'En directo · Mi-TV' : 'En directo · TDTChannels';
+        renderTvChannels();
+        tvPlayerPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      } catch (err) {
+        console.warn('TV stream failed', channel.name, candidate.url, err);
+        destroyTvEngines();
+      }
+    }
+
+    showTvWebFallback(channel, 'La señal directa no ha podido reproducirse en este navegador. Puedes abrir la emisión oficial.');
+    renderTvChannels();
+  }
+
+  function loadTvStream(candidate) {
+    return new Promise((resolve, reject) => {
+      destroyTvEngines();
+      try { tvVideo.pause(); } catch {}
+      tvVideo.removeAttribute('src');
+      tvVideo.load();
+
+      const url = candidate.url;
+      const format = candidate.format || (/\.mpd(?:$|\?)/i.test(url) ? 'dash' : 'hls');
+
+      if (format === 'dash') {
+        if (!window.dashjs?.MediaPlayer) {
+          reject(new Error('DASH no disponible'));
+          return;
+        }
+        try {
+          tvDash = dashjs.MediaPlayer().create();
+          tvDash.initialize(tvVideo, url, true);
+          const onPlaying = () => { cleanup(); resolve(); };
+          const onError = () => { cleanup(); reject(new Error('Error DASH')); };
+          const timer = setTimeout(() => { cleanup(); reject(new Error('Timeout DASH')); }, 12000);
+          function cleanup() {
+            clearTimeout(timer);
+            tvVideo.removeEventListener('playing', onPlaying);
+            tvVideo.removeEventListener('error', onError);
+          }
+          tvVideo.addEventListener('playing', onPlaying, { once: true });
+          tvVideo.addEventListener('error', onError, { once: true });
+        } catch (err) {
+          reject(err);
+        }
+        return;
+      }
+
+      if (window.Hls?.isSupported()) {
+        tvHls = new Hls({
+          enableWorker: true,
+          lowLatencyMode: false,
+          maxBufferLength: 30,
+          maxMaxBufferLength: 60,
+          backBufferLength: 20
+        });
+        const timer = setTimeout(() => reject(new Error('Timeout HLS')), 12000);
+        tvHls.on(Hls.Events.MANIFEST_PARSED, async () => {
+          try {
+            await tvVideo.play();
+            clearTimeout(timer);
+            resolve();
+          } catch (err) {
+            clearTimeout(timer);
+            reject(err);
+          }
+        });
+        tvHls.on(Hls.Events.ERROR, (_event, data) => {
+          if (data?.fatal) {
+            clearTimeout(timer);
+            reject(new Error(data.type || 'HLS'));
+          }
+        });
+        tvHls.loadSource(url);
+        tvHls.attachMedia(tvVideo);
+        return;
+      }
+
+      tvVideo.src = url;
+      const timer = setTimeout(() => reject(new Error('Timeout vídeo')), 12000);
+      const onPlaying = () => { cleanup(); resolve(); };
+      const onError = () => { cleanup(); reject(new Error('Error de vídeo')); };
+      function cleanup() {
+        clearTimeout(timer);
+        tvVideo.removeEventListener('playing', onPlaying);
+        tvVideo.removeEventListener('error', onError);
+      }
+      tvVideo.addEventListener('playing', onPlaying, { once: true });
+      tvVideo.addEventListener('error', onError, { once: true });
+      tvVideo.play().catch(onError);
+    });
+  }
+
+  function stopTvPlayback(hidePanel = false) {
+    destroyTvEngines();
+    try { tvVideo.pause(); } catch {}
+    tvVideo.removeAttribute('src');
+    tvVideo.load();
+    currentTvChannel = null;
+    tvWebFallback.classList.add('hidden');
+    tvVideo.classList.remove('hidden');
+    if (hidePanel) tvPlayerPanel.classList.add('hidden');
+    renderTvChannels();
+  }
+
   /* ---------------- Reproductor de radio ---------------- */
 
   async function playStation(station) {
+    if (currentTvChannel) stopTvPlayback(true);
     clearReconnect();
     mediaKind = 'radio';
     playIntent = true;
@@ -880,6 +1212,7 @@
   }
 
   async function playEpisode(show, episode, openPlayer = false) {
+    if (currentTvChannel) stopTvPlayback(true);
     if (!episode.audio) {
       showToast('Este episodio no tiene un audio reproducible en el RSS.');
       return;
@@ -1315,6 +1648,7 @@
   searchInput.addEventListener('input', () => { query = searchInput.value; renderStations(); });
   radioModeBtn.addEventListener('click', () => setUiMode('radio'));
   podcastModeBtn.addEventListener('click', () => setUiMode('podcasts'));
+  tvModeBtn.addEventListener('click', () => setUiMode('tv'));
   podcastBackBtn.addEventListener('click', closePodcastDetail);
   podcastRefreshBtn.addEventListener('click', () => loadPodcastsData(true));
   podcastDiscoveryBtn.addEventListener('click', searchPodcasts);
@@ -1355,6 +1689,16 @@
   muteBtn.addEventListener('click', toggleMute);
   settingsBtn.addEventListener('click', () => settingsDialog.showModal());
   sleepSelect.addEventListener('change', () => setSleepTimer(Number(sleepSelect.value)));
+
+  tvRefreshBtn.addEventListener('click', () => loadTvChannels(true));
+  tvCountryButtons.forEach(btn => btn.addEventListener('click', () => {
+    tvCountry = btn.dataset.tvCountry;
+    stopTvPlayback(true);
+    renderTvChannels();
+  }));
+  tvCloseBtn.addEventListener('click', () => stopTvPlayback(true));
+  tvVideo.addEventListener('playing', renderTvChannels);
+  tvVideo.addEventListener('pause', renderTvChannels);
 
   audio.addEventListener('playing', () => {
     markPlaybackHealthy();
@@ -1463,7 +1807,7 @@
   }, 5000);
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=10').catch(console.warn));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=12').catch(console.warn));
   }
 
   /* ---------------- Inicio ---------------- */
