@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-29T09:46:26.106977Z",
+  "updatedAt": "2026-09-30T01:20:08.994059Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "b95b8f9c817780086b71",
+          "title": "29 SEP 2026 | EL PARTIDAZO DE COPE",
+          "description": "La selección española sigue brillando en la victoria ante Croacia (4-1). Protagonistas. Tiempo de opinión, con Alfredo Relaño y Mario Suárez. Enfado de Cristiano en Portugal. La Premier League declara culpable al Manchester City por todas las irregularidades. Fernando Alonso renueva con Aston Martin. MundoMaldini.",
+          "publishedAt": "2026-09-29T23:36:01Z",
+          "duration": 7430,
+          "audio": "https://www.cope.es/uploads/2026/09/30/dJIN3NnCl9Omo8nMKEOHs.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/29-sep-2026-partidazo-cope-20260930_3446275.html"
+        },
+        {
+          "id": "6763a1bab96fe10e9175",
+          "title": "3ª PARTE | 29 SEP 2026 | EL PARTIDAZO DE COPE",
+          "description": "La Premier League declara culpable al Manchester City por todas las irregularidades. Polémica por el alto precio de las entradas en el Barcelona - Real Madrid. Fernando Alonso renueva con Aston Martin. MundoMaldini.",
+          "publishedAt": "2026-09-29T23:35:04Z",
+          "duration": 2920,
+          "audio": "https://www.cope.es/uploads/2026/09/30/7MfmdKd47UnJKgstJhksn.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-29-sep-2026-partidazo-cope-20260930_3446274.html"
+        },
+        {
+          "id": "9d025f80dab32b99adff",
+          "title": "2ª PARTE | 29 SEP 2026 | EL PARTIDAZO DE COPE",
+          "description": "Continuamos analizando la victoria de España con Alfredo Relaño y Mario Suárez. Enfado de Cristiano en Portugal.",
+          "publishedAt": "2026-09-29T22:43:31Z",
+          "duration": 1879,
+          "audio": "https://www.cope.es/uploads/2026/09/30/0BBCcR_PNVZfMfGb5_Bwr.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-29-sep-2026-partidazo-cope-20260930_3446261.html"
+        },
+        {
+          "id": "6935762787745c10b78c",
+          "title": "1ª PARTE | 29 SEP 2026 | EL PARTIDAZO DE COPE",
+          "description": "La selección española sigue brillando en la victoria ante Croacia (4-1). Protagonistas. Tiempo de opinión.",
+          "publishedAt": "2026-09-29T22:10:07Z",
+          "duration": 2330,
+          "audio": "https://www.cope.es/uploads/2026/09/30/bACCol43EaKRtEnXUXBOs.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-29-sep-2026-partidazo-cope-20260930_3446247.html"
+        },
         {
           "id": "58ed116e64b5d4b6ed7e",
           "title": "28 SEP 2026 | EL PARTIDAZO DE COPE",
@@ -2165,50 +2209,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/08/01/6a6df6ca3732a.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/audios/mis-batallitas-29-07-2026-elias-israel-20260802_3413998.html"
-        },
-        {
-          "id": "2195ab9941ac956ea139",
-          "title": "Mis Batallitas (30-07-2026): Miguel Rico",
-          "description": "El periodista catalán desvela a Luis Munilla las anécdotas más interesantes de su carrera y cómo se inicio en el mundo del periodismo deportivo.",
-          "publishedAt": "2026-08-02T09:55:26Z",
-          "duration": 1436,
-          "audio": "https://www.cope.es/uploads/2026/07/31/sZbWiKpMLXU4IiH8H2qM7.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/08/01/6a6df57314f2a.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/audios/mis-batallitas-30-07-2026-miguel-rico-20260802_3413999.html"
-        },
-        {
-          "id": "3fc0c5b5e7069dfe64c6",
-          "title": "Mis Batallitas (31-07-2026): Emilio Pérez de Rozas",
-          "description": "Emilio Pérez de Rozas le cuenta a Luis Munilla los mejores recuerdos de su larga carrera como periodista deportivo.",
-          "publishedAt": "2026-08-02T09:55:10Z",
-          "duration": 1443,
-          "audio": "https://www.cope.es/uploads/2026/08/01/Z1upyBjd3foSlMCcSkrIG.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2024/07/11/668fb64669bb1.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/audios/mis-batallitas-31-07-2026-emilio-perez-rozas-20260802_3414000.html"
-        },
-        {
-          "id": "dc7b59e7db8c5308d9e6",
-          "title": "31 JUL 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Barcelona empata en Birmingham, pero pierde en los penaltis. Repasamos cómo esta el mercado de fichajes a dos semanas del inicio de LaLiga. Manolo Sanchis analiza la actualidad del Real Madrid. Fallece a los 66 años el legendario Franco Baresi. #CampodelGas. 'Mis batallitas': hoy, Emilio Pérez de Rozas.",
-          "publishedAt": "2026-07-31T23:50:00Z",
-          "duration": 7484,
-          "audio": "https://www.cope.es/uploads/2026/08/01/5mdQa7XsFn0q3qtSeG5e2.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/31-jul-2026-partidazo-cope-20260801_3413919.html"
-        },
-        {
-          "id": "3fc0c5b5e7069dfe64c6",
-          "title": "3ª PARTE | 31 JUL 2026 | EL PARTIDAZO DE COPE",
-          "description": "'Mis batallitas': Emilio Pérez de Rozas le cuenta a Luis Munilla los mejores recuerdos de su larga carrera como periodista deportivo.",
-          "publishedAt": "2026-07-31T23:44:24Z",
-          "duration": 1443,
-          "audio": "https://www.cope.es/uploads/2026/08/01/Z1upyBjd3foSlMCcSkrIG.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-31-jul-2026-partidazo-cope-20260801_3413918.html"
         }
       ]
     },
