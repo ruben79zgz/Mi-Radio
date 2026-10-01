@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-30T01:20:08.994059Z",
+  "updatedAt": "2026-10-01T05:55:58.882337Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,61 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "fc403a7598fda6d01d5b",
+          "title": "30 SEP 2026 | EL PARTIDAZO DE COPE",
+          "description": "Cristiano Ronaldo abandona la concentración de Portugal y deja un mensaje. Argentina, preparada para la fiesta de despedida a Messi. Entrevistas al seleccionador de la República Checa, Santi Denia; y a la nadadora Mireia Belmonte. #VayaFiesta",
+          "publishedAt": "2026-09-30T23:54:11Z",
+          "duration": 7650,
+          "audio": "https://www.cope.es/uploads/2026/10/01/2t19pr1LhtVm8slhCJAnu.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/30-sep-2026-partidazo-cope-20261001_3447371.html"
+        },
+        {
+          "id": "e105df4a885f3534925d",
+          "title": "3ª PARTE | 30 SEP 2026 | EL PARTIDAZO DE COPE",
+          "description": "Entrevista a la nadadora Mireia Belmonte. Rusia planeó matar a Kasparov. #VayaFiesta",
+          "publishedAt": "2026-09-30T23:50:33Z",
+          "duration": 7680,
+          "audio": "https://www.cope.es/uploads/2026/10/01/QydXKby14BZkUAMlTnMey.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-30-sep-2026-partidazo-cope-20261001_3447370.html"
+        },
+        {
+          "id": "6936e51c2ed900174395",
+          "title": "MIREIA BELMONTE | LAS ENTREVISTAS DE JUANMA CASTAÑO",
+          "description": "Juanma Castaño habló con la gran Mireia Belmonte, que con 35 años sigue compitiendo pero mira a su futuro de otra manera",
+          "publishedAt": "2026-09-30T23:39:33Z",
+          "duration": 1782,
+          "audio": "https://www.cope.es/uploads/2026/10/01/kHos7l2IDrckm57iPW2sc.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/10/01/6abd97cb062a1.png",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/entrevistas-de-juanma-castano/episodios/mireia-belmonte-entrevistas-juanma-castano-20261001_3447366.html"
+        },
+        {
+          "id": "c69d26c16051b388fbc1",
+          "title": "2ª PARTE | 30 SEP 2026 | EL PARTIDAZO DE COPE",
+          "description": "Última hora de la selección española, en su jornada de descanso. Entrevista a Santi Denia, seleccionador de la República Checa, próximo rival de España",
+          "publishedAt": "2026-09-30T22:40:44Z",
+          "duration": 1453,
+          "audio": "https://www.cope.es/uploads/2026/10/01/DIcUPxfn92R1upCljKfhX.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-30-sep-2026-partidazo-cope-20261001_3447363.html"
+        },
+        {
+          "id": "e13d7b276f656137ede4",
+          "title": "1ª PARTE | 30 SEP 2026 | EL PARTIDAZO DE COPE",
+          "description": "Titulares del día. Analizamos la crisis de Cristiano Ronaldo en Portugal con el periodista David Carvalho, de la RTP. Por contra, Argentina lo tiene todo preparado para despedir a lo grande a Messi de la albiceleste. Dos asuntos en Inglaterra: la crisis del Manchester City y el toque de atención a Arbeloa",
+          "publishedAt": "2026-09-30T22:14:32Z",
+          "duration": 2530,
+          "audio": "https://www.cope.es/uploads/2026/10/01/f8yuflZmCLZtVC64e2kGV.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-30-sep-2026-partidazo-cope-20261001_3447356.html"
+        },
         {
           "id": "b95b8f9c817780086b71",
           "title": "29 SEP 2026 | EL PARTIDAZO DE COPE",
@@ -2154,61 +2209,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/08/07/6893e2ce6f739.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/audios/mis-batallitas-22-07-2026-roberto-palomar-20260802_3413992.html"
-        },
-        {
-          "id": "7b5aa47cf0c31cecf488",
-          "title": "Mis Batallitas (23-07-2026): Mónica Marchante",
-          "description": "La periodista Mónica Marchante recuerda sus inicios como reportera y cuenta alguno de los momentos más destacados de su carrera.",
-          "publishedAt": "2026-08-02T09:57:15Z",
-          "duration": 1618,
-          "audio": "https://www.cope.es/uploads/2026/07/24/7CDk_mjWWwPj6xrbrSIAW.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/08/01/6a6df2f0d6fa8.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/audios/mis-batallitas-23-07-2026-monica-marchante-20260802_3413993.html"
-        },
-        {
-          "id": "6532f4fe1ee6d96593f9",
-          "title": "Mis Batallitas (24-07-2026): Tomás Guasch",
-          "description": "El periodista y comentarista de la Cadena COPE cuenta sus inicios en el periodismo, cómo entró a formar parte del equipo de Paco González y sus anécdotas más divertidas en el mundo de la comunicación.",
-          "publishedAt": "2026-08-02T09:56:53Z",
-          "duration": 2935,
-          "audio": "https://www.cope.es/uploads/2026/07/25/xHnc6LzKV74fcNkQ2VNMm.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2024/07/09/668c84ab1f950.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/audios/mis-batallitas-24-07-2026-tomas-guasch-20260802_3413995.html"
-        },
-        {
-          "id": "6dabcc618294bb5f060e",
-          "title": "Mis Batallitas (27-07-2026): Manolo Lama",
-          "description": "El narrador del Real Madrid y de la Selección Española en COPE cuenta a Luis Munilla cómo llegó al mundo de la radio y los momentos más destacados de su carrera como periodista.",
-          "publishedAt": "2026-08-02T09:56:37Z",
-          "duration": 1599,
-          "audio": "https://www.cope.es/uploads/2026/07/28/9gyX0GbcuFwxUe2zvi-wS.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2024/07/06/668912e5ac5b1.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/audios/mis-batallitas-27-07-2026-manolo-lama-20260802_3413996.html"
-        },
-        {
-          "id": "5551b2ec8b9717be03fc",
-          "title": "Mis Batallitas (28-07-2026): Alfredo Relaño",
-          "description": "El exdirector del diario AS y comentarista de COPE detalla a Luis Munilla su carrera como periodista y algunos de los recuerdos más destacados de su trayectoria.",
-          "publishedAt": "2026-08-02T09:56:20Z",
-          "duration": 1520,
-          "audio": "https://www.cope.es/uploads/2026/07/29/nVxg3VYKIaUuaTbs2rU8i.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/09/22/68d1c4393d8fd.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/audios/mis-batallitas-28-07-2026-alfredo-relano-20260802_3413997.html"
-        },
-        {
-          "id": "afde799a7a9562e43f9c",
-          "title": "Mis Batallitas (29-07-2026): Elías Israel",
-          "description": "El exdirector de Marca y SportYou cuenta a Luis Munilla sus inicios en el periodismo y las anécdotas más relevantes de su trayectoria.",
-          "publishedAt": "2026-08-02T09:56:01Z",
-          "duration": 1615,
-          "audio": "https://www.cope.es/uploads/2026/07/30/SHBMSaO_cWto3JfaeFZ6q.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/08/01/6a6df6ca3732a.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/audios/mis-batallitas-29-07-2026-elias-israel-20260802_3413998.html"
         }
       ]
     },
