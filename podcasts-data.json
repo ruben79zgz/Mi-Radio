@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-01T05:55:58.882337Z",
+  "updatedAt": "2026-10-01T23:53:26.210372Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,39 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "d642575adcec6e0d0801",
+          "title": "3ª PARTE | 01 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Fórmula 1. The Americans.",
+          "publishedAt": "2026-10-01T23:25:01Z",
+          "duration": 2957,
+          "audio": "https://www.cope.es/uploads/2026/10/02/Ffzs_v_rCKFCzRYNAJ-I0.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-01-oct-2026-partidazo-cope-20261002_3448241.html"
+        },
+        {
+          "id": "f0126392976a9628023f",
+          "title": "2ª PARTE | 01 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Entrevista a Luis García Plaza, entrenador del Sevilla. Tiempo de opinión.",
+          "publishedAt": "2026-10-01T22:42:08Z",
+          "duration": 1463,
+          "audio": "https://www.cope.es/uploads/2026/10/02/qBy4EH6JIbxjCsHngKYi_.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-01-oct-2026-partidazo-cope-20261002_3448239.html"
+        },
+        {
+          "id": "cd4bef8c582fa2b42801",
+          "title": "1ª PARTE | 01 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. La UEFA recibe el informe del Real Madrid sobre el Caso Negreira. Hablamos con Javier Rodríguez Ten, abogado experto en Derecho deportivo.",
+          "publishedAt": "2026-10-01T22:15:19Z",
+          "duration": 2662,
+          "audio": "https://www.cope.es/uploads/2026/10/02/Yid4NfOCLWymAHE2_e6nH.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-01-oct-2026-partidazo-cope-20261002_3448234.html"
+        },
         {
           "id": "fc403a7598fda6d01d5b",
           "title": "30 SEP 2026 | EL PARTIDAZO DE COPE",
@@ -2176,39 +2209,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-03-ago-2026-partidazo-cope-20260804_3414748.html"
-        },
-        {
-          "id": "3e1069ea90be9d3d7355",
-          "title": "02 AGO 2026 | EL TERTULIÓN DE LOS DOMINGOS",
-          "description": "Vinicius vuelve a los entrenamientos con el Real Madrid, pendiente de su renovación. La afición de Vallecas se niega a viajar a Burgos. La situación de Julián Álvarez sigue congelada",
-          "publishedAt": "2026-08-02T23:40:02Z",
-          "duration": 5114,
-          "audio": "https://www.cope.es/uploads/2026/08/03/ISS3eREbEFgm--okouyZz.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/07/07/686b0f2c965a2.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/02-ago-2026-tertulion-domingos-20260803_3414168.html"
-        },
-        {
-          "id": "c850aaf10c8098574f22",
-          "title": "Mis Batallitas (21-07-2026): Paco González",
-          "description": "El director de Tiempo de Juego recuerda sus inicios en la radio y alguno de los momentos más destacados de su larga carrera junto a Luis Munilla.",
-          "publishedAt": "2026-08-02T09:57:47Z",
-          "duration": 1651,
-          "audio": "https://www.cope.es/uploads/2026/08/01/WhSMnsG-2J9zU9G4FM0ky.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/07/19/6a5cf773c4bdf.png",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/audios/mis-batallitas-21-07-2026-paco-gonzalez-20260802_3413991.html"
-        },
-        {
-          "id": "ffd46b371aa85991b184",
-          "title": "Mis Batallitas (22-07-2026): Roberto Palomar",
-          "description": "El periodista recuerda sus inicios en el periodismo, su larga etapa en el diario MARCA y los momentos más destacados de su carrera junto a Luis Munilla.",
-          "publishedAt": "2026-08-02T09:57:32Z",
-          "duration": 1452,
-          "audio": "https://www.cope.es/uploads/2026/07/23/g6O4N1FZzQS0ME1K5_v-1.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/08/07/6893e2ce6f739.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/audios/mis-batallitas-22-07-2026-roberto-palomar-20260802_3413992.html"
         }
       ]
     },
