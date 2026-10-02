@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-01T23:53:26.210372Z",
+  "updatedAt": "2026-10-02T05:38:48.531496Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "eadad201c4d1a1fffe52",
+          "title": "01 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. La UEFA recibe el informe del Real Madrid sobre el Caso Negreira. Hablamos con Javier Rodríguez Ten, abogado experto en Derecho deportivo. Tiempo de opinión. Fórmula 1. The Americans.",
+          "publishedAt": "2026-10-01T23:26:13Z",
+          "duration": 7082,
+          "audio": "https://www.cope.es/uploads/2026/10/02/xmcLDrYTUN6f3vZaoXw1D.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/01-oct-2026-partidazo-cope-20261002_3448242.html"
+        },
         {
           "id": "d642575adcec6e0d0801",
           "title": "3ª PARTE | 01 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -2198,17 +2209,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-03-ago-2026-partidazo-cope-20260804_3414754.html"
-        },
-        {
-          "id": "23f729433aac0a8f7174",
-          "title": "1ª PARTE | 03 AGO 2026 | EL PARTIDAZO DE COPE",
-          "description": "Titulares del día. Tiempo de opinión. Ferran Torres habla sobre su futuro y deja entrever que podría estar lejos del Camp Nou",
-          "publishedAt": "2026-08-03T22:09:24Z",
-          "duration": 1695,
-          "audio": "https://www.cope.es/uploads/2026/08/04/oQbcxhY3TMx36ZTRZr9un.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-03-ago-2026-partidazo-cope-20260804_3414748.html"
         }
       ]
     },
@@ -2221,6 +2221,17 @@
       "site": "http://www.podiumpodcast.com/la-escobula-de-la-brujula/",
       "feed": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/playlists/podcast.rss",
       "episodes": [
+        {
+          "id": "3ca996b67263e722f04d",
+          "title": "Programa 625: Quién nos visita mientras dormimos",
+          "description": "¿Por qué las pesadillas pueden parecernos tan reales? ¿Qué dicen de nuestros miedos y emociones? El investigador Enrique Ramos , autor de Pesadillas: el mensaje urgente que se esconde en el miedo , nos propone explorar estos sueños inquietantes y los posibles significados que les atribuimos. Recorreremos las antiguas creencias que los relacionaban con presagios, curaciones y premoniciones, y conoceremos a los seres que, según distintas tradiciones, atormentaban a los durmientes: la Mara, el Tardo, la Pesanta o el Inguma. También abordaremos lo que la ciencia conoce sobre las pesadillas y las formas de reducir su impacto. Distinguiremos entre pesadillas, terrores nocturnos y la parálisis del sueño, esa inquietante experiencia de despertar sin poder movernos, a veces acompañada de la sensación de que hay alguien en la habitación. ¿Pueden los animales tener pesadillas? ¿Qué huella han dejado nuestros miedos nocturnos en el arte, la literatura y el cine? Esta noche, cerrar los ojos será solo el principio. Nuestro psiquiatra de cabecera, Manuel Berrocal , compartirá dos casos que conoce de primera mano: el de una mujer que soñó con una casa destartalada y una calavera grabada en la puerta, sueño que después relacionó con una enfermedad que aún desconocía; y el de una anciana perseguida en sueños por un oso, cuya interpretación apuntaba a la relación con su hija. Dos experiencias para reflexionar sobre cómo damos sentido a lo que soñamos. EXTRÓBULA: Enrique nos hablará de la llamada «frecuencia del fantasma», en torno a los 19 hercios, y de su supuesta relación con determinadas sensaciones inquietantes. Marcos Carrasco nos llevará al universo de Cabeza borradora , de David Lynch, y a las pesadillas plasmadas por Füssli, Goya y Dalí, con su célebre Sueño causado por el vuelo de una abeja alrededor de una granada un segundo antes de despertar .",
+          "publishedAt": "2026-10-02T04:00:00Z",
+          "duration": 7036,
+          "audio": "https://traffic.omny.fm/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/ba686b37-bf10-4d56-820c-b4d6007f7da6/audio.mp3?utm_source=Podcast&in_playlist=fd25a142-cbf1-4f2b-9146-aead00a0bab7",
+          "fileSize": 112621854,
+          "image": "https://www.omnycontent.com/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/ba686b37-bf10-4d56-820c-b4d6007f7da6/image.jpg?t=1790851606&size=Large",
+          "link": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/programa-625-qui-n-nos-visita-mientras-dormimos"
+        },
         {
           "id": "6e6590ca30dea5318a85",
           "title": "Programa 624: Cádiz, el emporio del Orbe",
@@ -4409,17 +4420,6 @@
           "fileSize": 111288657,
           "image": "https://www.omnycontent.com/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/5013fa24-5428-4172-8f0c-af5d00d1df19/image.jpg?t=1669824847&size=Large",
           "link": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/programa-455-atinos-y-desatinos-en-pel-culas-de-sc"
-        },
-        {
-          "id": "a074a75363fa030e508a",
-          "title": "Programa 454 - Confidencias estelares",
-          "description": "Si te has quedado con ganas de más, recuerda que en Podimo tienes en exclusiva la Escobupedia: https://go.podimo.com/es/escobupedia En esta ocasión reunimos a dos grandes periodistas del misterio y de la divulgación para que nos hagan sus revelaciones y confesiones personales sobre los temas que ellos han investigado durante tantos años. Por una parte, a Juan José Benítez, acaba de publicar “Caballo de Troya 12: Belén”, quien nos hablará de la posible realidad histórica de la matanza de los Santos Inocentes, de quiénes eran los esenios, además de su reflexión sobre Jesús de Nazareth (nada que ver, según él, con Cristo), de lo que opina sobre Yahvé, de nuestro planeta como granja humana, de sus “primos” (los de arriba), de los Vigilantes y del fenómeno ufológico que lleva siglos manifestándose en la Tierra y dejando sus huellas. En la segunda parte del programa contaremos con la presencia de Pablo Villarrubia, autor de “Expedientes Ovni del siglo XXI”, que nos explicará numerosos casos, algunos ya clásicos, como el de Los Villares (1995). También comentará encuentros Ovni cercanos e incluso “peligrosos” (como el de Emiliano Velasco en 1975 y el disparo a su tractor) y otros a cuyos testigos les ha cambiado la vida (como ocurrió con dos artistas: Marino Amaya y Robert Llimós). Sin olvidarnos del suceso acaecido al capitán González Boado (1969), la supuesta piedra llegada de Marte (de Alberto Sanmartin en 1954) y, por supuesto, de su opinión sobre el controvertido caso UMMO, que se ha vuelto a poner de moda.",
-          "publishedAt": "2022-11-25T05:00:00Z",
-          "duration": 8253,
-          "audio": "https://traffic.omny.fm/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/e370a53f-3914-429b-949a-af5700acd5fa/audio.mp3?utm_source=Podcast&in_playlist=fd25a142-cbf1-4f2b-9146-aead00a0bab7",
-          "fileSize": 132087175,
-          "image": "https://www.omnycontent.com/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/e370a53f-3914-429b-949a-af5700acd5fa/image.jpg?t=1669300690&size=Large",
-          "link": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/programa-453-confidencias-estelares"
         }
       ]
     }
