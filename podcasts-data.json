@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-02T05:38:48.531496Z",
+  "updatedAt": "2026-10-02T23:47:11.180480Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,39 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "a467a52f36fad6064513",
+          "title": "3ª PARTE | 02 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Seguimos con el #OasisdeLibertad. Noticias de la selección española. #CampodelGas.",
+          "publishedAt": "2026-10-02T23:19:47Z",
+          "duration": 3488,
+          "audio": "https://www.cope.es/uploads/2026/10/03/aN-Ed9mo4-SHiRsCRAhm4.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-02-oct-2026-partidazo-cope-20261003_3449109.html"
+        },
+        {
+          "id": "a1bd7e199cae90fb3a08",
+          "title": "2ª PARTE | 02 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Comienzo del #OasisdeLibertad. Hablamos con Santi Cazorla",
+          "publishedAt": "2026-10-02T22:51:16Z",
+          "duration": 1609,
+          "audio": "https://www.cope.es/uploads/2026/10/03/H6uygSy_aDsYS6DYDjRWo.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-02-oct-2026-partidazo-cope-20261003_3449106.html"
+        },
+        {
+          "id": "b9b596bf570befac5928",
+          "title": "1ª PARTE | 02 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Titulares. Previa del España-República Checa. La victoria del nuevo Eldense de Messi. Noticias del GP de Baréin de F1.",
+          "publishedAt": "2026-10-02T22:22:31Z",
+          "duration": 2205,
+          "audio": "https://www.cope.es/uploads/2026/10/03/Uts0IKcLsBJL57t2YZG2J.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-02-oct-2026-partidazo-cope-20261003_3449102.html"
+        },
         {
           "id": "eadad201c4d1a1fffe52",
           "title": "01 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -2176,39 +2209,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-04-ago-2026-partidazo-cope-20260805_3415346.html"
-        },
-        {
-          "id": "36a59aa914ce2f4b6133",
-          "title": "03 AGO 2026 | EL PARTIDAZO DE COPE",
-          "description": "Vinicius vuelve a Madrid con su futuro por resolver. Ferran Torres habla y deja abierta la opción de marcharse. Tiempo de Opinión. Entrevista al Consejero de Deportes de Madrid, Mariano de Paco, por el estadio del Rayo. La pretemporada del Betis. Grandes momentos de la inauguración de los JJOO de Barcelona, con Tomás Guasch",
-          "publishedAt": "2026-08-03T23:36:43Z",
-          "duration": 7303,
-          "audio": "https://www.cope.es/uploads/2026/08/04/QigshpHN_LqFOG9ml8oJ7.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/03-ago-2026-partidazo-cope-20260804_3414758.html"
-        },
-        {
-          "id": "3afb2611cb32375bfc4b",
-          "title": "3ª PARTE | 03 AGO 2026 | EL PARTIDAZO DE COPE",
-          "description": "Dudas y certezas en la pretemporada del Real Betis. Otras noticias de mercado. Recordamos, junto a Tomás Guasch, la histórica inauguración de los Juegos Olímpicos de Barcelona'92",
-          "publishedAt": "2026-08-03T23:34:35Z",
-          "duration": 3023,
-          "audio": "https://www.cope.es/uploads/2026/08/04/TRhImRPliixaKvtENmCLC.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-03-ago-2026-partidazo-cope-20260804_3414757.html"
-        },
-        {
-          "id": "0a60498a14b337cd0ce5",
-          "title": "2ª PARTE | 03 AGO 2026 | EL PARTIDAZO DE COPE",
-          "description": "Entrevista a Mariano de Paco, Consejero de Deportes de la Comunidad de Madrid, por la reunión con el Rayo Vallecano. Más Tiempo de Opinión: Vinicius regresa al trabajo con la renovación en el aire",
-          "publishedAt": "2026-08-03T22:41:20Z",
-          "duration": 2343,
-          "audio": "https://www.cope.es/uploads/2026/08/04/aMfhgg9fxaUeSQkWvFu95.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-03-ago-2026-partidazo-cope-20260804_3414754.html"
         }
       ]
     },
