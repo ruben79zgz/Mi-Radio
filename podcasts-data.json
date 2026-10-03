@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-03T05:20:00.418989Z",
+  "updatedAt": "2026-10-03T16:18:44.229285Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -11,6 +11,17 @@
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
         {
+          "id": "9eaffe7704262978e1a6",
+          "title": "02 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Con Joseba Larrañaga. Titulares. Previa del España-República Checa. La victoria del nuevo Eldense de Messi. Noticias del GP de Baréin de F1. #OasisdeLibertad. Entrevista a Santi Cazorla. #CampodelGas.",
+          "publishedAt": "2026-10-03T16:08:30Z",
+          "duration": 7412,
+          "audio": "https://www.cope.es/uploads/2026/10/03/MYckz0rQgfdaJ54p5gZWM.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/02-oct-2026-partidazo-cope-20261003_3449110.html"
+        },
+        {
           "id": "a467a52f36fad6064513",
           "title": "3ª PARTE | 02 OCT 2026 | EL PARTIDAZO DE COPE",
           "description": "Seguimos con el #OasisdeLibertad. Noticias de la selección española. #CampodelGas.",
@@ -20,17 +31,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-02-oct-2026-partidazo-cope-20261003_3449109.html"
-        },
-        {
-          "id": "9eaffe7704262978e1a6",
-          "title": "02 OCT 2026 | EL PARTIDAZO DE COPE",
-          "description": "Con Joseba Larrañaga. Titulares. Previa del España-República Checa. La victoria del nuevo Eldense de Messi. Noticias del GP de Baréin de F1. #OasisdeLibertad. Entrevista a Santi Cazorla. #CampodelGas",
-          "publishedAt": "2026-10-02T23:45:00Z",
-          "duration": 7412,
-          "audio": "https://www.cope.es/uploads/2026/10/03/MYckz0rQgfdaJ54p5gZWM.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/02-oct-2026-partidazo-cope-20261003_3449110.html"
         },
         {
           "id": "a1bd7e199cae90fb3a08",
