@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-02T23:47:11.180480Z",
+  "updatedAt": "2026-10-03T05:20:00.418989Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -14,12 +14,23 @@
           "id": "a467a52f36fad6064513",
           "title": "3ª PARTE | 02 OCT 2026 | EL PARTIDAZO DE COPE",
           "description": "Seguimos con el #OasisdeLibertad. Noticias de la selección española. #CampodelGas.",
-          "publishedAt": "2026-10-02T23:19:47Z",
+          "publishedAt": "2026-10-02T23:49:08Z",
           "duration": 3488,
           "audio": "https://www.cope.es/uploads/2026/10/03/aN-Ed9mo4-SHiRsCRAhm4.mp3",
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-02-oct-2026-partidazo-cope-20261003_3449109.html"
+        },
+        {
+          "id": "9eaffe7704262978e1a6",
+          "title": "02 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Con Joseba Larrañaga. Titulares. Previa del España-República Checa. La victoria del nuevo Eldense de Messi. Noticias del GP de Baréin de F1. #OasisdeLibertad. Entrevista a Santi Cazorla. #CampodelGas",
+          "publishedAt": "2026-10-02T23:45:00Z",
+          "duration": 7412,
+          "audio": "https://www.cope.es/uploads/2026/10/03/MYckz0rQgfdaJ54p5gZWM.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/02-oct-2026-partidazo-cope-20261003_3449110.html"
         },
         {
           "id": "a1bd7e199cae90fb3a08",
@@ -2198,17 +2209,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-04-ago-2026-partidazo-cope-20260805_3415353.html"
-        },
-        {
-          "id": "ba3ce8ed2e60370ea2b7",
-          "title": "1ª PARTE | 04 AGO 2026 | EL PARTIDAZO DE COPE",
-          "description": "Paso adelante del Barcelona por Julián Álvarez. Tiempo de Opinión, con la participación de Toni Freixa",
-          "publishedAt": "2026-08-04T22:06:09Z",
-          "duration": 2048,
-          "audio": "https://www.cope.es/uploads/2026/08/05/jAqlDnfaZrvM5zrfTtX8l.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-04-ago-2026-partidazo-cope-20260805_3415346.html"
         }
       ]
     },
