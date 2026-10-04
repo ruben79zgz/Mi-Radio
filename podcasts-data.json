@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-03T16:18:44.229285Z",
+  "updatedAt": "2026-10-04T00:38:22.928969Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "d3ebd430c968b3d3902d",
+          "title": "03 OCT 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
+          "description": "Titulares. La victoria de España ante República (3-1). Novedades de la polémica de Cristiano y Jorge Jesús. Segunda División. La situación del temporal en Cataluña. La alegría de la Lebrijana tras clasificarse la Copa del Rey. Última hora del GP de Baréin de Fórmula 1 y del GP de Japón de MotoGP. Noticias del ATP 500 de Tokio. Baloncesto",
+          "publishedAt": "2026-10-03T23:20:44Z",
+          "duration": 7287,
+          "audio": "https://www.cope.es/uploads/2026/10/04/eA4zdLDowffjTEjnCuK9n.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/20/678e8eae3dd99.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/03-oct-2026-tramo-final-juego-20261004_3449236.html"
+        },
         {
           "id": "9eaffe7704262978e1a6",
           "title": "02 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -2198,17 +2209,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/04-ago-2026-partidazo-cope-20260805_3415357.html"
-        },
-        {
-          "id": "10b2bb2d33dd308aaad5",
-          "title": "2ª PARTE | 04 AGO 2026 | EL PARTIDAZO DE COPE",
-          "description": "Más Tiempo de Opinión. La situación de Vinicius y Rodri. Martín Presa rompre su silencio en Marca. Alcaraz renuncia a Cincinnati. El furor por la camiseta de Adidas de las dos estrellas",
-          "publishedAt": "2026-08-04T22:46:56Z",
-          "duration": 2251,
-          "audio": "https://www.cope.es/uploads/2026/08/05/TnqIiLn76_R0ozOb-IFv5.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-04-ago-2026-partidazo-cope-20260805_3415353.html"
         }
       ]
     },
