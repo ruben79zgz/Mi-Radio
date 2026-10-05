@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-04T15:22:53.218922Z",
+  "updatedAt": "2026-10-05T05:42:17.018241Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "d21bf658651cc6d6edad",
+          "title": "04 OCT 2026 | EL TERTULIÓN DE LOS DOMINGOS",
+          "description": "Nueva victoria de la selección española; ¿Es demasiado largo el parón de selecciones?; El enfado Cristiano - Jorge Jesús; Nueva polémica con Mbappé.",
+          "publishedAt": "2026-10-04T23:38:00Z",
+          "duration": 5337,
+          "audio": "https://www.cope.es/uploads/2026/10/05/6CxNJpSTneI84TXHhD9fV.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/06/677b2375741e9.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/04-oct-2026-tertulion-domingos-20261005_3449361.html"
+        },
         {
           "id": "d3ebd430c968b3d3902d",
           "title": "03 OCT 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
@@ -2198,17 +2209,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-05-ago-2026-partidazo-cope-20260806_3415906.html"
-        },
-        {
-          "id": "7875041dac055d9d8c22",
-          "title": "04 AGO 2026 | EL PARTIDAZO DE COPE",
-          "description": "Deco, en Madrid para negociar por Julián Álvarez. Tiempo de Opinión. Martín Presa rompe su silencio. Alcaraz no jugará en Cincinnati. La pretemporada del Málaga. Noticias de mercado. El recuerdo de 'La Quinta del Buitre', por Roberto Palomar",
-          "publishedAt": "2026-08-04T23:37:36Z",
-          "duration": 7407,
-          "audio": "https://www.cope.es/uploads/2026/08/05/U2muYeifH7Gk9IXTujURf.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/04-ago-2026-partidazo-cope-20260805_3415357.html"
         }
       ]
     },
