@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-05T05:42:17.018241Z",
+  "updatedAt": "2026-10-05T22:38:19.071486Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "85ced5bdf4b404d9ce5f",
+          "title": "1ª PARTE | 05 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Previa del Croacia - España. Ruedas de prensa de Luis de la Fuente y Dani Olmo. Tiempo de opinión.",
+          "publishedAt": "2026-10-05T22:12:47Z",
+          "duration": 2527,
+          "audio": "https://www.cope.es/uploads/2026/10/06/IW085YmFPtirAeWug0sft.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-05-oct-2026-partidazo-cope-20261006_3450173.html"
+        },
         {
           "id": "d21bf658651cc6d6edad",
           "title": "04 OCT 2026 | EL TERTULIÓN DE LOS DOMINGOS",
@@ -2198,17 +2209,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-05-ago-2026-partidazo-cope-20260806_3415912.html"
-        },
-        {
-          "id": "eef2db22f3520c1996e0",
-          "title": "1ª PARTE | 05 AGO 2026 | EL PARTIDAZO DE COPE",
-          "description": "Titulares. Amistosos del día. 'The Times': Infantino promete a Marruecos la final del Mundial 2030 a cambio de apoyo. Reacciones a la noticia, con desmentido incluido de la FIFA",
-          "publishedAt": "2026-08-05T22:05:27Z",
-          "duration": 1981,
-          "audio": "https://www.cope.es/uploads/2026/08/06/trDh9pa5oqrt-N_zJtOpy.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-05-ago-2026-partidazo-cope-20260806_3415906.html"
         }
       ]
     },
