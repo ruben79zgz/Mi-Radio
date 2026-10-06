@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-05T22:38:19.071486Z",
+  "updatedAt": "2026-10-06T06:22:20.362266Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "5d753279533b3ee87814",
+          "title": "05 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Previa del Croacia - España. Ruedas de prensa de Luis de la Fuente y Dani Olmo. Tiempo de opinión. Mbappé vuelve a entrenar con el Real Madrid rodeado de polémica. Previa del último partido de Leo Messi con la selección argentina. El Soufflé. Km42.",
+          "publishedAt": "2026-10-06T00:40:30Z",
+          "duration": 7492,
+          "audio": "https://www.cope.es/uploads/2026/10/06/5QF9mKjW0ZaxXr9ulLvav.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/05-oct-2026-partidazo-cope-20261006_3450185.html"
+        },
+        {
+          "id": "f68951332326cd3bb75e",
+          "title": "3ª PARTE | 05 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Previa del último partido de Leo Messi con la selección argentina. Hablamos con el periodista Leandro Buonsante. Premios Golden Boy. El Soufflé. Km42.",
+          "publishedAt": "2026-10-06T00:32:53Z",
+          "duration": 2851,
+          "audio": "https://www.cope.es/uploads/2026/10/06/lRiWe3YREurmUWhhQlKxW.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-05-oct-2026-partidazo-cope-20261006_3450184.html"
+        },
+        {
+          "id": "44aea2b86e5bb3ff9abc",
+          "title": "05-OCT-26 | #KM42, 'Running' con Chema Martínez",
+          "description": "¿Qué carreras habrá el 29-N, el día de las elecciones? y La importancia de entrenar con mancuernas.",
+          "publishedAt": "2026-10-05T23:40:00Z",
+          "duration": 743,
+          "audio": "https://www.cope.es/uploads/2026/10/06/i7EL6YDAgDIhTzlGBL60Q.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/06/09/6a274c1571eaa.png",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/05-oct-26-km42-running-chema-martinez-20261006_3450183.html"
+        },
+        {
+          "id": "35b49bf1948bf5ef527f",
+          "title": "2ª PARTE | 05 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Mbappé vuelve a entrenar con el Real Madrid rodeado de polémica. Tiempo de opinión.",
+          "publishedAt": "2026-10-05T22:49:59Z",
+          "duration": 2118,
+          "audio": "https://www.cope.es/uploads/2026/10/06/ApwaWUNw-_deHtjrfEyNs.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-05-oct-2026-partidazo-cope-20261006_3450180.html"
+        },
         {
           "id": "85ced5bdf4b404d9ce5f",
           "title": "1ª PARTE | 05 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -2165,50 +2209,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-06-ago-2026-partidazo-cope-20260807_3416451.html"
-        },
-        {
-          "id": "6dc48c94bb21c27de033",
-          "title": "1ª PARTE | 06 AGO 2026 | EL PARTIDAZO DE COPE",
-          "description": "Titulares: Rodri apunta al Barça, Vinicius renueva hasta 2032, el Real Madrid ficha a Diomande y el Barcelona sigue negociando por Julián Álvarez. Entrevista a Txema Indias, que fichó a Diomande para el Leganés. Tiempo de opinión",
-          "publishedAt": "2026-08-06T22:27:58Z",
-          "duration": 1806,
-          "audio": "https://www.cope.es/uploads/2026/08/07/nusASi8BZq9pZpX-tfAcz.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-06-ago-2026-partidazo-cope-20260807_3416444.html"
-        },
-        {
-          "id": "e87ce238179fa06118e9",
-          "title": "05 AGO 2026 | EL PARTIDAZO DE COPE",
-          "description": "Reacciones a la noticia del día: Infantino promete a Marruecos la final del Mundial 2030 a cambio de apoyo. Tiempo de Opinión. La última hora de los nombres propios del mercado: Diomande, Vinicius y Julián Álvarez. La pretemporada del Valencia. Entrevista a Iris Tió. Recordamos con Carlos Miquel el primer mundial de Fernando Alonso",
-          "publishedAt": "2026-08-05T23:36:51Z",
-          "duration": 7363,
-          "audio": "https://www.cope.es/uploads/2026/08/06/YzQP6fokK94zsMUSxknX1.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/05-ago-2026-partidazo-cope-20260806_3415915.html"
-        },
-        {
-          "id": "513694753cb5191fe36c",
-          "title": "3ª PARTE | 05 AGO 2026 | EL PARTIDAZO DE COPE",
-          "description": "Análisis de la pretemporada del Valencia. Noticias de mercado. Entrevista a la nadadora Iris Tió. Recordamos con Carlos Miquel el hito histórico que fue para el deporte español el primer mundial que gana Fernando Alonso",
-          "publishedAt": "2026-08-05T23:35:19Z",
-          "duration": 3466,
-          "audio": "https://www.cope.es/uploads/2026/08/06/q_79llrQuoTITde6HBZtX.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-05-ago-2026-partidazo-cope-20260806_3415914.html"
-        },
-        {
-          "id": "463ac0e24276c2e5de10",
-          "title": "2ª PARTE | 05 AGO 2026 | EL PARTIDAZO DE COPE",
-          "description": "Tiempo de Opinión. Noticias sobre las situaciones de Diomande, Vinicius y Julián Álvarez. Seguimiento de Deco en Madrid",
-          "publishedAt": "2026-08-05T22:36:41Z",
-          "duration": 1670,
-          "audio": "https://www.cope.es/uploads/2026/08/06/hxOohtHOvjsXIXZGtGR3X.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-05-ago-2026-partidazo-cope-20260806_3415912.html"
         }
       ]
     },
