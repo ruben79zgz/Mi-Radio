@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T09:09:53.542729Z",
+  "updatedAt": "2026-10-07T23:06:09.223244Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "a140bfb30a834ed62075",
+          "title": "2ª PARTE | 07 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Entrevista a David Silva, jugador del Supreme Sha Tin.",
+          "publishedAt": "2026-10-07T22:30:46Z",
+          "duration": 1579,
+          "audio": "https://www.cope.es/uploads/2026/10/08/ohQ2o9yXEOOrkrE9L50-a.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-07-oct-2026-partidazo-cope-20261008_3452093.html"
+        },
+        {
+          "id": "5e2af1611a478d1cc202",
+          "title": "1ª PARTE | 07 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Argentina despide a Messi en su último partido con la selección. El argentino recogerá en dos semanas el Premio Princesa de Asturias. Hablamos con Teresa Sanjurjo, Directora de la Fundación.",
+          "publishedAt": "2026-10-07T22:01:56Z",
+          "duration": 1873,
+          "audio": "https://www.cope.es/uploads/2026/10/08/E3CbzhuMFuM_kv66cuNgW.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-07-oct-2026-partidazo-cope-20261008_3452088.html"
+        },
         {
           "id": "2dc86c2b45788db7b75a",
           "title": "06 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-01-abr-2026-partidazo-cope-20260402_3338480.html"
-        },
-        {
-          "id": "dbcae291ef70fe7f7956",
-          "title": "31 MAR 2026 | EL PARTIDAZO DE COPE",
-          "description": "España empata a cero en el amistoso contra Egipto en un partido marcado por los cánticos racistas. Protagonistas. Tiempo de opinión. Italia, fuera del Mundial. MundoMaldini.",
-          "publishedAt": "2026-03-31T23:37:16Z",
-          "duration": 7451,
-          "audio": "https://www.cope.es/uploads/2026/04/01/WX748qWK5mlqhvUvxROE1.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/31-mar-2026-partidazo-cope-20260401_3337714.html"
-        },
-        {
-          "id": "f8077cb1a149eea95b77",
-          "title": "3ª PARTE | 31 MAR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Italia, fuera del Mundial por tercera vez consecutiva. Tiger Woods anuncia que se aparta del golf para tratarse. La situación del Sevilla. MundoMaldini.",
-          "publishedAt": "2026-03-31T23:35:11Z",
-          "duration": 3029,
-          "audio": "https://www.cope.es/uploads/2026/04/01/eXsNReqqCD9jPo9sO6WQt.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-31-mar-2026-partidazo-cope-20260401_3337712.html"
         }
       ]
     },
