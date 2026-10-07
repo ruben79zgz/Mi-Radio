@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-06T06:22:20.362266Z",
+  "updatedAt": "2026-10-07T01:33:07.374882Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "2dc86c2b45788db7b75a",
+          "title": "06 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "La selección española remonta a Croacia con dos goles de Mikel Merino (1-2) y se mete en 1/4 de la Liga de las Naciones. Protagonistas. Escuchamos a Luka Modric. Tiempo de opinión. Messi se despide de la selección argentina. Tenis.",
+          "publishedAt": "2026-10-06T23:36:07Z",
+          "duration": 7427,
+          "audio": "https://www.cope.es/uploads/2026/10/07/Vjhut09rP9ANCnfGndrk4.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/06-oct-2026-partidazo-cope-20261007_3451065.html"
+        },
+        {
+          "id": "a643f2d58ba66297bdf2",
+          "title": "3ª PARTE | 06 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Comunicado de Cristiano contra Jorge Jesús. Vivimos en directo cómo se cuenta la despedida de Messi de Argentina. El Getafe busca fichar a Carvajal. Tenis.",
+          "publishedAt": "2026-10-06T23:34:54Z",
+          "duration": 3022,
+          "audio": "https://www.cope.es/uploads/2026/10/07/DenhuLR6cmzAjiB0tiA4J.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-06-oct-2026-partidazo-cope-20261007_3451064.html"
+        },
+        {
+          "id": "3e7d86f26ae03526390f",
+          "title": "2ª PARTE | 06 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Continuamos analizando la victoria de España.",
+          "publishedAt": "2026-10-06T22:40:43Z",
+          "duration": 1570,
+          "audio": "https://www.cope.es/uploads/2026/10/07/KSeM2_A9blf8tNCRXE1bQ.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-06-oct-2026-partidazo-cope-20261007_3451052.html"
+        },
+        {
+          "id": "de5fd876769aaa9204d9",
+          "title": "1ª PARTE | 06 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "La selección española remonta a Croacia con dos goles de Mikel Merino (1-2) y se mete en 1/4 de la Liga de las Naciones. Protagonistas. Escuchamos a Luka Modric. Tiempo de opinión.",
+          "publishedAt": "2026-10-06T22:11:45Z",
+          "duration": 2472,
+          "audio": "https://www.cope.es/uploads/2026/10/07/jRFU_TRxxqMzDlJf1XRmj.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-06-oct-2026-partidazo-cope-20261007_3451041.html"
+        },
         {
           "id": "5d753279533b3ee87814",
           "title": "05 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -2165,50 +2209,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-07-ago-2026-partidazo-cope-20260808_3417043.html"
-        },
-        {
-          "id": "346a3ac95d86f6d9d158",
-          "title": "1ª PARTE | 07 AGO 2026 | EL PARTIDAZO DE COPE",
-          "description": "Titulares: Los detalles de la oferta del PSG al Barça por Ferran, la grave lesión de Uche en el Getafe, el Barça avanza en las negociaciones por Rodri, mientras el Madrid está en Budapest para su próximo partido amistoso. Tiempo de opinión",
-          "publishedAt": "2026-08-07T22:04:20Z",
-          "duration": 1597,
-          "audio": "https://www.cope.es/uploads/2026/08/08/qQttnndg7kBy3wRlLXKBB.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-07-ago-2026-partidazo-cope-20260808_3417036.html"
-        },
-        {
-          "id": "f4ca5afa50c39a6bc1fe",
-          "title": "06 AGO 2026 | EL PARTIDAZO DE COPE",
-          "description": "Jueves intenso de noticias: Rodri dice 'sí' al Barcelona, el Real Madrid ficha a Diomande y renueva a Vinicius, y el Barça insiste en Julián Álvarez. Entrevista a Txema Indias, que trajó a Diomandé al Leganés. Tiempo de opinión. El recuerdo del primer mundial de España en baloncesto, con Pilar Casado",
-          "publishedAt": "2026-08-06T23:37:39Z",
-          "duration": 7381,
-          "audio": "https://www.cope.es/uploads/2026/08/07/a9tDpX6SHEVCGml8GAGSi.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/06-ago-2026-partidazo-cope-20260807_3416457.html"
-        },
-        {
-          "id": "d65d3ef427a5f0650c2b",
-          "title": "3ª PARTE | 06 AGO 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Barcelona no desiste por Julián Álvarez, que en breve tendrá que incorporarse al trabajo con el Atlético. Noticias de fichajes. Junto a Pilar Casado recordamos el momento mágico en que España ganó su primer Mundial de baloncesto",
-          "publishedAt": "2026-08-06T23:36:06Z",
-          "duration": 3006,
-          "audio": "https://www.cope.es/uploads/2026/08/07/FoCFKmiVXa4m57E6XqLsg.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-06-ago-2026-partidazo-cope-20260807_3416456.html"
-        },
-        {
-          "id": "5dfb3144ca8b229520f2",
-          "title": "2ª PARTE | 06 AGO 2026 | EL PARTIDAZO DE COPE",
-          "description": "La decepción en el madridismo con el 'sí' de Rodri al Barcelona. Más Tiempo de Opinión, con la incorporación de Fernando Morientes",
-          "publishedAt": "2026-08-06T22:46:00Z",
-          "duration": 2322,
-          "audio": "https://www.cope.es/uploads/2026/08/07/wQP_12hC-_ZYMWMNPrJZe.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-06-ago-2026-partidazo-cope-20260807_3416451.html"
         }
       ]
     },
