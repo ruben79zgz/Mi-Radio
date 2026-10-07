@@ -15,7 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_JS = ROOT / "podcasts.js"
 OUTPUT = ROOT / "podcasts-data.json"
-MAX_EPISODES = 200
+MAX_EPISODES = None
 
 NS = {
     "itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
@@ -172,7 +172,7 @@ def parse_feed(source: dict) -> dict:
                 "link": episode_link,
             }
         )
-        if len(episodes) >= MAX_EPISODES:
+        if MAX_EPISODES is not None and len(episodes) >= MAX_EPISODES:
             break
 
     episodes.sort(key=lambda x: x.get("publishedAt") or "", reverse=True)
