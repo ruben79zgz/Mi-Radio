@@ -2194,7 +2194,7 @@
   }, 5000);
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=15').catch(console.warn));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=16').catch(console.warn));
   }
 
   /* ---------------- Inicio ---------------- */
@@ -2214,11 +2214,10 @@
   renderPodcastLibrary();
   sleepSelect.value = localStorage.getItem(SLEEP_KEY) || '0';
 
-  const lastModeAtClose = localStorage.getItem(LAST_UI_MODE_KEY);
-  if (lastModeAtClose === 'podcasts' && lastPodcastSnapshot?.episode?.audio) {
-    setUiMode('podcasts');
+  // La app siempre entra en Radio. Si había un podcast en curso,
+  // dejamos ese episodio preparado en el reproductor, pausado y en su posición.
+  setUiMode('radio');
+  if (lastPodcastSnapshot?.episode?.audio) {
     restoreLastPodcastSession();
-  } else {
-    setUiMode('radio');
   }
 })();
