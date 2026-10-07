@@ -109,7 +109,11 @@
   const PODCAST_RATE_KEY = 'mi-radio-podcast-rate-v1';
   const PODCAST_SUBS_KEY = 'mi-radio-podcast-subs-v1';
   const PODCAST_APPLE_CACHE_KEY = 'mi-radio-podcast-apple-cache-v1';
-  const APPLE_CACHE_MAX_AGE = 6 * 60 * 60 * 1000;
+  const PODCAST_PLAY_STATE_KEY = 'mi-radio-podcast-play-state-v1';
+  const LAST_PODCAST_KEY = 'mi-radio-last-podcast-v1';
+  const LAST_UI_MODE_KEY = 'mi-radio-last-ui-mode-v1';
+  const APPLE_CACHE_MAX_AGE = 30 * 60 * 1000;
+  const EPISODE_PAGE_SIZE = 120;
 
   for (const key of Object.keys(localStorage)) {
     if (key.startsWith('mi-radio-manual-') || key.startsWith('mi-radio-resolved-')) {
@@ -135,6 +139,8 @@
   let currentEpisode = null;
   let podcastSearchResultsData = [];
   let podcastSearchBusy = false;
+  let podcastRefreshPromise = null;
+  let episodeVisibleLimit = EPISODE_PAGE_SIZE;
 
   let tvCountry = 'España';
   let tvSpanishChannels = [];
@@ -163,6 +169,8 @@
   const favorites = new Set(safeJson(localStorage.getItem(FAVORITES_KEY), []));
   let podcastSubscriptions = safeJson(localStorage.getItem(PODCAST_SUBS_KEY), []);
   let applePodcastCache = safeJson(localStorage.getItem(PODCAST_APPLE_CACHE_KEY), {});
+  let podcastPlayStates = safeJson(localStorage.getItem(PODCAST_PLAY_STATE_KEY), {});
+  let lastPodcastSnapshot = safeJson(localStorage.getItem(LAST_PODCAST_KEY), null);
 
   function safeJson(value, fallback) {
     try { return value ? JSON.parse(value) : fallback; } catch { return fallback; }
@@ -375,10 +383,115 @@
 
   function saveApplePodcastCache() {
     try {
-      localStorage.setItem(PODCAST_APPLE_CACHE_KEY, JSON.stringify(applePodcastCache));
+      const compact = {};
+      for (const [id, entry] of Object.entries(applePodcastCache)) {
+        const show = entry?.show || {};
+        const episodes = Array.isArray(show.episodes) ? show.episodes : [];
+        compact[id] = {
+          updatedAt: entry?.updatedAt || 0,
+          show: {
+            ...show,
+            episodes: undefined,
+            episodeCount: show.episodeCount || episodes.length || 0,
+            latestPublishedAt: show.latestPublishedAt || episodes[0]?.publishedAt || ''
+          }
+        };
+      }
+      localStorage.setItem(PODCAST_APPLE_CACHE_KEY, JSON.stringify(compact));
     } catch {
-      // Si el navegador limita localStorage, conservamos la caché solo en memoria.
+      // Los catálogos grandes se guardan en IndexedDB por podcast-feed.js.
     }
+  }
+
+  function podcastStateKey(showId, episodeId) {
+    return String(showId || '') + '::' + String(episodeId || '');
+  }
+
+  function savePodcastPlayStates() {
+    try {
+      const entries = Object.entries(podcastPlayStates);
+      if (entries.length > 1500) {
+        entries
+          .sort((a, b) => Number(b[1]?.lastPlayedAt || 0) - Number(a[1]?.lastPlayedAt || 0))
+          .slice(1500)
+          .forEach(([key]) => delete podcastPlayStates[key]);
+      }
+      localStorage.setItem(PODCAST_PLAY_STATE_KEY, JSON.stringify(podcastPlayStates));
+    } catch {}
+  }
+
+  function episodeListenState(show, episode) {
+    const state = podcastPlayStates[podcastStateKey(show?.id, episode?.id)] || {};
+    const legacyPosition = Number(localStorage.getItem(episodePositionKey(episode)) || 0);
+    if (!state.position && legacyPosition > 0) return { ...state, position: legacyPosition, completed: false };
+    return state;
+  }
+
+  function persistLastPodcast(show, episode, position = 0, duration = 0) {
+    if (!show || !episode) return;
+    lastPodcastSnapshot = {
+      show: {
+        id: show.id,
+        appleCollectionId: show.appleCollectionId,
+        sourceType: show.sourceType,
+        name: show.name,
+        author: show.author,
+        image: show.image,
+        feed: show.feed,
+        site: show.site
+      },
+      episode: {
+        id: episode.id,
+        title: episode.title,
+        publishedAt: episode.publishedAt,
+        duration: episode.duration,
+        audio: episode.audio,
+        image: episode.image || show.image,
+        link: episode.link || ''
+      },
+      position: Math.max(0, Math.floor(Number(position) || 0)),
+      duration: Math.max(0, Math.floor(Number(duration) || Number(episode.duration) || 0)),
+      savedAt: Date.now()
+    };
+    try { localStorage.setItem(LAST_PODCAST_KEY, JSON.stringify(lastPodcastSnapshot)); } catch {}
+  }
+
+  function updateEpisodePlayState(show, episode, position, duration, forceCompleted = false) {
+    if (!show || !episode) return;
+    const current = Math.max(0, Number(position) || 0);
+    const total = Math.max(0, Number(duration) || Number(episode.duration) || 0);
+    const completed = forceCompleted || (total > 0 && current >= Math.max(10, total - 10));
+    if (current < 5 && !completed) {
+      persistLastPodcast(show, episode, current, total);
+      return;
+    }
+    podcastPlayStates[podcastStateKey(show.id, episode.id)] = {
+      position: completed ? total : current,
+      duration: total,
+      progress: total > 0 ? Math.min(1, current / total) : 0,
+      completed,
+      lastPlayedAt: Date.now()
+    };
+    savePodcastPlayStates();
+    persistLastPodcast(show, episode, current, total);
+  }
+
+  function feedOverrideFor(show) {
+    if (normalize(show?.name) === 'solo documental') {
+      return 'https://feeds.ivoox.com/feed_fg_f121483_filtro_1.xml';
+    }
+    return show?.feed || '';
+  }
+
+  function podcastLatestTimestamp(show) {
+    const value = show?.latestPublishedAt || show?.episodes?.[0]?.publishedAt || show?.releaseDate || '';
+    const stamp = Date.parse(value);
+    return Number.isFinite(stamp) ? stamp : 0;
+  }
+
+  function podcastLatestLabel(show) {
+    const value = show?.latestPublishedAt || show?.episodes?.[0]?.publishedAt || '';
+    return value ? formatDate(value) : '';
   }
 
   function appleJsonp(baseUrl, params = {}, timeoutMs = 12000) {
@@ -430,7 +543,9 @@
       image: item.artworkUrl600 || item.artworkUrl100 || 'icons/icon-192.png',
       description: item.primaryGenreName ? 'Podcast · ' + item.primaryGenreName : 'Podcast',
       site: item.collectionViewUrl || item.trackViewUrl || '',
-      feed: item.feedUrl || ''
+      feed: item.feedUrl || '',
+      latestPublishedAt: item.releaseDate || '',
+      episodeCount: Number(item.trackCount || 0)
     };
   }
 
@@ -513,6 +628,7 @@
       const sub = subscriptionFromAppleResult(item);
       podcastSubscriptions.push(sub);
       savePodcastSubscriptions();
+      loadApplePodcast(sub, true).then(() => renderPodcastLibrary()).catch(console.warn);
       showToast('Podcast añadido a tu biblioteca.');
     }
 
@@ -535,20 +651,71 @@
 
   async function loadApplePodcast(show, force = false) {
     if (!show?.appleCollectionId) return show;
+
     const cached = applePodcastCache[show.id];
-    if (!force && cached?.show && Date.now() - Number(cached.updatedAt || 0) < APPLE_CACHE_MAX_AGE) {
+    if (!force && cached?.show?.episodes?.length && Date.now() - Number(cached.updatedAt || 0) < APPLE_CACHE_MAX_AGE) {
       return cached.show;
+    }
+
+    let showRow = {};
+    let feedUrl = feedOverrideFor(show) || cached?.show?.feed || '';
+
+    try {
+      const metaData = await appleJsonp('https://itunes.apple.com/lookup', {
+        id: String(show.appleCollectionId),
+        country: 'ES',
+        entity: 'podcastEpisode',
+        limit: '1'
+      }, 10000);
+      const metaRows = Array.isArray(metaData?.results) ? metaData.results : [];
+      showRow = metaRows.find(x => x.wrapperType === 'track' || x.kind === 'podcast') || {};
+      feedUrl = feedOverrideFor(show) || showRow.feedUrl || feedUrl;
+    } catch (err) {
+      console.warn('Apple metadata refresh failed', show.name, err);
+    }
+
+    if (feedUrl && window.PodcastFeed?.load) {
+      try {
+        const rssShow = await window.PodcastFeed.load(feedUrl, {
+          ...show,
+          name: showRow.collectionName || showRow.trackName || show.name,
+          author: showRow.artistName || show.author,
+          image: showRow.artworkUrl600 || showRow.artworkUrl100 || show.image,
+          site: showRow.collectionViewUrl || showRow.trackViewUrl || show.site,
+          feed: feedUrl
+        }, {
+          force,
+          maxAge: APPLE_CACHE_MAX_AGE
+        });
+
+        if (Array.isArray(rssShow?.episodes) && rssShow.episodes.length) {
+          const loaded = {
+            ...show,
+            ...rssShow,
+            appleCollectionId: show.appleCollectionId,
+            sourceType: show.sourceType || 'apple',
+            feed: feedUrl,
+            episodeCount: rssShow.episodes.length,
+            latestPublishedAt: rssShow.episodes[0]?.publishedAt || ''
+          };
+          applePodcastCache[show.id] = { updatedAt: Date.now(), show: loaded };
+          saveApplePodcastCache();
+          return loaded;
+        }
+      } catch (err) {
+        console.warn('RSS real no disponible; se usará Apple como respaldo', show.name, err);
+      }
     }
 
     const data = await appleJsonp('https://itunes.apple.com/lookup', {
       id: String(show.appleCollectionId),
       country: 'ES',
       entity: 'podcastEpisode',
-      limit: '100'
+      limit: '200'
     }, 15000);
 
     const rows = Array.isArray(data?.results) ? data.results : [];
-    const showRow = rows.find(x => x.wrapperType === 'track' || x.kind === 'podcast') || {};
+    showRow = rows.find(x => x.wrapperType === 'track' || x.kind === 'podcast') || showRow || {};
     const episodes = rows
       .filter(x => x.wrapperType === 'podcastEpisode' || x.kind === 'podcast-episode')
       .filter(x => x.episodeUrl || x.previewUrl)
@@ -570,13 +737,53 @@
       author: showRow.artistName || show.author,
       image: showRow.artworkUrl600 || showRow.artworkUrl100 || show.image,
       site: showRow.collectionViewUrl || showRow.trackViewUrl || show.site,
-      feed: showRow.feedUrl || show.feed,
-      episodes
+      feed: feedUrl || showRow.feedUrl || show.feed,
+      episodes,
+      episodeCount: episodes.length,
+      latestPublishedAt: episodes[0]?.publishedAt || show.latestPublishedAt || ''
     };
 
     applePodcastCache[show.id] = { updatedAt: Date.now(), show: loaded };
     saveApplePodcastCache();
     return loaded;
+  }
+
+  async function refreshSubscribedPodcasts(force = false) {
+    if (podcastRefreshPromise && !force) return podcastRefreshPromise;
+    const subscriptions = [...podcastSubscriptions];
+
+    podcastRefreshPromise = (async () => {
+      let cursor = 0;
+      const worker = async () => {
+        while (cursor < subscriptions.length) {
+          const index = cursor++;
+          const sub = subscriptions[index];
+          try {
+            await loadApplePodcast(sub, force);
+          } catch (err) {
+            console.warn('No se pudo actualizar', sub.name, err);
+          }
+          if (currentUiMode === 'podcasts') renderPodcastLibrary();
+        }
+      };
+      await Promise.all([worker(), worker(), worker()]);
+      renderPodcastLibrary();
+    })().finally(() => {
+      podcastRefreshPromise = null;
+    });
+
+    return podcastRefreshPromise;
+  }
+
+  async function refreshAllPodcasts() {
+    podcastUpdated.textContent = 'Actualizando todos los podcasts…';
+    await Promise.allSettled([
+      loadPodcastsData(true),
+      refreshSubscribedPodcasts(true)
+    ]);
+    renderPodcastLibrary();
+    if (selectedPodcastId) renderPodcastDetail();
+    podcastUpdated.textContent = 'Biblioteca actualizada';
   }
 
   /* ---------------- Vistas Radio / Podcasts / TV ---------------- */
@@ -598,7 +805,11 @@
     tvModeBtn.classList.toggle('active', tv);
 
     eyebrow.textContent = radio ? 'RADIO PERSONAL' : podcasts ? 'PODCASTS' : 'TELEVISIÓN';
-    if (podcasts) loadPodcastsData(false);
+    try { localStorage.setItem(LAST_UI_MODE_KEY, mode); } catch {}
+    if (podcasts) {
+      loadPodcastsData(false);
+      refreshSubscribedPodcasts(false);
+    }
     if (tv) loadTvChannels(false);
   }
 
@@ -642,43 +853,55 @@
     const dynamic = podcastSubscriptions
       .filter(sub => !builtIns.some(show => normalize(show.name) === normalize(sub.name)))
       .map(sub => applePodcastCache[sub.id]?.show || sub);
-    const shows = [...builtIns, ...dynamic];
+
+    const shows = [...builtIns, ...dynamic]
+      .sort((a, b) => podcastLatestTimestamp(b) - podcastLatestTimestamp(a));
+
     if (podcastData.updatedAt) {
-      podcastUpdated.textContent = `Actualizado ${formatDateTime(podcastData.updatedAt)}`;
+      podcastUpdated.textContent = `Actualizado ${formatDateTime(podcastData.updatedAt)} · suscripciones por fecha del último episodio`;
     }
     if (!shows.length) {
-      podcastShows.innerHTML = '<div class="empty">No hay podcasts configurados en podcasts.js.</div>';
+      podcastShows.innerHTML = '<div class="empty">No hay podcasts configurados.</div>';
       return;
     }
-    podcastShows.innerHTML = shows.map(show => `
-      <button class="podcast-show-card" type="button" data-show-id="${escapeAttr(show.id)}">
-        <img src="${escapeAttr(podcastImage(show))}" alt="${escapeAttr(show.name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='icons/icon-192.png'" />
-        <div class="show-name">${escapeHtml(show.name)}</div>
-        <div class="show-author">${escapeHtml(show.author || '')}</div>
-        <div class="show-count">${Array.isArray(show.episodes) ? `${show.episodes.length} episodios cargados` : (show.appleCollectionId ? 'Suscrito' : 'Pendiente de actualizar')}</div>
-      </button>
-    `).join('');
+
+    podcastShows.innerHTML = shows.map(show => {
+      const count = Array.isArray(show.episodes) ? show.episodes.length : Number(show.episodeCount || 0);
+      const latest = podcastLatestLabel(show);
+      return `
+        <button class="podcast-show-card" type="button" data-show-id="${escapeAttr(show.id)}">
+          <img src="${escapeAttr(podcastImage(show))}" alt="${escapeAttr(show.name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='icons/mi-radio.svg'" />
+          <div class="show-name">${escapeHtml(show.name)}</div>
+          <div class="show-author">${escapeHtml(show.author || '')}</div>
+          <div class="show-count">${count ? `${count} episodios` : (show.appleCollectionId ? 'Actualizando…' : 'Pendiente de actualizar')}</div>
+          ${latest ? `<div class="show-latest">Último: ${escapeHtml(latest)}</div>` : ''}
+        </button>`;
+    }).join('');
+
     podcastShows.querySelectorAll('[data-show-id]').forEach(btn => btn.addEventListener('click', () => openPodcast(btn.dataset.showId)));
   }
 
   async function openPodcast(id) {
     selectedPodcastId = id;
     episodeQuery = '';
+    episodeVisibleLimit = EPISODE_PAGE_SIZE;
     episodeSearchInput.value = '';
     podcastLibraryView.classList.add('hidden');
     podcastDetailView.classList.remove('hidden');
     renderPodcastDetail();
 
     const show = podcastById(id);
-    if (show?.appleCollectionId && !Array.isArray(show.episodes)) {
-      episodesList.innerHTML = '<div class="empty">Cargando episodios…</div>';
+    if (show?.appleCollectionId) {
+      if (!Array.isArray(show.episodes)) {
+        episodesList.innerHTML = '<div class="empty">Cargando RSS completo…</div>';
+      }
       try {
-        await loadApplePodcast(show);
+        await loadApplePodcast(show, false);
         if (selectedPodcastId === id) renderPodcastDetail();
         renderPodcastLibrary();
       } catch (err) {
-        console.warn('Apple podcast load failed', err);
-        if (selectedPodcastId === id) {
+        console.warn('Podcast RSS load failed', err);
+        if (selectedPodcastId === id && !Array.isArray(podcastById(id)?.episodes)) {
           episodesList.innerHTML = '<div class="empty">No se pudieron cargar los episodios. Prueba de nuevo más tarde.</div>';
         }
       }
@@ -687,6 +910,7 @@
 
   function closePodcastDetail() {
     selectedPodcastId = null;
+    episodeVisibleLimit = EPISODE_PAGE_SIZE;
     podcastDetailView.classList.add('hidden');
     podcastLibraryView.classList.remove('hidden');
   }
@@ -694,8 +918,7 @@
   function renderPodcastDetail() {
     const show = podcastById(selectedPodcastId);
     if (!show) return;
-    currentPodcastShow = mediaKind === 'podcast' && currentPodcastShow?.id === show.id ? currentPodcastShow : currentPodcastShow;
-    setImage(podcastShowImage, podcastImage(show));
+    setImage(podcastShowImage, podcastImage(show), 'icons/mi-radio.svg');
     podcastShowAuthor.textContent = show.author || 'Podcast';
     podcastShowName.textContent = show.name || 'Podcast';
     podcastShowDescription.textContent = show.description || '';
@@ -709,34 +932,59 @@
       episodesList.innerHTML = '<div class="empty">Cargando episodios…</div>';
       return;
     }
+
     const q = normalize(episodeQuery);
-    const episodes = show.episodes.filter(ep => !q || normalize(`${ep.title} ${ep.description}`).includes(q));
-    if (!episodes.length) {
+    const filtered = show.episodes.filter(ep => !q || normalize(`${ep.title} ${ep.description}`).includes(q));
+    if (!filtered.length) {
       episodesList.innerHTML = `<div class="empty">${show.episodes.length ? 'No hay episodios que coincidan.' : 'No hay episodios disponibles.'}</div>`;
       return;
     }
-    episodesList.innerHTML = episodes.map(ep => {
+
+    const visible = filtered.slice(0, episodeVisibleLimit);
+    const cards = visible.map(ep => {
       const playing = mediaKind === 'podcast' && currentEpisode?.id === ep.id && !audio.paused;
-      const img = ep.image || show.image || 'icons/icon-192.png';
+      const state = episodeListenState(show, ep);
+      const img = ep.image || show.image || 'icons/mi-radio.svg';
       const date = formatDate(ep.publishedAt);
       const duration = ep.duration ? formatTime(ep.duration) : '';
+      const pct = state.duration > 0 ? Math.min(100, Math.round((Number(state.position || 0) / Number(state.duration)) * 100)) : 0;
+      const stateLabel = state.completed
+        ? '<span class="episode-state listened">✓ Escuchado</span>'
+        : Number(state.position || 0) >= 5
+          ? `<span class="episode-state progress">● En curso${pct ? ' · ' + pct + '%' : ''}</span>`
+          : '';
+
       return `
-        <article class="episode-card ${playing ? 'playing' : ''}">
-          <img class="episode-image" src="${escapeAttr(img)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='icons/icon-192.png'" />
+        <article class="episode-card ${playing ? 'playing' : ''} ${state.completed ? 'listened' : (Number(state.position || 0) >= 5 ? 'in-progress' : '')}">
+          <img class="episode-image" src="${escapeAttr(img)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='icons/mi-radio.svg'" />
           <div>
             <div class="episode-title">${escapeHtml(ep.title)}</div>
             <div class="episode-desc">${escapeHtml(ep.description || '')}</div>
-            <div class="episode-meta"><span>${escapeHtml(date)}</span>${duration ? `<span>${duration}</span>` : ''}</div>
+            <div class="episode-meta"><span>${escapeHtml(date)}</span>${duration ? `<span>${duration}</span>` : ''}${stateLabel}</div>
           </div>
           <button class="episode-play" type="button" data-episode-id="${escapeAttr(ep.id)}" aria-label="Reproducir ${escapeAttr(ep.title)}">${playing ? '❚❚' : '▶'}</button>
         </article>`;
     }).join('');
+
+    const remaining = filtered.length - visible.length;
+    episodesList.innerHTML = cards + (remaining > 0
+      ? `<button class="load-more-episodes" type="button" data-load-more-episodes>Mostrar ${Math.min(EPISODE_PAGE_SIZE, remaining)} más · quedan ${remaining}</button>`
+      : '');
+
     episodesList.querySelectorAll('[data-episode-id]').forEach(btn => btn.addEventListener('click', () => {
       const ep = (show.episodes || []).find(x => x.id === btn.dataset.episodeId);
       if (!ep) return;
       if (mediaKind === 'podcast' && currentEpisode?.id === ep.id && !audio.paused) pauseMedia();
       else playEpisode(show, ep, true);
     }));
+
+    const more = episodesList.querySelector('[data-load-more-episodes]');
+    if (more) {
+      more.addEventListener('click', () => {
+        episodeVisibleLimit += EPISODE_PAGE_SIZE;
+        renderEpisodes(show);
+      });
+    }
   }
 
   function formatDate(value) {
@@ -1288,20 +1536,28 @@
 
   function episodePositionKey(ep) { return `${PODCAST_POS_PREFIX}${ep.id}`; }
 
-  function storedEpisodePosition(ep) {
-    const n = Number(localStorage.getItem(episodePositionKey(ep)) || 0);
-    return Number.isFinite(n) && n > 0 ? n : 0;
+  function storedEpisodePosition(ep, show = currentPodcastShow) {
+    const state = episodeListenState(show, ep);
+    if (state.completed) return 0;
+    const statePosition = Number(state.position || 0);
+    if (statePosition > 0) return statePosition;
+    const legacy = Number(localStorage.getItem(episodePositionKey(ep)) || 0);
+    return Number.isFinite(legacy) && legacy > 0 ? legacy : 0;
   }
 
   function saveEpisodePosition() {
-    if (mediaKind !== 'podcast' || !currentEpisode || !Number.isFinite(audio.currentTime)) return;
+    if (mediaKind !== 'podcast' || !currentEpisode || !currentPodcastShow || !Number.isFinite(audio.currentTime)) return;
     const current = audio.currentTime;
-    const duration = audio.duration;
-    if (current < 3 || (Number.isFinite(duration) && duration - current < 10)) {
+    const duration = Number.isFinite(audio.duration) && audio.duration > 0 ? audio.duration : (currentEpisode.duration || 0);
+    const completed = duration > 0 && duration - current < 10;
+
+    if (completed) {
       localStorage.removeItem(episodePositionKey(currentEpisode));
-    } else {
+    } else if (current >= 3) {
       localStorage.setItem(episodePositionKey(currentEpisode), String(Math.floor(current)));
     }
+
+    updateEpisodePlayState(currentPodcastShow, currentEpisode, current, duration, completed);
   }
 
   async function playEpisode(show, episode, openPlayer = false) {
@@ -1319,12 +1575,16 @@
     currentStation = null;
     destroyHls();
     configurePlayerForPodcast(show, episode);
-    const resumeAt = storedEpisodePosition(episode);
+    const resumeAt = storedEpisodePosition(episode, show);
+    persistLastPodcast(show, episode, resumeAt, episode.duration || 0);
+    try { localStorage.setItem(LAST_UI_MODE_KEY, 'podcasts'); } catch {}
+
     try {
       await loadPodcastUrl(episode.audio, resumeAt);
       await audio.play();
       reconnectAttempt = 0;
       lastProgressAt = Date.now();
+      updateEpisodePlayState(show, episode, resumeAt || 5, episode.duration || audio.duration || 0, false);
       updateMediaSessionPodcast(show, episode);
       syncPlayButtons();
       renderStations();
@@ -1408,6 +1668,30 @@
     podcastSeekSlider.value = duration ? String((current / duration) * 100) : '0';
     playerStatus.textContent = `${currentPodcastShow?.name || 'Podcast'} · ${formatTime(current)}${duration ? ` / ${formatTime(duration)}` : ''}`;
     updateMediaSessionPosition();
+  }
+
+  async function restoreLastPodcastSession() {
+    const saved = lastPodcastSnapshot;
+    if (!saved?.show || !saved?.episode?.audio) return false;
+
+    mediaKind = 'podcast';
+    playIntent = false;
+    currentPodcastShow = saved.show;
+    currentEpisode = saved.episode;
+    currentStation = null;
+    configurePlayerForPodcast(saved.show, saved.episode);
+
+    const resumeAt = Math.max(0, Number(saved.position || 0));
+    try {
+      await loadPodcastUrl(saved.episode.audio, resumeAt);
+      playerStatus.textContent = `${saved.show.name || 'Podcast'} · continuar en ${formatTime(resumeAt)}`;
+      updateMediaSessionPodcast(saved.show, saved.episode);
+      syncPlayButtons();
+      return true;
+    } catch (err) {
+      console.warn('No se pudo preparar el último podcast', err);
+      return false;
+    }
   }
 
   /* ---------------- Controles comunes ---------------- */
@@ -1743,7 +2027,7 @@
   podcastModeBtn.addEventListener('click', () => setUiMode('podcasts'));
   tvModeBtn.addEventListener('click', () => setUiMode('tv'));
   podcastBackBtn.addEventListener('click', closePodcastDetail);
-  podcastRefreshBtn.addEventListener('click', () => loadPodcastsData(true));
+  podcastRefreshBtn.addEventListener('click', refreshAllPodcasts);
   podcastDiscoveryBtn.addEventListener('click', searchPodcasts);
   podcastDiscoveryInput.addEventListener('keydown', event => {
     if (event.key === 'Enter') {
@@ -1752,7 +2036,11 @@
     }
   });
   podcastUnsubscribeBtn.addEventListener('click', unsubscribeCurrentPodcast);
-  episodeSearchInput.addEventListener('input', () => { episodeQuery = episodeSearchInput.value; renderPodcastDetail(); });
+  episodeSearchInput.addEventListener('input', () => {
+    episodeQuery = episodeSearchInput.value;
+    episodeVisibleLimit = EPISODE_PAGE_SIZE;
+    renderPodcastDetail();
+  });
 
   playPauseBtn.addEventListener('click', () => audio.paused ? resumeMedia() : pauseMedia());
   podcastPlayPauseBtn.addEventListener('click', () => audio.paused ? resumeMedia() : pauseMedia());
@@ -1800,7 +2088,10 @@
     }
     syncPlayButtons();
     if (mediaKind === 'radio' && currentStation) playerStatus.textContent = streamSourceText(currentStation);
-    if (mediaKind === 'podcast') updatePodcastTimeUi();
+    if (mediaKind === 'podcast') {
+      updatePodcastTimeUi();
+      updateEpisodePlayState(currentPodcastShow, currentEpisode, audio.currentTime || 5, audio.duration || currentEpisode?.duration || 0, false);
+    }
     renderStations();
     if (selectedPodcastId) renderPodcastDetail();
   });
@@ -1848,10 +2139,13 @@
       try { navigator.mediaSession.playbackState = 'none'; } catch {}
     }
     if (mediaKind === 'podcast') {
+      const duration = Number.isFinite(audio.duration) ? audio.duration : (currentEpisode?.duration || 0);
       localStorage.removeItem(episodePositionKey(currentEpisode));
+      updateEpisodePlayState(currentPodcastShow, currentEpisode, duration, duration, true);
       playIntent = false;
       syncPlayButtons();
       updatePodcastTimeUi();
+      if (selectedPodcastId) renderPodcastDetail();
     }
   });
   audio.addEventListener('volumechange', () => {
@@ -1900,7 +2194,7 @@
   }, 5000);
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=13').catch(console.warn));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=15').catch(console.warn));
   }
 
   /* ---------------- Inicio ---------------- */
@@ -1919,5 +2213,12 @@
   renderStations();
   renderPodcastLibrary();
   sleepSelect.value = localStorage.getItem(SLEEP_KEY) || '0';
-  setUiMode('radio');
+
+  const lastModeAtClose = localStorage.getItem(LAST_UI_MODE_KEY);
+  if (lastModeAtClose === 'podcasts' && lastPodcastSnapshot?.episode?.audio) {
+    setUiMode('podcasts');
+    restoreLastPodcastSession();
+  } else {
+    setUiMode('radio');
+  }
 })();
