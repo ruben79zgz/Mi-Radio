@@ -703,3 +703,69 @@ main { width: min(100%, 1040px); margin: 0 auto; padding: 18px; }
   .tv-web-fallback { grid-template-columns:82px 1fr; gap:12px; padding:14px; min-height:170px; }
   .tv-fallback-logo { width:82px; height:82px; border-radius:14px; }
 }
+
+
+/* ===== V15: podcasts vivos, progreso y pestañas por color ===== */
+#radioModeBtn.active {
+  background:#66e4c4;
+  color:#061019;
+}
+#podcastModeBtn.active {
+  background:#8b7cff;
+  color:#fff;
+}
+#tvModeBtn.active {
+  background:#ff9d6c;
+  color:#1b0b03;
+}
+#radioModeBtn:not(.active) { color:#7eead0; }
+#podcastModeBtn:not(.active) { color:#afa7ff; }
+#tvModeBtn:not(.active) { color:#ffb48f; }
+
+.podcast-show-card .show-latest {
+  color:#b6c1d4;
+  font-size:.68rem;
+  margin-top:4px;
+}
+.episode-card.in-progress {
+  border-color:rgba(139,124,255,.42);
+}
+.episode-card.listened {
+  opacity:.76;
+}
+.episode-card.listened .episode-title {
+  color:#b8c3d4;
+}
+.episode-state {
+  display:inline-flex;
+  align-items:center;
+  border-radius:999px;
+  padding:3px 7px;
+  font-size:.66rem;
+  font-weight:850;
+}
+.episode-state.progress {
+  color:#c8c2ff;
+  background:rgba(139,124,255,.13);
+}
+.episode-state.listened {
+  color:#75e7c9;
+  background:rgba(102,228,196,.10);
+}
+.load-more-episodes {
+  width:100%;
+  border:1px solid rgba(139,124,255,.34);
+  background:rgba(139,124,255,.10);
+  color:#d7d3ff;
+  border-radius:14px;
+  padding:13px 16px;
+  font-weight:850;
+  cursor:pointer;
+}
+.load-more-episodes:hover {
+  background:rgba(139,124,255,.16);
+}
+
+@media (max-width:760px) {
+  .episode-state { font-size:.62rem; padding:2px 6px; }
+}
