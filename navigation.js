@@ -65,7 +65,14 @@
   }
 
   function installHistoryNavigation() {
+    var activeScreen = 'radio';
+    if (byId('podcastModeBtn') && byId('podcastModeBtn').classList.contains('active')) activeScreen = 'podcasts';
+    else if (byId('tvModeBtn') && byId('tvModeBtn').classList.contains('active')) activeScreen = 'tv';
+
     history.replaceState({ miRadio: true, screen: 'radio', depth: 0 }, '', location.href);
+    if (activeScreen !== 'radio') {
+      history.pushState({ miRadio: true, screen: activeScreen, depth: 1 }, '', location.href);
+    }
 
     document.addEventListener('click', function (event) {
       if (suppressHistory) return;
