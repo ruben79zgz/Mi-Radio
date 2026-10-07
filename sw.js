@@ -1,15 +1,16 @@
-const CACHE = 'mi-radio-shell-v14';
+const CACHE = 'mi-radio-shell-v15';
 const SHELL = [
   './',
   './index.html',
-  './styles.css?v=13',
-  './app.js?v=13',
-  './stations.js?v=13',
-  './podcasts.js?v=13',
-  './tv.js?v=13',
-  './navigation.js?v=14',
-  './manifest.webmanifest?v=13',
-  './icons/mi-radio.svg?v=13'
+  './styles.css?v=15',
+  './app.js?v=15',
+  './stations.js?v=15',
+  './podcasts.js?v=15',
+  './podcast-feed.js?v=15',
+  './tv.js?v=15',
+  './navigation.js?v=15',
+  './manifest.webmanifest?v=15',
+  './icons/mi-radio.svg?v=15'
 ];
 
 self.addEventListener('install', event => {
