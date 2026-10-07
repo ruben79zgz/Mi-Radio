@@ -2,119 +2,146 @@
   'use strict';
 
   var initialized = false;
-  var suppressHistory = false;
+  var applyingHistory = false;
   var tvShouldResume = false;
   var tvResumeTimer = null;
 
   function byId(id) { return document.getElementById(id); }
 
-  function currentState() {
-    return history.state && history.state.miRadio ? history.state : { miRadio: true, screen: 'radio', depth: 0 };
+  function appState() {
+    var state = history.state;
+    return state && state.miRadio
+      ? state
+      : { miRadio: true, screen: 'radio', depth: 0, navVersion: 17 };
   }
 
-  function writeState(mode, method, extra) {
-    if (suppressHistory) return;
-    var state = { miRadio: true, screen: mode, depth: mode === 'radio' ? 0 : (mode === 'podcast-detail' ? 2 : 1) };
+  function writeState(screen, method, extra) {
+    if (applyingHistory) return;
+    var depth = screen === 'radio' ? 0 : (screen === 'podcast-detail' ? 2 : 1);
+    var state = { miRadio: true, screen: screen, depth: depth, navVersion: 17 };
+    var key;
     if (extra) {
-      for (var key in extra) state[key] = extra[key];
+      for (key in extra) state[key] = extra[key];
     }
     if (method === 'replace') history.replaceState(state, '', location.href);
     else history.pushState(state, '', location.href);
   }
 
-  function isPodcastDetailOpen() {
+  function detailOpen() {
     var detail = byId('podcastDetailView');
     return !!detail && !detail.classList.contains('hidden');
   }
 
   function applyState(state) {
-    state = state && state.miRadio ? state : { miRadio: true, screen: 'radio', depth: 0 };
-    suppressHistory = true;
+    state = state && state.miRadio
+      ? state
+      : { miRadio: true, screen: 'radio', depth: 0, navVersion: 17 };
+
+    applyingHistory = true;
     try {
       if (state.screen === 'radio') {
+        if (detailOpen()) byId('podcastBackBtn').click();
         byId('radioModeBtn').click();
         return;
       }
 
       if (state.screen === 'tv') {
+        if (detailOpen()) byId('podcastBackBtn').click();
         byId('tvModeBtn').click();
         return;
       }
 
       if (state.screen === 'podcasts') {
         byId('podcastModeBtn').click();
-        if (isPodcastDetailOpen()) byId('podcastBackBtn').click();
+        if (detailOpen()) byId('podcastBackBtn').click();
         return;
       }
 
       if (state.screen === 'podcast-detail') {
         byId('podcastModeBtn').click();
-        if (isPodcastDetailOpen()) byId('podcastBackBtn').click();
-        window.setTimeout(function () {
-          var card = document.querySelector('[data-show-id="' + String(state.showId || '').replace(/"/g, '\\"') + '"]');
-          if (card) {
-            suppressHistory = true;
-            card.click();
-            suppressHistory = false;
-          }
-        }, 0);
+
+        var wanted = String(state.showId || '');
+        var currentDetail = byId('podcastDetailView');
+        var currentCard = wanted
+          ? document.querySelector('[data-show-id="' + wanted.replace(/"/g, '\\"') + '"]')
+          : null;
+
+        if (!detailOpen() && currentCard) currentCard.click();
+        else if (detailOpen() && wanted && currentDetail) {
+          // El detalle ya está abierto; no hacemos nada para no duplicar historial.
+        }
       }
     } finally {
-      suppressHistory = false;
+      applyingHistory = false;
     }
   }
 
   function installHistoryNavigation() {
-    // La aplicación siempre arranca visualmente en Radio.
-    history.replaceState({ miRadio: true, screen: 'radio', depth: 0 }, '', location.href);
+    var radioBtn = byId('radioModeBtn');
+    var podcastBtn = byId('podcastModeBtn');
+    var tvBtn = byId('tvModeBtn');
+    var backBtn = byId('podcastBackBtn');
+
+    // Cada apertura de la app empieza con una base limpia en Radio.
+    history.replaceState(
+      { miRadio: true, screen: 'radio', depth: 0, navVersion: 17 },
+      '',
+      location.href
+    );
+
+    radioBtn.addEventListener('click', function (event) {
+      if (applyingHistory) return;
+      var state = appState();
+      if (state.screen !== 'radio') {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        history.go(-Math.max(1, Number(state.depth) || 1));
+      }
+    }, true);
+
+    podcastBtn.addEventListener('click', function () {
+      if (applyingHistory) return;
+      var state = appState();
+      if (state.screen === 'radio') writeState('podcasts', 'push');
+      else if (state.screen !== 'podcasts') writeState('podcasts', 'replace');
+    }, true);
+
+    tvBtn.addEventListener('click', function () {
+      if (applyingHistory) return;
+      var state = appState();
+      if (state.screen === 'radio') writeState('tv', 'push');
+      else if (state.screen !== 'tv') writeState('tv', 'replace');
+    }, true);
 
     document.addEventListener('click', function (event) {
-      if (suppressHistory) return;
+      if (applyingHistory) return;
       var target = event.target;
       if (!target || !target.closest) return;
 
-      var radioBtn = target.closest('#radioModeBtn');
-      var podcastBtn = target.closest('#podcastModeBtn');
-      var tvBtn = target.closest('#tvModeBtn');
-      var podcastCard = target.closest('[data-show-id]');
-      var podcastBack = target.closest('#podcastBackBtn');
+      var card = target.closest('[data-show-id]');
+      if (!card) return;
 
-      if (podcastBack && currentState().screen === 'podcast-detail') {
-        // Dejamos que app.js cierre el detalle inmediatamente y, en paralelo,
-        // retrocedemos el historial para que el siguiente Atrás vaya a Radio.
-        history.back();
-        return;
-      }
+      var id = card.getAttribute('data-show-id');
+      if (!id) return;
 
-      if (radioBtn) {
-        var state = currentState();
-        if (state.depth > 0) {
-          event.preventDefault();
-          event.stopImmediatePropagation();
-          history.go(-state.depth);
-        }
-        return;
-      }
-
-      if (podcastBtn) {
-        var current = currentState();
-        if (current.screen === 'radio') writeState('podcasts', 'push');
-        else if (current.screen !== 'podcasts') writeState('podcasts', 'replace');
-        return;
-      }
-
-      if (tvBtn) {
-        var currentTv = currentState();
-        if (currentTv.screen === 'radio') writeState('tv', 'push');
-        else if (currentTv.screen !== 'tv') writeState('tv', 'replace');
-        return;
-      }
-
-      if (podcastCard) {
-        var id = podcastCard.getAttribute('data-show-id');
-        if (id) writeState('podcast-detail', 'push', { showId: id });
+      var state = appState();
+      if (state.screen === 'podcasts') {
+        writeState('podcast-detail', 'push', { showId: id });
       }
     }, true);
+
+    // IMPORTANTE: app.js cierra primero el detalle de forma inmediata.
+    // Después retiramos una sola entrada del historial. Así el botón Biblioteca
+    // nunca depende del popstate para hacer visible la biblioteca.
+    backBtn.addEventListener('click', function () {
+      if (applyingHistory) return;
+      var state = appState();
+      if (state.screen === 'podcast-detail') {
+        window.setTimeout(function () {
+          history.back();
+        }, 0);
+      }
+    });
 
     window.addEventListener('popstate', function (event) {
       applyState(event.state);
@@ -134,8 +161,12 @@
           artist: 'Televisión en directo',
           album: 'Mi Radio'
         });
-        navigator.mediaSession.setActionHandler('play', function () { video.play().catch(function () {}); });
-        navigator.mediaSession.setActionHandler('pause', function () { video.pause(); });
+        navigator.mediaSession.setActionHandler('play', function () {
+          video.play().catch(function () {});
+        });
+        navigator.mediaSession.setActionHandler('pause', function () {
+          video.pause();
+        });
         navigator.mediaSession.playbackState = 'playing';
       } catch (e) {}
     }
@@ -148,11 +179,15 @@
     video.addEventListener('pause', function () {
       if (document.visibilityState === 'visible') tvShouldResume = false;
       if ('mediaSession' in navigator) {
-        try { navigator.mediaSession.playbackState = tvShouldResume ? 'paused' : 'none'; } catch (e) {}
+        try {
+          navigator.mediaSession.playbackState = tvShouldResume ? 'paused' : 'none';
+        } catch (e) {}
       }
     });
 
-    video.addEventListener('ended', function () { tvShouldResume = false; });
+    video.addEventListener('ended', function () {
+      tvShouldResume = false;
+    });
 
     function resumeTvIfNeeded() {
       if (!tvShouldResume || !video.currentSrc || !video.paused) return;
@@ -176,12 +211,16 @@
 
   function init() {
     if (initialized) return;
-    if (!byId('radioModeBtn') || !byId('podcastModeBtn') || !byId('tvModeBtn')) return;
+    if (!byId('radioModeBtn') || !byId('podcastModeBtn') || !byId('tvModeBtn') || !byId('podcastBackBtn')) return;
+
     initialized = true;
     installHistoryNavigation();
     installTvBackgroundHandling();
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
