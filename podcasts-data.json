@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T23:06:09.223244Z",
+  "updatedAt": "2026-10-08T06:06:02.018975Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "3217b79df0329a4445c2",
+          "title": "07 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Argentina despide a Messi en su último partido con la selección. Hablamos con Teresa Sanjurjo, Directora de la Fundación Princesa de Asturias; David Silva y Héctor Álvarez, campeón de Europa sub-23 de contrarreloj. Actualidad del Real Madrid, con la recuperación de Mbappé y Valverde. VayaFiesta.",
+          "publishedAt": "2026-10-07T23:50:00Z",
+          "duration": 7344,
+          "audio": "https://www.cope.es/uploads/2026/10/08/V5wF0HDnXe1WxeJx3yfgn.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/07-oct-2026-partidazo-cope-20261008_3452098.html"
+        },
+        {
+          "id": "f689505c99b76de266fd",
+          "title": "3ª PARTE | 07 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Actualidad del Real Madrid, con la recuperación de Mbappé y Valverde. El Getafe sigue buscando fichar a Carvajal. Entrevista a Héctor Álvarez, bicampeón de Europa. Polémica en Elche y Almería. VayaFiesta, con el Grupo RISA.",
+          "publishedAt": "2026-10-07T23:45:00Z",
+          "duration": 3891,
+          "audio": "https://www.cope.es/uploads/2026/10/08/kaZ00jtOYzpHC4GgbeEyZ.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-07-oct-2026-partidazo-cope-20261008_3452097.html"
+        },
         {
           "id": "a140bfb30a834ed62075",
           "title": "2ª PARTE | 07 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/01-abr-2026-partidazo-cope-20260402_3338487.html"
-        },
-        {
-          "id": "bfcd09fde9f6c89d872d",
-          "title": "2ª PARTE | 01 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Contamos, junto al corresponsal David Alandete, el periodista Jorge Alcalde, y el subdirector de La Linterna Rubén Corral, el despegue del Artemis II rumbo hacia la Luna",
-          "publishedAt": "2026-04-01T22:53:33Z",
-          "duration": 1398,
-          "audio": "https://www.cope.es/uploads/2026/04/02/l25pDJ7xLPM2Bk0Iksz3h.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-01-abr-2026-partidazo-cope-20260402_3338483.html"
-        },
-        {
-          "id": "bfa406e3b58b80c3ee87",
-          "title": "1ª PARTE | 01 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Titulares del día. Buscamos el final del Racing-Sporting en Segunda. Analizamos las consecuencias de los gritos racistas en Cornellà. Escuchamos la conversación con el embajador de Egipto en España, Ehab Ahmed Badawy. Tiempo de opinión",
-          "publishedAt": "2026-04-01T22:46:27Z",
-          "duration": 2927,
-          "audio": "https://www.cope.es/uploads/2026/04/02/Ijd024ynLahN6ppKahN7j.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-01-abr-2026-partidazo-cope-20260402_3338480.html"
         }
       ]
     },
