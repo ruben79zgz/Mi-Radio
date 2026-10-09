@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-09T00:23:38.446129Z",
+  "updatedAt": "2026-10-09T09:06:01.099142Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -6621,6 +6621,17 @@
       "site": "http://www.podiumpodcast.com/la-escobula-de-la-brujula/",
       "feed": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/playlists/podcast.rss",
       "episodes": [
+        {
+          "id": "23ceff222498cdc06951",
+          "title": "Programa 626: Maldiciones: el precio del poder",
+          "description": "¿Nos votas en los Premios iVoox 2026? ¡Solo es un minuto! https://go.ivoox.com/wv/premios26?c=5537 Abrimos el gabinete de objetos malditos: piezas que prometen protección, fortuna o poder, pero que, según la leyenda, pueden cobrar un precio terrible. El investigador Unai Idiaquez , autor de Mitología y maldiciones. Leyendas, dioses, objetos malditos y criaturas prohibidas de las grandes culturas del mundo , nos acercará al anillo de Andvari, cuyo tesoro arrastra una maldición en la mitología nórdica, y al kratt de la tradición estonia: un sirviente fabricado con trapos y utensilios que cobra vida mediante un pacto con el diablo. Dos historias en las que el deseo de riqueza acaba convirtiéndose en una trampa. Javier Arries , autor de Objetos malditos , nos adentrará en el inquietante mundo de los juguetes y las figuras a los que se atribuyen poderes siniestros: muñecas, marionetas, autómatas, máscaras y fetiches asociados a rituales o supuestas presencias malignas. Sére Skuld nos hablará de las tablillas de maldición romanas, especialmente de las halladas en Bath, la antigua Aquae Sulis : pequeñas láminas de metal en las que quedaron escritos deseos de castigo y peticiones de justicia. Porque, mucho antes de las redes sociales, ya había quien dejaba sus rencores por escrito. EXTRÓBULA: El doctor en Filología de la UNED Francisco Javier Sánchez-Verdejo nos presentará su investigación académica sobre el Sillón del Diablo, conservado en un Museo de Valladolid. Examinaremos cuánto hay de historia y cuánto de invención en la leyenda de este asiento al que se atribuye un conocimiento extraordinario… con consecuencias mortales.",
+          "publishedAt": "2026-10-09T04:00:00Z",
+          "duration": 7974,
+          "audio": "https://traffic.omny.fm/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/6bb0b6ff-db5a-4ad3-961d-b4d6007f8443/audio.mp3?utm_source=Podcast&in_playlist=fd25a142-cbf1-4f2b-9146-aead00a0bab7",
+          "fileSize": 127637054,
+          "image": "https://www.omnycontent.com/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/6bb0b6ff-db5a-4ad3-961d-b4d6007f8443/image.jpg?t=1791276096&size=Large",
+          "link": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/programa-626-maldiciones-el-precio-del-poder"
+        },
         {
           "id": "3ca996b67263e722f04d",
           "title": "Programa 625: Quién nos visita mientras dormimos",
