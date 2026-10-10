@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T05:54:07.692740Z",
+  "updatedAt": "2026-10-10T23:34:31.168875Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "078f00036dd44b1e6c35",
+          "title": "10 OCT 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
+          "description": "Sufrida victoria del Real Madrid. La polémica por la expulsión a Vinicius. Análisis de las victorias del Barça y Atlético. Los incidentes de Vallecas. GP de Singapur de F1 y GP de Indonesia de MotoGP",
+          "publishedAt": "2026-10-10T23:30:00Z",
+          "duration": 6704,
+          "audio": "https://www.cope.es/uploads/2026/10/11/5tmasMBiXjdKdg13sI0wU.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/10/09/6ac8d266231a1.jpg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/10-oct-2026-tramo-final-juego-20261011_3453901.html"
+        },
         {
           "id": "438578c9aafff785354c",
           "title": "09 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/06-abr-2026-partidazo-cope-20260407_3339940.html"
-        },
-        {
-          "id": "36cc538deb38c974d052",
-          "title": "3ª PARTE | 06 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Actualidad del Barcelona y Atlético de Madrid, a dos días de la semifinal. La difícil situación del Sevilla. Entrevista a Ilia Topuria, con Ángel García. Km42, con Chema Martínez.",
-          "publishedAt": "2026-04-06T23:45:00Z",
-          "duration": 3074,
-          "audio": "https://www.cope.es/uploads/2026/04/07/WnsDVWIAkioXFXzCQoobj.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-06-abr-2026-partidazo-cope-20260407_3339939.html"
         }
       ]
     },
