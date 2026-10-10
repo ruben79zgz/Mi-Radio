@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-09T09:06:01.099142Z",
+  "updatedAt": "2026-10-10T05:54:07.692740Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,39 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "438578c9aafff785354c",
+          "title": "09 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Titulares. Noticias del día. Mourinho habla de la polémica de Mbappé y del mal momento de Vinicius. Flick mima a Raphinha. Málaga y Espanyol empatan en La Rosaleda. GP Singapur de Fórmula 1. #OasisDeLibertad. Previas del Real Madrid-Villarreal, del Barcelona-Getafe y del Alavés Atlético. #Campodelgas",
+          "publishedAt": "2026-10-09T23:40:00Z",
+          "duration": 7673,
+          "audio": "https://www.cope.es/uploads/2026/10/10/o06oNu1kn7avwFbeYp6v2.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/09-oct-2026-partidazo-cope-20261010_3453755.html"
+        },
+        {
+          "id": "5f740c769f138950f477",
+          "title": "3ª PARTE | 09 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Sigue el #OasisDeLibertad. Previas del Real Madrid-Villarreal, del Barcelona-Getafe y del Alavés Atlético. #Campodelgas",
+          "publishedAt": "2026-10-09T23:30:00Z",
+          "duration": 3375,
+          "audio": "https://www.cope.es/uploads/2026/10/10/iSVh9ODD-vNtvfVDirkdA.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-09-oct-2026-partidazo-cope-20261010_3453753.html"
+        },
+        {
+          "id": "184db1d5d72a353d5e3d",
+          "title": "2ª PARTE | 09 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "#OasisDeLibertad. El parón de selecciones. El mensaje del Atlético por la lesión de Fede Valverde.",
+          "publishedAt": "2026-10-09T22:47:08Z",
+          "duration": 2330,
+          "audio": "https://www.cope.es/uploads/2026/10/10/-7Tb1mNvx02K9kwb7ija-.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-09-oct-2026-partidazo-cope-20261010_3453752.html"
+        },
         {
           "id": "c1e055004e9fbbe2dea5",
           "title": "08 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6576,39 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-06-abr-2026-partidazo-cope-20260407_3339939.html"
-        },
-        {
-          "id": "36e1867aa56a546f54f9",
-          "title": "06-ABR-26 | #KM42, 'Running' con Chema Martínez",
-          "description": "Una carrera clandestina desde Los Ángeles... ¡hasta Las Vegas!, Un brasileño ha completado los 500 kilómetros en tan solo 67 horas, Un estudio de 'Quirónsalud' y los 5 grandes mitos del mundo del running.",
-          "publishedAt": "2026-04-06T23:40:00Z",
-          "duration": 932,
-          "audio": "https://www.cope.es/uploads/2026/04/06/hnFygYnlO9UOwYUuQdu8i.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/04/06/69d423de57a66.png",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/06-abr-26-km42-running-chema-martinez-20260406_3339916.html"
-        },
-        {
-          "id": "fac9e83d93666f09e522",
-          "title": "2ª PARTE | 06 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Entrevista a Albert Riera, entrenador del Eintracht de Frankfurt. Seguimos analizando el partido de este martes en el Santiago Bernabéu.",
-          "publishedAt": "2026-04-06T22:42:29Z",
-          "duration": 1665,
-          "audio": "https://www.cope.es/uploads/2026/04/07/2EZmkH9YzjNvLIklioRL6.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-06-abr-2026-partidazo-cope-20260407_3339935.html"
-        },
-        {
-          "id": "f06bd2a873a6afaf5a25",
-          "title": "1ª PARTE | 06 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. Previa Real Madrid - Bayern de Múnich. Tiempo de opinión.",
-          "publishedAt": "2026-04-06T22:13:22Z",
-          "duration": 2531,
-          "audio": "https://www.cope.es/uploads/2026/04/07/YDwPArD-0rUYj5M74IBT0.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-06-abr-2026-partidazo-cope-20260407_3339928.html"
         }
       ]
     },
