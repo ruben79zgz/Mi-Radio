@@ -1,6 +1,6 @@
 window.TV_CONFIG = {
   tdtJson: 'https://www.tdtchannels.com/lists/tv.json',
-  epgJson: 'https://www.tdtchannels.com/epg/TV.json',
+  epgJson: 'epg-data.json',
   russianJson: 'https://raw.githubusercontent.com/ruben79zgz/Mi-TV/main/channels.json',
   spanish: [
     {
