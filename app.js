@@ -2565,7 +2565,7 @@
   }, 5000);
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=19.1.1').catch(console.warn));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=19.2.1').catch(console.warn));
   }
 
   /* ---------------- Inicio ---------------- */
