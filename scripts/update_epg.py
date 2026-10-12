@@ -28,7 +28,7 @@ def main() -> int:
     # Guardamos solo los canales que Mi Radio usa en su guía.
     # Así la PWA no tiene que descargar casi 2 MB cada vez.
     config_text = TV_CONFIG.read_text(encoding="utf-8")
-    wanted = set(re.findall(r"epgId:\\s*['\"]([^'\"]+)['\"]", config_text))
+    wanted = set(re.findall(r"epgId:\s*['\"]([^'\"]+)['\"]", config_text))
 
     if isinstance(data, list) and wanted:
         data = [channel for channel in data if channel.get("name") in wanted]
