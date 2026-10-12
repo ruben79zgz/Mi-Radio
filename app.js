@@ -87,6 +87,12 @@
   const tvFallbackTitle = document.getElementById('tvFallbackTitle');
   const tvOpenWebBtn = document.getElementById('tvOpenWebBtn');
   const tvCountryButtons = [...document.querySelectorAll('[data-tv-country]')];
+  const tvSectionButtons = [...document.querySelectorAll('[data-tv-section]')];
+  const tvChannelsView = document.getElementById('tvChannelsView');
+  const tvGuideView = document.getElementById('tvGuideView');
+  const tvGuideGrid = document.getElementById('tvGuideGrid');
+  const tvGuideStatus = document.getElementById('tvGuideStatus');
+  const tvGuideUpdated = document.getElementById('tvGuideUpdated');
 
   const settingsBtn = document.getElementById('settingsBtn');
   const settingsDialog = document.getElementById('settingsDialog');
@@ -149,6 +155,9 @@
   let currentTvChannel = null;
   let tvHls = null;
   let tvDash = null;
+  let tvSection = 'channels';
+  let tvEpgData = null;
+  let tvEpgLoadedAt = 0;
 
   let mediaKind = null; // radio | podcast
   let playIntent = false; // true mientras el usuario NO haya pulsado pausa/stop
@@ -1080,6 +1089,7 @@
             name: found?.name || cfg.name,
             logo: found?.logo || cfg.logo,
             web: found?.web || cfg.web,
+            epgId: found?.epg_id || cfg.epgId || null,
             streams: direct.length ? direct : (cfg.fallbackStreams || []),
             extraInfo: found?.extra_info || []
           };
@@ -1156,7 +1166,14 @@
     tvChannelsGrid.querySelectorAll('[data-tv-id]').forEach(btn => {
       btn.addEventListener('click', () => {
         const channel = activeTvChannels().find(ch => ch.id === btn.dataset.tvId);
-        if (channel) playTvChannel(channel);
+        if (!channel) return;
+
+        if (!channel.streams?.length && channel.web && !channel.directOnly) {
+          window.open(channel.web, '_blank', 'noopener');
+          return;
+        }
+
+        playTvChannel(channel);
       });
     });
   }
@@ -1202,6 +1219,13 @@
     try { radioPlayerDialog.close(); } catch {}
 
     if (!channel.streams?.length) {
+      if (channel.web && !channel.directOnly) {
+        window.open(channel.web, '_blank', 'noopener');
+        currentTvChannel = null;
+        tvPlayerPanel.classList.add('hidden');
+        renderTvChannels();
+        return;
+      }
       showTvWebFallback(channel);
       renderTvChannels();
       tvPlayerPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1386,6 +1410,265 @@
       tvVideo.addEventListener('error', onError, { once: true });
       tvVideo.play().catch(() => {});
     });
+  }
+
+  function setTvSection(section) {
+    tvSection = section === 'guide' ? 'guide' : 'channels';
+    const guide = tvSection === 'guide';
+
+    tvChannelsView.classList.toggle('hidden', guide);
+    tvGuideView.classList.toggle('hidden', !guide);
+    tvSectionButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.tvSection === tvSection));
+
+    if (guide) loadTvGuide(false);
+  }
+
+  function epgText(value) {
+    if (value == null) return '';
+    if (typeof value === 'string' || typeof value === 'number') return String(value).trim();
+    if (Array.isArray(value)) {
+      for (const item of value) {
+        const text = epgText(item);
+        if (text) return text;
+      }
+      return '';
+    }
+    if (typeof value === 'object') {
+      for (const key of ['#text','_text','text','value','_value','title','name']) {
+        const text = epgText(value[key]);
+        if (text) return text;
+      }
+      for (const child of Object.values(value)) {
+        const text = epgText(child);
+        if (text) return text;
+      }
+    }
+    return '';
+  }
+
+  function parseEpgTime(value) {
+    if (value == null || value === '') return NaN;
+
+    if (typeof value === 'number') {
+      return value < 1e12 ? value * 1000 : value;
+    }
+
+    const raw = epgText(value);
+    if (!raw) return NaN;
+
+    if (/^\d{10,13}$/.test(raw)) {
+      const n = Number(raw);
+      return raw.length <= 10 ? n * 1000 : n;
+    }
+
+    const xmltv = raw.match(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})?\s*([+-])(\d{2})(\d{2})$/);
+    if (xmltv) {
+      const [, y, mo, d, h, mi, s = '00', sign, oh, om] = xmltv;
+      const localUtc = Date.UTC(Number(y), Number(mo) - 1, Number(d), Number(h), Number(mi), Number(s));
+      const offset = (Number(oh) * 60 + Number(om)) * 60000;
+      return localUtc - (sign === '+' ? offset : -offset);
+    }
+
+    const parsed = Date.parse(raw);
+    return Number.isFinite(parsed) ? parsed : NaN;
+  }
+
+  function normalizeEpgPrograms(data, wantedIds) {
+    const wantedMap = new Map();
+    for (const id of wantedIds) {
+      if (id) wantedMap.set(normalize(id), id);
+    }
+
+    const programs = [];
+    const seen = new Set();
+
+    function addProgram(obj, hint) {
+      if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return false;
+
+      const startRaw = obj.start ?? obj.start_time ?? obj.startTime ?? obj.begin ?? obj.beginAt ?? obj.date_start;
+      const endRaw = obj.stop ?? obj.end ?? obj.end_time ?? obj.endTime ?? obj.finish ?? obj.date_end;
+      const titleRaw = obj.title ?? obj.programme_title ?? obj.programTitle ?? obj.name;
+
+      if (startRaw == null || endRaw == null || titleRaw == null) return false;
+
+      const channelRaw = obj.channel ?? obj.channel_id ?? obj.channelId ?? obj.epg_id ?? obj.epgId ?? hint;
+      const channelText = epgText(channelRaw);
+      const canonical = wantedMap.get(normalize(channelText || hint || ''));
+      if (!canonical) return false;
+
+      const start = parseEpgTime(startRaw);
+      const end = parseEpgTime(endRaw);
+      const title = epgText(titleRaw);
+      if (!Number.isFinite(start) || !Number.isFinite(end) || !title || end <= start) return false;
+
+      const key = canonical + '|' + start + '|' + end + '|' + title;
+      if (seen.has(key)) return true;
+      seen.add(key);
+
+      programs.push({
+        channel: canonical,
+        start,
+        end,
+        title,
+        description: epgText(obj.desc ?? obj.description ?? obj.summary ?? ''),
+        category: epgText(obj.category ?? '')
+      });
+      return true;
+    }
+
+    function walk(node, hint = '', depth = 0) {
+      if (depth > 12 || node == null) return;
+
+      if (Array.isArray(node)) {
+        for (const item of node) walk(item, hint, depth + 1);
+        return;
+      }
+
+      if (typeof node !== 'object') return;
+
+      const idHint = epgText(node.epg_id ?? node.epgId ?? node.channel_id ?? node.channelId ?? node.id ?? '');
+      const localHint = wantedMap.has(normalize(idHint)) ? wantedMap.get(normalize(idHint)) : hint;
+
+      if (addProgram(node, localHint)) return;
+
+      for (const [key, value] of Object.entries(node)) {
+        const keyHint = wantedMap.has(normalize(key)) ? wantedMap.get(normalize(key)) : localHint;
+        walk(value, keyHint, depth + 1);
+      }
+    }
+
+    walk(data);
+
+    programs.sort((a, b) => a.start - b.start);
+    return programs;
+  }
+
+  function guideProgramsFor(channel, allPrograms) {
+    const id = channel.epgId;
+    if (!id) return [];
+    return allPrograms.filter(item => normalize(item.channel) === normalize(id));
+  }
+
+  function guideSnapshot(channel, allPrograms, now = Date.now()) {
+    const programs = guideProgramsFor(channel, allPrograms);
+    if (!programs.length) return { current: null, next: [] };
+
+    let current = programs.find(item => item.start <= now && item.end > now) || null;
+    let future = programs.filter(item => item.start >= now);
+
+    if (current) {
+      future = programs.filter(item => item.start >= current.end - 1000);
+    }
+
+    return { current, next: future.slice(0, 2) };
+  }
+
+  function formatTvClock(ms) {
+    if (!Number.isFinite(ms)) return '';
+    return new Intl.DateTimeFormat('es-ES', { hour:'2-digit', minute:'2-digit' }).format(new Date(ms));
+  }
+
+  function renderTvGuide() {
+    if (!tvGuideGrid) return;
+    const channels = tvSpanishChannels;
+    if (!channels.length) {
+      tvGuideGrid.innerHTML = '<div class="empty">No hay canales españoles cargados.</div>';
+      return;
+    }
+
+    const programs = Array.isArray(tvEpgData) ? tvEpgData : [];
+    const now = Date.now();
+
+    tvGuideGrid.innerHTML = channels.map(channel => {
+      const snap = guideSnapshot(channel, programs, now);
+      const current = snap.current;
+      const next1 = snap.next[0];
+      const next2 = snap.next[1];
+
+      let progress = 0;
+      if (current) {
+        progress = Math.max(0, Math.min(100, ((now - current.start) / (current.end - current.start)) * 100));
+      }
+
+      const row = (label, item, active = false) => item
+        ? `<div class="tv-guide-program ${active ? 'now' : ''}">
+             <div class="tv-guide-program-label">${label}</div>
+             <div class="tv-guide-program-copy">
+               <strong>${escapeHtml(item.title)}</strong>
+               <span>${formatTvClock(item.start)} - ${formatTvClock(item.end)}</span>
+             </div>
+           </div>`
+        : '';
+
+      return `
+        <article class="tv-guide-card">
+          <div class="tv-guide-channel">
+            <img src="${escapeAttr(channel.logo || 'icons/mi-radio.svg')}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='icons/mi-radio.svg'" />
+            <div>
+              <div class="tv-guide-channel-name">${escapeHtml(channel.name)}</div>
+              <div class="tv-guide-channel-source">${current ? 'En emisión' : 'Programación'}</div>
+            </div>
+            <button class="tv-guide-watch" type="button" data-guide-tv-id="${escapeAttr(channel.id)}">Ver</button>
+          </div>
+          ${current ? row('AHORA', current, true) : '<div class="tv-guide-empty">Sin información de emisión actual.</div>'}
+          ${current ? `<div class="tv-guide-progress"><span style="width:${progress.toFixed(1)}%"></span></div>` : ''}
+          ${row('DESPUÉS', next1)}
+          ${row('LUEGO', next2)}
+        </article>`;
+    }).join('');
+
+    tvGuideGrid.querySelectorAll('[data-guide-tv-id]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const channel = tvSpanishChannels.find(ch => ch.id === btn.dataset.guideTvId);
+        if (!channel) return;
+
+        if (!channel.streams?.length && channel.web && !channel.directOnly) {
+          window.open(channel.web, '_blank', 'noopener');
+          return;
+        }
+
+        tvCountry = 'España';
+        setTvSection('channels');
+        renderTvChannels();
+        playTvChannel(channel);
+      });
+    });
+  }
+
+  async function loadTvGuide(force = false) {
+    if (!tvSpanishChannels.length) await loadTvChannels(false);
+
+    const freshEnough = tvEpgData && Date.now() - tvEpgLoadedAt < 10 * 60 * 1000;
+    if (!force && freshEnough) {
+      renderTvGuide();
+      return;
+    }
+
+    tvGuideStatus.textContent = 'Actualizando programación…';
+
+    try {
+      const response = await fetch(`${tvConfig.epgJson}?t=${Date.now()}`, { cache: 'no-store' });
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      const data = await response.json();
+      const wantedIds = tvSpanishChannels.map(ch => ch.epgId).filter(Boolean);
+      const programs = normalizeEpgPrograms(data, wantedIds);
+
+      tvEpgData = programs;
+      tvEpgLoadedAt = Date.now();
+
+      if (!programs.length) throw new Error('La guía no devolvió programas reconocibles');
+
+      tvGuideStatus.textContent = '';
+      tvGuideUpdated.textContent = 'Actualizado ' + new Intl.DateTimeFormat('es-ES', {
+        hour:'2-digit',
+        minute:'2-digit'
+      }).format(new Date());
+      renderTvGuide();
+    } catch (err) {
+      console.warn('No se pudo cargar la guía TV', err);
+      tvGuideStatus.textContent = 'No se pudo cargar la programación ahora mismo. Prueba ↻ más tarde.';
+      if (tvEpgData) renderTvGuide();
+    }
   }
 
   function stopTvPlayback(hidePanel = false) {
@@ -2071,7 +2354,15 @@
   settingsBtn.addEventListener('click', () => settingsDialog.showModal());
   sleepSelect.addEventListener('change', () => setSleepTimer(Number(sleepSelect.value)));
 
-  tvRefreshBtn.addEventListener('click', () => loadTvChannels(true));
+  tvRefreshBtn.addEventListener('click', async () => {
+    if (tvSection === 'guide') {
+      await loadTvChannels(true);
+      await loadTvGuide(true);
+    } else {
+      await loadTvChannels(true);
+    }
+  });
+  tvSectionButtons.forEach(btn => btn.addEventListener('click', () => setTvSection(btn.dataset.tvSection)));
   tvCountryButtons.forEach(btn => btn.addEventListener('click', () => {
     tvCountry = btn.dataset.tvCountry;
     stopTvPlayback(true);
@@ -2185,6 +2476,12 @@
     if (playIntent && mediaKind && audio.paused && navigator.onLine) scheduleReconnect('pageshow', 300);
   });
 
+  setInterval(() => {
+    if (currentUiMode === 'tv' && tvSection === 'guide' && tvEpgData) {
+      renderTvGuide();
+    }
+  }, 60000);
+
   // Vigilante de último recurso. Solo interviene tras una parada real y prolongada.
   setInterval(() => {
     if (!playIntent || !mediaKind || !navigator.onLine || sourceLoading || audio.paused) return;
@@ -2194,7 +2491,7 @@
   }, 5000);
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=17').catch(console.warn));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=18').catch(console.warn));
   }
 
   /* ---------------- Inicio ---------------- */
