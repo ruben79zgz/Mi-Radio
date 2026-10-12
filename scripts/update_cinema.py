@@ -351,6 +351,84 @@ def candidate_urls_from_html(html: str, day_iso: str) -> list[str]:
     return found
 
 
+def extract_next_rsc_strings(html: str) -> list[str]:
+    """Decodifica los bloques de datos que Next.js incrusta en self.__next_f."""
+    chunks: list[str] = []
+    pattern = re.compile(
+        r'self\.__next_f\.push\(\[1,("(?:\\.|[^"\\])*")\]\)'
+    )
+    for match in pattern.finditer(html):
+        try:
+            value = json.loads(match.group(1))
+        except Exception:
+            continue
+        if isinstance(value, str):
+            chunks.append(value)
+    return chunks
+
+
+def find_cartelera_props(html: str) -> dict | None:
+    """Localiza el objeto de props con hoy/dias/peliculas dentro del RSC."""
+    chunks = extract_next_rsc_strings(html)
+    decoder = json.JSONDecoder()
+
+    # Primero buscamos dentro de cada chunk. Suele contener el objeto completo.
+    candidates = chunks + ["".join(chunks)]
+    for text in candidates:
+        for marker in ('{"hoy":', '{\\"hoy\\":'):
+            pos = text.find(marker)
+            if pos < 0:
+                continue
+
+            source = text[pos:]
+            if marker.startswith('{\\'):
+                try:
+                    source = bytes(source, "utf-8").decode("unicode_escape")
+                except Exception:
+                    continue
+
+            try:
+                value, _ = decoder.raw_decode(source)
+            except Exception:
+                continue
+
+            if (
+                isinstance(value, dict)
+                and isinstance(value.get("dias"), list)
+                and isinstance(value.get("peliculas"), list)
+            ):
+                return value
+
+    return None
+
+
+def debug_rsc_props(html: str) -> None:
+    props = find_cartelera_props(html)
+    if not props:
+        print("RSC cartelera: no se pudo decodificar el objeto de props")
+        return
+
+    print("RSC cartelera keys:", sorted(props.keys()))
+    for key, value in props.items():
+        if key == "peliculas":
+            print(f"RSC peliculas: {len(value)}")
+            if value:
+                print(
+                    "RSC pelicula0:",
+                    json.dumps(value[0], ensure_ascii=False)[:5000],
+                )
+            continue
+
+        try:
+            sample = json.dumps(value, ensure_ascii=False)
+        except Exception:
+            sample = repr(value)
+        print(
+            f"RSC {key}: {type(value).__name__} "
+            f"{sample[:5000]}"
+        )
+
+
 def debug_source_markup(html: str, target_days: list[str]) -> None:
     """Imprime pistas pequeñas del HTML para detectar datos semanales embebidos."""
     markers = [
@@ -380,6 +458,7 @@ def load_week() -> tuple[dict[str, dict], list[dict], list[str]]:
 
     base_html = fetch_text(SOURCE)
     debug_source_markup(base_html, target_days)
+    debug_rsc_props(base_html)
     base = parse_listing(base_html, target_days[0])
 
     movies = dict(base.movies)
