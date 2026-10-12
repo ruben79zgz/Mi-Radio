@@ -30,7 +30,7 @@ jobs:
 
       - name: Guardar cambios
         run: |
-          if git diff --quiet -- epg-data.json; then
+          if [ -z "$(git status --porcelain -- epg-data.json)" ]; then
             echo "Sin cambios"
             exit 0
           fi
