@@ -1479,65 +1479,40 @@
       if (id) wantedMap.set(normalize(id), id);
     }
 
+    const root = Array.isArray(data?.data) ? data.data : (Array.isArray(data) ? data : []);
     const programs = [];
     const seen = new Set();
 
-    function addProgram(obj, hint) {
-      if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return false;
+    // Formato real actual de TDTChannels:
+    // [{ name: "La1.TV", events: [{ hi, hf, t, d, g, c }, ...] }, ...]
+    for (const channel of root) {
+      const channelName = epgText(channel?.name || channel?.id || '');
+      const canonical = wantedMap.get(normalize(channelName));
+      if (!canonical) continue;
 
-      const startRaw = obj.start ?? obj.start_time ?? obj.startTime ?? obj.begin ?? obj.beginAt ?? obj.date_start;
-      const endRaw = obj.stop ?? obj.end ?? obj.end_time ?? obj.endTime ?? obj.finish ?? obj.date_end;
-      const titleRaw = obj.title ?? obj.programme_title ?? obj.programTitle ?? obj.name;
+      const events = Array.isArray(channel?.events) ? channel.events : [];
+      for (const event of events) {
+        const start = parseEpgTime(event?.hi ?? event?.start);
+        const end = parseEpgTime(event?.hf ?? event?.stop ?? event?.end);
+        const title = epgText(event?.t ?? event?.title ?? event?.name);
 
-      if (startRaw == null || endRaw == null || titleRaw == null) return false;
+        if (!Number.isFinite(start) || !Number.isFinite(end) || !title || end <= start) continue;
 
-      const channelRaw = obj.channel ?? obj.channel_id ?? obj.channelId ?? obj.epg_id ?? obj.epgId ?? hint;
-      const channelText = epgText(channelRaw);
-      const canonical = wantedMap.get(normalize(channelText || hint || ''));
-      if (!canonical) return false;
+        const key = canonical + '|' + start + '|' + end + '|' + title;
+        if (seen.has(key)) continue;
+        seen.add(key);
 
-      const start = parseEpgTime(startRaw);
-      const end = parseEpgTime(endRaw);
-      const title = epgText(titleRaw);
-      if (!Number.isFinite(start) || !Number.isFinite(end) || !title || end <= start) return false;
-
-      const key = canonical + '|' + start + '|' + end + '|' + title;
-      if (seen.has(key)) return true;
-      seen.add(key);
-
-      programs.push({
-        channel: canonical,
-        start,
-        end,
-        title,
-        description: epgText(obj.desc ?? obj.description ?? obj.summary ?? ''),
-        category: epgText(obj.category ?? '')
-      });
-      return true;
-    }
-
-    function walk(node, hint = '', depth = 0) {
-      if (depth > 12 || node == null) return;
-
-      if (Array.isArray(node)) {
-        for (const item of node) walk(item, hint, depth + 1);
-        return;
-      }
-
-      if (typeof node !== 'object') return;
-
-      const idHint = epgText(node.epg_id ?? node.epgId ?? node.channel_id ?? node.channelId ?? node.id ?? '');
-      const localHint = wantedMap.has(normalize(idHint)) ? wantedMap.get(normalize(idHint)) : hint;
-
-      if (addProgram(node, localHint)) return;
-
-      for (const [key, value] of Object.entries(node)) {
-        const keyHint = wantedMap.has(normalize(key)) ? wantedMap.get(normalize(key)) : localHint;
-        walk(value, keyHint, depth + 1);
+        programs.push({
+          channel: canonical,
+          start,
+          end,
+          title,
+          description: epgText(event?.d ?? event?.description ?? ''),
+          category: epgText(event?.g ?? event?.category ?? ''),
+          image: epgText(event?.c ?? '')
+        });
       }
     }
-
-    walk(data);
 
     programs.sort((a, b) => a.start - b.start);
     return programs;
@@ -2491,7 +2466,7 @@
   }, 5000);
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=18').catch(console.warn));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=19.1.1').catch(console.warn));
   }
 
   /* ---------------- Inicio ---------------- */
