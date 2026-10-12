@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T23:34:31.168875Z",
+  "updatedAt": "2026-10-12T05:59:46.805654Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "39ff5ff25596120a13e3",
+          "title": "11 OCT 2026 | EL TERTULIÓN DE LOS DOMINGOS",
+          "description": "La expulsión de Vinicius contra el Villarreal; La actitud de Mourinho; El Barcelona continúa con el pleno de victorias.",
+          "publishedAt": "2026-10-11T23:50:36Z",
+          "duration": 5137,
+          "audio": "https://www.cope.es/uploads/2026/10/12/RzXtfD8E4oonV-p5EHeX6.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/06/677b2375741e9.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/11-oct-2026-tertulion-domingos-20261012_3454052.html"
+        },
         {
           "id": "078f00036dd44b1e6c35",
           "title": "10 OCT 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-07-abr-2026-partidazo-cope-20260408_3340777.html"
-        },
-        {
-          "id": "cdf7fc9352cef3044138",
-          "title": "06 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. Previa Real Madrid - Bayern de Múnich. Tiempo de opinión. Entrevista a Albert Riera. Actualidad del Barcelona y Atlético. La difícil situación del Sevilla. Km42.",
-          "publishedAt": "2026-04-06T23:50:00Z",
-          "duration": 7272,
-          "audio": "https://www.cope.es/uploads/2026/04/07/YboJDgKOppYag-4I90eMw.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/06-abr-2026-partidazo-cope-20260407_3339940.html"
         }
       ]
     },
