@@ -402,54 +402,36 @@ def find_cartelera_props(html: str) -> dict | None:
     return None
 
 
-def debug_rsc_props(html: str) -> None:
-    props = find_cartelera_props(html)
-    if not props:
-        print("RSC cartelera: no se pudo decodificar el objeto de props")
-        return
+def session_format_label(raw: dict) -> str:
+    parts: list[str] = []
 
-    print("RSC cartelera keys:", sorted(props.keys()))
-    for key, value in props.items():
-        if key == "peliculas":
-            print(f"RSC peliculas: {len(value)}")
-            if value:
-                print(
-                    "RSC pelicula0:",
-                    json.dumps(value[0], ensure_ascii=False)[:5000],
-                )
+    version = normalize_text(str(raw.get("version", "")))
+    if version and version not in {"doblada", "doblado", "castellano", "espanol"}:
+        if "vose" in version or "subtit" in version:
+            parts.append("VOSE")
+        elif "original" in version:
+            parts.append("VO")
+        else:
+            parts.append(clean_text(str(raw.get("version", ""))).upper())
+
+    formato = clean_text(str(raw.get("formato", "")))
+    if formato:
+        parts.append(formato.upper())
+
+    sala = clean_text(str(raw.get("sala", "")))
+    if sala:
+        parts.append(f"Sala {sala}")
+
+    # Conserva el orden y evita duplicados como ISENSE / Sala 10 iSense.
+    unique: list[str] = []
+    seen: set[str] = set()
+    for part in parts:
+        key = normalize_text(part)
+        if key in seen:
             continue
-
-        try:
-            sample = json.dumps(value, ensure_ascii=False)
-        except Exception:
-            sample = repr(value)
-        print(
-            f"RSC {key}: {type(value).__name__} "
-            f"{sample[:5000]}"
-        )
-
-
-def debug_source_markup(html: str, target_days: list[str]) -> None:
-    """Imprime pistas pequeñas del HTML para detectar datos semanales embebidos."""
-    markers = [
-        target_days[1] if len(target_days) > 1 else "",
-        "__next_f",
-        "sessions",
-        "showtimes",
-        "reservaentradas.com/entrada",
-    ]
-    compact = html.replace("\n", " ")
-    for marker in markers:
-        if not marker:
-            continue
-        pos = compact.find(marker)
-        if pos < 0:
-            print(f"DEBUG markup {marker}: no encontrado")
-            continue
-        start = max(0, pos - 220)
-        end = min(len(compact), pos + 420)
-        snippet = re.sub(r"\s+", " ", compact[start:end])
-        print(f"DEBUG markup {marker}: {snippet[:640]}")
+        seen.add(key)
+        unique.append(part)
+    return " · ".join(unique)
 
 
 def load_week() -> tuple[dict[str, dict], list[dict], list[str]]:
@@ -457,90 +439,113 @@ def load_week() -> tuple[dict[str, dict], list[dict], list[str]]:
     target_days = [(today + timedelta(days=i)).isoformat() for i in range(DAYS)]
 
     base_html = fetch_text(SOURCE)
-    debug_source_markup(base_html, target_days)
-    debug_rsc_props(base_html)
+    props = find_cartelera_props(base_html)
     base = parse_listing(base_html, target_days[0])
 
-    movies = dict(base.movies)
-    sessions = list(base.sessions)
-    covered = {item["date"] for item in sessions if item.get("date") in target_days}
+    if not props:
+        # Fallback conservador: si Next.js cambia, mostramos solo lo que el HTML
+        # visible permite verificar. Nunca copiamos hoy en fechas futuras.
+        print("Cartelera RSC no disponible; se usa solo el HTML verificable de hoy.")
+        movies = dict(base.movies)
+        sessions = [
+            item for item in base.sessions
+            if item.get("date") == target_days[0]
+        ]
+        return movies, sessions, target_days
 
-    # Si la página ya incluye en el HTML todas las fechas, no hacemos más
-    # peticiones. Si solo incluye hoy, probamos los enlaces/params habituales.
-    base_fp = fingerprint([item for item in sessions if item.get("date") == target_days[0]])
+    cinema_map = {
+        str(slug): clean_text(str(name))
+        for slug, name in (props.get("cines") or {}).items()
+        if slug and name
+    }
 
-    for day_iso in target_days:
-        if day_iso in covered:
+    movies: dict[str, dict] = {}
+    html_movies = base.movies
+
+    for raw in props.get("peliculas") or []:
+        if not isinstance(raw, dict):
+            continue
+        slug = clean_text(str(raw.get("slug", "")))
+        if not slug:
             continue
 
-        candidates: list[str] = []
-        candidates.extend(base.date_urls.get(day_iso, set()))
-        candidates.extend(candidate_urls_from_html(base_html, day_iso))
-        candidates.extend(
-            [
-                f"{SOURCE}?date={day_iso}",
-                f"{SOURCE}?fecha={day_iso}",
-                f"{SOURCE}?day={day_iso}",
-                f"{SOURCE}?dia={day_iso}",
-                f"{SOURCE}?d={day_iso}",
-                f"{SOURCE}?f={day_iso}",
-                f"{SOURCE}/{day_iso}",
-            ]
+        html_movie = html_movies.get(slug, {})
+        duration = raw.get("duracion_min")
+        try:
+            duration = int(duration) if duration not in (None, "") else None
+        except (TypeError, ValueError):
+            duration = None
+
+        movie = {
+            "slug": slug,
+            "title": clean_text(str(raw.get("titulo", "")))
+                or html_movie.get("title")
+                or slug.replace("-", " ").title(),
+            "poster": clean_text(str(raw.get("poster_url", "")))
+                or html_movie.get("poster", ""),
+            "duration": duration or html_movie.get("duration"),
+            "age": html_movie.get("age", ""),
+            "genre": html_movie.get("genre", ""),
+            "page": urljoin(BASE, f"/cartelera/{slug}"),
+        }
+        movies[slug] = movie
+
+    sessions: list[dict] = []
+    invalid_dates = 0
+
+    for raw in props.get("sesiones") or []:
+        if not isinstance(raw, dict):
+            continue
+
+        slug = clean_text(str(raw.get("pelicula_slug", "")))
+        venue_slug = clean_text(str(raw.get("venue_slug", "")))
+        start_raw = clean_text(str(raw.get("inicio", "")))
+        if not slug or not venue_slug or not start_raw:
+            continue
+
+        try:
+            start = datetime.fromisoformat(start_raw.replace("Z", "+00:00"))
+            if start.tzinfo is None:
+                start = start.replace(tzinfo=MADRID)
+            start_local = start.astimezone(MADRID)
+        except ValueError:
+            invalid_dates += 1
+            continue
+
+        day_iso = start_local.date().isoformat()
+        if day_iso not in target_days:
+            continue
+
+        cinema = cinema_map.get(venue_slug)
+        if not cinema:
+            cinema = venue_slug.replace("-", " ").title()
+
+        if slug not in movies:
+            movies[slug] = {
+                "slug": slug,
+                "title": slug.replace("-", " ").title(),
+                "poster": "",
+                "duration": None,
+                "age": "",
+                "genre": "",
+                "page": urljoin(BASE, f"/cartelera/{slug}"),
+            }
+
+        sessions.append(
+            {
+                "date": day_iso,
+                "movie": slug,
+                "cinema": cinema,
+                "time": start_local.strftime("%H:%M"),
+                "format": session_format_label(raw),
+                "buyUrl": urljoin(BASE, clean_text(str(raw.get("compra_url", ""))))
+                    if raw.get("compra_url") else "",
+                "soldOut": bool(raw.get("agotada", False)),
+            }
         )
 
-        seen_urls: set[str] = set()
-        accepted = False
-
-        for url in candidates:
-            if not url or url in seen_urls:
-                continue
-            seen_urls.add(url)
-            try:
-                html = fetch_text(url)
-                parser = parse_listing(html, day_iso)
-            except Exception as exc:
-                print(f"Cartelera {day_iso}: fallo {url}: {exc}")
-                continue
-
-            candidate_sessions = [
-                item for item in parser.sessions
-                if item.get("date") == day_iso
-            ]
-            if not candidate_sessions:
-                continue
-
-            candidate_fp = fingerprint(candidate_sessions)
-            explicit = day_iso in parser.explicit_dates
-            changed = similarity(base_fp, candidate_fp) < 0.88
-
-            # Si el servidor ignora el parámetro suele devolver exactamente
-            # la cartelera de hoy. La rechazamos para no etiquetarla como otro día.
-            if day_iso != target_days[0] and not explicit and not changed:
-                continue
-
-            for slug, movie in parser.movies.items():
-                current = movies.setdefault(slug, {})
-                for key, value in movie.items():
-                    if value and not current.get(key):
-                        current[key] = value
-
-            sessions.extend(candidate_sessions)
-            covered.add(day_iso)
-            accepted = True
-            print(
-                f"Cartelera {day_iso}: {len(candidate_sessions)} sesiones "
-                f"desde {url}"
-            )
-            break
-
-        if not accepted:
-            print(f"Cartelera {day_iso}: no se encontró una vista específica")
-
-    # Conservamos únicamente la semana visible y eliminamos duplicados.
     dedup: dict[tuple, dict] = {}
     for item in sessions:
-        if item.get("date") not in target_days:
-            continue
         key = (
             item.get("date"),
             item.get("movie"),
@@ -559,6 +564,14 @@ def load_week() -> tuple[dict[str, dict], list[dict], list[str]]:
             item.get("time", ""),
         ),
     )
+
+    print(
+        f"Cartelera RSC: {len(movies)} películas, "
+        f"{len(sessions)} sesiones útiles, "
+        f"{len(cinema_map)} cines"
+    )
+    if invalid_dates:
+        print(f"Cartelera RSC: {invalid_dates} sesiones con fecha inválida ignoradas")
 
     return movies, sessions, target_days
 
@@ -617,17 +630,19 @@ def main() -> int:
         if slug in active_slugs
     }
 
-    # Los pósteres se obtienen de la ficha de cada película. Hacemos pocas
-    # peticiones en paralelo para no castigar la fuente.
-    with ThreadPoolExecutor(max_workers=5) as executor:
-        futures = [
-            executor.submit(fetch_poster, movie)
-            for movie in movies.values()
-        ]
-        for future in as_completed(futures):
-            slug, poster = future.result()
-            if slug in movies and poster:
-                movies[slug]["poster"] = poster
+    # El RSC suele traer el póster directamente. Solo consultamos la ficha
+    # para las películas que realmente vengan sin imagen.
+    missing_posters = [movie for movie in movies.values() if not movie.get("poster")]
+    if missing_posters:
+        with ThreadPoolExecutor(max_workers=5) as executor:
+            futures = [
+                executor.submit(fetch_poster, movie)
+                for movie in missing_posters
+            ]
+            for future in as_completed(futures):
+                slug, poster = future.result()
+                if slug in movies and poster:
+                    movies[slug]["poster"] = poster
 
     by_movie: dict[str, list[dict]] = {slug: [] for slug in movies}
     for item in sessions:
@@ -639,6 +654,7 @@ def main() -> int:
                     "time": item["time"],
                     "format": item.get("format", ""),
                     "buyUrl": item.get("buyUrl", ""),
+                    "soldOut": bool(item.get("soldOut", False)),
                     "price": None,
                 }
             )
