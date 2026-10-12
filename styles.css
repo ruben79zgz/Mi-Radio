@@ -774,7 +774,7 @@ main { width: min(100%, 1040px); margin: 0 auto; padding: 18px; }
 /* ===== V18: guía de TV ===== */
 .tv-section-tabs {
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:8px;
   margin:0 0 12px;
 }
@@ -1047,6 +1047,253 @@ main { width: min(100%, 1040px); margin: 0 auto; padding: 18px; }
   .tv-guide-only-badge {
     padding:6px 7px;
     font-size:.61rem;
+  }
+}
+
+/* ===== V19.3: Cartelera de cine Zaragoza ===== */
+.tv-cinema-view {
+  display:grid;
+  gap:12px;
+}
+.tv-cinema-heading {
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:12px;
+}
+.tv-cinema-heading h3 {
+  margin:3px 0 0;
+  font-size:1.15rem;
+}
+.tv-cinema-updated,
+.tv-cinema-status {
+  color:var(--muted);
+  font-size:.74rem;
+}
+.tv-cinema-days {
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding:2px 0 5px;
+  scrollbar-width:thin;
+}
+.tv-cinema-day {
+  flex:0 0 auto;
+  min-width:104px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:rgba(17,27,46,.9);
+  color:var(--text);
+  padding:9px 11px;
+  cursor:pointer;
+  text-align:left;
+}
+.tv-cinema-day span {
+  display:block;
+  font-weight:900;
+  text-transform:capitalize;
+}
+.tv-cinema-day small {
+  display:block;
+  margin-top:2px;
+  color:var(--muted);
+  font-size:.64rem;
+}
+.tv-cinema-day.active {
+  background:#ff9d6c;
+  color:#1b0b03;
+  border-color:transparent;
+}
+.tv-cinema-day.active small {
+  color:rgba(27,11,3,.72);
+}
+.tv-cinema-grid {
+  display:grid;
+  gap:12px;
+}
+.tv-cinema-card {
+  display:grid;
+  grid-template-columns:118px minmax(0,1fr);
+  gap:14px;
+  border:1px solid var(--line);
+  border-radius:19px;
+  background:rgba(17,27,46,.88);
+  padding:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+.tv-cinema-poster-link {
+  display:block;
+  align-self:start;
+  border-radius:12px;
+  overflow:hidden;
+  background:#0a1222;
+}
+.tv-cinema-poster {
+  display:block;
+  width:118px;
+  aspect-ratio:2/3;
+  object-fit:cover;
+  background:#fff;
+}
+.tv-cinema-copy {
+  min-width:0;
+}
+.tv-cinema-title-row {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+  padding-bottom:9px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.tv-cinema-title-row h4 {
+  margin:0;
+  font-size:1.05rem;
+  line-height:1.2;
+}
+.tv-cinema-meta {
+  margin-top:5px;
+  color:var(--muted);
+  font-size:.72rem;
+}
+.tv-cinema-info-link {
+  flex:0 0 auto;
+  color:#ffb48f;
+  font-size:.7rem;
+  font-weight:850;
+  text-decoration:none;
+}
+.tv-cinema-cinemas {
+  display:grid;
+  gap:10px;
+  margin-top:10px;
+}
+.tv-cinema-cinema {
+  display:grid;
+  grid-template-columns:minmax(145px,200px) minmax(0,1fr);
+  gap:9px;
+  align-items:start;
+}
+.tv-cinema-cinema-name {
+  color:#dbe5f4;
+  font-size:.76rem;
+  font-weight:850;
+  padding-top:7px;
+}
+.tv-cinema-sessions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.tv-cinema-session {
+  display:inline-flex;
+  flex-direction:column;
+  justify-content:center;
+  min-width:62px;
+  min-height:39px;
+  padding:6px 8px;
+  border:1px solid rgba(255,157,108,.36);
+  border-radius:10px;
+  background:rgba(255,157,108,.08);
+  color:#fff;
+  text-decoration:none;
+  line-height:1.05;
+}
+.tv-cinema-session:hover {
+  background:rgba(255,157,108,.16);
+}
+.tv-cinema-session strong {
+  font-size:.78rem;
+}
+.tv-cinema-session small {
+  margin-top:3px;
+  color:#ffbe9e;
+  font-size:.55rem;
+  line-height:1.1;
+  max-width:92px;
+}
+.tv-cinema-session.no-link {
+  border-color:var(--line);
+  background:rgba(255,255,255,.03);
+}
+.tv-cinema-credit {
+  color:var(--muted);
+  font-size:.68rem;
+  text-align:center;
+  margin-top:2px;
+}
+.tv-cinema-credit a {
+  color:#ffb48f;
+  text-decoration:none;
+}
+
+@media (min-width:980px) {
+  .tv-cinema-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .tv-cinema-card {
+    grid-template-columns:105px minmax(0,1fr);
+  }
+  .tv-cinema-poster {
+    width:105px;
+  }
+  .tv-cinema-cinema {
+    grid-template-columns:1fr;
+    gap:4px;
+  }
+  .tv-cinema-cinema-name {
+    padding-top:0;
+  }
+}
+
+@media (max-width:760px) {
+  .tv-section-tabs {
+    gap:5px;
+  }
+  .tv-section-btn {
+    padding:9px 7px;
+    font-size:.8rem;
+  }
+  .tv-cinema-heading {
+    align-items:start;
+  }
+  .tv-cinema-updated {
+    text-align:right;
+  }
+  .tv-cinema-day {
+    min-width:94px;
+    padding:8px 9px;
+  }
+  .tv-cinema-card {
+    grid-template-columns:82px minmax(0,1fr);
+    gap:10px;
+    padding:10px;
+  }
+  .tv-cinema-poster {
+    width:82px;
+  }
+  .tv-cinema-title-row {
+    display:block;
+  }
+  .tv-cinema-title-row h4 {
+    font-size:.92rem;
+  }
+  .tv-cinema-info-link {
+    display:inline-block;
+    margin-top:6px;
+  }
+  .tv-cinema-cinema {
+    grid-template-columns:1fr;
+    gap:4px;
+  }
+  .tv-cinema-cinema-name {
+    padding-top:0;
+    font-size:.7rem;
+  }
+  .tv-cinema-session {
+    min-width:56px;
+    min-height:36px;
+    padding:5px 7px;
   }
 }
 
