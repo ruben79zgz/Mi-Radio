@@ -155,7 +155,7 @@ class ListingParser(HTMLParser):
                 "date": local_date,
             }
 
-        if tag in {"h1", "h2", "h3"}:
+        if tag == "h2":
             self.heading_tag = tag
             self.heading_texts = []
 
@@ -209,26 +209,23 @@ class ListingParser(HTMLParser):
             movie_link, slug = is_movie_path(href)
             lowered = normalize_text(text)
 
-            if movie_link and text and "trailer" not in lowered and "ficha" not in lowered:
-                self.current_movie = slug
-                self.current_cinema = None
-                movie = self.movies.setdefault(slug, {})
-                movie.setdefault("slug", slug)
-                movie.setdefault("title", text)
-                movie.setdefault("page", urljoin(BASE, href))
-                if self.last_poster:
-                    movie.setdefault("poster", self.last_poster)
-            elif movie_link and self.pending_heading:
-                # Muchas tarjetas usan el título en un H2 y el enlace dice
-                # "Tráiler y ficha". Conservamos ese H2 como título real.
-                self.current_movie = slug
-                self.current_cinema = None
-                movie = self.movies.setdefault(slug, {})
-                movie.setdefault("slug", slug)
-                movie.setdefault("title", self.pending_heading)
-                movie.setdefault("page", urljoin(BASE, href))
-                if self.last_poster:
-                    movie.setdefault("poster", self.last_poster)
+            if movie_link:
+                title = ""
+                if text and "trailer" not in lowered and "ficha" not in lowered:
+                    title = text
+                elif self.pending_heading:
+                    title = self.pending_heading
+
+                if title:
+                    self.current_movie = slug
+                    self.current_cinema = None
+                    movie = self.movies.setdefault(slug, {})
+                    movie.setdefault("slug", slug)
+                    movie["title"] = title
+                    movie.setdefault("page", urljoin(BASE, href))
+                    if self.last_poster:
+                        movie.setdefault("poster", self.last_poster)
+                    self.pending_heading = ""
 
             time_match = TIME_RE.match(text)
             if (
@@ -354,11 +351,35 @@ def candidate_urls_from_html(html: str, day_iso: str) -> list[str]:
     return found
 
 
+def debug_source_markup(html: str, target_days: list[str]) -> None:
+    """Imprime pistas pequeñas del HTML para detectar datos semanales embebidos."""
+    markers = [
+        target_days[1] if len(target_days) > 1 else "",
+        "__next_f",
+        "sessions",
+        "showtimes",
+        "reservaentradas.com/entrada",
+    ]
+    compact = html.replace("\n", " ")
+    for marker in markers:
+        if not marker:
+            continue
+        pos = compact.find(marker)
+        if pos < 0:
+            print(f"DEBUG markup {marker}: no encontrado")
+            continue
+        start = max(0, pos - 220)
+        end = min(len(compact), pos + 420)
+        snippet = re.sub(r"\s+", " ", compact[start:end])
+        print(f"DEBUG markup {marker}: {snippet[:640]}")
+
+
 def load_week() -> tuple[dict[str, dict], list[dict], list[str]]:
     today = datetime.now(MADRID).date()
     target_days = [(today + timedelta(days=i)).isoformat() for i in range(DAYS)]
 
     base_html = fetch_text(SOURCE)
+    debug_source_markup(base_html, target_days)
     base = parse_listing(base_html, target_days[0])
 
     movies = dict(base.movies)
@@ -410,7 +431,7 @@ def load_week() -> tuple[dict[str, dict], list[dict], list[str]]:
                 continue
 
             candidate_fp = fingerprint(candidate_sessions)
-            explicit = day_iso in parser.explicit_dates or day_iso in html
+            explicit = day_iso in parser.explicit_dates
             changed = similarity(base_fp, candidate_fp) < 0.88
 
             # Si el servidor ignora el parámetro suele devolver exactamente
