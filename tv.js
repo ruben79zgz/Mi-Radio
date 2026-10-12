@@ -1,5 +1,6 @@
 window.TV_CONFIG = {
   tdtJson: 'https://www.tdtchannels.com/lists/tv.json',
+  epgJson: 'https://www.tdtchannels.com/epg/TV.json',
   russianJson: 'https://raw.githubusercontent.com/ruben79zgz/Mi-TV/main/channels.json',
   spanish: [
     {
@@ -60,12 +61,3 @@ window.TV_CONFIG = {
   ]
 };
 
-// Carga las mejoras de navegación después de que app.js haya terminado de iniciar.
-window.addEventListener('load', function () {
-  if (document.querySelector('script[data-mi-radio-navigation]')) return;
-  var script = document.createElement('script');
-  script.src = 'navigation.js?v=14';
-  script.async = true;
-  script.setAttribute('data-mi-radio-navigation', '1');
-  document.body.appendChild(script);
-});
