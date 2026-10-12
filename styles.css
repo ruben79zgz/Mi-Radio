@@ -919,3 +919,21 @@ main { width: min(100%, 1040px); margin: 0 auto; padding: 18px; }
     grid-template-columns:repeat(2,minmax(0,1fr));
   }
 }
+
+
+/* ===== Versión visible ===== */
+.app-version {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:46px;
+  height:30px;
+  padding:0 9px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:rgba(17,27,46,.9);
+  color:var(--muted);
+  font-size:.7rem;
+  font-weight:900;
+  letter-spacing:.03em;
+}
