@@ -1,4 +1,4 @@
-window.RADIO_STATIONS_VERSION = '2026-09-25-v7';
+window.RADIO_STATIONS_VERSION = '2026-10-12-v18';
 window.RADIO_STATIONS = [
   {
     id: 'marca-zaragoza', name: 'Radio Marca Zaragoza', group: 'Zaragoza', country: 'ES',
@@ -28,6 +28,15 @@ window.RADIO_STATIONS = [
     site: 'https://www.cope.es/directos/zaragoza'
   },
   {
+    id: 'cope-mas-zaragoza', name: 'COPE Más Zaragoza', group: 'Zaragoza', country: 'ES',
+    subtitle: 'Deportes y retransmisiones · Zaragoza',
+    description: 'Señal COPE Más Zaragoza, usada especialmente para retransmisiones deportivas alternativas.',
+    tdtName: 'COPE Más Zaragoza',
+    streams: ['https://wecast-bl01.flumotion.com/copesedes/zaragoza-mas.mp3'],
+    logo: 'https://graph.facebook.com/copezaragoza/picture?width=200&height=200',
+    site: 'https://www.cope.es/directos/cope-mas-zaragoza'
+  },
+  {
     id: 'radio-ebro', name: 'Radio Ebro / Ebro FM', group: 'Zaragoza', country: 'ES',
     subtitle: '105.2 FM · Zaragoza',
     description: 'Radio local de Zaragoza con información, deportes y música.',
@@ -55,6 +64,18 @@ window.RADIO_STATIONS = [
     site: 'https://www.rtve.es/play/radio/rne/'
   },
   {
+    id: 'cadena-ser', name: 'Cadena SER', group: 'Nacional', country: 'ES',
+    subtitle: 'Cadena SER · señal nacional',
+    description: 'Emisión nacional de Cadena SER.',
+    tdtName: 'Cadena SER',
+    streams: [
+      'https://playerservices.streamtheworld.com/api/livestream-redirect/CADENASER.mp3',
+      'https://playerservices.streamtheworld.com/api/livestream-redirect/CADENASERAAC.aac'
+    ],
+    logo: 'https://graph.facebook.com/cadenaser/picture?width=200&height=200',
+    site: 'https://play.cadenaser.com'
+  },
+  {
     id: 'cope-nacional', name: 'COPE', group: 'Nacional', country: 'ES',
     subtitle: 'COPE · señal nacional',
     description: 'Emisión nacional de COPE.',
@@ -71,6 +92,18 @@ window.RADIO_STATIONS = [
     streams: ['https://cadena100-cope.flumotion.com/chunks.m3u8','http://cadena100-streamers-mp3.flumotion.com/cope/cadena100.mp3'],
     logo: 'https://graph.facebook.com/CADENA100/picture?width=200&height=200',
     site: 'https://www.cadena100.es/'
+  },
+  {
+    id: 'cadena-dial', name: 'Cadena Dial', group: 'Música', country: 'ES',
+    subtitle: 'Música en español',
+    description: 'Cadena Dial en directo.',
+    tdtName: 'Cadena Dial',
+    streams: [
+      'https://playerservices.streamtheworld.com/api/livestream-redirect/CADENADIAL.mp3',
+      'https://playerservices.streamtheworld.com/api/livestream-redirect/CADENADIALAAC.aac'
+    ],
+    logo: 'https://graph.facebook.com/cadenadial/picture?width=200&height=200',
+    site: 'https://play.cadenadial.com'
   },
   {
     id: 'europa-fm', name: 'Europa FM', group: 'Música', country: 'ES',
