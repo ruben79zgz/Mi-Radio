@@ -5,6 +5,7 @@ window.TV_CONFIG = {
   spanish: [
     {
       id: 'la1',
+      epgId: 'La1.TV',
       name: 'La 1',
       matches: ['La 1'],
       web: 'https://www.rtve.es/play/videos/directo/la-1/',
@@ -15,6 +16,7 @@ window.TV_CONFIG = {
     },
     {
       id: 'la2',
+      epgId: 'La2.TV',
       name: 'La 2',
       matches: ['La 2'],
       web: 'https://www.rtve.es/play/videos/directo/la-2/',
@@ -25,6 +27,7 @@ window.TV_CONFIG = {
     },
     {
       id: 'antena3',
+      epgId: 'Antena3.TV',
       name: 'Antena 3',
       matches: ['Antena 3', 'Antena 3 HD'],
       web: 'https://www.atresplayer.com/directos/antena3/',
@@ -32,6 +35,7 @@ window.TV_CONFIG = {
     },
     {
       id: 'cuatro',
+      epgId: 'Cuatro.TV',
       name: 'Cuatro',
       matches: ['Cuatro', 'Cuatro HD'],
       web: 'https://www.mitele.es/directo/cuatro/',
@@ -39,6 +43,7 @@ window.TV_CONFIG = {
     },
     {
       id: 'telecinco',
+      epgId: 'Telecinco.TV',
       name: 'Telecinco',
       matches: ['Telecinco', 'Telecinco HD'],
       web: 'https://www.mitele.es/directo/telecinco/',
@@ -46,6 +51,7 @@ window.TV_CONFIG = {
     },
     {
       id: 'lasexta',
+      epgId: 'LaSexta.TV',
       name: 'laSexta',
       matches: ['laSexta', 'La Sexta', 'laSexta HD'],
       web: 'https://www.atresplayer.com/directos/lasexta/',
@@ -53,6 +59,7 @@ window.TV_CONFIG = {
     },
     {
       id: 'aragontv',
+      epgId: 'AragonTV.TV',
       name: 'Aragón TV',
       matches: ['Aragón TV'],
       web: 'https://www.aragonplay.es/watch/live/69934178aea15ae34fa39ad0',
