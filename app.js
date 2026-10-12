@@ -160,6 +160,7 @@
   let tvSection = 'channels';
   let tvEpgData = null;
   let tvEpgLoadedAt = 0;
+  let tvEpgChannelMeta = new Map();
   let tvGuideGroup = 'tv';
   let tvGuideDayOffset = 0;
 
@@ -1528,15 +1529,37 @@
     return allPrograms.filter(item => normalize(item.channel) === normalize(id));
   }
 
+  function indexEpgChannelMeta(data) {
+    const root = Array.isArray(data?.data) ? data.data : (Array.isArray(data) ? data : []);
+    const map = new Map();
+
+    for (const channel of root) {
+      const id = epgText(channel?.name || channel?.id || '');
+      if (!id) continue;
+
+      map.set(normalize(id), {
+        logo: epgText(channel?.logo || channel?.icon || channel?.image || ''),
+        displayName: epgText(channel?.display_name || channel?.displayName || '')
+      });
+    }
+
+    return map;
+  }
+
   function amcGuideChannels() {
-    return (tvConfig.amcGuide || []).map(channel => ({
-      ...channel,
-      epgId: channel.guideId || channel.epgId || null,
-      source: 'AMC Channels · TVGuia',
-      logo: channel.logo || 'https://www.google.com/s2/favicons?domain=amcchannels.es&sz=128',
-      guideOnly: true,
-      streams: []
-    }));
+    return (tvConfig.amcGuide || []).map(channel => {
+      const epgId = channel.guideId || channel.epgId || null;
+      const meta = epgId ? tvEpgChannelMeta.get(normalize(epgId)) : null;
+
+      return {
+        ...channel,
+        epgId,
+        source: 'AMC Channels · TVGuia',
+        logo: channel.logo || meta?.logo || 'icons/mi-radio.svg',
+        guideOnly: true,
+        streams: []
+      };
+    });
   }
 
   function activeGuideChannels() {
@@ -1633,6 +1656,7 @@
       let preview = '';
       if (current) {
         preview += previewRow('AHORA', current, true);
+        preview += `<div class="tv-guide-progress"><span style="width:${progress.toFixed(1)}%"></span></div>`;
         preview += previewRow('DESPUÉS', snap.next[0]);
         preview += previewRow('LUEGO', snap.next[1]);
       } else {
@@ -1675,7 +1699,6 @@
             ${action}
           </div>
           ${preview || '<div class="tv-guide-empty">Sin programación disponible para este día.</div>'}
-          ${current ? `<div class="tv-guide-progress"><span style="width:${progress.toFixed(1)}%"></span></div>` : ''}
           ${snap.dayPrograms.length ? `
             <details class="tv-guide-details">
               <summary>Parrilla completa · ${snap.dayPrograms.length} programas</summary>
@@ -1717,6 +1740,7 @@
       const response = await fetch(`${tvConfig.epgJson}?t=${Date.now()}`, { cache: 'no-store' });
       if (!response.ok) throw new Error('HTTP ' + response.status);
       const data = await response.json();
+      tvEpgChannelMeta = indexEpgChannelMeta(data);
       const programs = normalizeEpgPrograms(data, allGuideEpgIds());
 
       tvEpgData = programs;
@@ -2565,7 +2589,7 @@
   }, 5000);
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=19.2.1').catch(console.warn));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=19.2.2').catch(console.warn));
   }
 
   /* ---------------- Inicio ---------------- */

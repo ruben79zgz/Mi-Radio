@@ -1,4 +1,4 @@
-const CACHE = 'mi-radio-shell-v19.2';
+const CACHE = 'mi-radio-shell-v19.2.1';
 const SHELL = [
   './',
   './index.html',
