@@ -6,11 +6,11 @@
   <meta name="theme-color" content="#0b1020" />
   <meta name="description" content="Mi Radio" />
   <meta name="referrer" content="no-referrer" />
-  <link rel="manifest" href="manifest.webmanifest?v=17" />
-  <link rel="icon" type="image/svg+xml" href="icons/mi-radio.svg?v=17" />
-  <link rel="apple-touch-icon" href="icons/mi-radio.svg?v=17" />
+  <link rel="manifest" href="manifest.webmanifest?v=18" />
+  <link rel="icon" type="image/svg+xml" href="icons/mi-radio.svg?v=18" />
+  <link rel="apple-touch-icon" href="icons/mi-radio.svg?v=18" />
   <title>Mi Radio</title>
-  <link rel="stylesheet" href="styles.css?v=17" />
+  <link rel="stylesheet" href="styles.css?v=18" />
 </head>
 <body>
   <header class="topbar">
@@ -94,10 +94,16 @@
         Los rusos se leen de tu repositorio <strong>Mi-TV</strong>.
       </div>
 
-      <div class="tv-country-tabs" role="tablist" aria-label="País">
-        <button class="tv-country-btn active" type="button" data-tv-country="España">España</button>
-        <button class="tv-country-btn" type="button" data-tv-country="Rusos">Rusos</button>
+      <div class="tv-section-tabs" role="tablist" aria-label="Vista de televisión">
+        <button class="tv-section-btn active" type="button" data-tv-section="channels">Canales</button>
+        <button class="tv-section-btn" type="button" data-tv-section="guide">Guía</button>
       </div>
+
+      <div id="tvChannelsView">
+        <div id="tvCountryTabs" class="tv-country-tabs" role="tablist" aria-label="País">
+          <button class="tv-country-btn active" type="button" data-tv-country="España">España</button>
+          <button class="tv-country-btn" type="button" data-tv-country="Rusos">Rusos</button>
+        </div>
 
       <section id="tvPlayerPanel" class="tv-player-panel hidden">
         <div class="tv-player-head">
@@ -121,6 +127,22 @@
       </section>
 
       <section id="tvChannelsGrid" class="tv-channels-grid" aria-live="polite"></section>
+      </div>
+
+      <section id="tvGuideView" class="tv-guide-view hidden" aria-live="polite">
+        <div class="tv-guide-heading">
+          <div>
+            <div class="eyebrow">AHORA Y DESPUÉS</div>
+            <h3>Parrilla de TV</h3>
+          </div>
+          <div id="tvGuideUpdated" class="tv-guide-updated"></div>
+        </div>
+        <div id="tvGuideStatus" class="tv-guide-status">Pulsa Guía para cargar la programación.</div>
+        <section id="tvGuideGrid" class="tv-guide-grid"></section>
+        <div class="tv-guide-credit">
+          Programación facilitada por <a href="https://www.tdtchannels.com/" target="_blank" rel="noopener">TDTChannels</a>.
+        </div>
+      </section>
     </section>
   </main>
 
@@ -233,11 +255,11 @@
   <audio id="audio" preload="none"></audio>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dashjs@5/dist/dash.all.min.js"></script>
-  <script src="stations.js?v=17"></script>
-  <script src="tv.js?v=17"></script>
-  <script src="podcasts.js?v=17"></script>
-  <script src="podcast-feed.js?v=17"></script>
-  <script src="app.js?v=17"></script>
-  <script src="navigation.js?v=17"></script>
+  <script src="stations.js?v=18"></script>
+  <script src="tv.js?v=18"></script>
+  <script src="podcasts.js?v=18"></script>
+  <script src="podcast-feed.js?v=18"></script>
+  <script src="app.js?v=18"></script>
+  <script src="navigation.js?v=18"></script>
 </body>
 </html>
