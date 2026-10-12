@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-12T05:59:46.805654Z",
+  "updatedAt": "2026-10-12T23:00:05.757701Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "6ebaaef37e1582dcd1b7",
+          "title": "2ª PARTE | 12 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Previa de la Champions: Galatasaray - Barcelona, Atlético - Manchester United y Villarreal - Nápoles.",
+          "publishedAt": "2026-10-12T22:29:57Z",
+          "duration": 1661,
+          "audio": "https://www.cope.es/uploads/2026/10/13/Trjzg8jqFFHtOT_VHmd8v.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-12-oct-2026-partidazo-cope-20261013_3454205.html"
+        },
+        {
+          "id": "967c7b38c44bc1f606c7",
+          "title": "1ª PARTE | 12 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Empate loco entre el Levante y el Sevilla (3-3). El Real Madrid y la polémica por los horarios. Tiempo de opinión.",
+          "publishedAt": "2026-10-12T21:59:39Z",
+          "duration": 1742,
+          "audio": "https://www.cope.es/uploads/2026/10/12/uoIubVWdzQklBBlO6fR3k.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-12-oct-2026-partidazo-cope-20261012_3454201.html"
+        },
         {
           "id": "39ff5ff25596120a13e3",
           "title": "11 OCT 2026 | EL TERTULIÓN DE LOS DOMINGOS",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-07-abr-2026-partidazo-cope-20260408_3340793.html"
-        },
-        {
-          "id": "3e2ae5ed1f951809ed24",
-          "title": "2ª PARTE | 07 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Continuamos analizando el Real Madrid - Bayern. El Arsenal gana contra el Sporting en el último minuto.",
-          "publishedAt": "2026-04-07T22:38:59Z",
-          "duration": 1771,
-          "audio": "https://www.cope.es/uploads/2026/04/08/vYCnVwZBqtxvJ2rnE5stb.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-07-abr-2026-partidazo-cope-20260408_3340788.html"
-        },
-        {
-          "id": "7ea997c5ac2687850180",
-          "title": "1ª PARTE | 07 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Real Madrid pierde 1-2 ante el Bayern de la ida de los cuartos de Champions. Protagonistas. Tiempo de opinión.",
-          "publishedAt": "2026-04-07T22:07:31Z",
-          "duration": 2207,
-          "audio": "https://www.cope.es/uploads/2026/04/08/3zAwjj3fjxWj5ixmne0pP.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-07-abr-2026-partidazo-cope-20260408_3340777.html"
         }
       ]
     },
