@@ -1,6 +1,7 @@
 window.TV_CONFIG = {
   tdtJson: 'https://www.tdtchannels.com/lists/tv.json',
   epgJson: 'epg-data.json',
+  cinemaJson: 'cartelera-data.json',
   russianJson: 'https://raw.githubusercontent.com/ruben79zgz/Mi-TV/main/channels.json',
   spanish: [
     {
@@ -67,6 +68,7 @@ window.TV_CONFIG = {
     },
     {
       id: '24h',
+      requireDirect: true,
       epgId: '24Horas.TV',
       name: '24h',
       matches: ['24h'],
@@ -75,6 +77,7 @@ window.TV_CONFIG = {
     },
     {
       id: 'teledeporte',
+      requireDirect: true,
       epgId: 'TDP.TV',
       name: 'Teledeporte',
       matches: ['Teledeporte'],
@@ -83,6 +86,7 @@ window.TV_CONFIG = {
     },
     {
       id: 'clan',
+      requireDirect: true,
       epgId: 'Clan.TV',
       name: 'Clan',
       matches: ['Clan'],
@@ -91,6 +95,7 @@ window.TV_CONFIG = {
     },
     {
       id: 'trece',
+      requireDirect: true,
       epgId: '13.TV',
       name: 'TRECE',
       matches: ['TRECE'],
@@ -99,6 +104,7 @@ window.TV_CONFIG = {
     },
     {
       id: 'euronews',
+      requireDirect: true,
       epgId: 'Euronews.TV',
       name: 'Euronews',
       matches: ['Euronews'],
@@ -107,20 +113,14 @@ window.TV_CONFIG = {
     },
     {
       id: 'realmadridtv',
+      requireDirect: true,
       epgId: 'RMTV.TV',
       name: 'Real Madrid TV',
       matches: ['Real Madrid TV'],
       web: 'https://www.realmadrid.com/real-madrid-tv',
       logo: 'https://graph.facebook.com/RealMadrid/picture?width=200&height=200'
     },
-    {
-      id: 'eltorotv',
-      epgId: 'ElToroTV.TV',
-      name: 'El Toro TV',
-      matches: ['El Toro TV'],
-      web: 'https://eltorotv.com/tv-en-directo',
-      logo: 'https://graph.facebook.com/eltorotv.es/picture?width=200&height=200'
-    }
+
   ],
   amcGuide: [
     { id: 'amc-vintv', guideId: 'TVGUIA.vin-tv', name: 'Vin TV', tvGuiaSlug: 'vin-tv' },
