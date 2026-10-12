@@ -95,6 +95,11 @@
   const tvGuideUpdated = document.getElementById('tvGuideUpdated');
   const tvGuideGroupButtons = [...document.querySelectorAll('[data-tv-guide-group]')];
   const tvGuideDayButtons = [...document.querySelectorAll('[data-tv-guide-day]')];
+  const tvCinemaView = document.getElementById('tvCinemaView');
+  const tvCinemaGrid = document.getElementById('tvCinemaGrid');
+  const tvCinemaStatus = document.getElementById('tvCinemaStatus');
+  const tvCinemaUpdated = document.getElementById('tvCinemaUpdated');
+  const tvCinemaDays = document.getElementById('tvCinemaDays');
 
   const settingsBtn = document.getElementById('settingsBtn');
   const settingsDialog = document.getElementById('settingsDialog');
@@ -163,6 +168,9 @@
   let tvEpgChannelMeta = new Map();
   let tvGuideGroup = 'tv';
   let tvGuideDayOffset = 0;
+  let tvCinemaData = null;
+  let tvCinemaLoadedAt = 0;
+  let tvCinemaDay = '';
 
   let mediaKind = null; // radio | podcast
   let playIntent = false; // true mientras el usuario NO haya pulsado pausa/stop
@@ -1098,13 +1106,13 @@
             streams: direct.length ? direct : (cfg.fallbackStreams || []),
             extraInfo: found?.extra_info || []
           };
-        });
+        }).filter(channel => !channel.requireDirect || channel.streams?.length > 0);
       } else {
-        tvSpanishChannels = spanishBase;
+        tvSpanishChannels = spanishBase.filter(channel => !channel.requireDirect || channel.streams?.length > 0);
       }
     } catch (err) {
       console.warn('No se pudo actualizar TDTChannels', err);
-      tvSpanishChannels = spanishBase;
+      tvSpanishChannels = spanishBase.filter(channel => !channel.requireDirect || channel.streams?.length > 0);
     }
 
     try {
@@ -1418,14 +1426,18 @@
   }
 
   function setTvSection(section) {
-    tvSection = section === 'guide' ? 'guide' : 'channels';
+    tvSection = ['guide', 'cinema'].includes(section) ? section : 'channels';
+    const channels = tvSection === 'channels';
     const guide = tvSection === 'guide';
+    const cinema = tvSection === 'cinema';
 
-    tvChannelsView.classList.toggle('hidden', guide);
+    tvChannelsView.classList.toggle('hidden', !channels);
     tvGuideView.classList.toggle('hidden', !guide);
+    tvCinemaView.classList.toggle('hidden', !cinema);
     tvSectionButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.tvSection === tvSection));
 
     if (guide) loadTvGuide(false);
+    if (cinema) loadTvCinema(false);
   }
 
   function epgText(value) {
@@ -1758,6 +1770,165 @@
       console.warn('No se pudo cargar la guía TV', err);
       tvGuideStatus.textContent = 'No se pudo cargar la programación ahora mismo. Se mantiene la última guía disponible.';
       if (tvEpgData) renderTvGuide();
+    }
+  }
+
+
+  function cinemaDateObject(dayIso) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dayIso || '')) return null;
+    const [year, month, day] = dayIso.split('-').map(Number);
+    return new Date(year, month - 1, day, 12, 0, 0);
+  }
+
+  function cinemaDayLabel(dayIso) {
+    const value = cinemaDateObject(dayIso);
+    if (!value) return dayIso || '';
+
+    const today = new Date();
+    today.setHours(12, 0, 0, 0);
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    if (value.toDateString() === today.toDateString()) return 'Hoy';
+    if (value.toDateString() === tomorrow.toDateString()) return 'Mañana';
+
+    return new Intl.DateTimeFormat('es-ES', {
+      weekday:'short',
+      day:'numeric',
+      month:'short'
+    }).format(value).replace('.', '');
+  }
+
+  function renderTvCinema() {
+    if (!tvCinemaGrid || !tvCinemaDays) return;
+
+    const data = tvCinemaData || {};
+    const movies = Array.isArray(data.movies) ? data.movies : [];
+    const days = (Array.isArray(data.days) ? data.days : [])
+      .filter(day => day?.date && Number(day.sessions || 0) > 0)
+      .slice(0, 7);
+
+    if (!days.length) {
+      tvCinemaDays.innerHTML = '';
+      tvCinemaGrid.innerHTML = '<div class="empty">Todavía no hay horarios de cartelera disponibles.</div>';
+      return;
+    }
+
+    if (!tvCinemaDay || !days.some(day => day.date === tvCinemaDay)) {
+      tvCinemaDay = days[0].date;
+    }
+
+    tvCinemaDays.innerHTML = days.map(day => `
+      <button class="tv-cinema-day ${day.date === tvCinemaDay ? 'active' : ''}" type="button" data-cinema-day="${escapeAttr(day.date)}">
+        <span>${escapeHtml(cinemaDayLabel(day.date))}</span>
+        <small>${Number(day.sessions || 0)} sesiones</small>
+      </button>`
+    ).join('');
+
+    tvCinemaDays.querySelectorAll('[data-cinema-day]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        tvCinemaDay = btn.dataset.cinemaDay || tvCinemaDay;
+        renderTvCinema();
+      });
+    });
+
+    const visible = movies
+      .map(movie => ({
+        ...movie,
+        daySessions: (movie.sessions || []).filter(session => session.date === tvCinemaDay)
+      }))
+      .filter(movie => movie.daySessions.length)
+      .sort((a, b) => String(a.title || '').localeCompare(String(b.title || ''), 'es'));
+
+    if (!visible.length) {
+      tvCinemaGrid.innerHTML = '<div class="empty">No hay películas con sesiones para este día.</div>';
+      return;
+    }
+
+    tvCinemaGrid.innerHTML = visible.map(movie => {
+      const grouped = new Map();
+      for (const session of movie.daySessions) {
+        const cinema = session.cinema || 'Cine';
+        if (!grouped.has(cinema)) grouped.set(cinema, []);
+        grouped.get(cinema).push(session);
+      }
+
+      const cinemaRows = [...grouped.entries()].map(([cinema, sessions]) => {
+        const sorted = [...sessions].sort((a, b) => String(a.time).localeCompare(String(b.time)));
+        const chips = sorted.map(session => {
+          const content = `<strong>${escapeHtml(session.time || '')}</strong>${session.format ? `<small>${escapeHtml(session.format)}</small>` : ''}`;
+          return session.buyUrl
+            ? `<a class="tv-cinema-session" href="${escapeAttr(session.buyUrl)}" target="_blank" rel="noopener">${content}</a>`
+            : `<span class="tv-cinema-session no-link">${content}</span>`;
+        }).join('');
+
+        return `
+          <div class="tv-cinema-cinema">
+            <div class="tv-cinema-cinema-name">${escapeHtml(cinema)}</div>
+            <div class="tv-cinema-sessions">${chips}</div>
+          </div>`;
+      }).join('');
+
+      const meta = [
+        movie.age || '',
+        Number(movie.duration) > 0 ? `${Number(movie.duration)} min` : '',
+        movie.genre || ''
+      ].filter(Boolean).join(' · ');
+
+      return `
+        <article class="tv-cinema-card">
+          <a class="tv-cinema-poster-link" href="${escapeAttr(movie.page || data.source || '#')}" target="_blank" rel="noopener" aria-label="Ver ficha de ${escapeAttr(movie.title || 'película')}">
+            <img class="tv-cinema-poster" src="${escapeAttr(movie.poster || 'icons/mi-radio.svg')}" alt="Cartel de ${escapeAttr(movie.title || '')}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='icons/mi-radio.svg'" />
+          </a>
+          <div class="tv-cinema-copy">
+            <div class="tv-cinema-title-row">
+              <div>
+                <h4>${escapeHtml(movie.title || 'Película')}</h4>
+                ${meta ? `<div class="tv-cinema-meta">${escapeHtml(meta)}</div>` : ''}
+              </div>
+              ${movie.page ? `<a class="tv-cinema-info-link" href="${escapeAttr(movie.page)}" target="_blank" rel="noopener">Ficha ↗</a>` : ''}
+            </div>
+            <div class="tv-cinema-cinemas">${cinemaRows}</div>
+          </div>
+        </article>`;
+    }).join('');
+  }
+
+  async function loadTvCinema(force = false) {
+    const freshEnough = tvCinemaData && Date.now() - tvCinemaLoadedAt < 20 * 60 * 1000;
+    if (!force && freshEnough) {
+      renderTvCinema();
+      return;
+    }
+
+    tvCinemaStatus.textContent = 'Actualizando cartelera de Zaragoza…';
+
+    try {
+      const response = await fetch(`${tvConfig.cinemaJson || 'cartelera-data.json'}?t=${Date.now()}`, { cache: 'no-store' });
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      const data = await response.json();
+      if (!Array.isArray(data.movies)) throw new Error('Formato de cartelera no válido');
+
+      tvCinemaData = data;
+      tvCinemaLoadedAt = Date.now();
+
+      const updated = data.updatedAt ? new Date(data.updatedAt) : null;
+      tvCinemaUpdated.textContent = updated && !Number.isNaN(updated.getTime())
+        ? 'Actualizada ' + new Intl.DateTimeFormat('es-ES', {
+            day:'2-digit',
+            month:'2-digit',
+            hour:'2-digit',
+            minute:'2-digit'
+          }).format(updated)
+        : '';
+
+      tvCinemaStatus.textContent = data.priceNote || 'Horarios de los cines de Zaragoza.';
+      renderTvCinema();
+    } catch (err) {
+      console.warn('No se pudo cargar la cartelera', err);
+      tvCinemaStatus.textContent = 'No se pudo actualizar la cartelera ahora mismo. Se mantiene la última copia disponible.';
+      if (tvCinemaData) renderTvCinema();
+      else tvCinemaGrid.innerHTML = '<div class="empty">Cartelera no disponible temporalmente.</div>';
     }
   }
 
@@ -2448,6 +2619,8 @@
     if (tvSection === 'guide') {
       await loadTvChannels(true);
       await loadTvGuide(true);
+    } else if (tvSection === 'cinema') {
+      await loadTvCinema(true);
     } else {
       await loadTvChannels(true);
     }
@@ -2589,7 +2762,7 @@
   }, 5000);
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=19.2.2').catch(console.warn));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=19.3.1').catch(console.warn));
   }
 
   /* ---------------- Inicio ---------------- */
