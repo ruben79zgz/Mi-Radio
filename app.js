@@ -93,6 +93,8 @@
   const tvGuideGrid = document.getElementById('tvGuideGrid');
   const tvGuideStatus = document.getElementById('tvGuideStatus');
   const tvGuideUpdated = document.getElementById('tvGuideUpdated');
+  const tvGuideGroupButtons = [...document.querySelectorAll('[data-tv-guide-group]')];
+  const tvGuideDayButtons = [...document.querySelectorAll('[data-tv-guide-day]')];
 
   const settingsBtn = document.getElementById('settingsBtn');
   const settingsDialog = document.getElementById('settingsDialog');
@@ -158,6 +160,8 @@
   let tvSection = 'channels';
   let tvEpgData = null;
   let tvEpgLoadedAt = 0;
+  let tvGuideGroup = 'tv';
+  let tvGuideDayOffset = 0;
 
   let mediaKind = null; // radio | podcast
   let playIntent = false; // true mientras el usuario NO haya pulsado pausa/stop
@@ -1524,18 +1528,62 @@
     return allPrograms.filter(item => normalize(item.channel) === normalize(id));
   }
 
-  function guideSnapshot(channel, allPrograms, now = Date.now()) {
-    const programs = guideProgramsFor(channel, allPrograms);
-    if (!programs.length) return { current: null, next: [] };
+  function amcGuideChannels() {
+    return (tvConfig.amcGuide || []).map(channel => ({
+      ...channel,
+      epgId: channel.guideId || channel.epgId || null,
+      source: 'AMC Channels · TVGuia',
+      logo: channel.logo || 'https://www.google.com/s2/favicons?domain=amcchannels.es&sz=128',
+      guideOnly: true,
+      streams: []
+    }));
+  }
 
-    let current = programs.find(item => item.start <= now && item.end > now) || null;
-    let future = programs.filter(item => item.start >= now);
+  function activeGuideChannels() {
+    return tvGuideGroup === 'amc' ? amcGuideChannels() : tvSpanishChannels;
+  }
 
+  function allGuideEpgIds() {
+    return [
+      ...tvSpanishChannels.map(channel => channel.epgId),
+      ...amcGuideChannels().map(channel => channel.epgId)
+    ].filter(Boolean);
+  }
+
+  function guideDayBounds(offset = 0) {
+    const start = new Date();
+    start.setHours(0, 0, 0, 0);
+    start.setDate(start.getDate() + Number(offset || 0));
+    const end = new Date(start);
+    end.setDate(end.getDate() + 1);
+    return { start: start.getTime(), end: end.getTime() };
+  }
+
+  function guideProgramsForDay(channel, allPrograms, offset = 0) {
+    const { start, end } = guideDayBounds(offset);
+    return guideProgramsFor(channel, allPrograms)
+      .filter(item => item.end > start && item.start < end)
+      .sort((a, b) => a.start - b.start);
+  }
+
+  function guideSnapshot(channel, allPrograms, now = Date.now(), offset = 0) {
+    const dayPrograms = guideProgramsForDay(channel, allPrograms, offset);
+    if (!dayPrograms.length) return { current: null, next: [], dayPrograms: [] };
+
+    const current = offset === 0
+      ? dayPrograms.find(item => item.start <= now && item.end > now) || null
+      : null;
+
+    let next = [];
     if (current) {
-      future = programs.filter(item => item.start >= current.end - 1000);
+      next = dayPrograms.filter(item => item.start >= current.end - 1000).slice(0, 2);
+    } else if (offset === 0) {
+      next = dayPrograms.filter(item => item.end > now).slice(0, 3);
+    } else {
+      next = dayPrograms.slice(0, 3);
     }
 
-    return { current, next: future.slice(0, 2) };
+    return { current, next, dayPrograms };
   }
 
   function formatTvClock(ms) {
@@ -1545,50 +1593,94 @@
 
   function renderTvGuide() {
     if (!tvGuideGrid) return;
-    const channels = tvSpanishChannels;
-    if (!channels.length) {
-      tvGuideGrid.innerHTML = '<div class="empty">No hay canales españoles cargados.</div>';
-      return;
-    }
 
+    const channels = activeGuideChannels();
     const programs = Array.isArray(tvEpgData) ? tvEpgData : [];
     const now = Date.now();
 
+    tvGuideGroupButtons.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.tvGuideGroup === tvGuideGroup);
+    });
+    tvGuideDayButtons.forEach(btn => {
+      btn.classList.toggle('active', Number(btn.dataset.tvGuideDay || 0) === tvGuideDayOffset);
+    });
+
+    if (!channels.length) {
+      tvGuideGrid.innerHTML = '<div class="empty">No hay canales cargados en esta guía.</div>';
+      return;
+    }
+
     tvGuideGrid.innerHTML = channels.map(channel => {
-      const snap = guideSnapshot(channel, programs, now);
+      const snap = guideSnapshot(channel, programs, now, tvGuideDayOffset);
       const current = snap.current;
-      const next1 = snap.next[0];
-      const next2 = snap.next[1];
+      const direct = channel.streams?.length > 0;
 
       let progress = 0;
       if (current) {
         progress = Math.max(0, Math.min(100, ((now - current.start) / (current.end - current.start)) * 100));
       }
 
-      const row = (label, item, active = false) => item
+      const previewRow = (label, item, active = false) => item
         ? `<div class="tv-guide-program ${active ? 'now' : ''}">
              <div class="tv-guide-program-label">${label}</div>
              <div class="tv-guide-program-copy">
                <strong>${escapeHtml(item.title)}</strong>
-               <span>${formatTvClock(item.start)} - ${formatTvClock(item.end)}</span>
+               <span>${formatTvClock(item.start)} - ${formatTvClock(item.end)}${item.category ? ' · ' + escapeHtml(item.category) : ''}</span>
              </div>
            </div>`
         : '';
 
+      let preview = '';
+      if (current) {
+        preview += previewRow('AHORA', current, true);
+        preview += previewRow('DESPUÉS', snap.next[0]);
+        preview += previewRow('LUEGO', snap.next[1]);
+      } else {
+        const labels = tvGuideDayOffset === 0
+          ? ['PRÓXIMO', 'DESPUÉS', 'LUEGO']
+          : ['INICIO', 'DESPUÉS', 'LUEGO'];
+        preview = snap.next.map((item, index) => previewRow(labels[index] || 'LUEGO', item)).join('');
+      }
+
+      const fullSchedule = snap.dayPrograms.map(item => {
+        const isNow = tvGuideDayOffset === 0 && item.start <= now && item.end > now;
+        const isPast = tvGuideDayOffset === 0 && item.end <= now;
+        const state = isNow ? 'now' : (isPast ? 'past' : 'future');
+        return `
+          <div class="tv-guide-full-program ${state}">
+            <time>${formatTvClock(item.start)}</time>
+            <div>
+              <strong>${escapeHtml(item.title)}</strong>
+              ${item.category ? `<span>${escapeHtml(item.category)}</span>` : ''}
+            </div>
+          </div>`;
+      }).join('');
+
+      const action = channel.guideOnly
+        ? '<span class="tv-guide-only-badge">Solo guía</span>'
+        : `<button class="tv-guide-watch ${direct ? '' : 'web-only'}" type="button" data-guide-tv-id="${escapeAttr(channel.id)}">${direct ? 'Ver' : 'Web'}</button>`;
+
+      const sourceText = channel.guideOnly
+        ? 'AMC Channels · TVGuia'
+        : (direct ? 'Directo disponible' : 'Web oficial');
+
       return `
-        <article class="tv-guide-card">
+        <article class="tv-guide-card ${channel.guideOnly ? 'guide-only' : ''}">
           <div class="tv-guide-channel">
             <img src="${escapeAttr(channel.logo || 'icons/mi-radio.svg')}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='icons/mi-radio.svg'" />
             <div>
               <div class="tv-guide-channel-name">${escapeHtml(channel.name)}</div>
-              <div class="tv-guide-channel-source">${current ? 'En emisión' : 'Programación'}</div>
+              <div class="tv-guide-channel-source">${escapeHtml(sourceText)}</div>
             </div>
-            <button class="tv-guide-watch" type="button" data-guide-tv-id="${escapeAttr(channel.id)}">Ver</button>
+            ${action}
           </div>
-          ${current ? row('AHORA', current, true) : '<div class="tv-guide-empty">Sin información de emisión actual.</div>'}
+          ${preview || '<div class="tv-guide-empty">Sin programación disponible para este día.</div>'}
           ${current ? `<div class="tv-guide-progress"><span style="width:${progress.toFixed(1)}%"></span></div>` : ''}
-          ${row('DESPUÉS', next1)}
-          ${row('LUEGO', next2)}
+          ${snap.dayPrograms.length ? `
+            <details class="tv-guide-details">
+              <summary>Parrilla completa · ${snap.dayPrograms.length} programas</summary>
+              <div class="tv-guide-full-list">${fullSchedule}</div>
+            </details>` : ''}
         </article>`;
     }).join('');
 
@@ -1625,15 +1717,14 @@
       const response = await fetch(`${tvConfig.epgJson}?t=${Date.now()}`, { cache: 'no-store' });
       if (!response.ok) throw new Error('HTTP ' + response.status);
       const data = await response.json();
-      const wantedIds = tvSpanishChannels.map(ch => ch.epgId).filter(Boolean);
-      const programs = normalizeEpgPrograms(data, wantedIds);
+      const programs = normalizeEpgPrograms(data, allGuideEpgIds());
 
       tvEpgData = programs;
       tvEpgLoadedAt = Date.now();
 
       if (!programs.length) throw new Error('La guía no devolvió programas reconocibles');
 
-      tvGuideStatus.textContent = '';
+      tvGuideStatus.textContent = 'Elige Hoy o Mañana. Abre “Parrilla completa” para ver todo el día, incluido lo ya emitido.';
       tvGuideUpdated.textContent = 'Actualizado ' + new Intl.DateTimeFormat('es-ES', {
         hour:'2-digit',
         minute:'2-digit'
@@ -1641,7 +1732,7 @@
       renderTvGuide();
     } catch (err) {
       console.warn('No se pudo cargar la guía TV', err);
-      tvGuideStatus.textContent = 'No se pudo cargar la programación ahora mismo. Prueba ↻ más tarde.';
+      tvGuideStatus.textContent = 'No se pudo cargar la programación ahora mismo. Se mantiene la última guía disponible.';
       if (tvEpgData) renderTvGuide();
     }
   }
@@ -2338,6 +2429,14 @@
     }
   });
   tvSectionButtons.forEach(btn => btn.addEventListener('click', () => setTvSection(btn.dataset.tvSection)));
+  tvGuideGroupButtons.forEach(btn => btn.addEventListener('click', () => {
+    tvGuideGroup = btn.dataset.tvGuideGroup === 'amc' ? 'amc' : 'tv';
+    renderTvGuide();
+  }));
+  tvGuideDayButtons.forEach(btn => btn.addEventListener('click', () => {
+    tvGuideDayOffset = Number(btn.dataset.tvGuideDay || 0) === 1 ? 1 : 0;
+    renderTvGuide();
+  }));
   tvCountryButtons.forEach(btn => btn.addEventListener('click', () => {
     tvCountry = btn.dataset.tvCountry;
     stopTvPlayback(true);
@@ -2466,7 +2565,7 @@
   }, 5000);
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=19.1.1').catch(console.warn));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=19.2.1').catch(console.warn));
   }
 
   /* ---------------- Inicio ---------------- */

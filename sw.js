@@ -1,16 +1,16 @@
-const CACHE = 'mi-radio-shell-v19.1';
+const CACHE = 'mi-radio-shell-v19.2';
 const SHELL = [
   './',
   './index.html',
-  './styles.css?v=19.1.1',
-  './app.js?v=19.1.1',
-  './stations.js?v=19.1.1',
-  './podcasts.js?v=19.1.1',
-  './podcast-feed.js?v=19.1.1',
-  './tv.js?v=19.1.1',
-  './navigation.js?v=19.1.1',
-  './manifest.webmanifest?v=19.1.1',
-  './icons/mi-radio.svg?v=19.1.1'
+  './styles.css?v=19.2.1',
+  './app.js?v=19.2.1',
+  './stations.js?v=19.2.1',
+  './podcasts.js?v=19.2.1',
+  './podcast-feed.js?v=19.2.1',
+  './tv.js?v=19.2.1',
+  './navigation.js?v=19.2.1',
+  './manifest.webmanifest?v=19.2.1',
+  './icons/mi-radio.svg?v=19.2.1'
 ];
 
 self.addEventListener('install', event => {
@@ -80,7 +80,8 @@ self.addEventListener('fetch', event => {
     path.endsWith('/stations.js') ||
     path.endsWith('/podcasts.js') ||
     path.endsWith('/tv.js') ||
-    path.endsWith('/podcasts-data.json')
+    path.endsWith('/podcasts-data.json') ||
+    path.endsWith('/epg-data.json')
   ) {
     event.respondWith(boundedNetworkFirst(event.request, 1800));
     return;

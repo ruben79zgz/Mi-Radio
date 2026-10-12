@@ -921,6 +921,135 @@ main { width: min(100%, 1040px); margin: 0 auto; padding: 18px; }
 }
 
 
+/* ===== V19.2: parrilla completa hoy/mañana + AMC ===== */
+.tv-guide-controls {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:8px;
+}
+.tv-guide-toggle {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:6px;
+  padding:4px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(9,17,31,.72);
+}
+.tv-guide-toggle-btn {
+  border:0;
+  border-radius:10px;
+  padding:9px 10px;
+  background:transparent;
+  color:var(--muted);
+  font-weight:850;
+  cursor:pointer;
+}
+.tv-guide-toggle-btn.active {
+  background:#ff9d6c;
+  color:#1b0b03;
+}
+.tv-guide-watch.web-only {
+  background:var(--panel-2);
+  color:var(--text);
+  border:1px solid var(--line);
+}
+.tv-guide-only-badge {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:34px;
+  padding:7px 9px;
+  border:1px solid rgba(255,157,108,.35);
+  border-radius:10px;
+  color:#ffb48f;
+  background:rgba(255,157,108,.08);
+  font-size:.66rem;
+  font-weight:900;
+  white-space:nowrap;
+}
+.tv-guide-card.guide-only {
+  border-color:rgba(255,157,108,.20);
+}
+.tv-guide-details {
+  margin-top:9px;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+.tv-guide-details summary {
+  padding:11px 0 4px;
+  color:#ffb48f;
+  font-size:.73rem;
+  font-weight:850;
+  cursor:pointer;
+  list-style-position:inside;
+}
+.tv-guide-full-list {
+  margin-top:4px;
+}
+.tv-guide-full-program {
+  display:grid;
+  grid-template-columns:58px minmax(0,1fr);
+  gap:9px;
+  align-items:start;
+  padding:8px 0;
+  border-top:1px solid rgba(255,255,255,.055);
+}
+.tv-guide-full-program:first-child {
+  border-top:0;
+}
+.tv-guide-full-program time {
+  color:#c9d3e3;
+  font-size:.7rem;
+  font-weight:900;
+}
+.tv-guide-full-program strong {
+  display:block;
+  font-size:.8rem;
+  line-height:1.3;
+}
+.tv-guide-full-program span {
+  display:block;
+  margin-top:2px;
+  color:var(--muted);
+  font-size:.67rem;
+}
+.tv-guide-full-program.past {
+  opacity:.48;
+}
+.tv-guide-full-program.now {
+  margin:2px -6px;
+  padding:8px 6px;
+  border-radius:9px;
+  border-top-color:transparent;
+  background:rgba(255,157,108,.10);
+}
+.tv-guide-full-program.now time {
+  color:#ffb48f;
+}
+
+@media (max-width:760px) {
+  .tv-guide-controls {
+    grid-template-columns:1fr;
+  }
+  .tv-guide-heading {
+    align-items:start;
+  }
+  .tv-guide-updated {
+    text-align:right;
+  }
+  .tv-guide-channel {
+    grid-template-columns:44px minmax(0,1fr) auto;
+  }
+  .tv-guide-channel img {
+    width:44px;
+    height:44px;
+  }
+  .tv-guide-only-badge {
+    padding:6px 7px;
+    font-size:.61rem;
+  }
+}
+
 /* ===== Versión visible ===== */
 .app-version {
   display:inline-flex;

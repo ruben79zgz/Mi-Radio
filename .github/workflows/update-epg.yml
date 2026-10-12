@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/update_epg.py'
+      - 'tv.js'
       - '.github/workflows/update-epg.yml'
 
 permissions:
