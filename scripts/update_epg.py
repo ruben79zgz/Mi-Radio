@@ -7,6 +7,7 @@ import urllib.request
 from datetime import date, datetime, time, timedelta, timezone
 from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -86,11 +87,31 @@ class VisibleTextParser(HTMLParser):
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
         self.texts: list[str] = []
+        self.images: list[dict[str, str]] = []
         self._skip_depth = 0
 
     def handle_starttag(self, tag: str, attrs) -> None:
-        if tag.lower() in self.SKIP_TAGS:
+        tag_lower = tag.lower()
+        if tag_lower in self.SKIP_TAGS:
             self._skip_depth += 1
+            return
+
+        if tag_lower == "img" and not self._skip_depth:
+            attr_map = {str(key).lower(): str(value or "") for key, value in attrs}
+            src = (
+                attr_map.get("src")
+                or attr_map.get("data-src")
+                or attr_map.get("data-lazy-src")
+                or ""
+            ).strip()
+            if src:
+                self.images.append(
+                    {
+                        "src": src,
+                        "alt": attr_map.get("alt", "").strip(),
+                        "title": attr_map.get("title", "").strip(),
+                    }
+                )
 
     def handle_endtag(self, tag: str) -> None:
         if tag.lower() in self.SKIP_TAGS and self._skip_depth:
@@ -118,10 +139,56 @@ def parse_spanish_date(text: str) -> date | None:
         return None
 
 
-def parse_tvguia_page(html: str, channel_name: str) -> list[dict]:
+def normalize_logo_key(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "", value.casefold())
+
+
+def find_tvguia_logo(parser: VisibleTextParser, channel_name: str) -> str:
+    channel_key = normalize_logo_key(channel_name)
+    candidates: list[tuple[int, str]] = []
+
+    for image in parser.images:
+        src = image.get("src", "").strip()
+        if not src:
+            continue
+
+        lower_src = src.casefold()
+        if "/sites/default/files/logo/" not in lower_src:
+            continue
+
+        haystack = normalize_logo_key(
+            " ".join(
+                [
+                    image.get("alt", ""),
+                    image.get("title", ""),
+                    src.rsplit("/", 1)[-1],
+                ]
+            )
+        )
+
+        score = 0
+        if channel_key and channel_key in haystack:
+            score += 10
+        if "tvguia" in haystack:
+            score -= 20
+        if lower_src.endswith((".png", ".jpg", ".jpeg", ".webp", ".svg")):
+            score += 1
+
+        candidates.append((score, urljoin(TVGUIA_BASE, src)))
+
+    if not candidates:
+        return ""
+
+    candidates.sort(key=lambda item: item[0], reverse=True)
+    best_score, best_url = candidates[0]
+    return best_url if best_score >= 0 else ""
+
+
+def parse_tvguia_page(html: str, channel_name: str) -> tuple[list[dict], str]:
     parser = VisibleTextParser()
     parser.feed(html)
     texts = parser.texts
+    logo = find_tvguia_logo(parser, channel_name)
 
     heading_index = next(
         (
@@ -209,12 +276,13 @@ def parse_tvguia_page(html: str, channel_name: str) -> list[dict]:
     for row in rows:
         key = (int(row["start"].timestamp()), row["title"])
         unique.setdefault(key, row)
-    return sorted(unique.values(), key=lambda item: item["start"])
+    return sorted(unique.values(), key=lambda item: item["start"]), logo
 
 
 def fetch_tvguia_channel(guide_id: str, channel_name: str, slug: str) -> dict:
     rows: list[dict] = []
     errors: list[str] = []
+    logo = ""
 
     for tomorrow, path in (
         (False, f"/tv/programacion-{slug}"),
@@ -224,7 +292,10 @@ def fetch_tvguia_channel(guide_id: str, channel_name: str, slug: str) -> dict:
         try:
             raw = fetch_bytes(url, accept="text/html,application/xhtml+xml,*/*")
             html = raw.decode("utf-8", errors="replace")
-            rows.extend(parse_tvguia_page(html, channel_name))
+            page_rows, page_logo = parse_tvguia_page(html, channel_name)
+            rows.extend(page_rows)
+            if page_logo and not logo:
+                logo = page_logo
         except Exception as exc:
             label = "mañana" if tomorrow else "hoy"
             errors.append(f"{label}: {exc}")
@@ -262,6 +333,7 @@ def fetch_tvguia_channel(guide_id: str, channel_name: str, slug: str) -> dict:
         "name": guide_id,
         "display_name": channel_name,
         "source": "TVGuia",
+        "logo": logo,
         "events": events,
     }
 
@@ -289,8 +361,13 @@ def build_tvguia_channels() -> list[dict]:
     now_local = datetime.now(MADRID)
 
     # La parrilla de AMC no necesita 24 descargas al día. Se refresca cada
-    # seis horas y se conserva la última copia buena entre medias.
-    refresh = len(previous) < len(AMC_GUIDE) or now_local.hour % 6 == 0
+    # seis horas y se conserva la última copia buena entre medias. Si aún no
+    # tenemos logos, forzamos una actualización inmediata para rellenarlos.
+    missing_logos = any(
+        not str(previous.get(guide_id, {}).get("logo", "")).strip()
+        for guide_id, _, _ in AMC_GUIDE
+    )
+    refresh = len(previous) < len(AMC_GUIDE) or missing_logos or now_local.hour % 6 == 0
     if not refresh:
         return [previous[guide_id] for guide_id, _, _ in AMC_GUIDE if guide_id in previous]
 
@@ -299,7 +376,11 @@ def build_tvguia_channels() -> list[dict]:
         try:
             channel = fetch_tvguia_channel(guide_id, channel_name, slug)
             result.append(channel)
-            print(f"TVGuia OK: {channel_name} ({len(channel['events'])} programas)")
+            logo_status = "logo OK" if channel.get("logo") else "sin logo"
+            print(
+                f"TVGuia OK: {channel_name} "
+                f"({len(channel['events'])} programas, {logo_status})"
+            )
         except Exception as exc:
             cached = previous.get(guide_id)
             if cached:
