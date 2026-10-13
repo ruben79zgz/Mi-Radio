@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-12T23:00:05.757701Z",
+  "updatedAt": "2026-10-13T06:48:03.405035Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,39 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "6f3263525cb6855068f3",
+          "title": "12 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Empate loco entre el Levante y el Sevilla (3-3). El Real Madrid y la polémica por los horarios. Tiempo de opinión. Previa de la Champions: Galatasaray - Barcelona, Atlético - Manchester United y Villarreal - Nápoles. El Soufflé. Km42, con Chema Martínez.",
+          "publishedAt": "2026-10-12T23:50:00Z",
+          "duration": 7174,
+          "audio": "https://www.cope.es/uploads/2026/10/13/6o7eL1BuVTYEQ3W6YumBT.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/12-oct-2026-partidazo-cope-20261013_3454211.html"
+        },
+        {
+          "id": "8a47f788d6b820cf6f04",
+          "title": "3ª PARTE | 12 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Actualidad del Real Madrid marcada por las quejas arbitrales. Los problemas de Mourinho con los árbitros. Tiempo de opinión. El Soufflé. Km42, con Chema Martínez.",
+          "publishedAt": "2026-10-12T23:45:00Z",
+          "duration": 3770,
+          "audio": "https://www.cope.es/uploads/2026/10/13/2AQm0vsfk4uOtfHWo1GWn.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-12-oct-2026-partidazo-cope-20261013_3454210.html"
+        },
+        {
+          "id": "34c7f5b4e42401f1ac5c",
+          "title": "12-OCT-26 | #KM42, 'Running' con Chema Martínez",
+          "description": "Amos Kipruto y su espectacular marca en el Maratón de Chicago; La preocupante desbandada de atletas españoles al extranjero.",
+          "publishedAt": "2026-10-12T23:40:00Z",
+          "duration": 748,
+          "audio": "https://www.cope.es/uploads/2026/10/13/qiXmlqWLO32cR8c1rnFQd.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/10/13/6acd664a0aee1.png",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/12-oct-26-km42-running-chema-martinez-20261013_3454209.html"
+        },
         {
           "id": "6ebaaef37e1582dcd1b7",
           "title": "2ª PARTE | 12 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6576,39 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-08-abr-2026-partidazo-cope-20260409_3341671.html"
-        },
-        {
-          "id": "94892dfada2cb7f09435",
-          "title": "1ª PARTE | 08 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Atlético gana 0-2 al Barcelona y se acerca a las semifinales de la Champions. Polémica del partido. Protagonistas. Tiempo de opinión.",
-          "publishedAt": "2026-04-08T22:15:05Z",
-          "duration": 2636,
-          "audio": "https://www.cope.es/uploads/2026/04/09/ucse-yYktfTWKyaVWnZEi.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-08-abr-2026-partidazo-cope-20260409_3341661.html"
-        },
-        {
-          "id": "6848bf382aa7bc1dfa5b",
-          "title": "07 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Real Madrid pierde 1-2 ante el Bayern de la ida de los cuartos de Champions. Protagonistas. Tiempo de opinión. Previa Barcelona - Atlético de Madrid.",
-          "publishedAt": "2026-04-07T23:37:40Z",
-          "duration": 7508,
-          "audio": "https://www.cope.es/uploads/2026/04/08/EnKZ2l0gXksnB89e9Us0d.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/07-abr-2026-partidazo-cope-20260408_3340794.html"
-        },
-        {
-          "id": "aab671a5666db169e1b1",
-          "title": "3ª PARTE | 07 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Previa Barcelona - Atlético de Madrid: las palabras de Simeone sobre Griezmann y de Flik sobre Lamine. Previa del partido del Betis en la Europa League. EL CTA afirma que era roja directa a Gerard Martín.",
-          "publishedAt": "2026-04-07T23:36:52Z",
-          "duration": 3260,
-          "audio": "https://www.cope.es/uploads/2026/04/08/FrEalPfziv209A54p0QKt.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-07-abr-2026-partidazo-cope-20260408_3340793.html"
         }
       ]
     },
