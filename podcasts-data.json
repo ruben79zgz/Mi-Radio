@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-14T01:13:49.713504Z",
+  "updatedAt": "2026-10-14T23:15:02.899690Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "e3827672441610393405",
+          "title": "2ª PARTE | 14 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Analizamos al detalle la victoria heroica del Real Madrid.",
+          "publishedAt": "2026-10-14T22:51:56Z",
+          "duration": 2025,
+          "audio": "https://www.cope.es/uploads/2026/10/15/3KvjOyJ1Dj5mr7Ket1de_.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-14-oct-2026-partidazo-cope-20261015_3455853.html"
+        },
+        {
+          "id": "826f73c6c3c8d04ddf3b",
+          "title": "1ª PARTE | 14 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "2ª jornada de Champions: Victorias del Real Madrid, contra la Roma (3-4) y del Betis, contra el Oporto (3-2). Protagonistas. Tiempo de opinión. Vinicius y Mourinho hablan de la sanción de cuatro partidos al brasileño.",
+          "publishedAt": "2026-10-14T22:15:32Z",
+          "duration": 2669,
+          "audio": "https://www.cope.es/uploads/2026/10/15/4iTvJOwqCR_tkBlsMWAtT.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-14-oct-2026-partidazo-cope-20261015_3455847.html"
+        },
         {
           "id": "50b644faac927488eb37",
           "title": "13 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-09-abr-2026-partidazo-cope-20260410_3342533.html"
-        },
-        {
-          "id": "07e78dce797a12132254",
-          "title": "Carolina Marín | Las entrevistas de Juanma Castaño",
-          "description": "Juanma Castaño charla con la mejor jugadora española de bádminton de todos los tiempos, tan solo unos días después de anunciar su retirada del mundo del deporte",
-          "publishedAt": "2026-04-09T23:11:44Z",
-          "duration": 1320,
-          "audio": "https://www.cope.es/uploads/2026/04/10/lkU6gheFLYBUD5GfWgo0D.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/04/10/69d8322865df0.png",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/entrevistas-de-juanma-castano/episodios/carolina-marin-entrevistas-juanma-castano-20260410_3342530.html"
-        },
-        {
-          "id": "6af44b084534c243830b",
-          "title": "2ª PARTE | 09 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Las protestas en Barcelona por el arbitraje ante el Atleti. Previa Real Madrid - Girona y rueda de prensa de Arbeloa.",
-          "publishedAt": "2026-04-09T22:41:57Z",
-          "duration": 2384,
-          "audio": "https://www.cope.es/uploads/2026/04/10/KR6QRSo0sfD4rrK9Xlg_k.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-09-abr-2026-partidazo-cope-20260410_3342523.html"
         }
       ]
     },
