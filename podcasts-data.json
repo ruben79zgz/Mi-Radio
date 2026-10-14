@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-13T06:48:03.405035Z",
+  "updatedAt": "2026-10-14T01:13:49.713504Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "50b644faac927488eb37",
+          "title": "13 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "2ª jornada de Champions: Victorias del Barcelona (1-4), Atlético (2-0) y Villarreal (3-1). Protagonistas. Tiempo de opinión. Rueda de prensa de Mourinho. Previa Roma - Real Madrid y Betis - Oporto. El Getafe ficha a Carvajal. Netflix ofrecerá el Mundial 2030.",
+          "publishedAt": "2026-10-13T23:42:32Z",
+          "duration": 7757,
+          "audio": "https://www.cope.es/uploads/2026/10/14/KnAWZhpfIueQAi_E6it-X.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/13-oct-2026-partidazo-cope-20261014_3455009.html"
+        },
+        {
+          "id": "7146831b95fdde2b6e0c",
+          "title": "3ª PARTE | 13 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Rueda de prensa de Mourinho. Previa Roma - Real Madrid y Betis - Oporto. El Getafe ficha a Carvajal. Netflix ofrecerá el Mundial 2030.",
+          "publishedAt": "2026-10-13T23:40:35Z",
+          "duration": 2913,
+          "audio": "https://www.cope.es/uploads/2026/10/14/Bpu1lgJVnbi2vBlCyTrLz.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-13-oct-2026-partidazo-cope-20261014_3455008.html"
+        },
+        {
+          "id": "17f4a1ca9ce446a5b84f",
+          "title": "2ª PARTE | 13 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Analizamos las victorias de los equipos españoles en Champions.",
+          "publishedAt": "2026-10-13T22:48:35Z",
+          "duration": 2378,
+          "audio": "https://www.cope.es/uploads/2026/10/14/z3i9hoUCmUXf3o7dD_BGm.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-13-oct-2026-partidazo-cope-20261014_3455006.html"
+        },
+        {
+          "id": "1906ce44848998596277",
+          "title": "1ª PARTE | 13 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "2ª jornada de Champions: Victorias del Barcelona (1-4), Atlético (2-0) y Villarreal (3-1). Protagonistas. Tiempo de opinión.",
+          "publishedAt": "2026-10-13T22:07:15Z",
+          "duration": 2177,
+          "audio": "https://www.cope.es/uploads/2026/10/14/pJ0dBo25NdOXf3pGm0Tiy.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-13-oct-2026-partidazo-cope-20261014_3454999.html"
+        },
         {
           "id": "6f3263525cb6855068f3",
           "title": "12 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6565,50 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-09-abr-2026-partidazo-cope-20260410_3342523.html"
-        },
-        {
-          "id": "476ed202ee9852be36c0",
-          "title": "1ª PARTE | 09 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. Derrota 3-0 del Celta en Friburgo en la Europa League y goleada del Rayo ante el AEK (3-0) en la Conference. Entrevista a Isi.",
-          "publishedAt": "2026-04-09T22:00:01Z",
-          "duration": 1760,
-          "audio": "https://www.cope.es/uploads/2026/04/09/VDABRwjjOGny6kgKPSIPt.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-09-abr-2026-partidazo-cope-20260410_3342513.html"
-        },
-        {
-          "id": "c12c156d898d56a3a57b",
-          "title": "08 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Atlético gana 0-2 al Barcelona y se acerca a las semifinales de la Champions. Protagonistas. Tiempo de opinión. Empate del Betis en la Europa League. Previas Celta y Rayo Vallecano. VayaFiesta",
-          "publishedAt": "2026-04-09T21:38:55Z",
-          "duration": 7562,
-          "audio": "https://www.cope.es/uploads/2026/04/09/tJ9sqkEgmSB5EHqCN7_gs.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/08-abr-2026-partidazo-cope-20260409_3341681.html"
-        },
-        {
-          "id": "b233193de5b59b6e1077",
-          "title": "3ª PARTE | 08 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Victoria del PSG contra el Liverpool (2-0). Empate del Betis en la Europa League. Actualidad del Real Madrid tras caer ante el Bayern. Previas Celta y Rayo Vallecano.",
-          "publishedAt": "2026-04-08T23:44:51Z",
-          "duration": 2901,
-          "audio": "https://www.cope.es/uploads/2026/04/09/Obsb_H0xOwQvwWO5jsUX3.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-08-abr-2026-partidazo-cope-20260409_3341682.html"
-        },
-        {
-          "id": "e78916e42dea9a886efc",
-          "title": "2ª PARTE | 08 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Continuamos analizando la victoria del Atlético de Madrid en Barcelona.",
-          "publishedAt": "2026-04-08T22:46:13Z",
-          "duration": 1789,
-          "audio": "https://www.cope.es/uploads/2026/04/09/2bowwdROSoJ83tJIgp0xe.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-08-abr-2026-partidazo-cope-20260409_3341671.html"
         }
       ]
     },
