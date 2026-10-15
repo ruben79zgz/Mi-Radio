@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-14T23:15:02.899690Z",
+  "updatedAt": "2026-10-15T04:40:54.413302Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "77fd97ae3f12feba7684",
+          "title": "14 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "2ª jornada de Champions: Victorias del Real Madrid, contra la Roma (3-4) y del Betis, contra el Oporto (3-2). Protagonistas. Tiempo de opinión. Vinicius y Mourinho hablan de la sanción de cuatro partidos al brasileño. VayaFiesta, con el Grupo RISA.",
+          "publishedAt": "2026-10-14T23:40:53Z",
+          "duration": 7731,
+          "audio": "https://www.cope.es/uploads/2026/10/15/ZnoZWGKDu0vPncE6QN2JJ.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/14-oct-2026-partidazo-cope-20261015_3455858.html"
+        },
+        {
+          "id": "20a0f456c3d32af0326b",
+          "title": "3ª PARTE | 14 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Analizamos la victoria del Betis en La Cartuja. La victoria del PSG ante el City, lo más destacado del resto de partido de Champions. VayaFiesta, con el Grupo RISA.",
+          "publishedAt": "2026-10-14T23:39:53Z",
+          "duration": 2628,
+          "audio": "https://www.cope.es/uploads/2026/10/15/-pMs-_PeL280fUZA9AaAB.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-14-oct-2026-partidazo-cope-20261015_3455857.html"
+        },
         {
           "id": "e3827672441610393405",
           "title": "2ª PARTE | 14 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2024/07/09/668d11ca4e079.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/oasisdelibertad/audios/oasisdelibertad-10-20260411_3343411.html"
-        },
-        {
-          "id": "03001ac00306dd4d3534",
-          "title": "09 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Derrota 3-0 del Celta en Friburgo en la Europa League y goleada del Rayo ante el AEK (3-0) en Conference. Entrevistas a Isi, Carolina Marín y Aday Mara. Las protestas en Barcelona por el arbitraje ante el Atleti. Previa Real Madrid - Girona. The Americans.",
-          "publishedAt": "2026-04-09T23:50:00Z",
-          "duration": 7650,
-          "audio": "https://www.cope.es/uploads/2026/04/10/X-HNvzOL9h_nYArbXrcIG.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/09-abr-2026-partidazo-cope-20260410_3342534.html"
-        },
-        {
-          "id": "aa6c23bf3cf2ac7412e2",
-          "title": "3ª PARTE | 09 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Entrevista a Carolina Marín. Victoria de Alcaraz en Miami. The Americans, con la entrevista a Aday Mara.",
-          "publishedAt": "2026-04-09T23:45:00Z",
-          "duration": 3508,
-          "audio": "https://www.cope.es/uploads/2026/04/10/qGIG6d9GAQXzsMIdEQe3J.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-09-abr-2026-partidazo-cope-20260410_3342533.html"
         }
       ]
     },
