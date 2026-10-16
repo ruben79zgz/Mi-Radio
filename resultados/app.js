@@ -361,6 +361,21 @@
     };
   }
 
+  function mergeEventLists(base, fresh) {
+    const map = new Map();
+    for (const event of [...(base || []), ...(fresh || [])]) {
+      if (!event) continue;
+      const provider = String(event.provider || "unknown");
+      const id = String(event.id ?? "");
+      const home = normalizeTeamName(event?.homeTeam?.name);
+      const away = normalizeTeamName(event?.awayTeam?.name);
+      const stamp = String(event.startTimestamp || "");
+      const key = id ? provider + ":" + id : provider + ":" + home + ":" + away + ":" + stamp;
+      map.set(key,event);
+    }
+    return [...map.values()];
+  }
+
   function mergeLiveIntoDay(events) {
     if (!liveEvents.length) return events.slice();
     const map = new Map(events.map(e => [Number(e.id), e]));
@@ -502,6 +517,8 @@
 
   async function loadDay(force) {
     els.status.textContent = "Cargando partidos…";
+    let backupEvents = [];
+
     if (!force) {
       const cached = loadJson(CACHE_PREFIX + selectedDate, null);
       const ttl = selectedDate === todayIso() ? 90*1000 : 20*60*1000;
@@ -512,9 +529,27 @@
     }
 
     try {
+      const fallback = await loadFallback();
+      const block = fallback.days?.[selectedDate] || [];
+      if (Array.isArray(block) && block.length) {
+        backupEvents = block;
+        dayEvents = block;
+        const leagues = new Set(dayEvents.map(e => tournamentData(e).key)).size;
+        els.status.textContent = "Copia ESPN · " + dayEvents.length + " partidos · " + leagues + " competiciones";
+        if (fallback.updatedAt) {
+          const d = new Date(fallback.updatedAt);
+          if (!Number.isNaN(d.getTime())) els.updated.textContent = "Copia " + new Intl.DateTimeFormat("es-ES",{hour:"2-digit",minute:"2-digit"}).format(d);
+        }
+        render();
+      }
+    } catch (err) {
+      console.warn("Copia local no disponible",err);
+    }
+
+    try {
       const espnEvents = await fetchEspnDay(selectedDate);
       if (espnEvents.length) {
-        dayEvents = espnEvents;
+        dayEvents = mergeEventLists(backupEvents,espnEvents);
         localStorage.setItem(CACHE_PREFIX + selectedDate, JSON.stringify({savedAt:Date.now(),events:dayEvents}));
         const leagues = new Set(dayEvents.map(e => tournamentData(e).key)).size;
         els.status.textContent = "ESPN · " + dayEvents.length + " partidos · " + leagues + " competiciones";
@@ -540,6 +575,12 @@
       console.warn("Proveedor secundario no disponible",err);
     }
 
+    if (backupEvents.length) {
+      dayEvents = backupEvents;
+      render();
+      return;
+    }
+
     try {
       const fallback = await loadFallback();
       const block = fallback.days?.[selectedDate] || [];
@@ -560,14 +601,22 @@
 
   async function loadLive() {
     try {
+      let backupLive = [];
+      let backupDay = [];
+      try {
+        const fallback = await loadFallback();
+        backupLive = Array.isArray(fallback.live) ? fallback.live : [];
+        backupDay = Array.isArray(fallback.days?.[todayIso()]) ? fallback.days[todayIso()] : [];
+      } catch {}
+
       const allToday = await fetchEspnDay(todayIso());
-      const next = allToday.filter(isLive);
+      const next = mergeEventLists(backupLive,allToday.filter(isLive)).filter(isLive);
       processNotifications(next);
       liveEvents = next;
       els.liveBadge.textContent = String(next.length);
       els.liveBadge.classList.toggle("hidden", next.length === 0);
       if (selectedDate === todayIso() || view === "live" || view === "favorites") {
-        if (selectedDate === todayIso() && allToday.length) dayEvents = allToday;
+        if (selectedDate === todayIso() && allToday.length) dayEvents = mergeEventLists(backupDay,allToday);
         render();
       }
       return;
@@ -886,7 +935,7 @@
   });
 
   if ("serviceWorker" in navigator) {
-    window.addEventListener("load",() => navigator.serviceWorker.register("sw.js?v=1.1").catch(console.warn));
+    window.addEventListener("load",() => navigator.serviceWorker.register("sw.js?v=1.1.1").catch(console.warn));
   }
 
   updateNotifyButton();
