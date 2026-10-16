@@ -1,6 +1,8 @@
 window.MR_LEAGUES = [
   {code:"esp.1", name:"LaLiga", country:"España", alpha2:"ES", pinned:true},
   {code:"esp.2", name:"LaLiga Hypermotion", country:"España", alpha2:"ES", pinned:true},
+  {code:"esp.rfef.1", name:"Primera Federación · Grupo 1", country:"España", alpha2:"ES", provider:"thesportsdb", providerId:"5086"},
+  {code:"esp.rfef.2", name:"Primera Federación · Grupo 2", country:"España", alpha2:"ES", provider:"thesportsdb", providerId:"5088", pinned:true},
   {code:"esp.copa_del_rey", name:"Copa del Rey", country:"España", alpha2:"ES"},
   {code:"eng.1", name:"Premier League", country:"Inglaterra", alpha2:"GB", pinned:true},
   {code:"eng.2", name:"Championship", country:"Inglaterra", alpha2:"GB"},

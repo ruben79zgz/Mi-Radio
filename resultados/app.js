@@ -10,7 +10,9 @@
   const ESPN_STANDINGS_BASE = "https://site.api.espn.com/apis/v2/sports/soccer";
   const FALLBACK_URL = "data/scores.json";
   const CATALOG_URL = "data/catalog.json";
+  const ENGINE_URL = "data/engine.json";
   const FAVORITES_KEY = "mi-resultados-favorites-v1";
+  const DATA_CACHE_PREFIX = "mi-resultados-data-v1:";
   const LEAGUE_FAVORITES_KEY = "mi-resultados-league-favorites-v1";
   const LEAGUES = Array.isArray(window.MR_LEAGUES) ? window.MR_LEAGUES : [];
   const CACHE_PREFIX = "mi-resultados-day-v1:";
@@ -88,6 +90,8 @@
   let notificationEnabled = localStorage.getItem(NOTIFY_KEY) === "1";
   let catalogTeams = [];
   let catalogLoaded = false;
+  let engineData = null;
+  let engineLoaded = false;
   let leagueFavorites = new Set(loadJson(LEAGUE_FAVORITES_KEY, LEAGUES.filter(x => x.pinned).map(x => x.code)));
   let selectedLeague = null;
   let selectedTeam = null;
@@ -129,24 +133,111 @@
     }
   }
 
+  function readDataCache(key) {
+    try {
+      const raw=localStorage.getItem(DATA_CACHE_PREFIX+key);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function writeDataCache(key,data,ttlMs) {
+    try {
+      localStorage.setItem(DATA_CACHE_PREFIX+key,JSON.stringify({
+        savedAt:Date.now(),
+        expiresAt:Date.now()+ttlMs,
+        data
+      }));
+    } catch {}
+  }
+
+  async function fetchCachedJson(key,url,ttlMs,force=false,timeout=12000) {
+    const cached=readDataCache(key);
+    if(!force && cached && Number(cached.expiresAt||0)>Date.now()) return cached.data;
+    try{
+      const data=await fetchPublicJson(url,timeout);
+      writeDataCache(key,data,ttlMs);
+      return data;
+    }catch(err){
+      if(cached?.data) return cached.data;
+      throw err;
+    }
+  }
+
+  async function loadEngine(force=false) {
+    if(engineLoaded && !force) return engineData;
+    try{
+      const res=await fetch(ENGINE_URL+"?t="+Date.now(),{cache:"no-store"});
+      if(!res.ok) throw new Error("HTTP "+res.status);
+      engineData=await res.json();
+      engineLoaded=true;
+      return engineData;
+    }catch(err){
+      console.warn("Motor de datos no disponible",err);
+      return engineData;
+    }
+  }
+
+  function engineDataset(key) {
+    return engineData?.datasets?.[key] || null;
+  }
+
+  function engineEventsForDate(iso) {
+    if(!engineData?.datasets) return [];
+    const result=[];
+    for(const [key,ds] of Object.entries(engineData.datasets)){
+      if(!key.startsWith("schedule:") || !Array.isArray(ds?.data)) continue;
+      for(const event of ds.data){
+        const d=eventDate(event);
+        const eventIso=[d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");
+        if(eventIso===iso) result.push(event);
+      }
+    }
+    return result;
+  }
+
+  function datasetMetaHtml(ds) {
+    if(!ds) return "";
+    const updated=ds.updatedAt ? new Date(ds.updatedAt) : null;
+    const text=updated && !Number.isNaN(updated.getTime())
+      ? new Intl.DateTimeFormat("es-ES",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}).format(updated)
+      : "";
+    return '<div class="muted tiny" style="margin-top:8px">Fuente: '+esc(ds.source||"")+" · caché "+esc(String(ds.ttlMinutes||""))+" min"+(text?" · actualizada "+esc(text):"")+'</div>';
+  }
+
   async function loadCatalog(force = false) {
     if (catalogLoaded && !force) return catalogTeams;
+    const merged=[];
     try {
       const res = await fetch(CATALOG_URL + "?t=" + Date.now(),{cache:"no-store"});
       if (!res.ok) throw new Error("HTTP " + res.status);
       const data = await res.json();
-      catalogTeams = Array.isArray(data.teams) ? data.teams : [];
-      catalogLoaded = true;
+      if(Array.isArray(data.teams)) merged.push(...data.teams);
     } catch (err) {
-      console.warn("Catálogo de equipos no disponible",err);
-      if (!catalogTeams.length) {
-        const byName = new Map();
-        [...dayEvents,...liveEvents].forEach(e => [e.homeTeam,e.awayTeam].forEach(t => {
-          if (t?.id && t?.name) byName.set(normalizeLabel(t.name),t);
-        }));
-        catalogTeams = [...byName.values()];
-      }
+      console.warn("Catálogo ESPN no disponible",err);
     }
+
+    const engine=await loadEngine(force);
+    if(Array.isArray(engine?.teams)) merged.push(...engine.teams);
+
+    const byKey=new Map();
+    for(const team of merged){
+      if(!team?.name) continue;
+      const key=normalizeLabel(team.name)+"|"+String(team.leagueCode||"");
+      const current=byKey.get(key);
+      if(!current || (!current.logo && team.logo)) byKey.set(key,team);
+    }
+    catalogTeams=[...byKey.values()];
+
+    if (!catalogTeams.length) {
+      const byName = new Map();
+      [...dayEvents,...liveEvents].forEach(e => [e.homeTeam,e.awayTeam].forEach(t => {
+        if (t?.id && t?.name) byName.set(normalizeLabel(t.name),t);
+      }));
+      catalogTeams = [...byName.values()];
+    }
+    catalogLoaded=true;
     return catalogTeams;
   }
 
@@ -412,9 +503,14 @@
     return Number.isFinite(Number(v)) ? Number(v) : null;
   }
 
+  function eventScoreValue(event,score) {
+    if(eventStatusType(event)==="notstarted") return null;
+    return scoreValue(score);
+  }
+
   function scoreText(event) {
-    const h = scoreValue(event.homeScore);
-    const a = scoreValue(event.awayScore);
+    const h = eventScoreValue(event,event.homeScore);
+    const a = eventScoreValue(event,event.awayScore);
     return h == null || a == null ? "–" : h + " - " + a;
   }
 
@@ -505,7 +601,7 @@
   }
 
   function visibleEvents() {
-    let events = mergeLiveIntoDay(dayEvents);
+    let events = mergeEventLists(mergeLiveIntoDay(dayEvents),engineEventsForDate(selectedDate));
     if (view === "live") events = liveEvents.slice();
     if (view === "favorites") events = events.filter(e => favoriteInEvent(e) || leagueFavorites.has(tournamentData(e).leagueCode));
     if (query.trim()) {
@@ -569,9 +665,22 @@
   }
 
   async function fetchLeagueEvents(code,startIso,endIso) {
+    const league=leagueByCode(code);
+    if(league?.provider==="thesportsdb"){
+      await loadEngine(false);
+      const ds=engineDataset("schedule:"+code);
+      return Array.isArray(ds?.data) ? ds.data.slice() : [];
+    }
+
     const url = ESPN_SITE_BASE + "/" + encodeURIComponent(code) + "/scoreboard?dates=" +
-      encodeURIComponent(compactRange(startIso,endIso)) + "&limit=1000&t=" + Date.now();
-    const data = await fetchPublicJson(url,12000);
+      encodeURIComponent(compactRange(startIso,endIso)) + "&limit=1000";
+    const data = await fetchCachedJson(
+      "schedule:"+code+":"+startIso+":"+endIso,
+      url,
+      60*60*1000,
+      false,
+      12000
+    );
     return (Array.isArray(data.events) ? data.events : []).map(raw => {
       const event = normalizeEspnEvent(raw);
       if (!event) return null;
@@ -586,7 +695,7 @@
 
   function leagueMatchHtml(event) {
     const home=event.homeTeam||{}, away=event.awayTeam||{};
-    const h=scoreValue(event.homeScore), a=scoreValue(event.awayScore);
+    const h=eventScoreValue(event,event.homeScore), a=eventScoreValue(event,event.awayScore);
     return '<div class="league-match" data-league-event="' + esc(event.id) + '">' +
       '<div class="match-state ' + (isLive(event)?'live':(isFinished(event)?'finished':'')) + '">' + esc(clockText(event)) + '</div>' +
       '<div class="league-match-teams">' +
@@ -659,6 +768,17 @@
       }).join("") + '</tbody></table></div>';
   }
 
+  function renderEngineStandings(ds) {
+    const rows=Array.isArray(ds?.data)?ds.data:[];
+    if(!rows.length){
+      els.leagueStandingsView.innerHTML='<div class="muted">La clasificación todavía no está disponible desde esta fuente.</div>'+datasetMetaHtml(ds);
+      return;
+    }
+    els.leagueStandingsView.innerHTML='<div class="standings-wrap"><table class="standings-table"><thead><tr><th>#</th><th>Equipo</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>DG</th><th>PTS</th></tr></thead><tbody>' +
+      rows.map((row,index)=>'<tr><td>'+esc(row.rank ?? index+1)+'</td><td><span class="standings-team"><img src="'+esc(row.logo||"icon.svg")+'" alt="" onerror="this.src=\'icon.svg\'"><strong>'+esc(row.team||"Equipo")+'</strong></span></td><td>'+esc(row.played ?? "")+'</td><td>'+esc(row.wins ?? "")+'</td><td>'+esc(row.draws ?? "")+'</td><td>'+esc(row.losses ?? "")+'</td><td>'+esc(row.goalDifference ?? "")+'</td><td><strong>'+esc(row.points ?? "")+'</strong></td></tr>').join("") +
+      '</tbody></table></div>'+datasetMetaHtml(ds);
+  }
+
   function setLeagueTab(tab) {
     els.leagueTabs.forEach(btn=>btn.classList.toggle("active",btn.dataset.leagueTab===tab));
     els.leagueMatchesView.classList.toggle("hidden",tab!=="matches");
@@ -678,12 +798,30 @@
     setLeagueTab(tab);
     els.leagueDialog.showModal();
 
-    const start=shiftDate(todayIso(),-3);
-    const end=shiftDate(todayIso(),24);
+    const start=shiftDate(todayIso(),-45);
+    const end=shiftDate(todayIso(),90);
+
+    if(league.provider==="thesportsdb"){
+      await loadEngine(false);
+      const schedule=engineDataset("schedule:"+code);
+      const standings=engineDataset("standings:"+code);
+      if(Array.isArray(schedule?.data)) {
+        const now=Date.now()/1000;
+        const min=now-45*86400, max=now+90*86400;
+        renderLeagueSchedule(schedule.data.filter(e=>Number(e.startTimestamp||0)>=min && Number(e.startTimestamp||0)<=max));
+        els.leagueMatchesView.insertAdjacentHTML("beforeend",datasetMetaHtml(schedule));
+      } else {
+        els.leagueMatchesView.innerHTML='<div class="error-card">No se ha podido cargar el calendario cacheado de esta competición.</div>';
+      }
+      renderEngineStandings(standings);
+      return;
+    }
+
     const season=new Date().getFullYear();
+    const standingsUrl=ESPN_STANDINGS_BASE+"/"+encodeURIComponent(code)+"/standings?season="+season;
     const [eventsResult,standingsResult]=await Promise.allSettled([
       fetchLeagueEvents(code,start,end),
-      fetchPublicJson(ESPN_STANDINGS_BASE+"/"+encodeURIComponent(code)+"/standings?season="+season+"&t="+Date.now(),12000)
+      fetchCachedJson("standings:"+code+":"+season,standingsUrl,6*60*60*1000,false,12000)
     ]);
     if(eventsResult.status==="fulfilled") renderLeagueSchedule(eventsResult.value);
     else els.leagueMatchesView.innerHTML='<div class="error-card">No se han podido cargar los partidos de esta competición.</div>';
@@ -733,8 +871,8 @@
         const finished = isFinished(event);
         const home = event.homeTeam || {};
         const away = event.awayTeam || {};
-        const h = scoreValue(event.homeScore);
-        const a = scoreValue(event.awayScore);
+        const h = eventScoreValue(event,event.homeScore);
+        const a = eventScoreValue(event,event.awayScore);
         const fav = favoriteInEvent(event);
         const stateClass = live ? "live" : (finished ? "finished" : "");
         const scoreClass = live ? "live-score" : "";
@@ -1040,6 +1178,7 @@
 
   function normalizedCatalogTeam(team) {
     if(!team) return null;
+    const countryName=typeof team.country==="object" ? (team.country?.name || "") : (team.country || "");
     return {
       id:Number(team.id) || team.id,
       name:team.name || team.shortName || "Equipo",
@@ -1047,8 +1186,9 @@
       logo:team.logo || "",
       leagueCode:team.leagueCode || "",
       leagueName:team.leagueName || "",
-      country:{name:team.country || ""},
-      alpha2:team.alpha2 || ""
+      country:{name:countryName},
+      alpha2:team.alpha2 || "",
+      provider:team.provider || ""
     };
   }
 
@@ -1400,13 +1540,25 @@
     els.detailLineups.innerHTML='<div class="lineups">'+columns+'</div>';
   }
 
+  function matchSummaryTtl(event) {
+    if(isFinished(event)) return 365*24*60*60*1000;
+    if(isLive(event)) return 20*1000;
+    const delta=Number(event.startTimestamp||0)*1000-Date.now();
+    if(delta>2*60*60*1000) return 30*60*1000;
+    return 5*60*1000;
+  }
+
   async function loadEspnMatchSummary(event) {
     const code=event?.leagueCode || tournamentData(event).leagueCode;
     if(!code) throw new Error("Competición ESPN no identificada");
-    const url=ESPN_SITE_BASE+"/"+encodeURIComponent(code)+"/summary?event="+encodeURIComponent(event.id)+"&t="+Date.now();
-    const data=await fetchPublicJson(url,12000);
+    const url=ESPN_SITE_BASE+"/"+encodeURIComponent(code)+"/summary?event="+encodeURIComponent(event.id);
+    const data=await fetchCachedJson("summary:espn:"+code+":"+event.id,url,matchSummaryTtl(event),false,12000);
     renderEspnSummary(data);
-    renderEspnStats(data);
+    if(isLive(event) || isFinished(event)) {
+      renderEspnStats(data);
+    } else {
+      els.detailStats.innerHTML='<div class="muted">Las estadísticas de este partido aparecerán cuando comience. Los datos acumulados de temporada no se mostrarán aquí como si fueran estadísticas del encuentro.</div>';
+    }
     renderEspnLineups(data);
   }
 
@@ -1422,8 +1574,12 @@
     els.dialogScore.textContent = scoreText(event);
     els.dialogClock.textContent = clockText(event);
     els.dialogFavorite.textContent = favoriteInEvent(event) ? "★" : "☆";
+    const statsTab=els.detailTabs.find(btn=>btn.dataset.detail==="stats");
+    if(statsTab) statsTab.textContent=(isLive(event)||isFinished(event)) ? "Estadísticas" : "Previa";
     els.detailSummary.innerHTML = '<div class="muted">Cargando resumen…</div>';
-    els.detailStats.innerHTML = '<div class="muted">Cargando estadísticas…</div>';
+    els.detailStats.innerHTML = (isLive(event)||isFinished(event))
+      ? '<div class="muted">Cargando estadísticas…</div>'
+      : '<div class="muted">Cargando información previa…</div>';
     els.detailLineups.innerHTML = '<div class="muted">Cargando alineaciones…</div>';
     setDetail("summary");
     els.dialog.showModal();
@@ -1441,9 +1597,19 @@
     }
 
     if (event.provider === "thesportsdb") {
-      els.detailSummary.innerHTML = '<div class="muted">Este partido procede del proveedor de respaldo. El marcador y horario están disponibles.</div>';
-      els.detailStats.innerHTML = '<div class="muted">Estadísticas avanzadas no disponibles en el respaldo.</div>';
-      els.detailLineups.innerHTML = '<div class="muted">Alineaciones no disponibles en el respaldo.</div>';
+      const extra=event.extra || {};
+      const info=[
+        extra.venue ? ["Estadio",extra.venue] : null,
+        extra.round ? ["Jornada",extra.round] : null,
+        extra.tv ? ["TV / emisión",extra.tv] : null
+      ].filter(Boolean);
+      els.detailSummary.innerHTML = (info.length
+        ? '<div class="match-info-grid">'+info.map(([k,v])=>'<div class="match-info-item"><span>'+esc(k)+'</span><strong>'+esc(v)+'</strong></div>').join("")+'</div>'
+        : '') + '<div class="muted">Datos de calendario cacheados. La información rápida del partido se completará con otros proveedores cuando esté disponible.</div>';
+      els.detailStats.innerHTML = (isLive(event)||isFinished(event))
+        ? '<div class="muted">Todavía no tenemos estadísticas fiables de este encuentro desde este proveedor.</div>'
+        : '<div class="muted">Las estadísticas reales aparecerán cuando comience el partido; no mostramos datos de temporada como si fueran del encuentro.</div>';
+      els.detailLineups.innerHTML = '<div class="muted">Alineaciones pendientes de una fuente fiable para esta competición.</div>';
       return;
     }
 
@@ -1526,13 +1692,14 @@
   });
 
   if ("serviceWorker" in navigator) {
-    window.addEventListener("load",() => navigator.serviceWorker.register("sw.js?v=1.2.1").catch(console.warn));
+    window.addEventListener("load",() => navigator.serviceWorker.register("sw.js?v=1.3").catch(console.warn));
   }
 
   updateNotifyButton();
   renderDate();
   renderLeagueSidebar();
-  loadCatalog(false);
   els.matches.innerHTML = document.getElementById("loadingTemplate").innerHTML.repeat(2);
-  Promise.all([loadDay(false),loadLive()]).finally(scheduleLive);
+  Promise.all([loadCatalog(false),loadDay(false),loadLive()])
+    .then(()=>render())
+    .finally(scheduleLive);
 })();
