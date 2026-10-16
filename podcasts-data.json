@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T00:25:22.123028Z",
+  "updatedAt": "2026-10-16T07:11:09.368803Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -6621,6 +6621,17 @@
       "site": "http://www.podiumpodcast.com/la-escobula-de-la-brujula/",
       "feed": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/playlists/podcast.rss",
       "episodes": [
+        {
+          "id": "86ce5baccf5576b75490",
+          "title": "Programa 627: La cara oculta del balón",
+          "description": "¿Nos votas en los Premios iVoox 2026? ¡Solo es un minuto! https://go.ivoox.com/wv/premios26?c=5537 Escucha “La Estación Fantasma: El secreto de Gaudí” en tu app de podcasts favorita: https://pod.link/6817029511 ¿Cuánto hay de creencia, superstición y misterio detrás de un partido? ¿Qué relación tuvo la masonería con los orígenes del fútbol inglés? ¿Se han levantado estadios sobre antiguos cementerios? ¿Cómo llegó la maldición atribuida a Béla Guttmann a formar parte de la mitología del Benfica? Los investigadores Alberto Hernández y Álex Rodríguez, «El Kowalsky», autores de Misterios y enigmas del fútbol , nos acompañarán en un recorrido por las historias más insólitas del deporte rey: desde el célebre avistamiento de ovnis durante un encuentro en Florencia hasta las prácticas de brujería vinculadas a determinados equipos africanos. Hablaremos de la maldición de Quiricocho y de Dora, la bruja de Chascomús, a quien se atribuye un maleficio contra el Quilmes; de relatos de apariciones, como la «dama blanca de Orriols» y los fantasmas del estadio Heliodoro Rodríguez López, en Tenerife; y de los símbolos religiosos, mitológicos y demoniacos que lucen los escudos de algunos clubes famosos. Un programa para descubrir que, cuando el balón empieza a rodar, también entran en juego los miedos, las supersticiones de los jugadores, los rituales y las leyendas. Porque hay misterios que ni el VAR consigue resolver.",
+          "publishedAt": "2026-10-16T04:00:00Z",
+          "duration": 7482,
+          "audio": "https://traffic.omny.fm/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/85b9c87f-b75f-4cfb-b641-b4db00d40c4e/audio.mp3?utm_source=Podcast&in_playlist=fd25a142-cbf1-4f2b-9146-aead00a0bab7",
+          "fileSize": 119764349,
+          "image": "https://www.omnycontent.com/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/85b9c87f-b75f-4cfb-b641-b4db00d40c4e/image.jpg?t=1792050339&size=Large",
+          "link": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/programa-627-la-cara-oculta-del-bal-n"
+        },
         {
           "id": "23ceff222498cdc06951",
           "title": "Programa 626: Maldiciones: el precio del poder",
