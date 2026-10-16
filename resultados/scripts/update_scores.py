@@ -109,6 +109,10 @@ def clean_season_slug(slug: str) -> str:
     value = value.replace("-", " ").strip()
     if not value:
         return "Fútbol"
+    if value == "laliga":
+        return "LaLiga"
+    if value.startswith("laliga "):
+        return "LaLiga " + value[len("laliga "):]
     replacements = {
         "uefa": "UEFA",
         "fifa": "FIFA",
@@ -134,6 +138,8 @@ def clean_season_slug(slug: str) -> str:
 
 def country_from_slug(slug: str) -> str:
     low = (slug or "").lower()
+    if "laliga" in low or "copa-del-rey" in low or "liga-f" in low:
+        return "España"
     for word, country in COUNTRY_WORDS.items():
         if word in low:
             return country
@@ -317,6 +323,46 @@ def previous() -> dict:
         return {"updatedAt": None, "days": {}, "live": []}
 
 
+def fetch_espn_day(compact_day: str) -> list[dict]:
+    """Recorre páginas sin repetir datos. Si ESPN ignora page, se detiene al detectar duplicados."""
+    collected: list[dict] = []
+    seen_ids: set[str] = set()
+
+    for page in range(1, 8):
+        data = fetch_json(
+            ESPN_BASE,
+            {"dates": compact_day, "limit": "100", "page": str(page)},
+            attempts=3 if page == 1 else 2,
+        )
+        raw_events = data.get("events") if isinstance(data, dict) else None
+        if not isinstance(raw_events, list):
+            if page == 1:
+                raise RuntimeError("ESPN no devolvió una lista de eventos")
+            break
+
+        new_count = 0
+        for item in raw_events:
+            if not isinstance(item, dict):
+                continue
+            event_id = str(item.get("id") or "")
+            if event_id and event_id in seen_ids:
+                continue
+            normalized = normalize_espn_event(item)
+            if not normalized:
+                continue
+            if event_id:
+                seen_ids.add(event_id)
+            collected.append(normalized)
+            new_count += 1
+
+        print(f"ESPN página {page}: {len(raw_events)} recibidos · {new_count} nuevos")
+
+        if not raw_events or new_count == 0 or len(raw_events) < 100:
+            break
+
+    return collected
+
+
 def main() -> int:
     now = datetime.now(timezone.utc)
     today = now.astimezone(MADRID).date().isoformat()
@@ -327,28 +373,11 @@ def main() -> int:
     events: list[dict] = []
 
     try:
-        data = fetch_json(
-            ESPN_BASE,
-            {"dates": compact_day, "limit": "1000"},
-            attempts=3,
-        )
-        raw_events = data.get("events") if isinstance(data, dict) else None
-        if not isinstance(raw_events, list):
-            raise RuntimeError("ESPN no devolvió una lista de eventos")
-        events = [
-            normalized
-            for item in raw_events
-            if isinstance(item, dict)
-            for normalized in [normalize_espn_event(item)]
-            if normalized
-        ]
+        events = fetch_espn_day(compact_day)
         if not events:
             raise RuntimeError("ESPN devolvió 0 partidos")
         provider = "ESPN public scoreboard"
-        print(f"ESPN OK: {len(events)} partidos")
-        if raw_events:
-            print("ESPN sample keys:", sorted(raw_events[0].keys()))
-            print("ESPN sample season:", json.dumps(raw_events[0].get("season"), ensure_ascii=False)[:500])
+        print(f"ESPN OK: {len(events)} partidos tras paginación")
     except Exception as exc:
         print(f"ERROR ESPN: {exc}")
 
