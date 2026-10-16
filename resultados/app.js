@@ -503,9 +503,14 @@
     return Number.isFinite(Number(v)) ? Number(v) : null;
   }
 
+  function eventScoreValue(event,score) {
+    if(eventStatusType(event)==="notstarted") return null;
+    return scoreValue(score);
+  }
+
   function scoreText(event) {
-    const h = scoreValue(event.homeScore);
-    const a = scoreValue(event.awayScore);
+    const h = eventScoreValue(event,event.homeScore);
+    const a = eventScoreValue(event,event.awayScore);
     return h == null || a == null ? "–" : h + " - " + a;
   }
 
@@ -690,7 +695,7 @@
 
   function leagueMatchHtml(event) {
     const home=event.homeTeam||{}, away=event.awayTeam||{};
-    const h=scoreValue(event.homeScore), a=scoreValue(event.awayScore);
+    const h=eventScoreValue(event,event.homeScore), a=eventScoreValue(event,event.awayScore);
     return '<div class="league-match" data-league-event="' + esc(event.id) + '">' +
       '<div class="match-state ' + (isLive(event)?'live':(isFinished(event)?'finished':'')) + '">' + esc(clockText(event)) + '</div>' +
       '<div class="league-match-teams">' +
@@ -866,8 +871,8 @@
         const finished = isFinished(event);
         const home = event.homeTeam || {};
         const away = event.awayTeam || {};
-        const h = scoreValue(event.homeScore);
-        const a = scoreValue(event.awayScore);
+        const h = eventScoreValue(event,event.homeScore);
+        const a = eventScoreValue(event,event.awayScore);
         const fav = favoriteInEvent(event);
         const stateClass = live ? "live" : (finished ? "finished" : "");
         const scoreClass = live ? "live-score" : "";
@@ -1173,6 +1178,7 @@
 
   function normalizedCatalogTeam(team) {
     if(!team) return null;
+    const countryName=typeof team.country==="object" ? (team.country?.name || "") : (team.country || "");
     return {
       id:Number(team.id) || team.id,
       name:team.name || team.shortName || "Equipo",
@@ -1180,8 +1186,9 @@
       logo:team.logo || "",
       leagueCode:team.leagueCode || "",
       leagueName:team.leagueName || "",
-      country:{name:team.country || ""},
-      alpha2:team.alpha2 || ""
+      country:{name:countryName},
+      alpha2:team.alpha2 || "",
+      provider:team.provider || ""
     };
   }
 
@@ -1533,13 +1540,25 @@
     els.detailLineups.innerHTML='<div class="lineups">'+columns+'</div>';
   }
 
+  function matchSummaryTtl(event) {
+    if(isFinished(event)) return 365*24*60*60*1000;
+    if(isLive(event)) return 20*1000;
+    const delta=Number(event.startTimestamp||0)*1000-Date.now();
+    if(delta>2*60*60*1000) return 30*60*1000;
+    return 5*60*1000;
+  }
+
   async function loadEspnMatchSummary(event) {
     const code=event?.leagueCode || tournamentData(event).leagueCode;
     if(!code) throw new Error("Competición ESPN no identificada");
-    const url=ESPN_SITE_BASE+"/"+encodeURIComponent(code)+"/summary?event="+encodeURIComponent(event.id)+"&t="+Date.now();
-    const data=await fetchPublicJson(url,12000);
+    const url=ESPN_SITE_BASE+"/"+encodeURIComponent(code)+"/summary?event="+encodeURIComponent(event.id);
+    const data=await fetchCachedJson("summary:espn:"+code+":"+event.id,url,matchSummaryTtl(event),false,12000);
     renderEspnSummary(data);
-    renderEspnStats(data);
+    if(isLive(event) || isFinished(event)) {
+      renderEspnStats(data);
+    } else {
+      els.detailStats.innerHTML='<div class="muted">Las estadísticas de este partido aparecerán cuando comience. Los datos acumulados de temporada no se mostrarán aquí como si fueran estadísticas del encuentro.</div>';
+    }
     renderEspnLineups(data);
   }
 
@@ -1555,8 +1574,12 @@
     els.dialogScore.textContent = scoreText(event);
     els.dialogClock.textContent = clockText(event);
     els.dialogFavorite.textContent = favoriteInEvent(event) ? "★" : "☆";
+    const statsTab=els.detailTabs.find(btn=>btn.dataset.detail==="stats");
+    if(statsTab) statsTab.textContent=(isLive(event)||isFinished(event)) ? "Estadísticas" : "Previa";
     els.detailSummary.innerHTML = '<div class="muted">Cargando resumen…</div>';
-    els.detailStats.innerHTML = '<div class="muted">Cargando estadísticas…</div>';
+    els.detailStats.innerHTML = (isLive(event)||isFinished(event))
+      ? '<div class="muted">Cargando estadísticas…</div>'
+      : '<div class="muted">Cargando información previa…</div>';
     els.detailLineups.innerHTML = '<div class="muted">Cargando alineaciones…</div>';
     setDetail("summary");
     els.dialog.showModal();
@@ -1574,9 +1597,19 @@
     }
 
     if (event.provider === "thesportsdb") {
-      els.detailSummary.innerHTML = '<div class="muted">Este partido procede del proveedor de respaldo. El marcador y horario están disponibles.</div>';
-      els.detailStats.innerHTML = '<div class="muted">Estadísticas avanzadas no disponibles en el respaldo.</div>';
-      els.detailLineups.innerHTML = '<div class="muted">Alineaciones no disponibles en el respaldo.</div>';
+      const extra=event.extra || {};
+      const info=[
+        extra.venue ? ["Estadio",extra.venue] : null,
+        extra.round ? ["Jornada",extra.round] : null,
+        extra.tv ? ["TV / emisión",extra.tv] : null
+      ].filter(Boolean);
+      els.detailSummary.innerHTML = (info.length
+        ? '<div class="match-info-grid">'+info.map(([k,v])=>'<div class="match-info-item"><span>'+esc(k)+'</span><strong>'+esc(v)+'</strong></div>').join("")+'</div>'
+        : '') + '<div class="muted">Datos de calendario cacheados. La información rápida del partido se completará con otros proveedores cuando esté disponible.</div>';
+      els.detailStats.innerHTML = (isLive(event)||isFinished(event))
+        ? '<div class="muted">Todavía no tenemos estadísticas fiables de este encuentro desde este proveedor.</div>'
+        : '<div class="muted">Las estadísticas reales aparecerán cuando comience el partido; no mostramos datos de temporada como si fueran del encuentro.</div>';
+      els.detailLineups.innerHTML = '<div class="muted">Alineaciones pendientes de una fuente fiable para esta competición.</div>';
       return;
     }
 
