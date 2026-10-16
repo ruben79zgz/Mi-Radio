@@ -1,10 +1,11 @@
 (() => {
   "use strict";
 
-  const API_BASES = [
+  const SOFA_BASES = [
     "https://api.sofascore.com/api/v1",
     "https://www.sofascore.com/api/v1"
   ];
+  const ESPN_SCOREBOARD = "https://site.api.espn.com/apis/site/v2/sports/soccer/all/scoreboard";
   const FALLBACK_URL = "data/scores.json";
   const FAVORITES_KEY = "mi-resultados-favorites-v1";
   const CACHE_PREFIX = "mi-resultados-day-v1:";
@@ -131,7 +132,7 @@
 
   async function fetchJson(path, options) {
     let lastErr;
-    for (const base of API_BASES) {
+    for (const base of SOFA_BASES) {
       try {
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), 9000);
@@ -156,6 +157,122 @@
     const res = await fetch(FALLBACK_URL + "?t=" + Date.now(), {cache:"no-store"});
     if (!res.ok) throw new Error("Fallback " + res.status);
     return await res.json();
+  }
+
+  function espnCompactDate(iso) {
+    return String(iso || "").replaceAll("-","");
+  }
+
+  function espnLeagueName(slug) {
+    let value = String(slug || "").replace(/^\d{4}(?:-\d{2,4})?-/, "").replaceAll("-"," ").trim();
+    if (!value) return "Fútbol";
+    const acronyms = new Map([
+      ["uefa","UEFA"],["fifa","FIFA"],["afc","AFC"],["concacaf","CONCACAF"],
+      ["mls","MLS"],["nwsl","NWSL"]
+    ]);
+    return value.split(/\s+/).map(word => acronyms.get(word.toLowerCase()) || (word.charAt(0).toUpperCase()+word.slice(1))).join(" ")
+      .replace(/\bLiga Mx\b/g,"Liga MX");
+  }
+
+  function espnCountry(slug) {
+    const low = String(slug || "").toLowerCase();
+    const pairs = [
+      ["english","Inglaterra"],["spanish","España"],["german","Alemania"],["italian","Italia"],
+      ["french","Francia"],["portuguese","Portugal"],["dutch","Países Bajos"],["belgian","Bélgica"],
+      ["scottish","Escocia"],["turkish","Turquía"],["greek","Grecia"],["swiss","Suiza"],
+      ["austrian","Austria"],["polish","Polonia"],["danish","Dinamarca"],["swedish","Suecia"],
+      ["norwegian","Noruega"],["russian","Rusia"],["ukrainian","Ucrania"],["argentine","Argentina"],
+      ["brazilian","Brasil"],["mexican","México"],["colombian","Colombia"],["chilean","Chile"],
+      ["peruvian","Perú"],["uruguayan","Uruguay"],["paraguayan","Paraguay"],["ecuadorian","Ecuador"],
+      ["american","Estados Unidos"],["canadian","Canadá"],["australian","Australia"],["japanese","Japón"],
+      ["chinese","China"],["saudi","Arabia Saudí"],["indian","India"],["korean","Corea del Sur"]
+    ];
+    for (const [needle,country] of pairs) if (low.includes(needle)) return country;
+    return "Internacional";
+  }
+
+  function espnStatus(raw) {
+    const info = raw?.status?.type || {};
+    const state = String(info.state || "").toLowerCase();
+    const detail = String(info.detail || info.shortDetail || info.description || "");
+    if (info.completed || state === "post") return {type:"finished",description:detail || "Final"};
+    if (state === "in") return {type:"inprogress",description:detail || "En directo"};
+    const low = detail.toLowerCase();
+    if (low.includes("postpon")) return {type:"postponed",description:detail};
+    if (low.includes("cancel")) return {type:"canceled",description:detail};
+    if (low.includes("suspend") || low.includes("interrupt")) return {type:"interrupted",description:detail};
+    return {type:"notstarted",description:detail || "Programado"};
+  }
+
+  function espnScore(value) {
+    if (value == null || value === "") return null;
+    const n = Number(value);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  function normalizeEspnEvent(raw) {
+    const comp = raw?.competitions?.[0];
+    if (!comp) return null;
+    const competitors = Array.isArray(comp.competitors) ? comp.competitors : [];
+    const home = competitors.find(x => x.homeAway === "home");
+    const away = competitors.find(x => x.homeAway === "away");
+    if (!home || !away) return null;
+
+    const makeTeam = side => {
+      const team = side?.team || {};
+      const logo = team.logo || team?.logos?.[0]?.href || "";
+      return {
+        id:Number(team.id) || team.id,
+        name:team.displayName || team.shortDisplayName || team.name || "Equipo",
+        logo,
+        country:{}
+      };
+    };
+
+    const slug = String(raw?.season?.slug || "");
+    const country = espnCountry(slug);
+    const homeTeam = makeTeam(home);
+    const awayTeam = makeTeam(away);
+    if (country !== "Internacional") {
+      homeTeam.country = {name:country};
+      awayTeam.country = {name:country};
+    }
+
+    return {
+      id:Number(raw.id) || raw.id,
+      provider:"espn",
+      startTimestamp:Math.floor(new Date(raw.date || 0).getTime()/1000) || 0,
+      status:espnStatus(raw),
+      tournament:{
+        id:slug || espnLeagueName(slug),
+        name:espnLeagueName(slug),
+        priority:500,
+        uniqueTournament:{id:slug || espnLeagueName(slug),name:espnLeagueName(slug)},
+        category:{name:country}
+      },
+      homeTeam,
+      awayTeam,
+      homeScore:{current:espnScore(home.score)},
+      awayScore:{current:espnScore(away.score)},
+      time:{
+        displayClock:raw?.status?.displayClock || "",
+        period:raw?.status?.period ?? null
+      }
+    };
+  }
+
+  async function fetchEspnDay(iso) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(),9000);
+    try {
+      const url = ESPN_SCOREBOARD + "?dates=" + encodeURIComponent(espnCompactDate(iso)) + "&limit=1000&t=" + Date.now();
+      const res = await fetch(url,{cache:"no-store",mode:"cors",signal:controller.signal,headers:{"Accept":"application/json"}});
+      if (!res.ok) throw new Error("ESPN HTTP " + res.status);
+      const data = await res.json();
+      return (Array.isArray(data.events) ? data.events : []).map(normalizeEspnEvent).filter(Boolean);
+    } finally {
+      clearTimeout(timer);
+    }
   }
 
   function eventDate(event) {
@@ -387,7 +504,7 @@
     els.status.textContent = "Cargando partidos…";
     if (!force) {
       const cached = loadJson(CACHE_PREFIX + selectedDate, null);
-      const ttl = selectedDate === todayIso() ? 2*60*1000 : 30*60*1000;
+      const ttl = selectedDate === todayIso() ? 90*1000 : 20*60*1000;
       if (cached && Date.now()-Number(cached.savedAt||0) < ttl && Array.isArray(cached.events)) {
         dayEvents = cached.events;
         render();
@@ -395,22 +512,44 @@
     }
 
     try {
+      const espnEvents = await fetchEspnDay(selectedDate);
+      if (espnEvents.length) {
+        dayEvents = espnEvents;
+        localStorage.setItem(CACHE_PREFIX + selectedDate, JSON.stringify({savedAt:Date.now(),events:dayEvents}));
+        const leagues = new Set(dayEvents.map(e => tournamentData(e).key)).size;
+        els.status.textContent = "ESPN · " + dayEvents.length + " partidos · " + leagues + " competiciones";
+        els.updated.textContent = "Actualizado " + new Intl.DateTimeFormat("es-ES",{hour:"2-digit",minute:"2-digit",second:"2-digit"}).format(new Date());
+        render();
+        return;
+      }
+    } catch (err) {
+      console.warn("ESPN directo no disponible",err);
+    }
+
+    try {
       const data = await fetchJson("/sport/football/scheduled-events/" + selectedDate);
       dayEvents = Array.isArray(data.events) ? data.events : [];
-      localStorage.setItem(CACHE_PREFIX + selectedDate, JSON.stringify({savedAt:Date.now(),events:dayEvents}));
-      els.status.textContent = dayEvents.length + " partidos";
-      els.updated.textContent = "Actualizado " + new Intl.DateTimeFormat("es-ES",{hour:"2-digit",minute:"2-digit",second:"2-digit"}).format(new Date());
-      render();
-      return;
+      if (dayEvents.length) {
+        localStorage.setItem(CACHE_PREFIX + selectedDate, JSON.stringify({savedAt:Date.now(),events:dayEvents}));
+        els.status.textContent = "Proveedor secundario · " + dayEvents.length + " partidos";
+        els.updated.textContent = "Actualizado " + new Intl.DateTimeFormat("es-ES",{hour:"2-digit",minute:"2-digit",second:"2-digit"}).format(new Date());
+        render();
+        return;
+      }
     } catch (err) {
-      console.warn("Proveedor directo no disponible",err);
+      console.warn("Proveedor secundario no disponible",err);
     }
 
     try {
       const fallback = await loadFallback();
       const block = fallback.days?.[selectedDate] || [];
       dayEvents = Array.isArray(block) ? block : [];
-      els.status.textContent = "Datos de respaldo · " + dayEvents.length + " partidos";
+      const source = fallback.source ? String(fallback.source).replace(" public scoreboard","") : "respaldo";
+      els.status.textContent = source + " · " + dayEvents.length + " partidos";
+      if (fallback.updatedAt) {
+        const d = new Date(fallback.updatedAt);
+        if (!Number.isNaN(d.getTime())) els.updated.textContent = "Copia " + new Intl.DateTimeFormat("es-ES",{hour:"2-digit",minute:"2-digit"}).format(d);
+      }
       render();
     } catch (err) {
       console.warn("Fallback no disponible",err);
@@ -421,6 +560,22 @@
 
   async function loadLive() {
     try {
+      const allToday = await fetchEspnDay(todayIso());
+      const next = allToday.filter(isLive);
+      processNotifications(next);
+      liveEvents = next;
+      els.liveBadge.textContent = String(next.length);
+      els.liveBadge.classList.toggle("hidden", next.length === 0);
+      if (selectedDate === todayIso() || view === "live" || view === "favorites") {
+        if (selectedDate === todayIso() && allToday.length) dayEvents = allToday;
+        render();
+      }
+      return;
+    } catch (err) {
+      console.warn("ESPN directo no disponible",err);
+    }
+
+    try {
       const data = await fetchJson("/sport/football/events/live");
       const next = Array.isArray(data.events) ? data.events : [];
       processNotifications(next);
@@ -430,7 +585,7 @@
       if (selectedDate === todayIso() || view === "live" || view === "favorites") render();
       return;
     } catch (err) {
-      console.warn("Directo no disponible",err);
+      console.warn("Directo secundario no disponible",err);
     }
 
     try {
@@ -659,10 +814,11 @@
     setDetail("summary");
     els.dialog.showModal();
 
-    if (event.provider === "thesportsdb") {
-      els.detailSummary.innerHTML = '<div class="muted">Este partido se está mostrando desde el proveedor de respaldo. El marcador y horario están disponibles, pero los detalles avanzados se cargarán cuando vuelva el proveedor principal.</div>';
-      els.detailStats.innerHTML = '<div class="muted">Estadísticas avanzadas no disponibles en el respaldo gratuito.</div>';
-      els.detailLineups.innerHTML = '<div class="muted">Alineaciones no disponibles en el respaldo gratuito.</div>';
+    if (event.provider === "thesportsdb" || event.provider === "espn") {
+      const providerName = event.provider === "espn" ? "ESPN" : "el proveedor de respaldo";
+      els.detailSummary.innerHTML = '<div class="muted">Este partido procede de ' + providerName + '. En esta V1.1 priorizamos tener mucha más cobertura de partidos. Las incidencias avanzadas se conectarán en la siguiente fase.</div>';
+      els.detailStats.innerHTML = '<div class="muted">Estadísticas avanzadas: próxima fase.</div>';
+      els.detailLineups.innerHTML = '<div class="muted">Alineaciones: próxima fase.</div>';
       return;
     }
 
@@ -730,7 +886,7 @@
   });
 
   if ("serviceWorker" in navigator) {
-    window.addEventListener("load",() => navigator.serviceWorker.register("sw.js?v=1.0.1").catch(console.warn));
+    window.addEventListener("load",() => navigator.serviceWorker.register("sw.js?v=1.1").catch(console.warn));
   }
 
   updateNotifyButton();
