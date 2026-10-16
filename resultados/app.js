@@ -101,8 +101,23 @@
       .replaceAll("'","&#039;");
   }
 
-  function teamLogo(id) {
+  function teamLogo(team) {
+    if (team && typeof team === "object" && team.logo) return team.logo;
+    const id = team && typeof team === "object" ? team.id : team;
     return id ? "https://img.sofascore.com/api/v1/team/" + encodeURIComponent(id) + "/image" : "icon.svg";
+  }
+
+  function normalizeTeamName(value) {
+    return String(value || "").trim().toLowerCase();
+  }
+
+  function favoriteTeam(team) {
+    if (!team) return null;
+    const id = Number(team.id);
+    if (Number.isFinite(id) && favorites.has(id)) return favorites.get(id);
+    const name = normalizeTeamName(team.name || team.shortName);
+    if (!name) return null;
+    return [...favorites.values()].find(item => normalizeTeamName(item.name) === name) || null;
   }
 
   function countryFlag(alpha2) {
@@ -203,7 +218,7 @@
   }
 
   function favoriteInEvent(event) {
-    return favorites.has(Number(event?.homeTeam?.id)) || favorites.has(Number(event?.awayTeam?.id));
+    return Boolean(favoriteTeam(event?.homeTeam) || favoriteTeam(event?.awayTeam));
   }
 
   function eventSearchText(event) {
@@ -303,8 +318,8 @@
         return '<button class="match-row ' + (live?'live ':'') + (fav?'favorite':'') + '" type="button" data-event-id="' + esc(event.id) + '">' +
           '<div class="match-state ' + stateClass + '">' + esc(clockText(event)) + '</div>' +
           '<div class="teams">' +
-            '<div class="team-line"><img src="' + teamLogo(home.id) + '" alt="" loading="lazy" onerror="this.src=\'icon.svg\'"><span>' + esc(home.name || "Local") + '</span></div>' +
-            '<div class="team-line"><img src="' + teamLogo(away.id) + '" alt="" loading="lazy" onerror="this.src=\'icon.svg\'"><span>' + esc(away.name || "Visitante") + '</span></div>' +
+            '<div class="team-line"><img src="' + teamLogo(home) + '" alt="" loading="lazy" onerror="this.src=\'icon.svg\'"><span>' + esc(home.name || "Local") + '</span></div>' +
+            '<div class="team-line"><img src="' + teamLogo(away) + '" alt="" loading="lazy" onerror="this.src=\'icon.svg\'"><span>' + esc(away.name || "Visitante") + '</span></div>' +
           '</div>' +
           '<div class="score ' + scoreClass + '"><span>' + (h==null?'':h) + '</span><span>' + (a==null?'':a) + '</span></div>' +
           '<span class="row-star ' + (fav?'active':'') + '" data-star-event="' + esc(event.id) + '">★</span>' +
@@ -332,11 +347,11 @@
         const id = Number(star.dataset.starEvent);
         const event = events.find(x => Number(x.id) === id);
         if (!event) return;
-        const homeFav = favorites.has(Number(event.homeTeam?.id));
-        const awayFav = favorites.has(Number(event.awayTeam?.id));
+        const homeFav = favoriteTeam(event.homeTeam);
+        const awayFav = favoriteTeam(event.awayTeam);
         if (homeFav || awayFav) {
-          if (homeFav) favorites.delete(Number(event.homeTeam.id));
-          if (awayFav) favorites.delete(Number(event.awayTeam.id));
+          if (homeFav) favorites.delete(Number(homeFav.id));
+          if (awayFav) favorites.delete(Number(awayFav.id));
         } else if (event.homeTeam?.id) {
           addFavorite(event.homeTeam);
         }
@@ -358,6 +373,13 @@
 
   function removeFavorite(teamId) {
     favorites.delete(Number(teamId));
+    saveFavorites();
+  }
+
+  function removeFavoriteTeam(team) {
+    const match = favoriteTeam(team);
+    if (!match) return;
+    favorites.delete(Number(match.id));
     saveFavorites();
   }
 
@@ -462,7 +484,7 @@
       const reg = await navigator.serviceWorker.ready;
       await reg.showNotification(title,{
         body,
-        icon:teamLogo(event?.homeTeam?.id),
+        icon:teamLogo(event?.homeTeam),
         badge:"icon.svg",
         tag:"match-" + String(event?.id || Date.now()),
         data:{eventId:event?.id || null,url:"./"}
@@ -537,7 +559,7 @@
       const active = favorites.has(Number(team.id));
       const country = team?.country?.name || "";
       return '<div class="team-search-item">' +
-        '<img src="' + teamLogo(team.id) + '" alt="" onerror="this.src=\'icon.svg\'">' +
+        '<img src="' + teamLogo(team) + '" alt="" onerror="this.src=\'icon.svg\'">' +
         '<div><strong>' + esc(team.name || team.shortName || "Equipo") + '</strong><span>' + esc(country) + '</span></div>' +
         '<button class="star-btn" type="button" data-team-id="' + esc(team.id) + '">' + (active?"★":"☆") + '</button>' +
       '</div>';
@@ -626,8 +648,8 @@
     els.dialogStatus.textContent = new Intl.DateTimeFormat("es-ES",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}).format(eventDate(event));
     els.homeName.textContent = event.homeTeam?.name || "Local";
     els.awayName.textContent = event.awayTeam?.name || "Visitante";
-    els.homeLogo.src = teamLogo(event.homeTeam?.id);
-    els.awayLogo.src = teamLogo(event.awayTeam?.id);
+    els.homeLogo.src = teamLogo(event.homeTeam);
+    els.awayLogo.src = teamLogo(event.awayTeam);
     els.dialogScore.textContent = scoreText(event);
     els.dialogClock.textContent = clockText(event);
     els.dialogFavorite.textContent = favoriteInEvent(event) ? "★" : "☆";
@@ -636,6 +658,13 @@
     els.detailLineups.innerHTML = '<div class="muted">Cargando alineaciones…</div>';
     setDetail("summary");
     els.dialog.showModal();
+
+    if (event.provider === "thesportsdb") {
+      els.detailSummary.innerHTML = '<div class="muted">Este partido se está mostrando desde el proveedor de respaldo. El marcador y horario están disponibles, pero los detalles avanzados se cargarán cuando vuelva el proveedor principal.</div>';
+      els.detailStats.innerHTML = '<div class="muted">Estadísticas avanzadas no disponibles en el respaldo gratuito.</div>';
+      els.detailLineups.innerHTML = '<div class="muted">Alineaciones no disponibles en el respaldo gratuito.</div>';
+      return;
+    }
 
     const id = Number(event.id);
     const jobs = await Promise.allSettled([
@@ -681,8 +710,8 @@
     const home = selectedEvent.homeTeam;
     const away = selectedEvent.awayTeam;
     if (favoriteInEvent(selectedEvent)) {
-      if (home?.id) removeFavorite(home.id);
-      if (away?.id) removeFavorite(away.id);
+      removeFavoriteTeam(home);
+      removeFavoriteTeam(away);
     } else if (home?.id) {
       addFavorite(home);
     }
