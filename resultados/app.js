@@ -88,7 +88,7 @@
   let notificationEnabled = localStorage.getItem(NOTIFY_KEY) === "1";
   let catalogTeams = [];
   let catalogLoaded = false;
-  let leagueFavorites = new Set(loadJson(LEAGUE_FAVORITES_KEY, []));
+  let leagueFavorites = new Set(loadJson(LEAGUE_FAVORITES_KEY, LEAGUES.filter(x => x.pinned).map(x => x.code)));
   let selectedLeague = null;
   let selectedTeam = null;
 
@@ -517,6 +517,178 @@
       const bl = isLive(b) ? 0 : (isFinished(b) ? 2 : 1);
       return al-bl || Number(a.startTimestamp||0)-Number(b.startTimestamp||0);
     });
+  }
+
+
+  function toggleLeagueFavorite(code) {
+    if (!code) return;
+    if (leagueFavorites.has(code)) leagueFavorites.delete(code);
+    else leagueFavorites.add(code);
+    saveLeagueFavorites();
+    renderLeagueSidebar();
+    if (selectedLeague?.code === code && els.leagueFavoriteBtn) {
+      els.leagueFavoriteBtn.textContent = leagueFavorites.has(code) ? "★" : "☆";
+    }
+  }
+
+  function leagueRowHtml(league) {
+    const active = leagueFavorites.has(league.code);
+    return '<div class="sidebar-league-row">' +
+      '<button class="league-star ' + (active?'active':'') + '" type="button" data-star-league="' + esc(league.code) + '">' + (active?'★':'☆') + '</button>' +
+      '<button class="sidebar-league-open" type="button" data-open-league="' + esc(league.code) + '"><strong>' + esc(league.name) + '</strong><span>' + esc(league.country) + '</span></button>' +
+      '<button class="league-table-link" type="button" data-standings-league="' + esc(league.code) + '">Tabla</button>' +
+    '</div>';
+  }
+
+  function bindLeagueButtons(root) {
+    if (!root) return;
+    root.querySelectorAll("[data-star-league]").forEach(btn => btn.addEventListener("click", e => {
+      e.stopPropagation();
+      toggleLeagueFavorite(btn.dataset.starLeague);
+    }));
+    root.querySelectorAll("[data-open-league]").forEach(btn => btn.addEventListener("click", () => openLeague(btn.dataset.openLeague,"matches")));
+    root.querySelectorAll("[data-standings-league]").forEach(btn => btn.addEventListener("click", () => openLeague(btn.dataset.standingsLeague,"standings")));
+  }
+
+  function renderLeagueSidebar() {
+    if (!els.favoriteLeagues || !els.allLeagues) return;
+    const filter = normalizeLabel(els.leagueSearchInput?.value || "");
+    const pinned = LEAGUES.filter(l => leagueFavorites.has(l.code));
+    const all = LEAGUES.filter(l => !filter || normalizeLabel(l.name+" "+l.country).includes(filter));
+
+    els.favoriteLeagues.innerHTML = pinned.length
+      ? pinned.map(leagueRowHtml).join("")
+      : '<div class="muted tiny">Pulsa ☆ en una liga para fijarla.</div>';
+    els.allLeagues.innerHTML = all.map(leagueRowHtml).join("");
+    bindLeagueButtons(els.favoriteLeagues);
+    bindLeagueButtons(els.allLeagues);
+  }
+
+  function compactRange(startIso,endIso) {
+    return espnCompactDate(startIso) + "-" + espnCompactDate(endIso);
+  }
+
+  async function fetchLeagueEvents(code,startIso,endIso) {
+    const url = ESPN_SITE_BASE + "/" + encodeURIComponent(code) + "/scoreboard?dates=" +
+      encodeURIComponent(compactRange(startIso,endIso)) + "&limit=1000&t=" + Date.now();
+    const data = await fetchPublicJson(url,12000);
+    return (Array.isArray(data.events) ? data.events : []).map(raw => {
+      const event = normalizeEspnEvent(raw);
+      if (!event) return null;
+      const meta = leagueByCode(code);
+      event.leagueCode = code;
+      event.tournament.name = meta?.name || event.tournament.name;
+      event.tournament.uniqueTournament.name = meta?.name || event.tournament.uniqueTournament.name;
+      event.tournament.category = {name:meta?.country || event.tournament.category?.name || "Internacional",alpha2:meta?.alpha2 || ""};
+      return event;
+    }).filter(Boolean);
+  }
+
+  function leagueMatchHtml(event) {
+    const home=event.homeTeam||{}, away=event.awayTeam||{};
+    const h=scoreValue(event.homeScore), a=scoreValue(event.awayScore);
+    return '<div class="league-match" data-league-event="' + esc(event.id) + '">' +
+      '<div class="match-state ' + (isLive(event)?'live':(isFinished(event)?'finished':'')) + '">' + esc(clockText(event)) + '</div>' +
+      '<div class="league-match-teams">' +
+        '<div class="league-match-team"><img src="' + teamLogo(home) + '" alt="" onerror="this.src=\'icon.svg\'"><span>' + esc(home.name||"Local") + '</span></div>' +
+        '<div class="league-match-team"><img src="' + teamLogo(away) + '" alt="" onerror="this.src=\'icon.svg\'"><span>' + esc(away.name||"Visitante") + '</span></div>' +
+      '</div>' +
+      '<div class="score"><span>' + (h==null?'':h) + '</span><span>' + (a==null?'':a) + '</span></div>' +
+    '</div>';
+  }
+
+  function renderLeagueSchedule(events) {
+    if (!events.length) {
+      els.leagueMatchesView.innerHTML='<div class="empty-card"><div class="empty-icon">📅</div><h2>Sin partidos</h2><p>No encuentro partidos en las próximas semanas.</p></div>';
+      return;
+    }
+    const groups=new Map();
+    for(const event of events.sort((a,b)=>Number(a.startTimestamp)-Number(b.startTimestamp))){
+      const d=eventDate(event);
+      const key=[d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");
+      if(!groups.has(key)) groups.set(key,[]);
+      groups.get(key).push(event);
+    }
+    els.leagueMatchesView.innerHTML='<div class="league-schedule">' + [...groups.entries()].map(([iso,list]) => {
+      const label=new Intl.DateTimeFormat("es-ES",{weekday:"long",day:"numeric",month:"long"}).format(dateObj(iso));
+      return '<section class="league-day"><div class="league-day-title">' + esc(label.charAt(0).toUpperCase()+label.slice(1)) + '</div>' + list.map(leagueMatchHtml).join("") + '</section>';
+    }).join("") + '</div>';
+    els.leagueMatchesView.querySelectorAll("[data-league-event]").forEach(row => {
+      row.addEventListener("click",() => {
+        const id=String(row.dataset.leagueEvent);
+        const event=events.find(e=>String(e.id)===id);
+        if(event) openMatch(event);
+      });
+    });
+  }
+
+  function standingStat(entry,names) {
+    const stats=Array.isArray(entry?.stats)?entry.stats:[];
+    for(const name of names){
+      const found=stats.find(s => String(s.name||s.abbreviation||"").toLowerCase()===String(name).toLowerCase());
+      if(found) return found.displayValue ?? found.value ?? "";
+    }
+    return "";
+  }
+
+  function extractStandingEntries(data) {
+    const out=[];
+    const walk=value=>{
+      if(!value || typeof value!=="object") return;
+      if(Array.isArray(value?.standings?.entries)) out.push(...value.standings.entries);
+      else if(Array.isArray(value?.entries) && value.entries.some(x=>x?.team)) out.push(...value.entries);
+      if(Array.isArray(value.children)) value.children.forEach(walk);
+    };
+    walk(data);
+    const unique=new Map();
+    out.forEach(x=>{ if(x?.team?.id) unique.set(String(x.team.id),x); });
+    return [...unique.values()];
+  }
+
+  function renderStandings(data) {
+    const entries=extractStandingEntries(data);
+    if(!entries.length){
+      els.leagueStandingsView.innerHTML='<div class="muted">La clasificación no está disponible para esta competición.</div>';
+      return;
+    }
+    els.leagueStandingsView.innerHTML='<div class="standings-wrap"><table class="standings-table"><thead><tr><th>#</th><th>Equipo</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>DG</th><th>PTS</th></tr></thead><tbody>' +
+      entries.map((entry,index)=>{
+        const t=entry.team||{};
+        const logo=t.logos?.[0]?.href || t.logo || "";
+        return '<tr><td>' + esc(standingStat(entry,["rank","playoffSeed"]) || (index+1)) + '</td><td><span class="standings-team"><img src="' + esc(logo||"icon.svg") + '" alt="" onerror="this.src=\'icon.svg\'"><strong>' + esc(t.displayName||t.name||"Equipo") + '</strong></span></td><td>' + esc(standingStat(entry,["gamesPlayed"])) + '</td><td>' + esc(standingStat(entry,["wins"])) + '</td><td>' + esc(standingStat(entry,["ties","draws"])) + '</td><td>' + esc(standingStat(entry,["losses"])) + '</td><td>' + esc(standingStat(entry,["pointDifferential","goalDifference"])) + '</td><td><strong>' + esc(standingStat(entry,["points"])) + '</strong></td></tr>';
+      }).join("") + '</tbody></table></div>';
+  }
+
+  function setLeagueTab(tab) {
+    els.leagueTabs.forEach(btn=>btn.classList.toggle("active",btn.dataset.leagueTab===tab));
+    els.leagueMatchesView.classList.toggle("hidden",tab!=="matches");
+    els.leagueStandingsView.classList.toggle("hidden",tab!=="standings");
+  }
+
+  async function openLeague(code,tab="matches") {
+    const league=leagueByCode(code);
+    if(!league) return;
+    selectedLeague=league;
+    els.leagueDialogFlag.textContent=countryFlag(league.alpha2);
+    els.leagueDialogCountry.textContent=league.country;
+    els.leagueDialogTitle.textContent=league.name;
+    els.leagueFavoriteBtn.textContent=leagueFavorites.has(code)?"★":"☆";
+    els.leagueMatchesView.innerHTML='<div class="muted">Cargando próximos partidos…</div>';
+    els.leagueStandingsView.innerHTML='<div class="muted">Cargando clasificación…</div>';
+    setLeagueTab(tab);
+    els.leagueDialog.showModal();
+
+    const start=shiftDate(todayIso(),-3);
+    const end=shiftDate(todayIso(),24);
+    const season=new Date().getFullYear();
+    const [eventsResult,standingsResult]=await Promise.allSettled([
+      fetchLeagueEvents(code,start,end),
+      fetchPublicJson(ESPN_STANDINGS_BASE+"/"+encodeURIComponent(code)+"/standings?season="+season+"&t="+Date.now(),12000)
+    ]);
+    if(eventsResult.status==="fulfilled") renderLeagueSchedule(eventsResult.value);
+    else els.leagueMatchesView.innerHTML='<div class="error-card">No se han podido cargar los partidos de esta competición.</div>';
+    if(standingsResult.status==="fulfilled") renderStandings(standingsResult.value);
+    else els.leagueStandingsView.innerHTML='<div class="error-card">No se ha podido cargar la clasificación.</div>';
   }
 
   function renderDate() {
