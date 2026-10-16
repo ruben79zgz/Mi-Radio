@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Mi Resultados · fútbol en directo sin publicidad">
+  <link rel="manifest" href="manifest.webmanifest?v=1">
+  <link rel="icon" href="icon.svg?v=1" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg?v=1">
+  <link rel="stylesheet" href="styles.css?v=1">
+  <title>Mi Resultados</title>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">FÚTBOL EN DIRECTO</div>
+      <h1>Mi Resultados</h1>
+    </div>
+    <div class="top-actions">
+      <span class="version">v1.0</span>
+      <button id="notifyBtn" class="icon-btn" type="button" title="Notificaciones" aria-label="Notificaciones">🔔</button>
+      <button id="refreshBtn" class="icon-btn" type="button" title="Actualizar" aria-label="Actualizar">↻</button>
+    </div>
+  </header>
+
+  <main>
+    <nav class="main-tabs" aria-label="Secciones">
+      <button class="main-tab active" type="button" data-view="scores">Resultados</button>
+      <button class="main-tab" type="button" data-view="live">En directo <span id="liveBadge" class="badge hidden">0</span></button>
+      <button class="main-tab" type="button" data-view="favorites">Favoritos</button>
+    </nav>
+
+    <section class="date-toolbar">
+      <button id="prevDayBtn" class="date-arrow" type="button" aria-label="Día anterior">‹</button>
+      <button id="dateBtn" class="date-center" type="button">
+        <strong id="dateMain">Hoy</strong>
+        <span id="dateSub"></span>
+      </button>
+      <button id="nextDayBtn" class="date-arrow" type="button" aria-label="Día siguiente">›</button>
+    </section>
+
+    <section class="search-panel">
+      <div class="search-row">
+        <input id="matchSearch" class="search" type="search" placeholder="Buscar equipo o competición…" autocomplete="off">
+        <button id="teamSearchToggle" class="small-btn" type="button">+ Equipo</button>
+      </div>
+      <div id="teamSearchPanel" class="team-search-panel hidden">
+        <div class="team-search-title">Añadir equipo favorito</div>
+        <input id="teamSearchInput" class="search" type="search" placeholder="Ej. Real Zaragoza, Arsenal…" autocomplete="off">
+        <div id="teamSearchStatus" class="muted tiny"></div>
+        <div id="teamSearchResults" class="team-search-results"></div>
+      </div>
+    </section>
+
+    <section class="status-row">
+      <div id="statusText" class="muted">Cargando partidos…</div>
+      <div id="updatedText" class="muted tiny"></div>
+    </section>
+
+    <section id="favoritesEmpty" class="empty-card hidden">
+      <div class="empty-icon">⭐</div>
+      <h2>Aún no tienes equipos favoritos</h2>
+      <p>Pulsa <strong>+ Equipo</strong> para añadir uno. Te avisaremos de goles y finales mientras la app esté activa.</p>
+    </section>
+
+    <section id="matches" class="matches" aria-live="polite"></section>
+  </main>
+
+  <dialog id="matchDialog" class="match-dialog">
+    <div class="dialog-shell">
+      <div class="dialog-top">
+        <button id="closeMatchBtn" class="icon-btn" type="button" aria-label="Cerrar">←</button>
+        <div>
+          <div id="dialogCompetition" class="eyebrow"></div>
+          <div id="dialogStatus" class="muted tiny"></div>
+        </div>
+        <button id="dialogFavoriteBtn" class="icon-btn" type="button" aria-label="Favorito">☆</button>
+      </div>
+
+      <div class="score-hero">
+        <div class="hero-team">
+          <img id="dialogHomeLogo" alt="">
+          <strong id="dialogHomeName"></strong>
+        </div>
+        <div class="hero-score">
+          <div id="dialogScore">–</div>
+          <span id="dialogClock"></span>
+        </div>
+        <div class="hero-team">
+          <img id="dialogAwayLogo" alt="">
+          <strong id="dialogAwayName"></strong>
+        </div>
+      </div>
+
+      <div class="detail-tabs">
+        <button class="detail-tab active" type="button" data-detail="summary">Resumen</button>
+        <button class="detail-tab" type="button" data-detail="stats">Estadísticas</button>
+        <button class="detail-tab" type="button" data-detail="lineups">Alineaciones</button>
+      </div>
+
+      <section id="detailSummary" class="detail-view"></section>
+      <section id="detailStats" class="detail-view hidden"></section>
+      <section id="detailLineups" class="detail-view hidden"></section>
+    </div>
+  </dialog>
+
+  <template id="loadingTemplate">
+    <div class="league-block skeleton-block">
+      <div class="skeleton line wide"></div>
+      <div class="skeleton card"></div>
+      <div class="skeleton card"></div>
+    </div>
+  </template>
+
+  <script src="app.js?v=1"></script>
+</body>
+</html>
