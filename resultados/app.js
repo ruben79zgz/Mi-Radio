@@ -1072,15 +1072,17 @@
     els.teamDialog.showModal();
 
     const code=normalized.leagueCode;
-    if(!code){
-      els.teamScheduleView.innerHTML='<div class="error-card">Todavía no tengo identificada la competición principal de este equipo.</div>';
-      return;
-    }
 
     try{
-      const start=shiftDate(todayIso(),-45);
-      const end=shiftDate(todayIso(),60);
-      const events=await fetchLeagueEvents(code,start,end);
+      let events=[];
+      if(code){
+        const start=shiftDate(todayIso(),-45);
+        const end=shiftDate(todayIso(),60);
+        events=await fetchLeagueEvents(code,start,end);
+      }else{
+        const data=await fetchPublicJson(ESPN_SITE_BASE+"/all/teams/"+encodeURIComponent(normalized.id)+"/schedule?t="+Date.now(),12000);
+        events=(Array.isArray(data.events)?data.events:[]).map(normalizeEspnEvent).filter(Boolean);
+      }
       const name=normalizeLabel(normalized.name);
       const teamEvents=events.filter(e =>
         String(e.homeTeam?.id)===String(normalized.id) ||
