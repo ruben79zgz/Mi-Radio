@@ -5,10 +5,12 @@ import json
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "resultados" / "data" / "scores.json"
 BASE = "https://api.sofascore.com/api/v1"
+MADRID = ZoneInfo("Europe/Madrid")
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; MiResultadosBot/1.0)",
@@ -34,7 +36,7 @@ def previous() -> dict:
 
 def main() -> int:
     now = datetime.now(timezone.utc)
-    today = now.astimezone().date().isoformat()
+    today = now.astimezone(MADRID).date().isoformat()
     old = previous()
 
     days = dict(old.get("days") or {})
