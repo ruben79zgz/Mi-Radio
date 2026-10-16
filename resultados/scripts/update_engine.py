@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import io
 import json
+import re
 import time
 import urllib.parse
 import urllib.request
+import zlib
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
+from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "resultados" / "data" / "engine.json"
@@ -18,6 +22,29 @@ LEAGUES = [
     {"code":"esp.rfef.1","name":"Primera Federación · Grupo 1","country":"España","alpha2":"ES","provider":"thesportsdb","providerId":"5086"},
     {"code":"esp.rfef.2","name":"Primera Federación · Grupo 2","country":"España","alpha2":"ES","provider":"thesportsdb","providerId":"5088"},
 ]
+
+RFEF = {
+    "esp.rfef.1": {
+        "pdf":"https://rfef.es/sites/default/files/2026-06/Primera_Federacion_Grupo_I.pdf",
+        "teams":[
+            "AD Mérida","Arenas Club","Athletic Club \"B\"","Barakaldo CF","CD Coria",
+            "CD Extremadura","CD Lugo","CD Mirandés","CP Cacereño","CyD Leonesa",
+            "Pontevedra CF","Racing Club Ferrol","RC Deportivo Fabril","Real Avilés Industrial",
+            "Real Unión Club","SD Ponferradina","UD Logroñés","UD Ourense",
+            "Unionistas de Salamanca CF","Zamora CF"
+        ],
+    },
+    "esp.rfef.2": {
+        "pdf":"https://rfef.es/sites/default/files/2026-06/Primera_Federacion_Grupo_II.pdf",
+        "teams":[
+            "AD Alcorcón","Águilas FC","Algeciras CF","Antequera CCF","Atlético Madrileño",
+            "CD Teruel","CE Europa","CF Rayo Majadahonda","FC Cartagena","Gimnàstic de Tarragona",
+            "Hércules de Alicante CF","Juventud de Torremolinos CF","Real Jaén CF",
+            "Real Madrid Castilla","Real Murcia CF","Real Zaragoza","SD Huesca","UD Ibiza",
+            "UE Sant Andreu","Villarreal CF \"B\""
+        ],
+    },
+}
 
 POLICY = {
     "schedule": {"ttlMinutes": 360, "priority": 70},
@@ -46,6 +73,20 @@ def fetch_json(url: str, params: dict[str, str] | None = None, attempts: int = 3
             if attempt < attempts - 1:
                 time.sleep(2 * (attempt + 1))
     raise last or RuntimeError("fetch failed")
+
+
+def fetch_bytes(url: str, attempts: int = 2) -> bytes:
+    last: Exception | None = None
+    for attempt in range(attempts):
+        try:
+            req = urllib.request.Request(url, headers=HEADERS)
+            with urllib.request.urlopen(req, timeout=35) as response:
+                return response.read()
+        except Exception as exc:
+            last = exc
+            if attempt < attempts - 1:
+                time.sleep(2 * (attempt + 1))
+    raise last or RuntimeError("fetch bytes failed")
 
 
 def current_season(now: datetime) -> str:
@@ -209,6 +250,128 @@ def dataset(now: datetime, source: str, kind: str, data, *, confidence="medium",
         "note":note,
         "data":data,
     }
+
+
+def stable_team_id(code: str, name: str) -> int:
+    if code == "esp.rfef.2" and name == "Real Zaragoza":
+        return 133737
+    return 900_000_000 + (zlib.crc32(f"{code}:{name}".encode("utf-8")) % 90_000_000)
+
+
+def normalize_space(value: str) -> str:
+    return re.sub(r"\s+", " ", value or "").strip()
+
+
+def parse_rfef_schedule(pdf_bytes: bytes, league: dict) -> list[dict]:
+    config = RFEF[league["code"]]
+    teams = config["teams"]
+    teams_by_length = sorted(teams, key=len, reverse=True)
+    reader = PdfReader(io.BytesIO(pdf_bytes))
+
+    lines: list[str] = []
+    for page in reader.pages:
+        text = page.extract_text() or ""
+        lines.extend(normalize_space(line) for line in text.splitlines() if normalize_space(line))
+
+    events: list[dict] = []
+    current_round: int | None = None
+    current_date: str | None = None
+    match_index = 0
+
+    for line in lines:
+        journey = re.match(r"^Jornada\s+(\d+)\s+\((\d{2}/\d{2}/\d{4})\)$", line, flags=re.I)
+        if journey:
+            current_round = int(journey.group(1))
+            day, month, year = map(int, journey.group(2).split("/"))
+            current_date = f"{year:04d}-{month:02d}-{day:02d}"
+            continue
+
+        if not current_round or not current_date:
+            continue
+
+        pair = None
+        for home in teams_by_length:
+            prefix = home + " "
+            if not line.startswith(prefix):
+                continue
+            away = normalize_space(line[len(prefix):])
+            if away in teams and away != home:
+                pair = (home, away)
+                break
+
+        if not pair:
+            continue
+
+        home, away = pair
+        match_index += 1
+        day_dt = datetime.fromisoformat(current_date + "T12:00:00").replace(tzinfo=MADRID)
+        events.append({
+            "id": stable_team_id(league["code"], f"{current_round}:{home}:{away}"),
+            "provider":"rfef",
+            "providerEventId":"",
+            "leagueCode":league["code"],
+            "startTimestamp":int(day_dt.timestamp()),
+            "timeConfirmed":False,
+            "status":{"type":"notstarted","description":"Horario por confirmar"},
+            "tournament":{
+                "id":league["providerId"],
+                "name":league["name"],
+                "priority":800,
+                "uniqueTournament":{"id":league["providerId"],"name":league["name"]},
+                "category":{"name":league["country"],"alpha2":league["alpha2"]},
+            },
+            "homeTeam":{
+                "id":stable_team_id(league["code"], home),
+                "name":home,
+                "logo":"",
+                "country":{"name":league["country"]},
+                "leagueCode":league["code"],
+                "leagueName":league["name"],
+            },
+            "awayTeam":{
+                "id":stable_team_id(league["code"], away),
+                "name":away,
+                "logo":"",
+                "country":{"name":league["country"]},
+                "leagueCode":league["code"],
+                "leagueName":league["name"],
+            },
+            "homeScore":{"current":None},
+            "awayScore":{"current":None},
+            "extra":{
+                "venue":"",
+                "round":current_round,
+                "season":"2026-2027",
+                "tv":"",
+                "officialSource":"RFEF",
+            },
+        })
+
+    # El calendario oficial debe tener 38 jornadas x 10 partidos.
+    if len(events) < 300:
+        raise RuntimeError(f"RFEF PDF parse incompleto: {len(events)} partidos")
+    return events
+
+
+def merge_schedule(primary: list[dict], fallback: list[dict]) -> list[dict]:
+    """TheSportsDB aporta hora/estadio si responde; RFEF garantiza el calendario."""
+    if not primary:
+        return fallback
+    result = list(primary)
+
+    def key(event: dict) -> tuple[str, str, str]:
+        return (
+            str(event.get("leagueCode") or ""),
+            normalize_space(str(event.get("homeTeam", {}).get("name") or "")).casefold(),
+            normalize_space(str(event.get("awayTeam", {}).get("name") or "")).casefold(),
+        )
+
+    existing = {key(event) for event in primary}
+    for event in fallback:
+        if key(event) not in existing:
+            result.append(event)
+    result.sort(key=lambda x:(x.get("startTimestamp") or 0,str(x.get("id") or "")))
+    return result
 
 
 def previous() -> dict:
