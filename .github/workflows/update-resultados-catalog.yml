@@ -1,0 +1,39 @@
+name: Actualizar catálogo Mi Resultados
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 */6 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'resultados/scripts/update_catalog.py'
+      - 'resultados/leagues.js'
+      - '.github/workflows/update-resultados-catalog.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Actualizar catálogo
+        run: python resultados/scripts/update_catalog.py
+      - name: Guardar cambios
+        run: |
+          if [ -z "$(git status --porcelain -- resultados/data/catalog.json)" ]; then
+            echo "Sin cambios"
+            exit 0
+          fi
+          git config user.name "Mi Resultados Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add resultados/data/catalog.json
+          git commit -m "Actualizar catálogo Mi Resultados"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main

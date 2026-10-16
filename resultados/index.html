@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0b1020">
   <meta name="description" content="Mi Resultados · fútbol en directo sin publicidad">
-  <link rel="manifest" href="manifest.webmanifest?v=1.1.1">
-  <link rel="icon" href="icon.svg?v=1.1.1" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon.svg?v=1.1.1">
-  <link rel="stylesheet" href="styles.css?v=1.1.1">
+  <link rel="manifest" href="manifest.webmanifest?v=1.2">
+  <link rel="icon" href="icon.svg?v=1.2" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg?v=1.2">
+  <link rel="stylesheet" href="styles.css?v=1.2">
   <title>Mi Resultados</title>
 </head>
 <body>
@@ -18,11 +18,21 @@
       <h1>Mi Resultados</h1>
     </div>
     <div class="top-actions">
-      <span class="version">v1.1.1</span>
+      <span class="version">v1.2</span>
       <button id="notifyBtn" class="icon-btn" type="button" title="Notificaciones" aria-label="Notificaciones">🔔</button>
       <button id="refreshBtn" class="icon-btn" type="button" title="Actualizar" aria-label="Actualizar">↻</button>
     </div>
   </header>
+
+  <div class="content-shell">
+    <aside class="league-sidebar">
+      <div class="sidebar-title">📌 Ligas fijadas</div>
+      <div id="favoriteLeagues" class="sidebar-leagues"></div>
+
+      <div class="sidebar-title all-title">🌍 Competiciones</div>
+      <input id="leagueSearchInput" class="search sidebar-search" type="search" placeholder="Buscar liga…" autocomplete="off">
+      <div id="allLeagues" class="sidebar-leagues"></div>
+    </aside>
 
   <main>
     <nav class="main-tabs" aria-label="Secciones">
@@ -66,6 +76,7 @@
 
     <section id="matches" class="matches" aria-live="polite"></section>
   </main>
+  </div>
 
   <dialog id="matchDialog" class="match-dialog">
     <div class="dialog-shell">
@@ -105,6 +116,49 @@
     </div>
   </dialog>
 
+
+  <dialog id="leagueDialog" class="match-dialog league-dialog">
+    <div class="dialog-shell">
+      <div class="dialog-top">
+        <button id="closeLeagueBtn" class="icon-btn" type="button" aria-label="Cerrar">←</button>
+        <div class="league-dialog-head">
+          <span id="leagueDialogFlag" class="league-big-flag">⚽</span>
+          <div>
+            <div id="leagueDialogCountry" class="eyebrow"></div>
+            <h2 id="leagueDialogTitle" class="dialog-title"></h2>
+          </div>
+        </div>
+        <button id="leagueFavoriteBtn" class="icon-btn" type="button" aria-label="Liga favorita">☆</button>
+      </div>
+
+      <div class="detail-tabs league-detail-tabs">
+        <button class="detail-tab active" type="button" data-league-tab="matches">Partidos</button>
+        <button class="detail-tab" type="button" data-league-tab="standings">Clasificación</button>
+      </div>
+
+      <section id="leagueMatchesView" class="detail-view"></section>
+      <section id="leagueStandingsView" class="detail-view hidden"></section>
+    </div>
+  </dialog>
+
+  <dialog id="teamDialog" class="match-dialog team-dialog">
+    <div class="dialog-shell">
+      <div class="dialog-top">
+        <button id="closeTeamBtn" class="icon-btn" type="button" aria-label="Cerrar">←</button>
+        <div class="team-dialog-head">
+          <img id="teamDialogLogo" class="team-dialog-logo" alt="">
+          <div>
+            <div id="teamDialogLeague" class="eyebrow"></div>
+            <h2 id="teamDialogTitle" class="dialog-title"></h2>
+          </div>
+        </div>
+        <button id="teamFavoriteBtn" class="icon-btn" type="button" aria-label="Equipo favorito">☆</button>
+      </div>
+
+      <section id="teamScheduleView" class="detail-view"></section>
+    </div>
+  </dialog>
+
   <template id="loadingTemplate">
     <div class="league-block skeleton-block">
       <div class="skeleton line wide"></div>
@@ -113,6 +167,7 @@
     </div>
   </template>
 
-  <script src="app.js?v=1.1.1"></script>
+  <script src="leagues.js?v=1.2"></script>
+  <script src="app.js?v=1.2"></script>
 </body>
 </html>
