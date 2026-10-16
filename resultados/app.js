@@ -660,9 +660,22 @@
   }
 
   async function fetchLeagueEvents(code,startIso,endIso) {
+    const league=leagueByCode(code);
+    if(league?.provider==="thesportsdb"){
+      await loadEngine(false);
+      const ds=engineDataset("schedule:"+code);
+      return Array.isArray(ds?.data) ? ds.data.slice() : [];
+    }
+
     const url = ESPN_SITE_BASE + "/" + encodeURIComponent(code) + "/scoreboard?dates=" +
-      encodeURIComponent(compactRange(startIso,endIso)) + "&limit=1000&t=" + Date.now();
-    const data = await fetchPublicJson(url,12000);
+      encodeURIComponent(compactRange(startIso,endIso)) + "&limit=1000";
+    const data = await fetchCachedJson(
+      "schedule:"+code+":"+startIso+":"+endIso,
+      url,
+      60*60*1000,
+      false,
+      12000
+    );
     return (Array.isArray(data.events) ? data.events : []).map(raw => {
       const event = normalizeEspnEvent(raw);
       if (!event) return null;
@@ -750,6 +763,17 @@
       }).join("") + '</tbody></table></div>';
   }
 
+  function renderEngineStandings(ds) {
+    const rows=Array.isArray(ds?.data)?ds.data:[];
+    if(!rows.length){
+      els.leagueStandingsView.innerHTML='<div class="muted">La clasificación todavía no está disponible desde esta fuente.</div>'+datasetMetaHtml(ds);
+      return;
+    }
+    els.leagueStandingsView.innerHTML='<div class="standings-wrap"><table class="standings-table"><thead><tr><th>#</th><th>Equipo</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>DG</th><th>PTS</th></tr></thead><tbody>' +
+      rows.map((row,index)=>'<tr><td>'+esc(row.rank ?? index+1)+'</td><td><span class="standings-team"><img src="'+esc(row.logo||"icon.svg")+'" alt="" onerror="this.src=\'icon.svg\'"><strong>'+esc(row.team||"Equipo")+'</strong></span></td><td>'+esc(row.played ?? "")+'</td><td>'+esc(row.wins ?? "")+'</td><td>'+esc(row.draws ?? "")+'</td><td>'+esc(row.losses ?? "")+'</td><td>'+esc(row.goalDifference ?? "")+'</td><td><strong>'+esc(row.points ?? "")+'</strong></td></tr>').join("") +
+      '</tbody></table></div>'+datasetMetaHtml(ds);
+  }
+
   function setLeagueTab(tab) {
     els.leagueTabs.forEach(btn=>btn.classList.toggle("active",btn.dataset.leagueTab===tab));
     els.leagueMatchesView.classList.toggle("hidden",tab!=="matches");
@@ -769,12 +793,30 @@
     setLeagueTab(tab);
     els.leagueDialog.showModal();
 
-    const start=shiftDate(todayIso(),-3);
-    const end=shiftDate(todayIso(),24);
+    const start=shiftDate(todayIso(),-45);
+    const end=shiftDate(todayIso(),90);
+
+    if(league.provider==="thesportsdb"){
+      await loadEngine(false);
+      const schedule=engineDataset("schedule:"+code);
+      const standings=engineDataset("standings:"+code);
+      if(Array.isArray(schedule?.data)) {
+        const now=Date.now()/1000;
+        const min=now-45*86400, max=now+90*86400;
+        renderLeagueSchedule(schedule.data.filter(e=>Number(e.startTimestamp||0)>=min && Number(e.startTimestamp||0)<=max));
+        els.leagueMatchesView.insertAdjacentHTML("beforeend",datasetMetaHtml(schedule));
+      } else {
+        els.leagueMatchesView.innerHTML='<div class="error-card">No se ha podido cargar el calendario cacheado de esta competición.</div>';
+      }
+      renderEngineStandings(standings);
+      return;
+    }
+
     const season=new Date().getFullYear();
+    const standingsUrl=ESPN_STANDINGS_BASE+"/"+encodeURIComponent(code)+"/standings?season="+season;
     const [eventsResult,standingsResult]=await Promise.allSettled([
       fetchLeagueEvents(code,start,end),
-      fetchPublicJson(ESPN_STANDINGS_BASE+"/"+encodeURIComponent(code)+"/standings?season="+season+"&t="+Date.now(),12000)
+      fetchCachedJson("standings:"+code+":"+season,standingsUrl,6*60*60*1000,false,12000)
     ]);
     if(eventsResult.status==="fulfilled") renderLeagueSchedule(eventsResult.value);
     else els.leagueMatchesView.innerHTML='<div class="error-card">No se han podido cargar los partidos de esta competición.</div>';
