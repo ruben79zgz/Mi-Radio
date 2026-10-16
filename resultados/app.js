@@ -801,7 +801,10 @@
     favorites.set(Number(team.id),{
       id:Number(team.id),
       name:team.name || team.shortName || "Equipo",
-      country:team.country?.name || ""
+      country:team.country?.name || team.country || "",
+      logo:team.logo || "",
+      leagueCode:team.leagueCode || "",
+      leagueName:team.leagueName || ""
     });
     saveFavorites();
   }
@@ -1035,53 +1038,128 @@
     },delay);
   }
 
-  async function searchTeams(term) {
-    const q = term.trim();
-    if (q.length < 2) {
-      els.teamResults.innerHTML = "";
-      els.teamStatus.textContent = "";
-      return;
-    }
-    els.teamStatus.textContent = "Buscando…";
-    let teams = [];
-    try {
-      const data = await fetchJson("/search/all?q=" + encodeURIComponent(q));
-      const results = Array.isArray(data.results) ? data.results : [];
-      teams = results.map(item => item.entity || item).filter(item => {
-        const sport = String(item?.sport?.slug || item?.sport?.name || item?.sport || "").toLowerCase();
-        const type = String(item?.type || item?.entityType || "").toLowerCase();
-        return item?.id && (type === "team" || sport === "football");
-      });
-    } catch (err) {
-      const byId = new Map();
-      [...dayEvents,...liveEvents].forEach(e => [e.homeTeam,e.awayTeam].forEach(t => {
-        if (t?.id && String(t.name||"").toLowerCase().includes(q.toLowerCase())) byId.set(Number(t.id),t);
-      }));
-      teams = [...byId.values()];
+  function normalizedCatalogTeam(team) {
+    if(!team) return null;
+    return {
+      id:Number(team.id) || team.id,
+      name:team.name || team.shortName || "Equipo",
+      shortName:team.shortName || team.name || "Equipo",
+      logo:team.logo || "",
+      leagueCode:team.leagueCode || "",
+      leagueName:team.leagueName || "",
+      country:{name:team.country || ""},
+      alpha2:team.alpha2 || ""
+    };
+  }
+
+  async function openTeam(team) {
+    const normalized=normalizedCatalogTeam(team) || team;
+    if(!normalized?.id) return;
+    selectedTeam=normalized;
+    const catalogMatch=catalogTeams.find(x=>String(x.id)===String(normalized.id) || normalizeLabel(x.name)===normalizeLabel(normalized.name));
+    if(catalogMatch){
+      normalized.leagueCode=normalized.leagueCode || catalogMatch.leagueCode || "";
+      normalized.leagueName=normalized.leagueName || catalogMatch.leagueName || "";
+      normalized.logo=normalized.logo || catalogMatch.logo || "";
+      if(!normalized.country?.name) normalized.country={name:catalogMatch.country || ""};
     }
 
-    const unique = [...new Map(teams.map(t => [Number(t.id),t])).values()].slice(0,12);
-    els.teamStatus.textContent = unique.length ? unique.length + " resultados" : "No encuentro equipos.";
-    els.teamResults.innerHTML = unique.map(team => {
-      const active = favorites.has(Number(team.id));
-      const country = team?.country?.name || "";
+    els.teamDialogLogo.src=teamLogo(normalized);
+    els.teamDialogTitle.textContent=normalized.name || "Equipo";
+    els.teamDialogLeague.textContent=[normalized.country?.name,normalized.leagueName].filter(Boolean).join(" · ");
+    els.teamFavoriteBtn.textContent=favoriteTeam(normalized)?"★":"☆";
+    els.teamScheduleView.innerHTML='<div class="muted">Cargando partidos del equipo…</div>';
+    els.teamDialog.showModal();
+
+    const code=normalized.leagueCode;
+    if(!code){
+      els.teamScheduleView.innerHTML='<div class="error-card">Todavía no tengo identificada la competición principal de este equipo.</div>';
+      return;
+    }
+
+    try{
+      const start=shiftDate(todayIso(),-45);
+      const end=shiftDate(todayIso(),60);
+      const events=await fetchLeagueEvents(code,start,end);
+      const name=normalizeLabel(normalized.name);
+      const teamEvents=events.filter(e =>
+        String(e.homeTeam?.id)===String(normalized.id) ||
+        String(e.awayTeam?.id)===String(normalized.id) ||
+        normalizeLabel(e.homeTeam?.name)===name ||
+        normalizeLabel(e.awayTeam?.name)===name
+      );
+      const past=teamEvents.filter(e=>Number(e.startTimestamp)<Date.now()/1000).sort((a,b)=>Number(b.startTimestamp)-Number(a.startTimestamp)).slice(0,6).reverse();
+      const future=teamEvents.filter(e=>Number(e.startTimestamp)>=Date.now()/1000).sort((a,b)=>Number(a.startTimestamp)-Number(b.startTimestamp)).slice(0,10);
+
+      const block=(title,list)=>'<div class="team-schedule-group"><h3>'+esc(title)+'</h3>'+(list.length?list.map(leagueMatchHtml).join(""):'<div class="muted tiny">Sin partidos disponibles.</div>')+'</div>';
+      els.teamScheduleView.innerHTML=block("Próximos partidos",future)+block("Últimos partidos",past);
+      els.teamScheduleView.querySelectorAll("[data-league-event]").forEach(row=>{
+        row.addEventListener("click",()=>{
+          const event=teamEvents.find(e=>String(e.id)===String(row.dataset.leagueEvent));
+          if(event) openMatch(event);
+        });
+      });
+    }catch(err){
+      console.warn("No se pudo cargar el equipo",err);
+      els.teamScheduleView.innerHTML='<div class="error-card">No se han podido cargar los partidos de este equipo ahora mismo.</div>';
+    }
+  }
+
+  async function searchTeams(term) {
+    const q=normalizeLabel(term);
+    if(q.length<2){
+      els.teamResults.innerHTML="";
+      els.teamStatus.textContent="";
+      return;
+    }
+    els.teamStatus.textContent="Buscando en el catálogo…";
+    await loadCatalog(false);
+
+    const candidates=[...catalogTeams];
+    [...dayEvents,...liveEvents].forEach(e=>[e.homeTeam,e.awayTeam].forEach(t=>{
+      if(t?.id && t?.name && !candidates.some(x=>String(x.id)===String(t.id))) candidates.push(t);
+    }));
+
+    const scored=candidates.map(team=>{
+      const hay=normalizeLabel((team.name||"")+" "+(team.shortName||"")+" "+(team.leagueName||"")+" "+(team.country||team.country?.name||""));
+      let score=hay===q?100:(hay.startsWith(q)?70:(hay.includes(q)?40:0));
+      if(normalizeLabel(team.name||"").includes(q)) score+=30;
+      return {team,score};
+    }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score || String(a.team.name).localeCompare(String(b.team.name),"es"));
+
+    const unique=[...new Map(scored.map(x=>[String(x.team.id)+":"+String(x.team.leagueCode||""),x.team])).values()].slice(0,20);
+    els.teamStatus.textContent=unique.length ? unique.length+" resultados" : "No encuentro equipos.";
+
+    els.teamResults.innerHTML=unique.map(team=>{
+      const normalized=normalizedCatalogTeam(team) || team;
+      const active=Boolean(favoriteTeam(normalized));
+      const country=normalized.country?.name || team.country || "";
+      const league=normalized.leagueName || team.leagueName || "";
       return '<div class="team-search-item">' +
-        '<img src="' + teamLogo(team) + '" alt="" onerror="this.src=\'icon.svg\'">' +
-        '<div><strong>' + esc(team.name || team.shortName || "Equipo") + '</strong><span>' + esc(country) + '</span></div>' +
-        '<button class="star-btn" type="button" data-team-id="' + esc(team.id) + '">' + (active?"★":"☆") + '</button>' +
+        '<img src="'+teamLogo(normalized)+'" alt="" onerror="this.src=\'icon.svg\'">' +
+        '<div><strong>'+esc(normalized.name||"Equipo")+'</strong><span>'+esc([country,league].filter(Boolean).join(" · "))+'</span></div>' +
+        '<button class="team-open-btn" type="button" data-open-team="'+esc(normalized.id)+'" data-open-code="'+esc(normalized.leagueCode||"")+'">Ver</button>' +
+        '<button class="star-btn" type="button" data-team-id="'+esc(normalized.id)+'" data-team-code="'+esc(normalized.leagueCode||"")+'">'+(active?"★":"☆")+'</button>' +
       '</div>';
     }).join("");
 
-    els.teamResults.querySelectorAll("[data-team-id]").forEach(btn => {
-      btn.addEventListener("click",() => {
-        const id = Number(btn.dataset.teamId);
-        const team = unique.find(t => Number(t.id) === id);
-        if (!team) return;
-        if (favorites.has(id)) removeFavorite(id); else addFavorite(team);
-        searchTeams(els.teamInput.value);
-        render();
-      });
-    });
+    const findTeam=(id,code)=>unique.find(t=>String(t.id)===String(id) && String(t.leagueCode||"")===String(code||"")) || unique.find(t=>String(t.id)===String(id));
+
+    els.teamResults.querySelectorAll("[data-open-team]").forEach(btn=>btn.addEventListener("click",()=>{
+      const team=findTeam(btn.dataset.openTeam,btn.dataset.openCode);
+      if(team) openTeam(team);
+    }));
+
+    els.teamResults.querySelectorAll("[data-team-id]").forEach(btn=>btn.addEventListener("click",()=>{
+      const team=findTeam(btn.dataset.teamId,btn.dataset.teamCode);
+      if(!team) return;
+      const normalized=normalizedCatalogTeam(team) || team;
+      const current=favoriteTeam(normalized);
+      if(current) favorites.delete(Number(current.id)); else addFavorite(normalized);
+      saveFavorites();
+      searchTeams(els.teamInput.value);
+      render();
+    }));
   }
 
   function incidentIcon(item) {
