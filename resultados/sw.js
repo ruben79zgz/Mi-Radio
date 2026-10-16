@@ -1,12 +1,12 @@
-const CACHE = "mi-resultados-v1.2";
+const CACHE = "mi-resultados-v1.2.1";
 const SHELL = [
   "./",
-  "index.html?v=1.2",
-  "styles.css?v=1.2",
-  "leagues.js?v=1.2",
-  "app.js?v=1.2",
-  "manifest.webmanifest?v=1.2",
-  "icon.svg?v=1.2"
+  "index.html?v=1.2.1",
+  "styles.css?v=1.2.1",
+  "leagues.js?v=1.2.1",
+  "app.js?v=1.2.1",
+  "manifest.webmanifest?v=1.2.1",
+  "icon.svg?v=1.2.1"
 ];
 
 self.addEventListener("install", event => {

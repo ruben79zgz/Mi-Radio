@@ -1072,15 +1072,17 @@
     els.teamDialog.showModal();
 
     const code=normalized.leagueCode;
-    if(!code){
-      els.teamScheduleView.innerHTML='<div class="error-card">Todavía no tengo identificada la competición principal de este equipo.</div>';
-      return;
-    }
 
     try{
-      const start=shiftDate(todayIso(),-45);
-      const end=shiftDate(todayIso(),60);
-      const events=await fetchLeagueEvents(code,start,end);
+      let events=[];
+      if(code){
+        const start=shiftDate(todayIso(),-45);
+        const end=shiftDate(todayIso(),60);
+        events=await fetchLeagueEvents(code,start,end);
+      }else{
+        const data=await fetchPublicJson(ESPN_SITE_BASE+"/all/teams/"+encodeURIComponent(normalized.id)+"/schedule?t="+Date.now(),12000);
+        events=(Array.isArray(data.events)?data.events:[]).map(normalizeEspnEvent).filter(Boolean);
+      }
       const name=normalizeLabel(normalized.name);
       const teamEvents=events.filter(e =>
         String(e.homeTeam?.id)===String(normalized.id) ||
@@ -1102,6 +1104,60 @@
     }catch(err){
       console.warn("No se pudo cargar el equipo",err);
       els.teamScheduleView.innerHTML='<div class="error-card">No se han podido cargar los partidos de este equipo ahora mismo.</div>';
+    }
+  }
+
+  function collectEspnSearchTeams(value,out,seen=new Set()) {
+    if(value==null) return;
+    if(Array.isArray(value)){
+      value.forEach(item=>collectEspnSearchTeams(item,out,seen));
+      return;
+    }
+    if(typeof value!=="object") return;
+    if(seen.has(value)) return;
+    seen.add(value);
+
+    const type=normalizeLabel(value.type || value.entityType || value.contentType || value.subtype || "");
+    const sport=normalizeLabel(value?.sport?.slug || value?.sport?.name || value.sport || "");
+    const name=value.displayName || value.shortDisplayName || value.name || value.title || "";
+    const id=value.id || value.teamId || value.entityId || "";
+    const uid=String(value.uid || "");
+    const teamish=type.includes("team") || uid.includes("~t:") || Boolean(value.team);
+    const soccerish=!sport || sport.includes("soccer") || sport.includes("football");
+
+    if(teamish && soccerish && id && name){
+      const logo=value.logo || value?.image?.href || value?.image?.url || value?.images?.[0]?.url || value?.images?.[0]?.href || "";
+      const leagueRaw=value?.league?.abbreviation || value?.league?.slug || value?.league?.name || value?.league || "";
+      const leagueCode=LEAGUES.find(l=>normalizeLabel(l.code)===normalizeLabel(leagueRaw))?.code ||
+        inferLeagueCode(String(leagueRaw),String(leagueRaw));
+      const meta=leagueByCode(leagueCode);
+      out.push({
+        id:Number(id)||id,
+        name:String(name),
+        shortName:value.shortDisplayName || value.name || String(name),
+        logo,
+        leagueCode:leagueCode || "",
+        leagueName:meta?.name || String(value?.league?.name || ""),
+        country:meta?.country || "",
+        alpha2:meta?.alpha2 || ""
+      });
+    }
+
+    for(const child of Object.values(value)) {
+      if(child && typeof child==="object") collectEspnSearchTeams(child,out,seen);
+    }
+  }
+
+  async function searchEspnGlobalTeams(term) {
+    const url="https://site.web.api.espn.com/apis/search/v2?query="+encodeURIComponent(term)+"&limit=40&sport=soccer";
+    try{
+      const data=await fetchPublicJson(url,9000);
+      const found=[];
+      collectEspnSearchTeams(data,found);
+      return [...new Map(found.map(t=>[String(t.id),t])).values()];
+    }catch(err){
+      console.warn("Búsqueda global ESPN no disponible",err);
+      return [];
     }
   }
 
@@ -1127,7 +1183,14 @@
       return {team,score};
     }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score || String(a.team.name).localeCompare(String(b.team.name),"es"));
 
-    const unique=[...new Map(scored.map(x=>[String(x.team.id)+":"+String(x.team.leagueCode||""),x.team])).values()].slice(0,20);
+    let unique=[...new Map(scored.map(x=>[String(x.team.id)+":"+String(x.team.leagueCode||""),x.team])).values()].slice(0,20);
+
+    if(unique.length<12){
+      const global=await searchEspnGlobalTeams(term);
+      const merged=[...unique,...global];
+      unique=[...new Map(merged.map(t=>[String(t.id)+":"+String(t.leagueCode||""),t])).values()].slice(0,20);
+    }
+
     els.teamStatus.textContent=unique.length ? unique.length+" resultados" : "No encuentro equipos.";
 
     els.teamResults.innerHTML=unique.map(team=>{
@@ -1463,7 +1526,7 @@
   });
 
   if ("serviceWorker" in navigator) {
-    window.addEventListener("load",() => navigator.serviceWorker.register("sw.js?v=1.2").catch(console.warn));
+    window.addEventListener("load",() => navigator.serviceWorker.register("sw.js?v=1.2.1").catch(console.warn));
   }
 
   updateNotifyButton();
