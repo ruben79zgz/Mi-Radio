@@ -1,11 +1,12 @@
-const CACHE = "mi-resultados-v1.1.1";
+const CACHE = "mi-resultados-v1.2";
 const SHELL = [
   "./",
-  "index.html?v=1.1.1",
-  "styles.css?v=1.1.1",
-  "app.js?v=1.1.1",
-  "manifest.webmanifest?v=1.1.1",
-  "icon.svg?v=1.1.1"
+  "index.html?v=1.2",
+  "styles.css?v=1.2",
+  "leagues.js?v=1.2",
+  "app.js?v=1.2",
+  "manifest.webmanifest?v=1.2",
+  "icon.svg?v=1.2"
 ];
 
 self.addEventListener("install", event => {
@@ -19,42 +20,45 @@ self.addEventListener("install", event => {
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key))))
+      .then(keys => Promise.all(keys.filter(key => key.startsWith("mi-resultados-") && key !== CACHE).map(key => caches.delete(key))))
       .then(() => self.clients.claim())
   );
 });
+
+async function networkFirst(request) {
+  try {
+    const response = await fetch(new Request(request,{cache:"no-store"}));
+    if (response && response.ok) {
+      const copy=response.clone();
+      caches.open(CACHE).then(cache => cache.put(request,copy));
+    }
+    return response;
+  } catch {
+    return (await caches.match(request)) || Response.error();
+  }
+}
 
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (url.pathname.endsWith("/data/scores.json")) {
-    event.respondWith(
-      fetch(new Request(event.request,{cache:"no-store"}))
-        .then(response => {
-          if (response.ok) {
-            const copy=response.clone();
-            caches.open(CACHE).then(cache => cache.put(event.request,copy));
-          }
-          return response;
-        })
-        .catch(() => caches.match(event.request))
-    );
+  const dynamic =
+    event.request.mode === "navigate" ||
+    url.pathname.endsWith("/index.html") ||
+    url.pathname.endsWith("/app.js") ||
+    url.pathname.endsWith("/styles.css") ||
+    url.pathname.endsWith("/leagues.js") ||
+    url.pathname.endsWith("/data/scores.json") ||
+    url.pathname.endsWith("/data/catalog.json");
+
+  if (dynamic) {
+    event.respondWith(networkFirst(event.request));
     return;
   }
 
   event.respondWith(
-    caches.match(event.request).then(cached => {
-      const network = fetch(event.request).then(response => {
-        if (response.ok) {
-          const copy=response.clone();
-          caches.open(CACHE).then(cache => cache.put(event.request,copy));
-        }
-        return response;
-      }).catch(() => null);
-      return cached || network;
-    })
+    caches.match(event.request).then(cached => cached || networkFirst(event.request))
   );
 });
 
