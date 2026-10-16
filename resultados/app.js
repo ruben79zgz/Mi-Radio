@@ -6,8 +6,13 @@
     "https://www.sofascore.com/api/v1"
   ];
   const ESPN_SCOREBOARD = "https://site.api.espn.com/apis/site/v2/sports/soccer/all/scoreboard";
+  const ESPN_SITE_BASE = "https://site.api.espn.com/apis/site/v2/sports/soccer";
+  const ESPN_STANDINGS_BASE = "https://site.api.espn.com/apis/v2/sports/soccer";
   const FALLBACK_URL = "data/scores.json";
+  const CATALOG_URL = "data/catalog.json";
   const FAVORITES_KEY = "mi-resultados-favorites-v1";
+  const LEAGUE_FAVORITES_KEY = "mi-resultados-league-favorites-v1";
+  const LEAGUES = Array.isArray(window.MR_LEAGUES) ? window.MR_LEAGUES : [];
   const CACHE_PREFIX = "mi-resultados-day-v1:";
   const NOTIFY_KEY = "mi-resultados-notify-v1";
   const LIVE_INTERVAL_VISIBLE = 15000;
@@ -47,7 +52,26 @@
     detailTabs:[...document.querySelectorAll("[data-detail]")],
     detailSummary:document.getElementById("detailSummary"),
     detailStats:document.getElementById("detailStats"),
-    detailLineups:document.getElementById("detailLineups")
+    detailLineups:document.getElementById("detailLineups"),
+    favoriteLeagues:document.getElementById("favoriteLeagues"),
+    allLeagues:document.getElementById("allLeagues"),
+    leagueSearchInput:document.getElementById("leagueSearchInput"),
+    leagueDialog:document.getElementById("leagueDialog"),
+    closeLeagueBtn:document.getElementById("closeLeagueBtn"),
+    leagueDialogFlag:document.getElementById("leagueDialogFlag"),
+    leagueDialogCountry:document.getElementById("leagueDialogCountry"),
+    leagueDialogTitle:document.getElementById("leagueDialogTitle"),
+    leagueFavoriteBtn:document.getElementById("leagueFavoriteBtn"),
+    leagueTabs:[...document.querySelectorAll("[data-league-tab]")],
+    leagueMatchesView:document.getElementById("leagueMatchesView"),
+    leagueStandingsView:document.getElementById("leagueStandingsView"),
+    teamDialog:document.getElementById("teamDialog"),
+    closeTeamBtn:document.getElementById("closeTeamBtn"),
+    teamDialogLogo:document.getElementById("teamDialogLogo"),
+    teamDialogLeague:document.getElementById("teamDialogLeague"),
+    teamDialogTitle:document.getElementById("teamDialogTitle"),
+    teamFavoriteBtn:document.getElementById("teamFavoriteBtn"),
+    teamScheduleView:document.getElementById("teamScheduleView")
   };
 
   let view = "scores";
@@ -62,6 +86,11 @@
   let liveSnapshotInitialized = false;
   let teamSearchTimer = null;
   let notificationEnabled = localStorage.getItem(NOTIFY_KEY) === "1";
+  let catalogTeams = [];
+  let catalogLoaded = false;
+  let leagueFavorites = new Set(loadJson(LEAGUE_FAVORITES_KEY, []));
+  let selectedLeague = null;
+  let selectedTeam = null;
 
   function loadJson(key, fallback) {
     try {
@@ -74,6 +103,51 @@
 
   function saveFavorites() {
     localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites.values()]));
+  }
+
+  function saveLeagueFavorites() {
+    localStorage.setItem(LEAGUE_FAVORITES_KEY, JSON.stringify([...leagueFavorites]));
+  }
+
+  function leagueByCode(code) {
+    return LEAGUES.find(item => item.code === code) || null;
+  }
+
+  function normalizeLabel(value) {
+    return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
+  }
+
+  async function fetchPublicJson(url, timeout = 10000) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeout);
+    try {
+      const res = await fetch(url,{cache:"no-store",mode:"cors",signal:controller.signal,headers:{"Accept":"application/json"}});
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return await res.json();
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  async function loadCatalog(force = false) {
+    if (catalogLoaded && !force) return catalogTeams;
+    try {
+      const res = await fetch(CATALOG_URL + "?t=" + Date.now(),{cache:"no-store"});
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      const data = await res.json();
+      catalogTeams = Array.isArray(data.teams) ? data.teams : [];
+      catalogLoaded = true;
+    } catch (err) {
+      console.warn("Catálogo de equipos no disponible",err);
+      if (!catalogTeams.length) {
+        const byName = new Map();
+        [...dayEvents,...liveEvents].forEach(e => [e.homeTeam,e.awayTeam].forEach(t => {
+          if (t?.id && t?.name) byName.set(normalizeLabel(t.name),t);
+        }));
+        catalogTeams = [...byName.values()];
+      }
+    }
+    return catalogTeams;
   }
 
   function todayIso() {
