@@ -37,7 +37,7 @@ RFEF = {
     "esp.rfef.2": {
         "pdf":"https://rfef.es/sites/default/files/2026-06/Primera_Federacion_Grupo_II.pdf",
         "teams":[
-            "AD Alcorcón","Águilas FC","Algeciras CF","Antequera CCF","Atlético Madrileño",
+            "AD Alcorcón","Águilas FC","Algeciras CF","Antequera CF","Atlético Madrileño",
             "CD Teruel","CE Europa","CF Rayo Majadahonda","FC Cartagena","Gimnàstic de Tarragona",
             "Hércules de Alicante CF","Juventud de Torremolinos CF","Real Jaén CF",
             "Real Madrid Castilla","Real Murcia CF","Real Zaragoza","SD Huesca","UD Ibiza",
