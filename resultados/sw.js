@@ -1,12 +1,12 @@
-const CACHE = "mi-resultados-v1.2.1";
+const CACHE = "mi-resultados-v1.3";
 const SHELL = [
   "./",
-  "index.html?v=1.2.1",
-  "styles.css?v=1.2.1",
-  "leagues.js?v=1.2.1",
-  "app.js?v=1.2.1",
-  "manifest.webmanifest?v=1.2.1",
-  "icon.svg?v=1.2.1"
+  "index.html?v=1.3",
+  "styles.css?v=1.3",
+  "leagues.js?v=1.3",
+  "app.js?v=1.3",
+  "manifest.webmanifest?v=1.3",
+  "icon.svg?v=1.3"
 ];
 
 self.addEventListener("install", event => {
@@ -50,7 +50,8 @@ self.addEventListener("fetch", event => {
     url.pathname.endsWith("/styles.css") ||
     url.pathname.endsWith("/leagues.js") ||
     url.pathname.endsWith("/data/scores.json") ||
-    url.pathname.endsWith("/data/catalog.json");
+    url.pathname.endsWith("/data/catalog.json") ||
+    url.pathname.endsWith("/data/engine.json");
 
   if (dynamic) {
     event.respondWith(networkFirst(event.request));
