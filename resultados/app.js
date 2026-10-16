@@ -268,6 +268,41 @@
     return "Internacional";
   }
 
+  function inferLeagueCode(slug, name) {
+    const s = normalizeLabel(slug);
+    const n = normalizeLabel(name);
+    const checks = [
+      ["uefa.champions",["champions league","uefa champions"]],
+      ["uefa.europa.conf",["conference league","europa conference"]],
+      ["uefa.europa",["europa league"]],
+      ["esp.2",["laliga 2","laliga hypermotion","segunda division","spanish segunda"]],
+      ["esp.1",["laliga","spanish laliga"]],
+      ["esp.copa_del_rey",["copa del rey"]],
+      ["eng.2",["english league championship","championship"]],
+      ["eng.1",["english premier league","premier league"]],
+      ["ger.2",["german 2 bundesliga","2 bundesliga"]],
+      ["ger.1",["german bundesliga","bundesliga"]],
+      ["ita.1",["italian serie a","serie a"]],
+      ["fra.1",["french ligue 1","ligue 1"]],
+      ["ned.1",["dutch eredivisie","eredivisie"]],
+      ["por.1",["portuguese primeira liga","primeira liga"]],
+      ["bel.1",["belgian pro league","jupiler pro league"]],
+      ["sco.1",["scottish premiership","premiership"]],
+      ["tur.1",["turkish super lig","super lig"]],
+      ["usa.1",["major league soccer","mls"]],
+      ["mex.1",["liga mx"]],
+      ["arg.1",["argentine liga profesional","argentine primera","primera division argentina"]],
+      ["bra.1",["brazilian serie a","brasileirao"]],
+      ["ksa.1",["saudi pro league"]],
+      ["aus.1",["a league"]],
+      ["jpn.1",["j1 league"]]
+    ];
+    for (const [code,needles] of checks) {
+      if (needles.some(x => s.includes(normalizeLabel(x)) || n.includes(normalizeLabel(x)))) return code;
+    }
+    return "";
+  }
+
   function espnStatus(raw) {
     const info = raw?.status?.type || {};
     const state = String(info.state || "").toLowerCase();
@@ -307,7 +342,10 @@
     };
 
     const slug = String(raw?.season?.slug || "");
-    const country = espnCountry(slug);
+    const leagueName = espnLeagueName(slug);
+    const leagueCode = inferLeagueCode(slug, leagueName);
+    const leagueMeta = leagueByCode(leagueCode);
+    const country = leagueMeta?.country || espnCountry(slug);
     const homeTeam = makeTeam(home);
     const awayTeam = makeTeam(away);
     if (country !== "Internacional") {
@@ -320,12 +358,13 @@
       provider:"espn",
       startTimestamp:Math.floor(new Date(raw.date || 0).getTime()/1000) || 0,
       status:espnStatus(raw),
+      leagueCode,
       tournament:{
-        id:slug || espnLeagueName(slug),
-        name:espnLeagueName(slug),
+        id:slug || leagueName,
+        name:leagueMeta?.name || leagueName,
         priority:500,
-        uniqueTournament:{id:slug || espnLeagueName(slug),name:espnLeagueName(slug)},
-        category:{name:country}
+        uniqueTournament:{id:slug || leagueName,name:leagueMeta?.name || leagueName},
+        category:{name:country,alpha2:leagueMeta?.alpha2 || ""}
       },
       homeTeam,
       awayTeam,
@@ -429,11 +468,14 @@
     const t = event?.tournament || {};
     const u = t?.uniqueTournament || {};
     const c = t?.category || {};
+    const code = event?.leagueCode || inferLeagueCode(String(u.id || t.id || ""),u.name || t.name || "");
+    const meta = leagueByCode(code);
     return {
-      key:String(u.id || t.id || t.name || "other") + ":" + String(c.id || c.name || ""),
-      tournament:u.name || t.name || "Otros",
-      country:c.name || event?.homeTeam?.country?.name || "Internacional",
-      alpha2:c?.country?.alpha2 || c?.alpha2 || event?.homeTeam?.country?.alpha2 || "",
+      key:code || (String(u.id || t.id || t.name || "other") + ":" + String(c.id || c.name || "")),
+      leagueCode:code,
+      tournament:meta?.name || u.name || t.name || "Otros",
+      country:meta?.country || c.name || event?.homeTeam?.country?.name || "Internacional",
+      alpha2:meta?.alpha2 || c?.country?.alpha2 || c?.alpha2 || event?.homeTeam?.country?.alpha2 || "",
       priority:Number(t.priority ?? u.priority ?? 9999)
     };
   }
