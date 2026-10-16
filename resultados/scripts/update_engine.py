@@ -59,14 +59,14 @@ HEADERS = {
 }
 
 
-def fetch_json(url: str, params: dict[str, str] | None = None, attempts: int = 3) -> dict:
+def fetch_json(url: str, params: dict[str, str] | None = None, attempts: int = 2, timeout: int = 15) -> dict:
     if params:
         url += ("&" if "?" in url else "?") + urllib.parse.urlencode(params)
     last: Exception | None = None
     for attempt in range(attempts):
         try:
             req = urllib.request.Request(url, headers=HEADERS)
-            with urllib.request.urlopen(req, timeout=45) as response:
+            with urllib.request.urlopen(req, timeout=timeout) as response:
                 return json.loads(response.read().decode("utf-8"))
         except Exception as exc:
             last = exc
@@ -411,7 +411,7 @@ def main() -> int:
             print(f"{code} RFEF schedule ERROR: {exc}")
 
         try:
-            raw=fetch_json(f"{TSD}/eventsseason.php",{"id":lid,"s":season},attempts=2)
+            raw=fetch_json(f"{TSD}/eventsseason.php",{"id":lid,"s":season},attempts=1,timeout=12)
             rows=raw.get("events") if isinstance(raw,dict) else None
             if not isinstance(rows,list):
                 raise RuntimeError("sin events")
@@ -459,7 +459,7 @@ def main() -> int:
         # Clasificación: no se consulta cada minuto. 6h de TTL y se conserva la
         # última válida si la liga no está disponible en el endpoint gratuito.
         try:
-            raw=fetch_json(f"{TSD}/lookuptable.php",{"l":lid,"s":season})
+            raw=fetch_json(f"{TSD}/lookuptable.php",{"l":lid,"s":season},attempts=1,timeout=12)
             rows=raw.get("table") if isinstance(raw,dict) else None
             if not isinstance(rows,list) or not rows:
                 raise RuntimeError("tabla no disponible")
@@ -473,7 +473,7 @@ def main() -> int:
 
     # Zaragoza es nuestro caso de prueba: ficha estática de larga duración.
     try:
-        raw=fetch_json(f"{TSD}/lookupteam.php",{"id":"133737"})
+        raw=fetch_json(f"{TSD}/lookupteam.php",{"id":"133737"},attempts=1,timeout=12)
         rows=raw.get("teams") if isinstance(raw,dict) else None
         if isinstance(rows,list) and rows:
             t=rows[0]
