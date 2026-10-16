@@ -507,7 +507,7 @@
   function visibleEvents() {
     let events = mergeLiveIntoDay(dayEvents);
     if (view === "live") events = liveEvents.slice();
-    if (view === "favorites") events = events.filter(favoriteInEvent);
+    if (view === "favorites") events = events.filter(e => favoriteInEvent(e) || leagueFavorites.has(tournamentData(e).leagueCode));
     if (query.trim()) {
       const q = query.trim().toLowerCase();
       events = events.filter(e => eventSearchText(e).includes(q));
@@ -707,10 +707,10 @@
   function render() {
     renderDate();
     els.tabs.forEach(btn => btn.classList.toggle("active", btn.dataset.view === view));
-    els.favEmpty.classList.toggle("hidden", !(view === "favorites" && favorites.size === 0));
+    els.favEmpty.classList.toggle("hidden", !(view === "favorites" && favorites.size === 0 && leagueFavorites.size === 0));
 
     const events = visibleEvents();
-    if (view === "favorites" && favorites.size === 0) {
+    if (view === "favorites" && favorites.size === 0 && leagueFavorites.size === 0) {
       els.matches.innerHTML = "";
       return;
     }
@@ -1226,6 +1226,127 @@
     els.detailLineups.innerHTML = '<div class="lineups">' + column(home,selectedEvent?.homeTeam?.name||"Local") + column(away,selectedEvent?.awayTeam?.name||"Visitante") + '</div>';
   }
 
+  function espnSummaryInfo(data) {
+    const gameInfo=data?.gameInfo || {};
+    const competition=data?.header?.competitions?.[0] || {};
+    const venue=gameInfo?.venue?.fullName || gameInfo?.venue?.name || competition?.venue?.fullName || "";
+    const attendance=gameInfo?.attendance || competition?.attendance || "";
+    const officials=(gameInfo?.officials || []).map(x=>x?.displayName || x?.fullName || x?.name).filter(Boolean);
+    const broadcasts=[];
+    const addBroadcasts=value=>{
+      if(!Array.isArray(value)) return;
+      value.forEach(item=>{
+        const names=[];
+        if(Array.isArray(item?.names)) names.push(...item.names);
+        if(item?.name) names.push(item.name);
+        if(item?.shortName) names.push(item.shortName);
+        names.forEach(name=>{if(name && !broadcasts.includes(name)) broadcasts.push(name);});
+      });
+    };
+    addBroadcasts(competition?.broadcasts);
+    addBroadcasts(data?.broadcasts);
+
+    const weather=gameInfo?.weather;
+    const weatherText=weather ? [weather.displayValue || weather.conditionId,weather.temperature!=null?weather.temperature+"°":""].filter(Boolean).join(" · ") : "";
+    const info=[];
+    if(venue) info.push(["Estadio",venue]);
+    if(attendance) info.push(["Asistencia",String(attendance)]);
+    if(officials.length) info.push(["Árbitro",officials.join(", ")]);
+    if(broadcasts.length) info.push(["TV / emisión",broadcasts.join(", ")]);
+    if(weatherText) info.push(["Tiempo",weatherText]);
+    return info;
+  }
+
+  function renderEspnSummary(data) {
+    const info=espnSummaryInfo(data);
+    const infoHtml=info.length
+      ? '<div class="match-info-grid">'+info.map(([k,v])=>'<div class="match-info-item"><span>'+esc(k)+'</span><strong>'+esc(v)+'</strong></div>').join("")+'</div>'
+      : "";
+
+    const plays=Array.isArray(data?.plays)?data.plays:(Array.isArray(data?.keyEvents)?data.keyEvents:[]);
+    let incidentsHtml="";
+    if(plays.length){
+      incidentsHtml='<div class="timeline">'+plays.slice(-40).map(item=>{
+        const clock=item?.clock?.displayValue || item?.clock || item?.time || "";
+        const text=item?.text || item?.shortText || item?.type?.text || item?.type?.description || "Incidencia";
+        const low=normalizeLabel(text);
+        const icon=low.includes("goal")||low.includes("gol")?"⚽":low.includes("yellow")||low.includes("amar")?"🟨":low.includes("red")||low.includes("roja")?"🟥":low.includes("substitut")||low.includes("sustit")?"🔄":"•";
+        return '<div class="incident"><div class="incident-time">'+esc(clock)+'</div><div class="incident-icon">'+icon+'</div><div><strong>'+esc(text)+'</strong></div></div>';
+      }).join("")+'</div>';
+    }
+
+    const injuries=Array.isArray(data?.injuries)?data.injuries:[];
+    let injuriesHtml="";
+    if(injuries.length){
+      const names=injuries.flatMap(group=>Array.isArray(group?.injuries)?group.injuries:[group]).map(x=>x?.athlete?.displayName || x?.athlete?.fullName || x?.name).filter(Boolean);
+      if(names.length) injuriesHtml='<div class="match-info-item"><span>Bajas / lesiones</span><strong>'+esc(names.slice(0,12).join(", "))+'</strong></div>';
+    }
+
+    els.detailSummary.innerHTML=infoHtml + injuriesHtml + (incidentsHtml || '<div class="muted">No hay incidencias disponibles todavía.</div>');
+  }
+
+  function renderEspnStats(data) {
+    const teams=Array.isArray(data?.boxscore?.teams)?data.boxscore.teams:[];
+    if(teams.length<2){
+      els.detailStats.innerHTML='<div class="muted">No hay estadísticas disponibles para este partido.</div>';
+      return;
+    }
+    const left=teams[0], right=teams[1];
+    const leftStats=Array.isArray(left.statistics)?left.statistics:[];
+    const rightStats=Array.isArray(right.statistics)?right.statistics:[];
+    const rows=[];
+    for(const stat of leftStats){
+      const key=String(stat.name||stat.label||stat.abbreviation||"");
+      const other=rightStats.find(x=>String(x.name||x.label||x.abbreviation||"")===key);
+      rows.push({
+        name:stat.label||stat.name||key,
+        home:stat.displayValue ?? stat.value ?? "",
+        away:other?.displayValue ?? other?.value ?? ""
+      });
+    }
+    if(!rows.length){
+      els.detailStats.innerHTML='<div class="muted">No hay estadísticas disponibles para este partido.</div>';
+      return;
+    }
+    els.detailStats.innerHTML='<div class="stats-list">'+rows.slice(0,24).map(row=>{
+      const hn=parseFloat(String(row.home).replace("%",""))||0;
+      const an=parseFloat(String(row.away).replace("%",""))||0;
+      const total=Math.max(1,hn+an), hp=Math.round(hn/total*100), ap=100-hp;
+      return '<div><div class="stat-row"><div class="stat-value">'+esc(row.home)+'</div><strong>'+esc(row.name)+'</strong><div class="stat-value">'+esc(row.away)+'</div></div><div class="stat-bars"><i style="width:'+hp+'%"></i><i style="width:'+ap+'%"></i></div></div>';
+    }).join("")+'</div>';
+  }
+
+  function renderEspnLineups(data) {
+    const rosters=Array.isArray(data?.rosters)?data.rosters:[];
+    if(!rosters.length){
+      els.detailLineups.innerHTML='<div class="muted">Alineaciones aún no disponibles.</div>';
+      return;
+    }
+    const columns=rosters.slice(0,2).map(group=>{
+      const team=group?.team || {};
+      const entries=Array.isArray(group?.roster)?group.roster:(Array.isArray(group?.athletes)?group.athletes:[]);
+      const starters=entries.filter(x=>x?.starter || x?.status?.type==="starter" || x?.subbedIn===false);
+      const list=starters.length?starters:entries;
+      return '<div class="lineup-col"><h3>'+esc(team.displayName||team.name||"Equipo")+'</h3>'+list.slice(0,18).map(item=>{
+        const p=item?.athlete || item?.player || item;
+        const number=item?.jersey || p?.jersey || p?.jerseyNumber || "";
+        const pos=item?.position?.abbreviation || p?.position?.abbreviation || "";
+        return '<div class="player"><span class="player-num">'+esc(number)+'</span><span>'+esc(p?.displayName||p?.fullName||p?.name||"Jugador")+(pos?' · '+esc(pos):'')+'</span></div>';
+      }).join("")+'</div>';
+    }).join("");
+    els.detailLineups.innerHTML='<div class="lineups">'+columns+'</div>';
+  }
+
+  async function loadEspnMatchSummary(event) {
+    const code=event?.leagueCode || tournamentData(event).leagueCode;
+    if(!code) throw new Error("Competición ESPN no identificada");
+    const url=ESPN_SITE_BASE+"/"+encodeURIComponent(code)+"/summary?event="+encodeURIComponent(event.id)+"&t="+Date.now();
+    const data=await fetchPublicJson(url,12000);
+    renderEspnSummary(data);
+    renderEspnStats(data);
+    renderEspnLineups(data);
+  }
+
   async function openMatch(event) {
     selectedEvent = event;
     const meta = tournamentData(event);
@@ -1244,11 +1365,22 @@
     setDetail("summary");
     els.dialog.showModal();
 
-    if (event.provider === "thesportsdb" || event.provider === "espn") {
-      const providerName = event.provider === "espn" ? "ESPN" : "el proveedor de respaldo";
-      els.detailSummary.innerHTML = '<div class="muted">Este partido procede de ' + providerName + '. En esta V1.1 priorizamos tener mucha más cobertura de partidos. Las incidencias avanzadas se conectarán en la siguiente fase.</div>';
-      els.detailStats.innerHTML = '<div class="muted">Estadísticas avanzadas: próxima fase.</div>';
-      els.detailLineups.innerHTML = '<div class="muted">Alineaciones: próxima fase.</div>';
+    if (event.provider === "espn") {
+      try {
+        await loadEspnMatchSummary(event);
+      } catch (err) {
+        console.warn("Resumen ESPN no disponible",err);
+        els.detailSummary.innerHTML = '<div class="muted">El partido está disponible, pero ESPN no ha proporcionado todavía el resumen detallado.</div>';
+        els.detailStats.innerHTML = '<div class="muted">Estadísticas no disponibles todavía.</div>';
+        els.detailLineups.innerHTML = '<div class="muted">Alineaciones no disponibles todavía.</div>';
+      }
+      return;
+    }
+
+    if (event.provider === "thesportsdb") {
+      els.detailSummary.innerHTML = '<div class="muted">Este partido procede del proveedor de respaldo. El marcador y horario están disponibles.</div>';
+      els.detailStats.innerHTML = '<div class="muted">Estadísticas avanzadas no disponibles en el respaldo.</div>';
+      els.detailLineups.innerHTML = '<div class="muted">Alineaciones no disponibles en el respaldo.</div>';
       return;
     }
 
