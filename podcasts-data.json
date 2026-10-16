@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-15T04:40:54.413302Z",
+  "updatedAt": "2026-10-16T00:25:22.123028Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "e91c69d3bf1ac80d9cac",
+          "title": "15 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Titulares. Tercer triunfo seguido del Real Madrid en la Euroliga. La derrota del Celta y los empates de Real Sociedad y Getafe. Entrevista a Ángel Torres. Tiempo de Opinión. Las dudas del Real Madrid. Charlamos con David Ferrer. Actualidad del Barcelona. Antony denuncia un robo en su casa. Fórmula 1. The Americans.",
+          "publishedAt": "2026-10-15T23:40:00Z",
+          "duration": 7543,
+          "audio": "https://www.cope.es/uploads/2026/10/16/qP85rSJWr2bCg0NEp2rqA.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/15-oct-2026-partidazo-cope-20261016_3456698.html"
+        },
+        {
+          "id": "f82966fe17680f6c293d",
+          "title": "3ª PARTE | 15 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Charlamos con David Ferrer tras su renuncia a la capitanía del equipo español de la Davis. El Barcelona recupera a De Jong y Raphinha para La Liga. Antony denuncia un robo en su casa. Fórmula 1. The Americans.",
+          "publishedAt": "2026-10-15T23:30:00Z",
+          "duration": 3203,
+          "audio": "https://www.cope.es/uploads/2026/10/16/J42iYJWLM6kQxRjq9cW6j.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-15-oct-2026-partidazo-cope-20261016_3456697.html"
+        },
+        {
+          "id": "82860b5c44e1ea7f9f4d",
+          "title": "2ª PARTE | 15 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Siguen las dudas en el Real Madrid pese a la remontada contra la Roma. Tiempo de Opinión. Fernando Morientes analiza la actualidad madridista y la sanción de Vinicius. Arbeloa, al límite en el Fulham.",
+          "publishedAt": "2026-10-15T22:52:42Z",
+          "duration": 1984,
+          "audio": "https://www.cope.es/uploads/2026/10/16/sWl4qnO4HchLzNwyF1-v7.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-15-oct-2026-partidazo-cope-20261016_3456694.html"
+        },
+        {
+          "id": "e084f675d458fdf8a975",
+          "title": "1ª PARTE | 15 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Tercer triunfo seguido del Real Madrid en la Euroliga. La derrota del Celta contra la Juventus. Los empates de Real Sociedad y Getafe en Europa League y Conference. Entrevista a Ángel Torres, presidente del Getafe.",
+          "publishedAt": "2026-10-15T22:21:37Z",
+          "duration": 2126,
+          "audio": "https://www.cope.es/uploads/2026/10/16/_YL0t2Ad3r7t-js01H3nc.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-15-oct-2026-partidazo-cope-20261016_3456683.html"
+        },
         {
           "id": "77fd97ae3f12feba7684",
           "title": "14 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6565,50 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/10-abr-2026-partidazo-cope-20260411_3343414.html"
-        },
-        {
-          "id": "3f77cee5b2b7213b2c7c",
-          "title": "3ª PARTE | 10 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Sigue el #OasisDeLibertad. Previa del Barcelona - Espanyol. ¿Cómo le va a Jon Rahm en el Maters de Augusta?. #Campodelgas.",
-          "publishedAt": "2026-04-10T23:30:00Z",
-          "duration": 3287,
-          "audio": "https://www.cope.es/uploads/2026/04/11/AqXdHe-UArasnlfeRFTqI.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-10-abr-2026-partidazo-cope-20260411_3343412.html"
-        },
-        {
-          "id": "e34e5ec89a540b533c58",
-          "title": "2ª PARTE | 10 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Regresa el #OasisDeLibertad tras la Semana Santa y el parón de selecciones.",
-          "publishedAt": "2026-04-10T22:53:38Z",
-          "duration": 1819,
-          "audio": "https://www.cope.es/uploads/2026/04/11/1nrBSff-kitwJdXlIMqmI.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-10-abr-2026-partidazo-cope-20260411_3343405.html"
-        },
-        {
-          "id": "328c05bab1253823824f",
-          "title": "1ª PARTE | 10 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. El Real Madrid tropieza antes de visitar al Bayern. Escuchamos a los protagonistas. Seixas sentencia la Itzulia. Tiempo de Opinión. Cómoda victoria de Alcaraz en Motecarlo.",
-          "publishedAt": "2026-04-10T22:26:10Z",
-          "duration": 2611,
-          "audio": "https://www.cope.es/uploads/2026/04/11/L0bCOPJSENpYkypRWB1x3.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-10-abr-2026-partidazo-cope-20260411_3343394.html"
-        },
-        {
-          "id": "d6fd36df42f8d9a1e1c9",
-          "title": "#OasisDeLibertad (10-04-2026)",
-          "description": "Últimas reacciones desde el Bernabéu. Noticias del Barça-Espanyol. El Masters de Augusta. Preguntas",
-          "publishedAt": "2026-04-10T21:50:00Z",
-          "duration": 3789,
-          "audio": "https://www.cope.es/uploads/2026/04/11/4Y1WM_ZjOeds-5jaihwtu.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2024/07/09/668d11ca4e079.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/oasisdelibertad/audios/oasisdelibertad-10-20260411_3343411.html"
         }
       ]
     },
