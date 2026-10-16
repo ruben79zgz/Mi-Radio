@@ -1421,6 +1421,21 @@
     clearTimeout(teamSearchTimer);
     teamSearchTimer=setTimeout(() => searchTeams(els.teamInput.value),300);
   });
+  els.leagueSearchInput?.addEventListener("input",renderLeagueSidebar);
+  els.closeLeagueBtn?.addEventListener("click",()=>els.leagueDialog.close());
+  els.leagueTabs.forEach(btn=>btn.addEventListener("click",()=>setLeagueTab(btn.dataset.leagueTab)));
+  els.leagueFavoriteBtn?.addEventListener("click",()=>{
+    if(selectedLeague) toggleLeagueFavorite(selectedLeague.code);
+  });
+  els.closeTeamBtn?.addEventListener("click",()=>els.teamDialog.close());
+  els.teamFavoriteBtn?.addEventListener("click",()=>{
+    if(!selectedTeam) return;
+    const current=favoriteTeam(selectedTeam);
+    if(current) favorites.delete(Number(current.id)); else addFavorite(selectedTeam);
+    saveFavorites();
+    els.teamFavoriteBtn.textContent=favoriteTeam(selectedTeam)?"★":"☆";
+    render();
+  });
   els.closeDialog.addEventListener("click",() => els.dialog.close());
   els.detailTabs.forEach(btn => btn.addEventListener("click",() => setDetail(btn.dataset.detail)));
   els.dialogFavorite.addEventListener("click",() => {
@@ -1448,11 +1463,13 @@
   });
 
   if ("serviceWorker" in navigator) {
-    window.addEventListener("load",() => navigator.serviceWorker.register("sw.js?v=1.1.1").catch(console.warn));
+    window.addEventListener("load",() => navigator.serviceWorker.register("sw.js?v=1.2").catch(console.warn));
   }
 
   updateNotifyButton();
   renderDate();
+  renderLeagueSidebar();
+  loadCatalog(false);
   els.matches.innerHTML = document.getElementById("loadingTemplate").innerHTML.repeat(2);
   Promise.all([loadDay(false),loadLive()]).finally(scheduleLive);
 })();
