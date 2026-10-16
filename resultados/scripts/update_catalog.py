@@ -16,7 +16,8 @@ LEAGUES = [
     ("esp.copa_del_rey","Copa del Rey","España","ES"),("eng.1","Premier League","Inglaterra","GB"),
     ("eng.2","Championship","Inglaterra","GB"),("ger.1","Bundesliga","Alemania","DE"),
     ("ger.2","2. Bundesliga","Alemania","DE"),("ita.1","Serie A","Italia","IT"),
-    ("fra.1","Ligue 1","Francia","FR"),("ned.1","Eredivisie","Países Bajos","NL"),
+    ("ita.2","Serie B","Italia","IT"),("fra.1","Ligue 1","Francia","FR"),
+    ("fra.2","Ligue 2","Francia","FR"),("ned.1","Eredivisie","Países Bajos","NL"),
     ("por.1","Primeira Liga","Portugal","PT"),("bel.1","Jupiler Pro League","Bélgica","BE"),
     ("sco.1","Premiership","Escocia","GB"),("tur.1","Süper Lig","Turquía","TR"),
     ("uefa.champions","Champions League","Europa","EU"),("uefa.europa","Europa League","Europa","EU"),
@@ -27,7 +28,7 @@ LEAGUES = [
 ]
 
 HEADERS = {
-    "User-Agent":"MiResultados/1.2 (+https://github.com/ruben79zgz/Mi-Radio)",
+    "User-Agent":"MiResultados/1.3.1 (+https://github.com/ruben79zgz/Mi-Radio)",
     "Accept":"application/json",
 }
 

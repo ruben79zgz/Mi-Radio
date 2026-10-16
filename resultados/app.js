@@ -518,6 +518,7 @@
     const type = eventStatusType(event);
     const desc = String(event?.status?.description || "").toLowerCase();
 
+    if (type === "notstarted" && event?.timeConfirmed === false) return "Por confirmar";
     if (type === "notstarted") {
       return new Intl.DateTimeFormat("es-ES",{hour:"2-digit",minute:"2-digit"}).format(eventDate(event));
     }
@@ -1566,7 +1567,9 @@
     selectedEvent = event;
     const meta = tournamentData(event);
     els.dialogCompetition.textContent = meta.tournament + " · " + meta.country;
-    els.dialogStatus.textContent = new Intl.DateTimeFormat("es-ES",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}).format(eventDate(event));
+    els.dialogStatus.textContent = event?.timeConfirmed === false
+      ? new Intl.DateTimeFormat("es-ES",{weekday:"short",day:"numeric",month:"short"}).format(eventDate(event)) + " · horario por confirmar"
+      : new Intl.DateTimeFormat("es-ES",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}).format(eventDate(event));
     els.homeName.textContent = event.homeTeam?.name || "Local";
     els.awayName.textContent = event.awayTeam?.name || "Visitante";
     els.homeLogo.src = teamLogo(event.homeTeam);
@@ -1596,7 +1599,7 @@
       return;
     }
 
-    if (event.provider === "thesportsdb") {
+    if (event.provider === "thesportsdb" || event.provider === "rfef") {
       const extra=event.extra || {};
       const info=[
         extra.venue ? ["Estadio",extra.venue] : null,
@@ -1692,7 +1695,7 @@
   });
 
   if ("serviceWorker" in navigator) {
-    window.addEventListener("load",() => navigator.serviceWorker.register("sw.js?v=1.3").catch(console.warn));
+    window.addEventListener("load",() => navigator.serviceWorker.register("sw.js?v=1.3.1").catch(console.warn));
   }
 
   updateNotifyButton();
