@@ -166,6 +166,8 @@
   function espnLeagueName(slug) {
     let value = String(slug || "").replace(/^\d{4}(?:-\d{2,4})?-/, "").replaceAll("-"," ").trim();
     if (!value) return "Fútbol";
+    if (value === "laliga") return "LaLiga";
+    if (value.startsWith("laliga ")) return "LaLiga " + value.slice(7);
     const acronyms = new Map([
       ["uefa","UEFA"],["fifa","FIFA"],["afc","AFC"],["concacaf","CONCACAF"],
       ["mls","MLS"],["nwsl","NWSL"]
@@ -176,6 +178,7 @@
 
   function espnCountry(slug) {
     const low = String(slug || "").toLowerCase();
+    if (low.includes("laliga") || low.includes("copa-del-rey") || low.includes("liga-f")) return "España";
     const pairs = [
       ["english","Inglaterra"],["spanish","España"],["german","Alemania"],["italian","Italia"],
       ["french","Francia"],["portuguese","Portugal"],["dutch","Países Bajos"],["belgian","Bélgica"],
