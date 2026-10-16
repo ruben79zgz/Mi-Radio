@@ -10,7 +10,9 @@
   const ESPN_STANDINGS_BASE = "https://site.api.espn.com/apis/v2/sports/soccer";
   const FALLBACK_URL = "data/scores.json";
   const CATALOG_URL = "data/catalog.json";
+  const ENGINE_URL = "data/engine.json";
   const FAVORITES_KEY = "mi-resultados-favorites-v1";
+  const DATA_CACHE_PREFIX = "mi-resultados-data-v1:";
   const LEAGUE_FAVORITES_KEY = "mi-resultados-league-favorites-v1";
   const LEAGUES = Array.isArray(window.MR_LEAGUES) ? window.MR_LEAGUES : [];
   const CACHE_PREFIX = "mi-resultados-day-v1:";
@@ -88,6 +90,8 @@
   let notificationEnabled = localStorage.getItem(NOTIFY_KEY) === "1";
   let catalogTeams = [];
   let catalogLoaded = false;
+  let engineData = null;
+  let engineLoaded = false;
   let leagueFavorites = new Set(loadJson(LEAGUE_FAVORITES_KEY, LEAGUES.filter(x => x.pinned).map(x => x.code)));
   let selectedLeague = null;
   let selectedTeam = null;
@@ -129,24 +133,111 @@
     }
   }
 
+  function readDataCache(key) {
+    try {
+      const raw=localStorage.getItem(DATA_CACHE_PREFIX+key);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function writeDataCache(key,data,ttlMs) {
+    try {
+      localStorage.setItem(DATA_CACHE_PREFIX+key,JSON.stringify({
+        savedAt:Date.now(),
+        expiresAt:Date.now()+ttlMs,
+        data
+      }));
+    } catch {}
+  }
+
+  async function fetchCachedJson(key,url,ttlMs,force=false,timeout=12000) {
+    const cached=readDataCache(key);
+    if(!force && cached && Number(cached.expiresAt||0)>Date.now()) return cached.data;
+    try{
+      const data=await fetchPublicJson(url,timeout);
+      writeDataCache(key,data,ttlMs);
+      return data;
+    }catch(err){
+      if(cached?.data) return cached.data;
+      throw err;
+    }
+  }
+
+  async function loadEngine(force=false) {
+    if(engineLoaded && !force) return engineData;
+    try{
+      const res=await fetch(ENGINE_URL+"?t="+Date.now(),{cache:"no-store"});
+      if(!res.ok) throw new Error("HTTP "+res.status);
+      engineData=await res.json();
+      engineLoaded=true;
+      return engineData;
+    }catch(err){
+      console.warn("Motor de datos no disponible",err);
+      return engineData;
+    }
+  }
+
+  function engineDataset(key) {
+    return engineData?.datasets?.[key] || null;
+  }
+
+  function engineEventsForDate(iso) {
+    if(!engineData?.datasets) return [];
+    const result=[];
+    for(const [key,ds] of Object.entries(engineData.datasets)){
+      if(!key.startsWith("schedule:") || !Array.isArray(ds?.data)) continue;
+      for(const event of ds.data){
+        const d=eventDate(event);
+        const eventIso=[d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");
+        if(eventIso===iso) result.push(event);
+      }
+    }
+    return result;
+  }
+
+  function datasetMetaHtml(ds) {
+    if(!ds) return "";
+    const updated=ds.updatedAt ? new Date(ds.updatedAt) : null;
+    const text=updated && !Number.isNaN(updated.getTime())
+      ? new Intl.DateTimeFormat("es-ES",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}).format(updated)
+      : "";
+    return '<div class="muted tiny" style="margin-top:8px">Fuente: '+esc(ds.source||"")+" · caché "+esc(String(ds.ttlMinutes||""))+" min"+(text?" · actualizada "+esc(text):"")+'</div>';
+  }
+
   async function loadCatalog(force = false) {
     if (catalogLoaded && !force) return catalogTeams;
+    const merged=[];
     try {
       const res = await fetch(CATALOG_URL + "?t=" + Date.now(),{cache:"no-store"});
       if (!res.ok) throw new Error("HTTP " + res.status);
       const data = await res.json();
-      catalogTeams = Array.isArray(data.teams) ? data.teams : [];
-      catalogLoaded = true;
+      if(Array.isArray(data.teams)) merged.push(...data.teams);
     } catch (err) {
-      console.warn("Catálogo de equipos no disponible",err);
-      if (!catalogTeams.length) {
-        const byName = new Map();
-        [...dayEvents,...liveEvents].forEach(e => [e.homeTeam,e.awayTeam].forEach(t => {
-          if (t?.id && t?.name) byName.set(normalizeLabel(t.name),t);
-        }));
-        catalogTeams = [...byName.values()];
-      }
+      console.warn("Catálogo ESPN no disponible",err);
     }
+
+    const engine=await loadEngine(force);
+    if(Array.isArray(engine?.teams)) merged.push(...engine.teams);
+
+    const byKey=new Map();
+    for(const team of merged){
+      if(!team?.name) continue;
+      const key=normalizeLabel(team.name)+"|"+String(team.leagueCode||"");
+      const current=byKey.get(key);
+      if(!current || (!current.logo && team.logo)) byKey.set(key,team);
+    }
+    catalogTeams=[...byKey.values()];
+
+    if (!catalogTeams.length) {
+      const byName = new Map();
+      [...dayEvents,...liveEvents].forEach(e => [e.homeTeam,e.awayTeam].forEach(t => {
+        if (t?.id && t?.name) byName.set(normalizeLabel(t.name),t);
+      }));
+      catalogTeams = [...byName.values()];
+    }
+    catalogLoaded=true;
     return catalogTeams;
   }
 
@@ -505,7 +596,7 @@
   }
 
   function visibleEvents() {
-    let events = mergeLiveIntoDay(dayEvents);
+    let events = mergeEventLists(mergeLiveIntoDay(dayEvents),engineEventsForDate(selectedDate));
     if (view === "live") events = liveEvents.slice();
     if (view === "favorites") events = events.filter(e => favoriteInEvent(e) || leagueFavorites.has(tournamentData(e).leagueCode));
     if (query.trim()) {
