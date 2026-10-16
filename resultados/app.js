@@ -1692,13 +1692,14 @@
   });
 
   if ("serviceWorker" in navigator) {
-    window.addEventListener("load",() => navigator.serviceWorker.register("sw.js?v=1.2.1").catch(console.warn));
+    window.addEventListener("load",() => navigator.serviceWorker.register("sw.js?v=1.3").catch(console.warn));
   }
 
   updateNotifyButton();
   renderDate();
   renderLeagueSidebar();
-  loadCatalog(false);
   els.matches.innerHTML = document.getElementById("loadingTemplate").innerHTML.repeat(2);
-  Promise.all([loadDay(false),loadLive()]).finally(scheduleLive);
+  Promise.all([loadCatalog(false),loadDay(false),loadLive()])
+    .then(()=>render())
+    .finally(scheduleLive);
 })();
