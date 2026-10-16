@@ -396,26 +396,65 @@ def main() -> int:
         code=league["code"]
         lid=league["providerId"]
 
-        # Calendario: cambia despacio. Es la fuente que además nos permite descubrir
-        # equipos de la categoría sin depender de que ESPN los conozca.
+        # Calendario: la RFEF oficial garantiza las 38 jornadas; TheSportsDB,
+        # cuando responde, añade hora exacta, estadio y resultado.
+        rfef_events: list[dict] = []
+        tsd_events: list[dict] = []
+
         try:
-            raw=fetch_json(f"{TSD}/eventsseason.php",{"id":lid,"s":season})
+            pdf_bytes=fetch_bytes(RFEF[code]["pdf"])
+            rfef_events=parse_rfef_schedule(pdf_bytes,league)
+            status.append({"dataset":f"schedule-rfef:{code}","ok":True,"count":len(rfef_events)})
+            print(f"{code} RFEF schedule: {len(rfef_events)}")
+        except Exception as exc:
+            status.append({"dataset":f"schedule-rfef:{code}","ok":False,"error":str(exc)})
+            print(f"{code} RFEF schedule ERROR: {exc}")
+
+        try:
+            raw=fetch_json(f"{TSD}/eventsseason.php",{"id":lid,"s":season},attempts=2)
             rows=raw.get("events") if isinstance(raw,dict) else None
             if not isinstance(rows,list):
                 raise RuntimeError("sin events")
-            events=[normalize_event(x,league) for x in rows if isinstance(x,dict)]
-            events.sort(key=lambda x:(x.get("startTimestamp") or 0,str(x.get("id") or "")))
-            datasets[f"schedule:{code}"]=dataset(now,"TheSportsDB","schedule",events,confidence="medium")
+            tsd_events=[normalize_event(x,league) for x in rows if isinstance(x,dict)]
+            tsd_events.sort(key=lambda x:(x.get("startTimestamp") or 0,str(x.get("id") or "")))
+            status.append({"dataset":f"schedule-tsd:{code}","ok":True,"count":len(tsd_events)})
+            print(f"{code} TSD schedule: {len(tsd_events)}")
+        except Exception as exc:
+            status.append({"dataset":f"schedule-tsd:{code}","ok":False,"error":str(exc)})
+            print(f"{code} TSD schedule ERROR: {exc}")
+
+        events=merge_schedule(tsd_events,rfef_events)
+        if events:
+            source="RFEF + TheSportsDB" if tsd_events and rfef_events else ("RFEF" if rfef_events else "TheSportsDB")
+            datasets[f"schedule:{code}"]=dataset(
+                now,source,"schedule",events,
+                confidence="high" if rfef_events else "medium",
+                note="RFEF fija emparejamientos/fechas; TheSportsDB enriquece horas y estadio cuando responde."
+            )
             for event in events:
                 for side in ("homeTeam","awayTeam"):
-                    item=team_from_event(event.get(side) or {},league)
-                    if item:
+                    team=event.get(side) or {}
+                    if not team.get("id") or not team.get("name"):
+                        continue
+                    item={
+                        "id":team["id"],
+                        "name":team["name"],
+                        "shortName":team["name"],
+                        "logo":team.get("logo") or "",
+                        "leagueCode":league["code"],
+                        "leagueName":league["name"],
+                        "country":league["country"],
+                        "alpha2":league["alpha2"],
+                        "provider":event.get("provider") or "rfef",
+                    }
+                    existing=teams.get(str(item["id"]))
+                    if not existing or (not existing.get("logo") and item.get("logo")):
                         teams[str(item["id"])]=item
-            status.append({"dataset":f"schedule:{code}","ok":True,"count":len(events)})
-            print(f"{code} schedule: {len(events)}")
-        except Exception as exc:
-            status.append({"dataset":f"schedule:{code}","ok":False,"error":str(exc)})
-            print(f"{code} schedule ERROR: {exc}")
+            status.append({"dataset":f"schedule:{code}","ok":True,"count":len(events),"source":source})
+            print(f"{code} merged schedule: {len(events)} source={source}")
+        else:
+            status.append({"dataset":f"schedule:{code}","ok":False,"error":"sin calendario"})
+            print(f"{code} schedule ERROR: ninguna fuente disponible")
 
         # Clasificación: no se consulta cada minuto. 6h de TTL y se conserva la
         # última válida si la liga no está disponible en el endpoint gratuito.
