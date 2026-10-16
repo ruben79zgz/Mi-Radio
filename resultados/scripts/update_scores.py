@@ -109,6 +109,10 @@ def clean_season_slug(slug: str) -> str:
     value = value.replace("-", " ").strip()
     if not value:
         return "Fútbol"
+    if value == "laliga":
+        return "LaLiga"
+    if value.startswith("laliga "):
+        return "LaLiga " + value[len("laliga "):]
     replacements = {
         "uefa": "UEFA",
         "fifa": "FIFA",
@@ -134,6 +138,8 @@ def clean_season_slug(slug: str) -> str:
 
 def country_from_slug(slug: str) -> str:
     low = (slug or "").lower()
+    if "laliga" in low or "copa-del-rey" in low or "liga-f" in low:
+        return "España"
     for word, country in COUNTRY_WORDS.items():
         if word in low:
             return country
