@@ -749,11 +749,23 @@
         '</button>';
       }).join("");
 
+      const leagueCode=group.leagueCode || "";
+      const leagueActive=leagueCode && leagueFavorites.has(leagueCode);
+      const headAction=leagueCode
+        ? '<button class="league-table-link" type="button" data-group-standings="' + esc(leagueCode) + '">Clasificación</button>'
+        : '<div class="league-count">' + group.events.length + '</div>';
+      const star=leagueCode
+        ? '<button class="league-star ' + (leagueActive?'active':'') + '" type="button" data-group-star="' + esc(leagueCode) + '">' + (leagueActive?'★':'☆') + '</button>'
+        : '<div class="league-count">' + group.events.length + '</div>';
       return '<section class="league-block">' +
-        '<div class="league-head"><div class="flag">' + countryFlag(group.alpha2) + '</div><div><strong>' + esc(group.tournament) + '</strong><span>' + esc(group.country) + '</span></div><div class="league-count">' + group.events.length + '</div></div>' +
+        '<div class="league-head"><div class="flag">' + countryFlag(group.alpha2) + '</div><button class="league-head-link" type="button" ' + (leagueCode?'data-group-league="'+esc(leagueCode)+'"':'') + '><strong>' + esc(group.country) + ': ' + esc(group.tournament) + '</strong><span>' + group.events.length + ' partido' + (group.events.length===1?'':'s') + '</span></button>' + headAction + star + '</div>' +
         rows +
       '</section>';
     }).join("");
+
+    els.matches.querySelectorAll("[data-group-league]").forEach(btn => btn.addEventListener("click",()=>openLeague(btn.dataset.groupLeague,"matches")));
+    els.matches.querySelectorAll("[data-group-standings]").forEach(btn => btn.addEventListener("click",e=>{e.stopPropagation();openLeague(btn.dataset.groupStandings,"standings");}));
+    els.matches.querySelectorAll("[data-group-star]").forEach(btn => btn.addEventListener("click",e=>{e.stopPropagation();toggleLeagueFavorite(btn.dataset.groupStar);render();}));
 
     els.matches.querySelectorAll("[data-event-id]").forEach(row => {
       row.addEventListener("click", e => {
