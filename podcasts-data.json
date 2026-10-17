@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T07:11:09.368803Z",
+  "updatedAt": "2026-10-17T00:29:49.420321Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "419927e639ecf031e6be",
+          "title": "16 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Titulares. 'Guerra' total entre Javier Tebas y el Real Madrid. El CSD valora actuar de oficio contra el presidente de LaLiga. El empate entre Deportivo y Levante. Jódar jugará las semis de Shanghái. Fernando Alonso empieza a preparar el Dakar 2027. #OasisDeLibertad. Actualidad del Real Madrid. Previa del Betis - Barcelona. #Campodelgas.",
+          "publishedAt": "2026-10-16T23:40:00Z",
+          "duration": 8085,
+          "audio": "https://www.cope.es/uploads/2026/10/17/zZW4x9e7hU4rpISaQ1anI.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/16-oct-2026-partidazo-cope-20261017_3457515.html"
+        },
+        {
+          "id": "0f0f2bea026e11943289",
+          "title": "3ª PARTE | 16 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Sigue el #OasisDeLibertad. Hansi Flick recupera a Raphinha y De Jong para jugar contra el Betis. El Real Madrid prepara su partido frente al Sevilla. #Campodelgas",
+          "publishedAt": "2026-10-16T23:30:00Z",
+          "duration": 3872,
+          "audio": "https://www.cope.es/uploads/2026/10/17/OenWCUi932qDVX95sBy6r.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-16-oct-2026-partidazo-cope-20261017_3457513.html"
+        },
+        {
+          "id": "26e86e5d79ea86b78753",
+          "title": "2ª PARTE | 16 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "#OasisDeLibertad. Analizamos la 'guerra' entre Tebas y el Real Madrid. Gran recibimiento a Ocaña.",
+          "publishedAt": "2026-10-16T22:49:48Z",
+          "duration": 1983,
+          "audio": "https://www.cope.es/uploads/2026/10/17/wtJOPsI4fut6ytwKv2HoB.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-16-oct-2026-partidazo-cope-20261017_3457511.html"
+        },
+        {
+          "id": "ee3706d7aeb688253dc5",
+          "title": "1ª PARTE | 16 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. 'Guerra' total entre Tebas y el Real Madrid. El CSD valora actuar de oficio contra el presidente de LaLiga. El empate entre Deportivo y Levante. Rafa Jódar jugará las semifinales en el Masters 1.000 de Shanghái. Fernando Alonso empieza a preparar su participación en el Dakar 2027.",
+          "publishedAt": "2026-10-16T22:15:13Z",
+          "duration": 1971,
+          "audio": "https://www.cope.es/uploads/2026/10/17/QlJD2kXX-cXV2Leb42s8j.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-16-oct-2026-partidazo-cope-20261017_3457510.html"
+        },
         {
           "id": "e91c69d3bf1ac80d9cac",
           "title": "15 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6565,50 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/04/14/69dd7befd1bde.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/13-abr-26-km42-running-chema-martinez-20260414_3344606.html"
-        },
-        {
-          "id": "9edbb96c57a52773fd9a",
-          "title": "1ª PARTE | 13 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Titulares en la previa de Champions. Cerramos el Levante-Getafe. Flick, descontento con el césped del Metropolitano. Analizamos la rueda de prensa de Lamine Yamal en el 'Tiempo de Opinión'",
-          "publishedAt": "2026-04-13T22:25:54Z",
-          "duration": 2340,
-          "audio": "https://www.cope.es/uploads/2026/04/14/saVH3wueZw0vHjRGJbzDk.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-13-abr-2026-partidazo-cope-20260414_3344589.html"
-        },
-        {
-          "id": "dcd64242ef36a5164e3e",
-          "title": "12 ABR 2026 | EL TERTULIÓN DE LOS DOMINGOS",
-          "description": "El Barcelona, más cerca del título de Liga; La actitud de Lamine Yamal; Nuevo tropiezo del Real Madrid; Polémica arbitral del Bernabéu.",
-          "publishedAt": "2026-04-12T23:59:23Z",
-          "duration": 5736,
-          "audio": "https://www.cope.es/uploads/2026/04/13/4mWbhDmux50bviJvSEOPm.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/06/677b2375741e9.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/12-abr-2026-tertulion-domingos-20260413_3343784.html"
-        },
-        {
-          "id": "6ef0a7ea5777e0d48614",
-          "title": "11 ABR 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
-          "description": "La victoria del Sevilla ante un Atlético con rotaciones. Hablamos con Gudelj y escuchamos a Javi Boñar. El triunfo del Barça en el derbi y las polémicas entre los jugadores. Noticias del Real Madrid. Resultados de la jornada. Segunda División. Tenis. Golf y NBA.",
-          "publishedAt": "2026-04-12T09:12:26Z",
-          "duration": 6581,
-          "audio": "https://www.cope.es/uploads/2026/04/12/CMbsldp7UWxJypM3Pt6fy.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/20/678e8e8da933c.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/11-abr-2026-tramo-final-juego-20260412_3343599.html"
-        },
-        {
-          "id": "67437644048fa9a5bdfe",
-          "title": "10 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Nuevo pinchazo del Real Madrid antes de viajar a Múnich. La polémica por el posible penalti no pitado sobre Mbappé. Previa Barça-Espanyol y del Sevilla-Atlético. Alcaraz, en semis de Montecarlo. Masters Augusta #OasisdeLibertad #CampodelGas.",
-          "publishedAt": "2026-04-11T17:38:26Z",
-          "duration": 7937,
-          "audio": "https://www.cope.es/uploads/2026/04/11/VKfEBj47N5wpC1Cu_ohWh.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/10-abr-2026-partidazo-cope-20260411_3343414.html"
         }
       ]
     },
