@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-17T00:29:49.420321Z",
+  "updatedAt": "2026-10-18T04:35:46.618404Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "d34defba88b2b380241c",
+          "title": "17 OCT 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
+          "description": "Con Luis Munilla. Titulares. Triunfo del Barça ante el Betis con polémica. Victoria del Atlético ante el Espanyol. Tablas en La Cerámica y Mestalla. Previas, con atención al Sevilla-Real Madrid. Segunda División. Jódar-Davidovich, final en Shanghái.",
+          "publishedAt": "2026-10-17T23:07:22Z",
+          "duration": 7074,
+          "audio": "https://www.cope.es/uploads/2026/10/18/wUtCOdpfxMmJtMVg0rlXX.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/10/09/6ac8d266231a1.jpg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/17-oct-2026-tramo-final-juego-20261018_3457671.html"
+        },
         {
           "id": "419927e639ecf031e6be",
           "title": "16 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-13-abr-2026-partidazo-cope-20260414_3344595.html"
-        },
-        {
-          "id": "86fafa7a64f6dfbf6a8d",
-          "title": "13-ABR-26 | #KM42, 'Running' con Chema Martínez",
-          "description": "Con Chema Martínez. Entrevistamos a Manuel Alonso, récordman de 800m y 1500m con 90 años. Las preguntas de los oyentes.",
-          "publishedAt": "2026-04-13T23:40:12Z",
-          "duration": 1154,
-          "audio": "https://www.cope.es/uploads/2026/04/14/MH0HfHWhNfbT26IIcH8mF.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/04/14/69dd7befd1bde.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/13-abr-26-km42-running-chema-martinez-20260414_3344606.html"
         }
       ]
     },
