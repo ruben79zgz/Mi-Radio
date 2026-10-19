@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T04:42:18.473896Z",
+  "updatedAt": "2026-10-19T23:43:35.942555Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,39 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "756983dd44dc4ebf7db5",
+          "title": "19-OCT-26 | #KM42, 'Running' con Chema Martínez",
+          "description": "Entrevista a David Navarro, gestor de La Sala de Navarro; La importancia de la combinación de cardio y pesas",
+          "publishedAt": "2026-10-19T23:40:00Z",
+          "duration": 1442,
+          "audio": "https://www.cope.es/uploads/2026/10/20/q6KoNbsflcOCOzk1IagSi.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/10/20/6ad6a35bcb367.png",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/19-oct-26-km42-running-chema-martinez-20261020_3458621.html"
+        },
+        {
+          "id": "1c353bb4437266e37000",
+          "title": "2ª PARTE | 19 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Tiempo de opinión sobre la polémica en el Bernabéu. Kylian Mbappé recibe el premio Onze de Oro.",
+          "publishedAt": "2026-10-19T22:47:39Z",
+          "duration": 1832,
+          "audio": "https://www.cope.es/uploads/2026/10/20/pXnAJ06qynBY4cnFX_c8F.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-19-oct-2026-partidazo-cope-20261020_3458618.html"
+        },
+        {
+          "id": "943f42bfc78034da32d3",
+          "title": "1ª PARTE | 19 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Continúa la polémica del Real Madrid - Sevilla. Entrevista a Sergio Carranza, jefe de realización editorial de LaLiga.",
+          "publishedAt": "2026-10-19T22:14:54Z",
+          "duration": 2618,
+          "audio": "https://www.cope.es/uploads/2026/10/20/SF5iGKWPjEJ-bjsE5hoQ1.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-19-oct-2026-partidazo-cope-20261020_3458614.html"
+        },
         {
           "id": "501719fd35386045a68c",
           "title": "18 OCT 2026 | EL TERTULIÓN DE LOS DOMINGOS",
@@ -6576,39 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-14-abr-2026-partidazo-cope-20260415_3345477.html"
-        },
-        {
-          "id": "70d81574de85e235c85a",
-          "title": "1ª PARTE | 14 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Atlético de Madrid elimina al Barcelona y jugará las semifinales de la Champions League. Protagonistas. Tiempo de opinión.",
-          "publishedAt": "2026-04-14T22:19:13Z",
-          "duration": 2899,
-          "audio": "https://www.cope.es/uploads/2026/04/15/s1Tq2sx84D-9H9xyaMW5b.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-14-abr-2026-partidazo-cope-20260415_3345466.html"
-        },
-        {
-          "id": "615c6c67e7375acd3f5a",
-          "title": "13 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Titulares. Flick, descontento con el césped del Metropolitano. Previa del Atlético-Barcelona. Mario Suárez, invitado especial del Tiempo de Opinión. El análisis de Maldini. Los planes de Arbeloa para Múnich. José Antonio Ruiz, de la peña madridista de Múnich. #Km42",
-          "publishedAt": "2026-04-14T07:49:05Z",
-          "duration": 8088,
-          "audio": "https://www.cope.es/uploads/2026/04/14/lybnbvOnYnG06I5rxMZA5.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/13-abr-2026-partidazo-cope-20260414_3344610.html"
-        },
-        {
-          "id": "4db8a23cf066d9855191",
-          "title": "3ª PARTE | 13 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "La previa de Maldini sobre la vuelta de cuartos de final de la Champions. Noticia sobre el once de Arbeloa en Múnich. Charlamos con José Antonio Ruiz, de la peña madridista de Múnich. Previa del Inglaterra-España femenino. Escuchamos el nuevo lanzamiento de The Rolling Stones. Tenis. NBA. #Km42",
-          "publishedAt": "2026-04-14T07:48:39Z",
-          "duration": 3779,
-          "audio": "https://www.cope.es/uploads/2026/04/14/VASUxA4ktUG8kcub0vbry.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-13-abr-2026-partidazo-cope-20260414_3344608.html"
         }
       ]
     },
