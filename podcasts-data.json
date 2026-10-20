@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T23:43:35.942555Z",
+  "updatedAt": "2026-10-20T04:52:30.377669Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "dfca50bb78642f00ad86",
+          "title": "19 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Continúa la polémica del Real Madrid - Sevilla. Entrevista a Sergio Carranza, jefe de realización editorial de LaLiga; y Carmen García, presidenta de la Peña Atlética de Alemania. Tiempo de opinión. Previa PSG - Barcelona, Stuttgart - Atlético de Madrid y Liverpool - Villarreal. Km42.",
+          "publishedAt": "2026-10-19T23:50:00Z",
+          "duration": 7349,
+          "audio": "https://www.cope.es/uploads/2026/10/20/Xdc1h6N5EIwbyzyXNbism.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/19-oct-2026-partidazo-cope-20261020_3458624.html"
+        },
+        {
+          "id": "b5730448d1c5b35af7a1",
+          "title": "3ª PARTE | 19 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Previa PSG - Barcelona, Stuttgart - Atlético de Madrid y Liverpool - Villarreal. Entrevista a Carmen García, presidenta de la Peña Atlética de Alemania. Km42.",
+          "publishedAt": "2026-10-19T23:45:00Z",
+          "duration": 2899,
+          "audio": "https://www.cope.es/uploads/2026/10/20/ZmobsLqfFv0Hjg8HF8cCG.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-19-oct-2026-partidazo-cope-20261020_3458622.html"
+        },
         {
           "id": "756983dd44dc4ebf7db5",
           "title": "19-OCT-26 | #KM42, 'Running' con Chema Martínez",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/14-abr-2026-partidazo-cope-20260415_3345484.html"
-        },
-        {
-          "id": "8a1b11605be1bba3eeaf",
-          "title": "3ª PARTE | 14 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Previa Bayern de Múnich - Real Madrid. Entrevistas a Chema Andrés, jugador del Stuttgart.",
-          "publishedAt": "2026-04-14T23:37:06Z",
-          "duration": 2374,
-          "audio": "https://www.cope.es/uploads/2026/04/15/T-M94dryYREysVvLVKm9z.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-14-abr-2026-partidazo-cope-20260415_3345483.html"
-        },
-        {
-          "id": "0dc426083f9c316676a3",
-          "title": "2ª PARTE | 14 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Continuamos analizando el Atlético de Madrid - Barcelona.",
-          "publishedAt": "2026-04-14T22:55:02Z",
-          "duration": 2016,
-          "audio": "https://www.cope.es/uploads/2026/04/15/CpEdlSZaHdFIzfnm-57eb.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-14-abr-2026-partidazo-cope-20260415_3345477.html"
         }
       ]
     },
