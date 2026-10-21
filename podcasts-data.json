@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T00:37:44.987054Z",
+  "updatedAt": "2026-10-21T23:20:54.103929Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "2ff8d7f1306705fe4218",
+          "title": "2ª PARTE | 21 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Sigue el Tiempo de Opinión. El momento de Vinicius. ¿Qué alineación sacará Mourinho ante el Barça?",
+          "publishedAt": "2026-10-21T23:01:02Z",
+          "duration": 1929,
+          "audio": "https://www.cope.es/uploads/2026/10/22/LXLoLJr6Dkazm_-kRXWej.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-21-oct-2026-partidazo-cope-20261022_3460291.html"
+        },
+        {
+          "id": "fafc12d703298dd83466",
+          "title": "1ª PARTE | 21 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "3ª jornada: Victorias del Real Madrid (4-1) contra el Leipzig y del Betis (1-0) contra el Feyenoord. Protagonistas. Entrevista a Fran García.",
+          "publishedAt": "2026-10-21T22:11:57Z",
+          "duration": 2479,
+          "audio": "https://www.cope.es/uploads/2026/10/22/839_iIUJRPxLOhMMeLvwR.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-21-oct-2026-partidazo-cope-20261022_3460283.html"
+        },
         {
           "id": "a0519a2f3693df8918cd",
           "title": "20 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-16-abr-2026-partidazo-cope-20260417_3347187.html"
-        },
-        {
-          "id": "0757fd12b5d7cd8fca25",
-          "title": "1ª PARTE | 16 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Betis y Celta, eliminados de la Europa League por el Sporting de Braga y Friburgo. El Rayo se mete en semifinales de la Conference. Protagonistas. Entrevista a Isi.",
-          "publishedAt": "2026-04-16T22:06:24Z",
-          "duration": 2145,
-          "audio": "https://www.cope.es/uploads/2026/04/17/XLw6W2y0qkXtsy5BB6T8s.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-16-abr-2026-partidazo-cope-20260417_3347179.html"
-        },
-        {
-          "id": "3df82b131a4a3960b1b3",
-          "title": "15 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Real Madrid, eliminado de la Champions por el Bayern de Múnich tras una polémica expulsión de Camavinga. Tiempo de opinión. Actualidad Barcelona y Atlético. Lesión de Alcaraz. VayaFiesta.",
-          "publishedAt": "2026-04-15T23:46:29Z",
-          "duration": 7594,
-          "audio": "https://www.cope.es/uploads/2026/04/16/lZT2a82nDw4eHDVsPsBbZ.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/15-abr-2026-partidazo-cope-20260416_3346361.html"
         }
       ]
     },
