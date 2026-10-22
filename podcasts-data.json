@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T23:20:54.103929Z",
+  "updatedAt": "2026-10-22T04:48:23.911490Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "93d2d13febdece75ade5",
+          "title": "21 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "3ª jornada: Victorias del Real Madrid (4-1) contra el Leipzig y del Betis (1-0) contra el Feyenoord. Protagonistas. Entrevista a Fran García. Tiempo de opinión. Hablamos con Alfredo Relaño y Toni Freixa. VayaFiesta, con el Grupo RISA.",
+          "publishedAt": "2026-10-21T23:41:55Z",
+          "duration": 7794,
+          "audio": "https://www.cope.es/uploads/2026/10/22/pFG8WkVg6s0ZFAuwZxqs6.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/21-oct-2026-partidazo-cope-20261022_3460297.html"
+        },
+        {
+          "id": "e83d3941bd1d1458248d",
+          "title": "3ª PARTE | 21 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Dani Olmo, un mes de baja. Hablamos con Toni Freixa. Analizamos el triunfo del Betis y el resto de resultados. VayaFiesta, con el Grupo RISA.",
+          "publishedAt": "2026-10-21T23:40:59Z",
+          "duration": 3384,
+          "audio": "https://www.cope.es/uploads/2026/10/22/g3sk2sD-FlkZtXl9i07Nr.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-21-oct-2026-partidazo-cope-20261022_3460296.html"
+        },
         {
           "id": "2ff8d7f1306705fe4218",
           "title": "2ª PARTE | 21 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/16-abr-2026-partidazo-cope-20260417_3347199.html"
-        },
-        {
-          "id": "5388bbf0e30f6f947c95",
-          "title": "3ª PARTE | 16 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Actualidad del Real Madrid y Barcelona tras su eliminación de Champions League. The Americans.",
-          "publishedAt": "2026-04-16T23:45:00Z",
-          "duration": 2702,
-          "audio": "https://www.cope.es/uploads/2026/04/17/O-bY-9w3Su4qaD0VbU1N7.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-16-abr-2026-partidazo-cope-20260417_3347198.html"
-        },
-        {
-          "id": "3a0d3ba07b8b712aa770",
-          "title": "2ª PARTE | 16 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Actualidad del Atlético de Madrid y Real Sociedad, a dos días de la final de la Copa del Rey. Entrevista a Martín Berasategui y Dabiz Muñoz.",
-          "publishedAt": "2026-04-16T22:49:01Z",
-          "duration": 2348,
-          "audio": "https://www.cope.es/uploads/2026/04/17/g6SA9264AjkhP46Ib2tSR.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-16-abr-2026-partidazo-cope-20260417_3347187.html"
         }
       ]
     },
