@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T13:27:58.977619Z",
+  "updatedAt": "2026-10-23T23:09:49.085658Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "3495d8ade69f485d9ecb",
+          "title": "2ª PARTE | 23 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "#OasisDeLibertad. Entrenamientos libres del GP de Estados Unidos de Fórmula 1. Messi recibe el Premio Princesa de Asturias de los Deportes.",
+          "publishedAt": "2026-10-23T22:51:22Z",
+          "duration": 1798,
+          "audio": "https://www.cope.es/uploads/2026/10/24/mSYOPNEsjbEcuChcgk0Bn.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-23-oct-2026-partidazo-cope-20261024_3462053.html"
+        },
+        {
+          "id": "b1f3254c36738f75a7d9",
+          "title": "1ª PARTE | 23 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Titulares. Fermín y Rodri hablan a dos días del Clásico. Peter Lim vende una parte del Valencia. El enfado de Bordalás y la reunión de la plantilla del Getafe. El Rayo - Elche se jugará con normalidad. Previa del Barcelona - Real Madrid. El empate entre Alavés y Málaga.",
+          "publishedAt": "2026-10-23T22:43:58Z",
+          "duration": 1947,
+          "audio": "https://www.cope.es/uploads/2026/10/24/CqqvheNWHEjPiFUFprxFH.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-23-oct-2026-partidazo-cope-20261024_3462047.html"
+        },
         {
           "id": "8eb78e2d7fda10c7d566",
           "title": "22 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/07/07/686b0f2c965a2.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/19-abr-2026-tertulion-domingos-20260420_3348392.html"
-        },
-        {
-          "id": "9d325b0ba0832f6ffd77",
-          "title": "18 ABR 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
-          "description": "La Real Sociedad, campeona de la Copa del Rey. Protagonistas. Tiempo de Opinión. El virus de Asencio.",
-          "publishedAt": "2026-04-19T00:09:56Z",
-          "duration": 5986,
-          "audio": "https://www.cope.es/uploads/2026/04/19/UaLQBlNliqPSD1Zxrg5EA.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/20/678e8e8da933c.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/18-abr-2026-tramo-final-juego-20260419_3348246.html"
-        },
-        {
-          "id": "c7cbe0c0255931a2220a",
-          "title": "17 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Titulares. Carlos Alcaraz y Djokovic no jugarán el Mutua Madrid Open. Jódar disputará las semifinales del Conde Godó. #OasisDeLibertad. Gran Previa del Atlético - Real Sociedad, final de la Copa del Rey. Hablamos con Jokin Aperribay y Rafael Louzán. #Campodelgas.",
-          "publishedAt": "2026-04-17T23:45:00Z",
-          "duration": 7728,
-          "audio": "https://www.cope.es/uploads/2026/04/18/9fpb1v6p-3ONLQpATWR7U.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/17-abr-2026-partidazo-cope-20260418_3348081.html"
         }
       ]
     },
