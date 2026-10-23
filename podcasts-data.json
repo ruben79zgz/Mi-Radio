@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-22T04:48:23.911490Z",
+  "updatedAt": "2026-10-23T00:40:54.314608Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "8eb78e2d7fda10c7d566",
+          "title": "22 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Europa League: Dura derrota del Getafe (2-5) y victorias de la Real Sociedad (0-6) y Celta (1-2). Riesgo de suspensión del Rayo - Athletic. Leo Messi, en Oviedo para recibir el Princesa de Asturias. Tiempo de opinión. Hablamos con Gerard López, Morientes y Maldini del Clásico. Hablamos con Genar Martí. Motor. The Americans.",
+          "publishedAt": "2026-10-22T23:50:00Z",
+          "duration": 7102,
+          "audio": "https://www.cope.es/uploads/2026/10/23/51LtFwWYYcWyDkWweY9BK.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/22-oct-2026-partidazo-cope-20261023_3461175.html"
+        },
+        {
+          "id": "339ad0a84ae361a10243",
+          "title": "3ª PARTE | 22 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Continuamos analizando el Clásico del domingo. Hablamos con Genar Martí, coordinador de 'Equipo de Investigación', sobre el reportaje de la muerte de Maradona. Motor. The Americans.",
+          "publishedAt": "2026-10-22T23:40:00Z",
+          "duration": 2589,
+          "audio": "https://www.cope.es/uploads/2026/10/23/U0pS_L_fi2SRerRoDTSjg.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-22-oct-2026-partidazo-cope-20261023_3461174.html"
+        },
+        {
+          "id": "017c77f45e44ab103768",
+          "title": "2ª PARTE | 22 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Tres días para el Clásico. Tiempo de opinión. Hablamos con Gerard López, Morientes y Maldini.",
+          "publishedAt": "2026-10-22T22:49:07Z",
+          "duration": 2096,
+          "audio": "https://www.cope.es/uploads/2026/10/23/SONwD2yqVn93OBb0l-dNF.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-22-oct-2026-partidazo-cope-20261023_3461173.html"
+        },
+        {
+          "id": "e0efd9a099650308533d",
+          "title": "1ª PARTE | 22 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Europa League: Dura derrota del Getafe (2-5) y victorias de la Real Sociedad (0-6) y Celta (1-2). Riesgo de suspensión del Rayo - Athletic. Leo Messi, en Oviedo para recibir el Princesa de Asturias.",
+          "publishedAt": "2026-10-22T22:10:58Z",
+          "duration": 2416,
+          "audio": "https://www.cope.es/uploads/2026/10/23/dfe9IIHqrtplfPmZxErls.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-22-oct-2026-partidazo-cope-20261023_3461166.html"
+        },
         {
           "id": "93d2d13febdece75ade5",
           "title": "21 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6565,50 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/17-abr-2026-partidazo-cope-20260418_3348081.html"
-        },
-        {
-          "id": "a034b570fc8b076356ae",
-          "title": "3ª PARTE | 17 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Sigue el #OasisDeLibertad. Recordamos la figura de Oscar Schmidt, leyenda del baloncesto. Charlamos con el alcalde de Lepe, Adolfo Verano, por el homenaje al 'Maestro' Araujo. #Campodelgas.",
-          "publishedAt": "2026-04-17T23:35:00Z",
-          "duration": 3775,
-          "audio": "https://www.cope.es/uploads/2026/04/18/PjwumaWxhhzZsG0o-cWJ1.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-17-abr-2026-partidazo-cope-20260418_3348080.html"
-        },
-        {
-          "id": "60111600bca4488bb65f",
-          "title": "2ª PARTE | 17 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "#OasisDeLibertad. Gran Previa del Atlético - Real Sociedad, final de la Copa del Rey. Hablamos con Rafael Louzán, presidente de la RFEF. Manolo Lama recibe el I Premio de Periodismo Deportivo José Ángel de la Casa.",
-          "publishedAt": "2026-04-17T22:46:27Z",
-          "duration": 2003,
-          "audio": "https://www.cope.es/uploads/2026/04/18/FDYBa0hg8yQrgpsCXJzu3.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-17-abr-2026-partidazo-cope-20260418_3348076.html"
-        },
-        {
-          "id": "3ab5ef37d872165f0afb",
-          "title": "1ª PARTE | 17 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. Carlos Alcaraz y Djokovic no jugarán el Mutua Madrid Open. Jódar disputará las semifinales del Conde Godó. ¿Cómo viven las aficiones del Atlético y Real Sociedad las horas previas a la final de la Copa del Rey?",
-          "publishedAt": "2026-04-17T22:11:08Z",
-          "duration": 1739,
-          "audio": "https://www.cope.es/uploads/2026/04/18/10APKMIo-jXXlSTtedEN7.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-17-abr-2026-partidazo-cope-20260418_3348067.html"
-        },
-        {
-          "id": "49a055bbd9c9da796e27",
-          "title": "16 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Betis y Celta, eliminados de la Europa League. El Rayo, en semifinales de la Conference. Actualidad Atleti y Real Sociedad. Entrevistas a Isi, Martín Berasategui y Dabiz Muñoz. Información Real Madrid y Barcelona. The Americans.",
-          "publishedAt": "2026-04-17T08:52:22Z",
-          "duration": 7196,
-          "audio": "https://www.cope.es/uploads/2026/04/17/6zrRdofgCZwTZdstNK2xT.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/16-abr-2026-partidazo-cope-20260417_3347199.html"
         }
       ]
     },
