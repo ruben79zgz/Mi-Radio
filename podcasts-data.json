@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T00:40:54.314608Z",
+  "updatedAt": "2026-10-23T07:33:26.294045Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -6621,6 +6621,17 @@
       "site": "http://www.podiumpodcast.com/la-escobula-de-la-brujula/",
       "feed": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/playlists/podcast.rss",
       "episodes": [
+        {
+          "id": "f301ec3b7678a3096e78",
+          "title": "Programa 628: EE.UU., una independencia con acento francés y español",
+          "description": "Estados Unidos nació de la rebelión de trece colonias británicas, pero su independencia fue también el resultado de una guerra internacional en la que Francia y España desempeñaron un papel fundamental. El catedrático de Estudios Norteamericanos y director del Instituto Franklin de la Universidad de Alcalá, José Antonio Gurpegui, hará un resumen cuando Gran Bretaña intentó que sus colonias norteamericanas contribuyeran a pagar los gastos del imperio mediante nuevos impuestos. Los colonos protestaron porque carecían de representantes en el Parlamento que los aprobaba. La tensión aumentó con el motín del té de Boston de 1773 y las represalias británicas. En 1775 comenzó la guerra y el 4 de julio de 1776, las trece colonias aprobaron la Declaración de Independencia, cuyo principal redactor fue Thomas Jefferson. Sin embargo, todavía debían derrotar a una gran potencia militar. Francia vio una oportunidad para debilitar a su rival británico y compensar las pérdidas sufridas en la guerra de los Siete Años. Los franceses aportaron préstamos, armas, municiones, tropas y barcos. La España de Carlos III también ayudó a los insurgentes con dinero, armas y abastecimientos. Carlos Canales, coautor de “Bernardo de Gálvez: de la Apachería a la épica intervención en la independencia de los EE. UU” nos dirá que además de gobernador de la Luisiana, fue quien conquistó posiciones británicas como Baton Rouge, Mobile y Pensacola, esta última en mayo de 1781. Guillermo Díaz se referirá a la «conquista inmobiliaria» porque había un enorme interés por ocupar y explotar los territorios del oeste poblado por naciones iroquesas consideradas hostiles, y por eso destruyeron poblados, cultivos y reservas alimentarias. También hablará de la captura del gran convoy de 1780, cuyo protagonista fue Luis de Córdova, capturando más de medio centenar de mercantes británicos que transportaban tropas, armas, suministros y mercancías hacia los escenarios coloniales de América y la India. Al final Gran Bretaña reconoció oficialmente la independencia estadounidense en el Tratado de París de 1783. Después llegó el desafío de organizar los trece estados: la Constitución de 1787 estableció una república federal y Washington se convirtió en su primer presidente en 1789.",
+          "publishedAt": "2026-10-23T04:00:00Z",
+          "duration": 7302,
+          "audio": "https://traffic.omny.fm/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/0b634f6f-65b3-4df2-b704-b4e900f244a5/audio.mp3?utm_source=Podcast&in_playlist=fd25a142-cbf1-4f2b-9146-aead00a0bab7",
+          "fileSize": 116875583,
+          "image": "https://www.omnycontent.com/d/playlist/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/fd25a142-cbf1-4f2b-9146-aead00a0bab7/image.jpg?t=1727868454&size=Large",
+          "link": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/programa-628-ee-uu-una-independencia-con-acento-franc-s-y-espa-ol"
+        },
         {
           "id": "86ce5baccf5576b75490",
           "title": "Programa 627: La cara oculta del balón",
