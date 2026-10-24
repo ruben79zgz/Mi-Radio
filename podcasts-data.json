@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T23:09:49.085658Z",
+  "updatedAt": "2026-10-24T04:38:15.683392Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "aaee4d39eccd7d21894d",
+          "title": "23 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Fermín y Rodri hablan a dos días del Clásico. Peter Lim vende una parte del Valencia. Peter Lim vende una parte del Valencia. #OasisDeLibertad. El Rayo - Elche se jugará con normalidad. Previa del Barcelona - Real Madrid. GP de Estados Unidos de Fórmula 1. #Campodelgas.",
+          "publishedAt": "2026-10-23T23:40:00Z",
+          "duration": 7577,
+          "audio": "https://www.cope.es/uploads/2026/10/24/z0mngg1N3crf9LniU-MXm.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/23-oct-2026-partidazo-cope-20261024_3462058.html"
+        },
+        {
+          "id": "412ea5b9b3764c2ed6e3",
+          "title": "3ª PARTE | 23 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Sigue el #OasisDeLibertad. El estado de forma de FC Barcelona y Real Madrid antes del Clásico de este domingo. #Campodelgas.",
+          "publishedAt": "2026-10-23T23:30:00Z",
+          "duration": 3413,
+          "audio": "https://www.cope.es/uploads/2026/10/24/QW-1s_R9gBdMwoA479at4.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-23-oct-2026-partidazo-cope-20261024_3462056.html"
+        },
         {
           "id": "3495d8ade69f485d9ecb",
           "title": "2ª PARTE | 23 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-20-abr-2026-partidazo-cope-20260421_3349167.html"
-        },
-        {
-          "id": "07c8aee99b38bf2d0fc4",
-          "title": "1ª PARTE | 20 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. Alcaraz, duda para Roland Garros. Hablamos con Feliciano López y Garbiñe Muguruza, codirectores del Mutua Madrid Open.",
-          "publishedAt": "2026-04-20T22:01:49Z",
-          "duration": 1871,
-          "audio": "https://www.cope.es/uploads/2026/04/21/qyHoLPpl43Vh8bdT7cTRI.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-20-abr-2026-partidazo-cope-20260421_3349156.html"
-        },
-        {
-          "id": "129a66966c8628481ce9",
-          "title": "19 ABR 2026 | EL TERTULIÓN DE LOS DOMINGOS",
-          "description": "Con Juanma Castaño. Las consecuencias de la final de Copa para el Atlético de Madrid. La Real Sociedad prepara una fiesta grande. Lo que le espera al Real Madrid hasta que acabe la temporada. ¿Qué soluciones pueden tomarse para que no se piten los himnos?",
-          "publishedAt": "2026-04-19T23:44:23Z",
-          "duration": 5763,
-          "audio": "https://www.cope.es/uploads/2026/04/20/H1r4jH5lGsP3nle08fr6j.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/07/07/686b0f2c965a2.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/19-abr-2026-tertulion-domingos-20260420_3348392.html"
         }
       ]
     },
