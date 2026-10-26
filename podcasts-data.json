@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-24T11:02:39.390581Z",
+  "updatedAt": "2026-10-26T07:49:01.777725Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "8a60bcb512b92f0d0799",
+          "title": "25 OCT 2026 | EL TERTULIÓN DE LOS DOMINGOS",
+          "description": "Victoria del Real Madrid contra el Barcelona; Mourinho le gana la partida a Flick; Los señalados del Clásico; Este lunes, el Balón de Oro.",
+          "publishedAt": "2026-10-26T00:54:22Z",
+          "duration": 5393,
+          "audio": "https://www.cope.es/uploads/2026/10/26/QL0uYpIHyDsIALKIRYGyA.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/06/677b2375741e9.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/25-oct-2026-tertulion-domingos-20261026_3462360.html"
+        },
         {
           "id": "aaee4d39eccd7d21894d",
           "title": "23 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/04/20/69e6957f2d3c6.png",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/20-abr-26-km42-running-chema-martinez-20260420_3349152.html"
-        },
-        {
-          "id": "d7bbf3be2b8d3e9c255a",
-          "title": "2ª PARTE | 20 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Rueda de prensa de Arbeloa con quejas arbitrales. Tiempo de opinión. El Real Madrid, campeón de la Youth League.",
-          "publishedAt": "2026-04-20T22:34:45Z",
-          "duration": 1875,
-          "audio": "https://www.cope.es/uploads/2026/04/21/8b41pUOZS4ceASddCoot8.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-20-abr-2026-partidazo-cope-20260421_3349167.html"
         }
       ]
     },
