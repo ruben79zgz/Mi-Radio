@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-26T07:49:01.777725Z",
+  "updatedAt": "2026-10-27T01:29:15.977372Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,61 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "9499868104b0a4b6e210",
+          "title": "26 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Vivimos en directo la Gala del Balón de Oro: Kane y Alexia Putellas, mejores jugadores del mundo. Escuchamos a Joan Laporta, Luis de la Fuente y Unai Simón. Tiempo de opinión. La resaca de la victoria del Real Madrid en el Clásico. Previa Copa del Rey. El Soufflé. Km42, con Chema Martínez.",
+          "publishedAt": "2026-10-27T00:55:00Z",
+          "duration": 7251,
+          "audio": "https://www.cope.es/uploads/2026/10/27/27346xkgnA4-Co_WOY_Dp.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/26-oct-2026-partidazo-cope-20261027_3463169.html"
+        },
+        {
+          "id": "e374f932d55f62588283",
+          "title": "3ª PARTE | 26 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "La resaca de la victoria del Real Madrid en el Clásico. Previa Copa del Rey. Victoria del Sevilla contra Osasuna. El Soufflé. Km42, con Chema Martínez.",
+          "publishedAt": "2026-10-27T00:50:00Z",
+          "duration": 2870,
+          "audio": "https://www.cope.es/uploads/2026/10/27/w6uLOmSaVMQhOQd9Xqs5J.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-26-oct-2026-partidazo-cope-20261027_3463167.html"
+        },
+        {
+          "id": "8552df75816ed787546d",
+          "title": "26-OCT-26 | #KM42, 'Running' con Chema Martínez",
+          "description": "La suspensión de Peres Jepchirchir por un caso de dopaje; Alba Cano, embarazada de seis meses, segunda en una prueba de 10K",
+          "publishedAt": "2026-10-27T00:45:00Z",
+          "duration": 687,
+          "audio": "https://www.cope.es/uploads/2026/10/27/4fDU1s-cnQO4kYC-ZTbIj.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/10/27/6adfeafedfdde.png",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/26-oct-26-km42-running-chema-martinez-20261027_3463168.html"
+        },
+        {
+          "id": "dd785c10d95777bb9314",
+          "title": "2ª PARTE | 26 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Escuchamos a Joan Laporta, Luis de la Fuente y Unai Simón. Tiempo de opinión.",
+          "publishedAt": "2026-10-26T23:47:51Z",
+          "duration": 2097,
+          "audio": "https://www.cope.es/uploads/2026/10/27/82BjQT66O3VTdHkPHOcGg.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-26-oct-2026-partidazo-cope-20261027_3463161.html"
+        },
+        {
+          "id": "39ae044d41fc6822ee3f",
+          "title": "1ª PARTE | 26 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Vivimos en directo la Gala del Balón de Oro: Kane y Alexia Putellas, mejores jugadores del mundo.",
+          "publishedAt": "2026-10-26T23:09:39Z",
+          "duration": 2283,
+          "audio": "https://www.cope.es/uploads/2026/10/27/Gb14hASnJxVXfu2YNHJLA.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-26-oct-2026-partidazo-cope-20261027_3463149.html"
+        },
         {
           "id": "8a60bcb512b92f0d0799",
           "title": "25 OCT 2026 | EL TERTULIÓN DE LOS DOMINGOS",
@@ -6554,61 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-21-abr-2026-partidazo-cope-20260422_3349990.html"
-        },
-        {
-          "id": "fd68d5e213fe87a8a68b",
-          "title": "2ª PARTE | 21 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Continuamos analizando la victoria del Real Madrid y la rueda de prensa de Arbeloa. Resto de partidos de la 33ª jornada: Vcictorias del Betis, Athletic y empate entre Mallorca y Valencia. Vuelve Isco.",
-          "publishedAt": "2026-04-21T22:45:40Z",
-          "duration": 2580,
-          "audio": "https://www.cope.es/uploads/2026/04/22/XhKsvoTkmoUtPn7NOOyJr.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-21-abr-2026-partidazo-cope-20260422_3349986.html"
-        },
-        {
-          "id": "a898af0820c1df86f2cf",
-          "title": "1ª PARTE | 21 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. El Real Madrid gana 2-1 al Alavés para seguir soñando con LaLiga. Tiempo de opinión.",
-          "publishedAt": "2026-04-21T22:00:39Z",
-          "duration": 1285,
-          "audio": "https://www.cope.es/uploads/2026/04/22/jgovM9yCTfDR_gNujH3Q8.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-21-abr-2026-partidazo-cope-20260422_3349974.html"
-        },
-        {
-          "id": "1923a8853a417b62c7e6",
-          "title": "20 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Alcaraz, duda para Roland Garros. Hablamos con Feliciano López y Garbiñe Muguruza, codirectores del Mutua Madrid Open. Rueda de prensa de Arbeloa con quejas arbitrales. Tiempo de opinión. San Sebastián celebra el título de Copa de la Real Sociedad. Km42",
-          "publishedAt": "2026-04-20T23:50:00Z",
-          "duration": 7193,
-          "audio": "https://www.cope.es/uploads/2026/04/21/dKNUAi_bfbAnGouL05_Lr.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/20-abr-2026-partidazo-cope-20260421_3349173.html"
-        },
-        {
-          "id": "acca1262076dba119f6c",
-          "title": "3ª PARTE | 20 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Actualidad del Atlético de Madrid. San Sebastián celebra el título de Copa de la Real Sociedad. La polémica por la pitada al himno. Km42, con Chema Martínez.",
-          "publishedAt": "2026-04-20T23:45:00Z",
-          "duration": 3447,
-          "audio": "https://www.cope.es/uploads/2026/04/21/go3X621yAR74oLV2AvOMS.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-20-abr-2026-partidazo-cope-20260421_3349172.html"
-        },
-        {
-          "id": "33671549923a9e4673ad",
-          "title": "20-ABR-26 | #KM42, 'Running' con Chema Martínez",
-          "description": "¡Un robot gana la media maratón de Pekín!; John Korir bate el récord de la maratón de Boston. Este domingo, Maratón de Madrid con... ¡@AlbertoArauzM y @Rlinares_!",
-          "publishedAt": "2026-04-20T23:40:00Z",
-          "duration": 1122,
-          "audio": "https://www.cope.es/uploads/2026/04/20/gfdVeB7hGJ4sz9tZUuKX8.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/04/20/69e6957f2d3c6.png",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/20-abr-26-km42-running-chema-martinez-20260420_3349152.html"
         }
       ]
     },
