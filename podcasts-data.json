@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T01:29:15.977372Z",
+  "updatedAt": "2026-10-28T01:23:22.254053Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "967f9782ca5c3202bba3",
+          "title": "27 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "1ª ronda de Copa del Rey: El Sestao elimina al Espanyol y Manolo González es destituido. Polémica entre Mbappé y China. La resaca del Balón de Oro. China le declara la 'guerra' a Mbappé. Hablamos con Luo Huiling, doctora en Filología e Historia de la Universidad Complutense; y José Luis Corral, historiador. Entrevista a Estopa. MundoMaldini.",
+          "publishedAt": "2026-10-28T00:42:21Z",
+          "duration": 7340,
+          "audio": "https://www.cope.es/uploads/2026/10/28/RfUp68X0WFRZPBZX2RNqM.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/27-oct-2026-partidazo-cope-20261028_3464005.html"
+        },
+        {
+          "id": "a8d01dd319765f86a541",
+          "title": "3ª PARTE | 27 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Entrevista a Estopa. MundoMaldini.",
+          "publishedAt": "2026-10-28T00:39:31Z",
+          "duration": 3434,
+          "audio": "https://www.cope.es/uploads/2026/10/28/AGEcQljljFKgvH1NhclCj.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-27-oct-2026-partidazo-cope-20261028_3464004.html"
+        },
+        {
+          "id": "65ec9c4bcc9e3da71215",
+          "title": "2ª PARTE | 27 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "China le declara la 'guerra' a Mbappé. Hablamos con Luo Huiling, doctora en Filología e Historia de la Universidad Complutense; y José Luis Corral, historiador.",
+          "publishedAt": "2026-10-27T23:39:34Z",
+          "duration": 1682,
+          "audio": "https://www.cope.es/uploads/2026/10/28/z0P0KOWF5lkpM7f28moE2.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-27-oct-2026-partidazo-cope-20261028_3463998.html"
+        },
+        {
+          "id": "014900594ca0f318bf74",
+          "title": "1ª PARTE | 27 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "1ª ronda de Copa del Rey: El Sestao elimina al Espanyol y Manolo González es destituido. Polémica entre Mbappé y China. La resaca del Balón de Oro.",
+          "publishedAt": "2026-10-27T23:08:26Z",
+          "duration": 2224,
+          "audio": "https://www.cope.es/uploads/2026/10/28/09-Fc7FkXR9Qvtj141Ame.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-27-oct-2026-partidazo-cope-20261028_3463993.html"
+        },
         {
           "id": "9499868104b0a4b6e210",
           "title": "26 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6565,50 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-22-abr-2026-partidazo-cope-20260423_3350851.html"
-        },
-        {
-          "id": "38e8c458d46968be0ff4",
-          "title": "2ª PARTE | 22 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Victoria del Getafe ante la Real Sociedad. Entrevistas a David Soria y Rafa Jódar, tras ganar en el Mutua Madrid Open.",
-          "publishedAt": "2026-04-22T22:44:56Z",
-          "duration": 1509,
-          "audio": "https://www.cope.es/uploads/2026/04/23/fh_ddXE8wQXTsn7n2Ym7_.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-22-abr-2026-partidazo-cope-20260423_3350842.html"
-        },
-        {
-          "id": "c806b60927b90e695982",
-          "title": "1ª PARTE | 22 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. El Barcelona gana al Celta (1-0) pero pierde a Lamine Yamal por lesión. Protagonistas. Tiempo de opinión.",
-          "publishedAt": "2026-04-22T22:17:24Z",
-          "duration": 1376,
-          "audio": "https://www.cope.es/uploads/2026/04/23/QF4eRQBZHX49Sm00vAwjJ.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-22-abr-2026-partidazo-cope-20260423_3350838.html"
-        },
-        {
-          "id": "918ae46d5db41456f59b",
-          "title": "21 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. El Real Madrid gana 2-1 al Alavés para seguir soñando con LaLiga. Tiempo de opinión. Rueda de prensa de Arbeloa. Resto de partidos de la 33ª jornada. Hansi Flick habla sobre su futuro en el Barcelona.",
-          "publishedAt": "2026-04-21T23:39:03Z",
-          "duration": 7097,
-          "audio": "https://www.cope.es/uploads/2026/04/22/Y27nRjGeOOZ5H-KFZQNu2.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/21-abr-2026-partidazo-cope-20260422_3349991.html"
-        },
-        {
-          "id": "602f7c9988bf05801877",
-          "title": "3ª PARTE | 21 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Hansi Flick habla sobre su futuro en el Barcelona. Actualidad del Atlético de Madrid. Sergio Ramos habla del Sevilla. MundoMaldini.",
-          "publishedAt": "2026-04-21T23:38:06Z",
-          "duration": 2991,
-          "audio": "https://www.cope.es/uploads/2026/04/22/Q25tdnKPwydC75PISNsRW.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-21-abr-2026-partidazo-cope-20260422_3349990.html"
         }
       ]
     },
