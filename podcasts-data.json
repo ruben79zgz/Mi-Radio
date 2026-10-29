@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T01:23:22.254053Z",
+  "updatedAt": "2026-10-29T05:49:59.115205Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "8d5ed5845e13af57aa6e",
+          "title": "28 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Día de luto en España por el grave accidente de dos trenes que provoca 68 muertos. Entrevistas a Rafael Louzán, presidente de la RFEF; Rafael Cuéllar, bombero; Ricardo Díaz, ingeniero de infraestructuras ferroviarias. Actualidad del Real Madrid y Barcelona.",
+          "publishedAt": "2026-10-29T00:35:13Z",
+          "duration": 7401,
+          "audio": "https://www.cope.es/uploads/2026/10/29/RpDgEBR-fVMAL9zZYw447.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/28-oct-2026-partidazo-cope-20261029_3464684.html"
+        },
+        {
+          "id": "f749ba411c7902857318",
+          "title": "3ª PARTE | 28 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Entrevista a Ricardo Díaz, ingeniero de infraestructuras ferroviarias. Actualidad del Real Madrid y Barcelona. Sarabia, nuevo entrenador del Espanyol.",
+          "publishedAt": "2026-10-29T00:34:39Z",
+          "duration": 3085,
+          "audio": "https://www.cope.es/uploads/2026/10/29/55_cRDthxmX5KaxrGuoqh.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-28-oct-2026-partidazo-cope-20261029_3464683.html"
+        },
+        {
+          "id": "6894a2fc0926e4413d8d",
+          "title": "2ª PARTE | 28 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Entrevista al bombero Rafael Cuéllar. Hablamos de la tragedia vivida en Urda.",
+          "publishedAt": "2026-10-28T23:39:21Z",
+          "duration": 1343,
+          "audio": "https://www.cope.es/uploads/2026/10/29/Rdg-vh56bK04JLNJPST6W.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-28-oct-2026-partidazo-cope-20261029_3464681.html"
+        },
+        {
+          "id": "7b18b6dc4e357507d5be",
+          "title": "1ª PARTE | 28 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Día de luto en España por el grave accidente de dos trenes que provoca 68 muertos. Entrevista a Rafael Louzán, presidente de la RFEF.",
+          "publishedAt": "2026-10-28T23:14:07Z",
+          "duration": 2568,
+          "audio": "https://www.cope.es/uploads/2026/10/29/CuIOY0gF1hWplK2xAFsLN.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-28-oct-2026-partidazo-cope-20261029_3464675.html"
+        },
         {
           "id": "967f9782ca5c3202bba3",
           "title": "27 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6565,50 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-23-abr-2026-partidazo-cope-20260424_3351618.html"
-        },
-        {
-          "id": "5e9a75f3f64eb9672678",
-          "title": "2ª PARTE | 23 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Lamine Yamal, lesionado, no volverá a jugar con el Barcelona esta temporada. Tiempo de opinión.",
-          "publishedAt": "2026-04-23T22:38:46Z",
-          "duration": 1189,
-          "audio": "https://www.cope.es/uploads/2026/04/24/-i3T3KfJ19v_trhH74UxE.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-23-abr-2026-partidazo-cope-20260424_3351609.html"
-        },
-        {
-          "id": "22e04206bff520efe8b1",
-          "title": "1ª PARTE | 23 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. 33ª jornada: Oviedo 1 - 1 Villarreal, Rayo 1 - 0 Espanyol y Levante 1 - 0 Sevilla. Los problemas del Espanyol y del Sevilla.",
-          "publishedAt": "2026-04-23T22:17:03Z",
-          "duration": 2771,
-          "audio": "https://www.cope.es/uploads/2026/04/24/QEom0gVMpdvi_Tux_4mlv.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-23-abr-2026-partidazo-cope-20260424_3351604.html"
-        },
-        {
-          "id": "bc808b6fe5e7c8df4b69",
-          "title": "22 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. El Barcelona gana al Celta (1-0) pero pierde a Lamine Yamal por lesión. Protagonistas. Tiempo de opinión. Entrevistas a David Soria y Rafa Jódar, tras ganar en el Mutua Madrid Open. Derrota del Atlético de Madrid. VayaFiesta.",
-          "publishedAt": "2026-04-22T23:40:41Z",
-          "duration": 6251,
-          "audio": "https://www.cope.es/uploads/2026/04/23/VHMEFf3U4cNwNRkPeBge0.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/22-abr-2026-partidazo-cope-20260423_3350852.html"
-        },
-        {
-          "id": "b31fca048b5106bc7e81",
-          "title": "3ª PARTE | 22 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Derrota del Atlético de Madrid ante el Elche. Tiempo de opinión del estado de forma del equipo de Simeone. VayaFiesta.",
-          "publishedAt": "2026-04-22T23:38:58Z",
-          "duration": 3079,
-          "audio": "https://www.cope.es/uploads/2026/04/23/7CtmFmI0tgrIg4BNGLU82.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-22-abr-2026-partidazo-cope-20260423_3350851.html"
         }
       ]
     },
