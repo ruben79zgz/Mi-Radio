@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-29T13:03:11.094050Z",
+  "updatedAt": "2026-10-29T23:57:17.645569Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "15e1d2b16f2dfdf0bc04",
+          "title": "2ª PARTE | 29 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Continúa la polémica entre China y Mbappé. Entrevista a José Antonio Camacho, ex seleccionador de China. Tiempo de opinión. Identifican al hombre que agredió a Camavinga en el Camp Nou.",
+          "publishedAt": "2026-10-29T23:42:22Z",
+          "duration": 2177,
+          "audio": "https://www.cope.es/uploads/2026/10/30/WYuVDk94_qSYn287L0opR.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-29-oct-2026-partidazo-cope-20261030_3465495.html"
+        },
+        {
+          "id": "4916822194d26b417539",
+          "title": "1ª PARTE | 29 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Sin sorpresas en los partidos de este jueves de la 1ª ronda de la Copa del Rey. Entrevistas a José Alberto, entrenador del Racing; y Fali, jugador del Xerez.",
+          "publishedAt": "2026-10-29T23:02:19Z",
+          "duration": 1881,
+          "audio": "https://www.cope.es/uploads/2026/10/30/7hC5lPwkgh2wtrVYFnJ-v.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-29-oct-2026-partidazo-cope-20261030_3465486.html"
+        },
         {
           "id": "8d5ed5845e13af57aa6e",
           "title": "28 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-24-abr-2026-partidazo-cope-20260425_3352497.html"
-        },
-        {
-          "id": "5d8d7c91a6b98d3c9526",
-          "title": "23 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. 33ª jornada: victorias de Rayo y Levante que dejan a Espanyol y Sevilla en problemas. Lesión de Lamine Yamal. Tiempo de opinión. Arbeloa habla sobre Carvajal. Lesiones de Güler y Militao. The Americans.",
-          "publishedAt": "2026-04-23T23:38:34Z",
-          "duration": 7550,
-          "audio": "https://www.cope.es/uploads/2026/04/24/_WS0pqDzl0x5u7vpHM9Nc.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/23-abr-2026-partidazo-cope-20260424_3351619.html"
-        },
-        {
-          "id": "4fcfd9b3f1e9b63e4c06",
-          "title": "3ª PARTE | 23 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Las palabras de Arbeloa sobre Dani Carvajal. Güler y Militao, bajas para lo que resta de temporada. Mutua Madrid Open. The Americans.",
-          "publishedAt": "2026-04-23T23:37:11Z",
-          "duration": 3326,
-          "audio": "https://www.cope.es/uploads/2026/04/24/hCEzywuOg0o5aKQRc5cbi.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-23-abr-2026-partidazo-cope-20260424_3351618.html"
         }
       ]
     },
