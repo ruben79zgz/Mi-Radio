@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-30T05:50:40.776908Z",
+  "updatedAt": "2026-10-30T23:47:56.701765Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "29278bd86f2f0ef132cc",
+          "title": "1ª PARTE | 30 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Las votaciones del Balón de Oro. El Rayo sigue acercando posturas con su afición. La victoria del Espanyol contra el Villarreal. Entrenamientos libres del GP de México de Fórmula 1. Alcaraz jugará las semifinales en Viena.",
+          "publishedAt": "2026-10-30T23:11:16Z",
+          "duration": 1740,
+          "audio": "https://www.cope.es/uploads/2026/10/31/mufW83RQk377lqQ4RQz0p.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-30-oct-2026-partidazo-cope-20261031_3466362.html"
+        },
         {
           "id": "97811cd511fe28f2e5b8",
           "title": "29 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/20/678e8eae3dd99.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/24-abr-2026-partidazo-cope-20260425_3352508.html"
-        },
-        {
-          "id": "d75ed60332158de8d9a1",
-          "title": "3ª PARTE | 24 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Sigue el #OasisDeLibertad. Las rotaciones de Simeone en Liga. Previa del Getafe - Barcelona. #Campodelgas.",
-          "publishedAt": "2026-04-24T23:30:00Z",
-          "duration": 3112,
-          "audio": "https://www.cope.es/uploads/2026/04/25/kahBfsatZZXgr6ozTaL4x.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-24-abr-2026-partidazo-cope-20260425_3352507.html"
         }
       ]
     },
