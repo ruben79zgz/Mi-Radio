@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-29T23:57:17.645569Z",
+  "updatedAt": "2026-10-30T05:50:40.776908Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "97811cd511fe28f2e5b8",
+          "title": "29 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Sin sorpresas en los partidos de este jueves de la 1ª ronda de la Copa del Rey. Entrevistas a José Alberto, entrenador del Racing; y Fali, jugador del Xerez. Continúa la polémica entre China y Mbappé. Entrevista a José Antonio Camacho. Tiempo de opinión. Entrevista a Luis Moya, ex piloto de Rally. Tenis. The Americans.",
+          "publishedAt": "2026-10-30T00:50:00Z",
+          "duration": 6907,
+          "audio": "https://www.cope.es/uploads/2026/10/30/U5FJr4vmpq8Uq_38RNJLD.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/29-oct-2026-partidazo-cope-20261030_3465498.html"
+        },
+        {
+          "id": "11e1bb69200f79ffff27",
+          "title": "3ª PARTE | 29 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Entrevista a Luis Moya, ex piloto de Rally. Momchi habla del fichaje de Sarabia. Tenis. The Americans.",
+          "publishedAt": "2026-10-30T00:40:00Z",
+          "duration": 2848,
+          "audio": "https://www.cope.es/uploads/2026/10/30/qkAftToKeg35zaSqZ7hf6.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-29-oct-2026-partidazo-cope-20261030_3465497.html"
+        },
         {
           "id": "15e1d2b16f2dfdf0bc04",
           "title": "2ª PARTE | 29 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-24-abr-2026-partidazo-cope-20260425_3352507.html"
-        },
-        {
-          "id": "335bdfbc3cd7f3b22b40",
-          "title": "2ª PARTE | 24 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "#OasisDeLibertad. Alcaraz no jugará en Roma ni en Roland Garros. Sinner reacciona a la baja del murciano tras ganar su partido.",
-          "publishedAt": "2026-04-24T23:05:47Z",
-          "duration": 2261,
-          "audio": "https://www.cope.es/uploads/2026/04/25/TufqHUwImh8T10qVJFVg3.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-24-abr-2026-partidazo-cope-20260425_3352503.html"
-        },
-        {
-          "id": "5f3686f58cfea25df9b0",
-          "title": "1ª PARTE | 24 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Titulares. El tropiezo del Real Madrid en La Cartuja. Escuchamos la rueda de prensa de Arbeloa. Entrevista a Rafa Jódar tras sus segunda victoria en el Mutua Madrid Open. Analizamos el Betis - Real Madrid.",
-          "publishedAt": "2026-04-24T22:12:20Z",
-          "duration": 2134,
-          "audio": "https://www.cope.es/uploads/2026/04/25/Q2cuyVX5T2JS8QRxF0GX6.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-24-abr-2026-partidazo-cope-20260425_3352497.html"
         }
       ]
     },
@@ -6621,6 +6621,17 @@
       "site": "http://www.podiumpodcast.com/la-escobula-de-la-brujula/",
       "feed": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/playlists/podcast.rss",
       "episodes": [
+        {
+          "id": "f34f93b43c7be96d89df",
+          "title": "Programa 629: Ajedrez: enemigos íntimos",
+          "description": "Las rivalidades del ajedrez permiten contar una historia que va mucho más allá de las jugadas: hay orgullo, propaganda, exclusión, tecnología y lucha contra uno mismo. Con Eduardo Moreno y Boris Brull, integrantes del podcast «El abrazo del oso» y autores de Grandes rivalidades de la historia del ajedrez, hablaremos del desencuentro entre Morphy y Staunton en 1858, de la rivalidad entre Lasker y Tarrasch y de los duelos de Capablanca y Alekhine. Recordaremos también el enfrentamiento entre Fischer y Spasski —el «match del siglo», disputado en 1972—, los tensos encuentros de Korchnói y Kárpov en 1978 y 1981, y la prolongada pugna entre Kárpov y Kaspárov. Carlos Canales nos descubrirá El gambito Von Goom, un inquietante cuento de ciencia ficción y terror del escritor estadounidense Victor Contoski, y abordará los problemas de salud mental que marcaron la vida de algunos grandes ajedrecistas. David Sentinella analizará la figura de Judit Polgár, una campeona excepcional en un ámbito tradicionalmente dominado por los hombres. Carmen Fernández detallará el enfrentamiento de Kaspárov con Deep Blue, la máquina diseñada por IBM para derrotarlo. También nos acercará a AlphaZero, que marcó un cambio de enfoque al aprender a jugar mediante partidas contra sí mismo, a partir de las reglas y de un sistema de aprendizaje. Extróbula: Marcos Carrasco analizará Partida de ajedrez (1555), de Sofonisba Anguissola, y Los jugadores de ajedrez, de Lubin Baugin. También explorará la figura de Marcel Duchamp, vinculado al dadaísmo y al surrealismo, que convirtió el ajedrez en una de sus grandes pasiones y llegó a competir al más alto nivel nacional. Jesús Callejo desvelará las claves simbólicas de este universo de 64 casillas, donde cada pieza desempeña un papel que trasciende el tablero y se adentra en lo mítico y lo místico.",
+          "publishedAt": "2026-10-30T05:00:00Z",
+          "duration": 7650,
+          "audio": "https://traffic.omny.fm/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/0ab04b3e-544f-492f-bc84-b4ea0127f599/audio.mp3?utm_source=Podcast&in_playlist=fd25a142-cbf1-4f2b-9146-aead00a0bab7",
+          "fileSize": 122456567,
+          "image": "https://www.omnycontent.com/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/0ab04b3e-544f-492f-bc84-b4ea0127f599/image.jpg?t=1792754719&size=Large",
+          "link": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/programa-629-ajedrez-enemigos-ntimos"
+        },
         {
           "id": "f301ec3b7678a3096e78",
           "title": "Programa 628: EE.UU., una independencia con acento francés y español",
