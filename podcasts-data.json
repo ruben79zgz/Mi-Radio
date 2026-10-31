@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-30T23:47:56.701765Z",
+  "updatedAt": "2026-10-31T05:43:12.402018Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,39 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "265aee20f33f1934149d",
+          "title": "30 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Titulares. Las votaciones del Balón de Oro. El Rayo acerca posturas con su afición. La victoria del Espanyol. GP de México de Fórmula 1. Alcaraz jugará las semifinales en Viena. #OasisDeLibertad. Sigue el lío de Kylian Mbappé y el Real Madrid con China. Previa del Barcelona - Alavés. #Campodelgas.",
+          "publishedAt": "2026-10-31T00:45:00Z",
+          "duration": 7819,
+          "audio": "https://www.cope.es/uploads/2026/10/31/lw7J9TJnlse4_wYudN8qV.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/30-oct-2026-partidazo-cope-20261031_3466368.html"
+        },
+        {
+          "id": "e8f30640f1bad854a5aa",
+          "title": "3ª PARTE | 30 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "Sigue el #OasisDeLibertad. Previa del Barcelona - Alavés. El Real Madrid sigue preparando el partido contra el Racing. #Campodelgas",
+          "publishedAt": "2026-10-31T00:30:00Z",
+          "duration": 3486,
+          "audio": "https://www.cope.es/uploads/2026/10/31/3MPAFYUDIBhQPVAql0Qsh.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-30-oct-2026-partidazo-cope-20261031_3466367.html"
+        },
+        {
+          "id": "51518506527838ad45cd",
+          "title": "2ª PARTE | 30 OCT 2026 | EL PARTIDAZO DE COPE",
+          "description": "#OasisDeLibertad. Sigue el lío de Kylian Mbappé y el Real Madrid con China tras unas declaraciones del francés sobre un meme de Mao Zedong. Descubrimos los votos de los periodistas en el Balón de Oro que ganó Harry Kane.",
+          "publishedAt": "2026-10-30T23:58:38Z",
+          "duration": 2227,
+          "audio": "https://www.cope.es/uploads/2026/10/31/7bnspTtYfiyDL0ghQ4XC_.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-30-oct-2026-partidazo-cope-20261031_3466364.html"
+        },
         {
           "id": "29278bd86f2f0ef132cc",
           "title": "1ª PARTE | 30 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6576,39 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-27-abr-2026-partidazo-cope-20260428_3353609.html"
-        },
-        {
-          "id": "a7944646b9ebd49254db",
-          "title": "26 ABR 2026 | EL TERTULIÓN DE LOS DOMINGOS",
-          "description": "El brutal puñetazo de Andrada a Pulido; Polémica arbitral en el Rayo - Real Sociedad; El Real Madrid busca entrenador; El Barcelona, más cerca del título.",
-          "publishedAt": "2026-04-26T23:57:33Z",
-          "duration": 5557,
-          "audio": "https://www.cope.es/uploads/2026/04/27/Rt2KhmYuyqtBetplm_esF.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/06/677b2375741e9.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/26-abr-2026-tertulion-domingos-20260427_3352820.html"
-        },
-        {
-          "id": "7971eb173fe20f7053d5",
-          "title": "25 ABR 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
-          "description": "Titulares. La remontada del Atlético. Tiempo de Opinión. Nuevo paso del Barcelona hacia el título. Militao se pierde el Mundial. Analizamos el resto de la jornada. Previa de los partidos de este domingo. Segunda División. MotoGP. Fórmula 1. Tenis. Playoffs NBA.",
-          "publishedAt": "2026-04-25T23:10:00Z",
-          "duration": 6649,
-          "audio": "https://www.cope.es/uploads/2026/04/26/9wPBQNTi0hgKYj_Ccj9h0.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/20/678e8eae3dd99.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/25-abr-2026-tramo-final-juego-20260426_3352657.html"
-        },
-        {
-          "id": "ff080228bf6108e5443c",
-          "title": "24 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Titulares. El tropiezo del Real Madrid en La Cartuja. Entrevista a Rafa Jódar. #OasisdeLibertad. Alcaraz no estará en Roland Garros. Las rotaciones de Simeone en Liga. Previa del Getafe - Barcelona. #Campodelgas",
-          "publishedAt": "2026-04-24T23:40:00Z",
-          "duration": 7715,
-          "audio": "https://www.cope.es/uploads/2026/04/25/BlduG4BtxT_tv_bdwVZlB.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/20/678e8eae3dd99.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/24-abr-2026-partidazo-cope-20260425_3352508.html"
         }
       ]
     },
