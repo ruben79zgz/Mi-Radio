@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-01T06:06:47.467758Z",
+  "updatedAt": "2026-11-01T23:36:39.482063Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "a08ddb2831b2af60c38f",
+          "title": "22:00 | 01 NOV 2026 | TIEMPO DE JUEGO",
+          "description": "Escucha la previa y el segundo tiempo del Athletic-Real Sociedad, encuentro correspondiente a la 11ª jornada en Primera. Además, GP de México de Fórmula 1.",
+          "publishedAt": "2026-11-01T22:08:01Z",
+          "duration": 3651,
+          "audio": "https://www.cope.es/uploads/2026/11/01/6v_c42Q4A-uKFHeob8j-0.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/10/27/6ae0f8a710014.jpg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/22-00-01-nov-2026-juego-20261101_3466673.html"
+        },
         {
           "id": "ea444519d27460c196c0",
           "title": "31 OCT 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/04/28/69efe13f49562.png",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/27-abr-26-km42-running-chema-martinez-20260428_3353613.html"
-        },
-        {
-          "id": "537e33f1f63cb95052fe",
-          "title": "2ª PARTE | 27 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Militao pasará por el quirófano y lesión de Mbappé. Hablamos con Morientes. La situación y el futuro del Real Madrid. Tiempo de opinión.",
-          "publishedAt": "2026-04-27T22:39:22Z",
-          "duration": 1814,
-          "audio": "https://www.cope.es/uploads/2026/04/28/wWRc-mYm0TGunKnxHZyuf.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-27-abr-2026-partidazo-cope-20260428_3353619.html"
         }
       ]
     },
