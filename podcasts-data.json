@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-31T05:43:12.402018Z",
+  "updatedAt": "2026-11-01T06:06:47.467758Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "ea444519d27460c196c0",
+          "title": "31 OCT 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
+          "description": "Con José Luis Corrochano. Titulares. Goleada del Barça para mantener el liderato. Triunfo del Atlético. Resultados de la jornada. Previa del Racing-Real Madrid. Alcaraz, a la final de Viena. Segunda División. GP de México de F1. GP de Malasia de MotoGP. NBA",
+          "publishedAt": "2026-11-01T00:08:37Z",
+          "duration": 6718,
+          "audio": "https://www.cope.es/uploads/2026/11/01/zonF3-wGiOyV0rkxZzkzk.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/10/27/6ae0f8a710014.jpg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/31-oct-2026-tramo-final-juego-20261101_3466535.html"
+        },
         {
           "id": "265aee20f33f1934149d",
           "title": "30 OCT 2026 | EL PARTIDAZO DE COPE",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-27-abr-2026-partidazo-cope-20260428_3353619.html"
-        },
-        {
-          "id": "0ee07e471fb2847d242e",
-          "title": "1ª PARTE | 27 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. Dmitrovic salva un empate para el Espanyol ante el Levante. Tiempo de opinión. La mala situación del Sevilla.",
-          "publishedAt": "2026-04-27T22:06:47Z",
-          "duration": 2176,
-          "audio": "https://www.cope.es/uploads/2026/04/28/dj9TP7gznDgWfoIyBwWMq.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-27-abr-2026-partidazo-cope-20260428_3353609.html"
         }
       ]
     },
