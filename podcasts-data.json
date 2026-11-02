@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-01T23:36:39.482063Z",
+  "updatedAt": "2026-11-02T06:06:01.493994Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "d19684a0e6eb1bfa4bcc",
+          "title": "01 NOV 2026 | EL TERTULIÓN DE LOS DOMINGOS",
+          "description": "La polémica en los penaltis a favor del Madrid y del Athletic; El Real Madrid continúa su racha; Diomandé aprovecha la ausencia de Vinicius.",
+          "publishedAt": "2026-11-02T01:00:53Z",
+          "duration": 5445,
+          "audio": "https://www.cope.es/uploads/2026/11/02/obnegzmoOyVZ5gHr5yQBI.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/06/677b2375741e9.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/01-nov-2026-tertulion-domingos-20261102_3466690.html"
+        },
         {
           "id": "a08ddb2831b2af60c38f",
           "title": "22:00 | 01 NOV 2026 | TIEMPO DE JUEGO",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-27-abr-2026-partidazo-cope-20260428_3353626.html"
-        },
-        {
-          "id": "9a0d7cbe25f111ddfe78",
-          "title": "27-ABR-26 | #KM42, 'Running' con Chema Martínez",
-          "description": "Sabastian Sawe es el primer hombre de la historia en bajar de las 2 horas en un maratón. ¡¡Nuestro @AlbertoArauzM ha hecho la Maratón de Madrid en 3h 27mins 51 segundos!!",
-          "publishedAt": "2026-04-27T23:40:00Z",
-          "duration": 1011,
-          "audio": "https://www.cope.es/uploads/2026/04/28/BoToAGxsPNAAH0Y0AmpBr.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/04/28/69efe13f49562.png",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/27-abr-26-km42-running-chema-martinez-20260428_3353613.html"
         }
       ]
     },
