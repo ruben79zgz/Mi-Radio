@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02T23:31:20.985271Z",
+  "updatedAt": "2026-11-03T06:48:36.361253Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "93ce9babc62bf7b033b0",
+          "title": "02 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Preocupación con el jugador del Tenerife Jesús de Miguel. El CTA reconoce que pudo haber un fallo de tecnología en el Athletic - Real Sociedad. Tiempo de opinión. Previa Atlético - Bayern y Barcelona - Aston Villa. El Soufflé. Km42, con Chema Martínez.",
+          "publishedAt": "2026-11-03T00:50:00Z",
+          "duration": 7350,
+          "audio": "https://www.cope.es/uploads/2026/11/03/J7J7U8TGbF661EOY7Msoi.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/02-nov-2026-partidazo-cope-20261103_3467179.html"
+        },
+        {
+          "id": "cb58e89df1bf07890fa6",
+          "title": "3ª PARTE | 02 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Previa Villarreal - PSG. El Soufflé. Km42, con Chema Martínez.",
+          "publishedAt": "2026-11-03T00:45:00Z",
+          "duration": 2818,
+          "audio": "https://www.cope.es/uploads/2026/11/03/YUX_gG8MB7u3Nh_zIDqwI.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-02-nov-2026-partidazo-cope-20261103_3467178.html"
+        },
+        {
+          "id": "212262ffc9eedc7dd667",
+          "title": "02-NOV-26 | #KM42, 'Running' con Chema Martínez",
+          "description": "Andreas Almgren conquista la edición nº50 del Maratón de Nueva York y El último maratón de Martín Fiz.",
+          "publishedAt": "2026-11-03T00:40:00Z",
+          "duration": 855,
+          "audio": "https://www.cope.es/uploads/2026/11/03/NA4hAFa_GoABML4OJnMZz.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/11/03/6ae9205db7944.png",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/02-nov-26-km42-running-chema-martinez-20261103_3467175.html"
+        },
+        {
+          "id": "9088f7c09775ebc03280",
+          "title": "2ª PARTE | 02 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Previa Atlético - Bayern y Barcelona - Aston Villa. Tiempo de opinión.",
+          "publishedAt": "2026-11-02T23:49:40Z",
+          "duration": 2276,
+          "audio": "https://www.cope.es/uploads/2026/11/03/3ZbR_ws4bRbdAtFQyNgZ8.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-02-nov-2026-partidazo-cope-20261103_3467177.html"
+        },
         {
           "id": "6d96ecd01fbf6753bb82",
           "title": "1ª PARTE | 02 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6565,50 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-28-abr-2026-partidazo-cope-20260429_3354502.html"
-        },
-        {
-          "id": "73c1aca8c88a427552a7",
-          "title": "2ª PARTE | 28 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Previa Atlético de Madrid - Arsenal, segunda semifinal de la Champions.",
-          "publishedAt": "2026-04-28T22:40:58Z",
-          "duration": 1352,
-          "audio": "https://www.cope.es/uploads/2026/04/29/HNQ5NCe6I7RKEvBksXd6F.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-28-abr-2026-partidazo-cope-20260429_3354497.html"
-        },
-        {
-          "id": "88f6babf64bf2f5f5983",
-          "title": "1ª PARTE | 28 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Histórico partido entre el PSG y el Bayern (5-4) en la ida de semifinales de Champions. Tiempo de opinión.",
-          "publishedAt": "2026-04-28T22:16:35Z",
-          "duration": 2759,
-          "audio": "https://www.cope.es/uploads/2026/04/29/ZSNQsCRrtc7u8CI62wmHA.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-28-abr-2026-partidazo-cope-20260429_3354493.html"
-        },
-        {
-          "id": "d38b66d766bc064d1ff9",
-          "title": "27 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. Dmitrovic salva un empate para el Espanyol ante el Levante. Tiempo de opinión. La mala situación del Sevilla. Militao pasará por el quirófano y lesión de Mbappé. Hablamos con Morientes. Previa semis de Champions. El Soufflé. Km42.",
-          "publishedAt": "2026-04-27T23:50:00Z",
-          "duration": 7572,
-          "audio": "https://www.cope.es/uploads/2026/04/28/74TyXjaa_Za1J17vJdyJK.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/27-abr-2026-partidazo-cope-20260428_3353627.html"
-        },
-        {
-          "id": "57260d9019f22e2d4b6d",
-          "title": "3ª PARTE | 27 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Previa PSG - Bayern de Múnich. Actualidad del Atlético de Madrid a dos días de la semifinal. El Soufflé. Km42, con Chema Martínez.",
-          "publishedAt": "2026-04-27T23:45:00Z",
-          "duration": 3581,
-          "audio": "https://www.cope.es/uploads/2026/04/28/qBwEFq6vYT3zfpVuFWs2h.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-27-abr-2026-partidazo-cope-20260428_3353626.html"
         }
       ]
     },
