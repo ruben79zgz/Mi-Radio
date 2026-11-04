@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T06:48:36.361253Z",
+  "updatedAt": "2026-11-04T02:20:54.820955Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "aa86c0b383ce2747f0d3",
+          "title": "03 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Fallece el futbolista de Tenerife Jesús de Miguel. 4ª jornada de Champions: Victoria del Barcelona contra el Aston Villa (3-0) y derrotas del Atleti, contra el Bayern (0-2) y del Villarreal, contra el PSG (0-6). Protagonistas. Tiempo de opinión. Previa AEK - Real Madrid y Dortmund - Betis.",
+          "publishedAt": "2026-11-04T00:38:28Z",
+          "duration": 7562,
+          "audio": "https://www.cope.es/uploads/2026/11/04/h1YqXUBKAZ3g09-hUbfZ3.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/03-nov-2026-partidazo-cope-20261104_3468003.html"
+        },
+        {
+          "id": "bd80fdac8df5dfb193b4",
+          "title": "3ª PARTE | 03 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Fallece Jesús de Miguel, jugador del Tenerife, tras el golpe sufrido ante el Andorra. Hablamos con su amigo Fer Román y con el catedrático de Derecho Penal, Emilio Cortés. Previa AEK - Real Madrid y Dortmund - Betis.",
+          "publishedAt": "2026-11-04T00:37:30Z",
+          "duration": 3198,
+          "audio": "https://www.cope.es/uploads/2026/11/04/uxZbexPgT-Yg5SmliCD3y.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-03-nov-2026-partidazo-cope-20261104_3468002.html"
+        },
+        {
+          "id": "f9e5af9d58c40f53ef97",
+          "title": "2ª PARTE | 03 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Analizamos la derrota del Atlético de Madrid.",
+          "publishedAt": "2026-11-03T23:39:42Z",
+          "duration": 1266,
+          "audio": "https://www.cope.es/uploads/2026/11/04/VNgPyCMmH9-M2Nu9FJm6c.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-03-nov-2026-partidazo-cope-20261104_3467998.html"
+        },
+        {
+          "id": "1943a94c75e28c1e23bd",
+          "title": "1ª PARTE | 03 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Fallece el futbolista de Tenerife Jesús de Miguel. 4ª jornada de Champions: Victoria del Barcelona contra el Aston Villa (3-0) y derrotas del Atleti, contra el Bayern (0-2) y del Villarreal, contra el PSG (0-6). Protagonistas. Tiempo de opinión.",
+          "publishedAt": "2026-11-03T23:15:38Z",
+          "duration": 2702,
+          "audio": "https://www.cope.es/uploads/2026/11/04/zxMm3h7CjzVA8wVKFX6hY.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-03-nov-2026-partidazo-cope-20261104_3467994.html"
+        },
         {
           "id": "93ce9babc62bf7b033b0",
           "title": "02 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6565,50 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-29-abr-2026-partidazo-cope-20260430_3355371.html"
-        },
-        {
-          "id": "d5d14e548a766a520cf4",
-          "title": "2ª PARTE | 29 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Continuamos analizando el empate del Metropolitano.",
-          "publishedAt": "2026-04-29T22:32:26Z",
-          "duration": 1198,
-          "audio": "https://www.cope.es/uploads/2026/04/30/UjzQ7y0A113h1wsXRoA_n.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-29-abr-2026-partidazo-cope-20260430_3355357.html"
-        },
-        {
-          "id": "ff5524ec8358a7def25e",
-          "title": "1ª PARTE | 29 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Atlético de Madrid y Arsenal empatan 1-1 en la ida de las semifinales de Champions. Protagonistas. Tiempo de opinión.",
-          "publishedAt": "2026-04-29T22:09:58Z",
-          "duration": 2364,
-          "audio": "https://www.cope.es/uploads/2026/04/30/4e_fkJNpzfUixadIcQyIj.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-29-abr-2026-partidazo-cope-20260430_3355354.html"
-        },
-        {
-          "id": "b379de71dfef9f77d2a5",
-          "title": "28 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Histórico partido entre el PSG y el Bayern (5-4) en la ida de semifinales de Champions. Tiempo de opinión. Previa Atlético de Madrid - Arsenal. Mourinho suena como próximo entrenador del Real Madrid. Rafa Jódar - Sinner, en 1/4 del Mutua Madrid Open. MundoMaldini.",
-          "publishedAt": "2026-04-29T04:26:35Z",
-          "duration": 7232,
-          "audio": "https://www.cope.es/uploads/2026/04/29/7bHhNok5afNaS-0mG6BhU.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/28-abr-2026-partidazo-cope-20260429_3354504.html"
-        },
-        {
-          "id": "6e5cd3901a9ce6f6517a",
-          "title": "3ª PARTE | 28 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Mourinho suena como próximo entrenador del Real Madrid. La IFAB aprueba que los jugadores que se tapen la boca podrán ser expulsados. Rafa Jódar - Sinner, en cuartos de final del Mutua Madrid Open. MundoMaldini.",
-          "publishedAt": "2026-04-28T23:32:12Z",
-          "duration": 2904,
-          "audio": "https://www.cope.es/uploads/2026/04/29/gs-k31dTd0Tfe6oq-lIgE.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-28-abr-2026-partidazo-cope-20260429_3354502.html"
         }
       ]
     },
