@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-05T00:54:29.084449Z",
+  "updatedAt": "2026-11-05T09:30:04.576781Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "13978d2255cd260a59aa",
+          "title": "04 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "4ª jornada de Champions: Remontada del Real Madrid contra el AEK (2-3) y derrota del Betis ante el Dortmund (2-1). Protagonistas. Entrevistas a Ceballos. Tiempo de opinión. Rafa Nadal entrará en la Junta Directiva del Real Madrid. VayaFiesta, con el Grupo RISA.",
+          "publishedAt": "2026-11-05T00:41:03Z",
+          "duration": 7725,
+          "audio": "https://www.cope.es/uploads/2026/11/05/qYcaca03WLfuvFVszjFsf.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/04-nov-2026-partidazo-cope-20261105_3468923.html"
+        },
+        {
+          "id": "15d95e2646b99fb8622f",
+          "title": "3ª PARTE | 04 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Rafa Nadal entrará en la Junta Directiva del Real Madrid. Comunicados de Athletic y Real Sociedad hablando de los árbitros. Rueda de prensa de Sarabia con el Espanyol. VayaFiesta, con el Grupo RISA.",
+          "publishedAt": "2026-11-05T00:39:57Z",
+          "duration": 3201,
+          "audio": "https://www.cope.es/uploads/2026/11/05/TZ7Gf9qKoPEqUAdUGjAbu.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-04-nov-2026-partidazo-cope-20261105_3468922.html"
+        },
         {
           "id": "187bafe1b98b6e96f451",
           "title": "2ª PARTE | 04 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-30-abr-2026-partidazo-cope-20260501_3356278.html"
-        },
-        {
-          "id": "3d0c5ff39cb358868f25",
-          "title": "2ª PARTE | 30 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Polémicas palabras de la ministra de Deportes Milagros Tolón. Entrevista a Isi.",
-          "publishedAt": "2026-04-30T22:34:21Z",
-          "duration": 1762,
-          "audio": "https://www.cope.es/uploads/2026/05/01/3nAQ1fY4fmN3JnjwwyUmN.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-30-abr-2026-partidazo-cope-20260501_3356267.html"
-        },
-        {
-          "id": "22860b238f8fbe7f4426",
-          "title": "1ª PARTE | 30 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Rayo Vallecano gana 1-0 en las semifinales de la Conference League. Actualidad del Atlético de Madrid tras el empate ante el Arsenal.",
-          "publishedAt": "2026-04-30T22:03:01Z",
-          "duration": 1944,
-          "audio": "https://www.cope.es/uploads/2026/05/01/EGP9NWzr9vlH2jfch41Ek.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-30-abr-2026-partidazo-cope-20260501_3356264.html"
         }
       ]
     },
