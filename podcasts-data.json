@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-04T02:20:54.820955Z",
+  "updatedAt": "2026-11-05T00:54:29.084449Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "187bafe1b98b6e96f451",
+          "title": "2ª PARTE | 04 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Analizamos la victoria del Real Madrid en Atenas.",
+          "publishedAt": "2026-11-04T23:41:34Z",
+          "duration": 1744,
+          "audio": "https://www.cope.es/uploads/2026/11/05/x8RD_f6nO30G045R3Skhy.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-04-nov-2026-partidazo-cope-20261105_3468907.html"
+        },
+        {
+          "id": "58b3df7beb0faa2f5576",
+          "title": "1ª PARTE | 04 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "4ª jornada de Champions: Remontada del Real Madrid contra el AEK (2-3) y derrota del Betis ante el Dortmund (2-1). Protagonistas. Entrevistas a Ceballos.",
+          "publishedAt": "2026-11-04T23:08:09Z",
+          "duration": 2252,
+          "audio": "https://www.cope.es/uploads/2026/11/05/u_Jo5c4LBg854DRHfxK3-.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-04-nov-2026-partidazo-cope-20261105_3468893.html"
+        },
         {
           "id": "aa86c0b383ce2747f0d3",
           "title": "03 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-30-abr-2026-partidazo-cope-20260501_3356264.html"
-        },
-        {
-          "id": "98549b7fc34a0e9f9aab",
-          "title": "29 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Atlético de Madrid y Arsenal empatan 1-1 en la ida de las semifinales de Champions. Tiempo de opinión. Entrevista a Raúl Martín Presa en la previa del Rayo - Estrasburgo. Entrevistas a Martín Presa y Feliciano López. Derrota de Jódar ante Sinner. VayaFiesta.",
-          "publishedAt": "2026-04-29T23:44:29Z",
-          "duration": 7638,
-          "audio": "https://www.cope.es/uploads/2026/04/30/un9jo1Kxd2bJCKjYk1ZHx.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/29-abr-2026-partidazo-cope-20260430_3355372.html"
-        },
-        {
-          "id": "5752da2ae318a930b0bc",
-          "title": "3ª PARTE | 29 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "Entrevistas a Raúl Martín Presa en la previa del Rayo - Estrasburgo; y a Feliciano López, tras la derrota de Jódar ante Sinner. VayaFiesta.",
-          "publishedAt": "2026-04-29T23:39:55Z",
-          "duration": 3785,
-          "audio": "https://www.cope.es/uploads/2026/04/30/QArgUyw3zudUOQdi_6qIe.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-29-abr-2026-partidazo-cope-20260430_3355371.html"
         }
       ]
     },
