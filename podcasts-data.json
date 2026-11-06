@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-05T23:38:54.346232Z",
+  "updatedAt": "2026-11-06T06:48:11.915684Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,39 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "f6059c01a4445ed162ac",
+          "title": "05 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Emotivo último adiós a Jesús de Miguel en Navahermosa. Así será el homenaje durante la próxima jornada. Real Sociedad empata y el Celta pierde en la Europa League; el Getafe cae en la Conference. Hablamos con Feliciano López sobre si Nadal quiere ser presidente del Real Madrid. El miedo en España a perder la final del Mundial 2030. Actualidad de Atlético de Madrid y Barcelona. Motor. The Americans.",
+          "publishedAt": "2026-11-06T00:50:00Z",
+          "duration": 7112,
+          "audio": "https://www.cope.es/uploads/2026/11/06/_otmoQVKKZ_z0u77I2lio.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/05-nov-2026-partidazo-cope-20261106_3469897.html"
+        },
+        {
+          "id": "ac46df39f9b7f8d17348",
+          "title": "3ª PARTE | 05 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "El miedo en España a perder la final del Mundial 2030. Actualidad de Atlético de Madrid y Barcelona. Motor. The Americans.",
+          "publishedAt": "2026-11-06T00:45:00Z",
+          "duration": 2655,
+          "audio": "https://www.cope.es/uploads/2026/11/06/SQKPlQxWJlzlVOMDBPykQ.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-05-nov-2026-partidazo-cope-20261106_3469896.html"
+        },
+        {
+          "id": "4afe7035055339ff0792",
+          "title": "2ª PARTE | 05 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "¿Se debería suspender la jornada de Liga por la muerte de Jesús de Miguel? Hablamos con Feliciano López sobre si Nadal quiere ser presidente del Real Madrid.",
+          "publishedAt": "2026-11-05T23:48:49Z",
+          "duration": 2907,
+          "audio": "https://www.cope.es/uploads/2026/11/06/d6oLV-BU9ZBc_XrHKQRsl.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-05-nov-2026-partidazo-cope-20261106_3469895.html"
+        },
         {
           "id": "fa388aeedad300f80250",
           "title": "1ª PARTE | 05 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6576,39 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-01-may-2026-partidazo-cope-20260502_3356472.html"
-        },
-        {
-          "id": "c889d13b6c3362271979",
-          "title": "2ª PARTE | 01 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "#OasisDeLibertad. Las actas arbitrales del Andorra - Albacete y del Deportivo - Leganés reflejan numerosas expulsiones.",
-          "publishedAt": "2026-05-01T22:44:10Z",
-          "duration": 1811,
-          "audio": "https://www.cope.es/uploads/2026/05/02/DXgu16-oSPBMVFS1h-_HI.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-01-may-2026-partidazo-cope-20260502_3356465.html"
-        },
-        {
-          "id": "469b7a06395862b66d23",
-          "title": "1ª PARTE | 01 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. GP de Miami de Fórmula 1. El Real Madrid, a un paso de la Final Four de la Euroliga. El Mallorca aprieta la lucha por la permanencia. El ascenso de Tenerife a Segunda.",
-          "publishedAt": "2026-05-01T22:37:19Z",
-          "duration": 1998,
-          "audio": "https://www.cope.es/uploads/2026/05/02/UUdsY2q9II6_CZHhynjg6.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-01-may-2026-partidazo-cope-20260502_3356461.html"
-        },
-        {
-          "id": "ffcd8d0478275d230b3d",
-          "title": "30 ABR 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Rayo Vallecano gana 1-0 en las semifinales de la Conference League. Actualidad Atlético de Madrid. Tiempo de opinión. Polémicas palabras de la ministra de Deportes Milagros Tolón. Entrevistas a Isi, Eduardo Prieto Iglesias y Rafa Escrig, periodista. The Americans.",
-          "publishedAt": "2026-04-30T23:50:00Z",
-          "duration": 7750,
-          "audio": "https://www.cope.es/uploads/2026/05/01/CuNAPBgre7sv1xzOblS1y.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/30-abr-2026-partidazo-cope-20260501_3356280.html"
         }
       ]
     },
@@ -6621,6 +6621,17 @@
       "site": "http://www.podiumpodcast.com/la-escobula-de-la-brujula/",
       "feed": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/playlists/podcast.rss",
       "episodes": [
+        {
+          "id": "c3038a2fb73132b58ab9",
+          "title": "Programa 630: Entre chichis y pitos: genitales sagrados",
+          "description": "¿Por qué unos genitales pueden ser sagrados en una cultura y obscenos en otra? La ilustradora y artista plástica Amaya Barahona, autora de El mito genital: un paseo creativo por el simbolismo sexual en la espiritualidad, nos acompañará en un recorrido por la historia y la prehistoria, las creencias, los mitos y los rituales que han convertido nuestras partes íntimas en símbolos de fertilidad, protección, poder y miedo. Dedicaremos la primera parte a las vulvas o chichis, y la segunda, a los penes o pitos. Desde las vulvas talladas y las venus paleolíticas hasta los amuletos fálicos de la antigua Roma, exploraremos los significados atribuidos al cuerpo y su relación con lo sagrado. Hablaremos de Deméter, de Baubo y del gesto ritual de mostrar los genitales, conocido como anasyrma, así como de las enigmáticas figuras femeninas que exhiben su vulva en la escultura medieval, emparentadas iconográficamente con las sheela-na-gigs. No faltarán los amuletos fálicos romanos, las higas protectoras y el festival japonés Kanamara Matsuri. También nos asomaremos al imaginario inquietante de la vagina dentada —evocado en la película The Wall, de Pink Floyd—, a los árboles de penes y a la asociación entre brujería y sexualidad, con referencias al Malleus maleficarum. Marta Sanmamed nos acercará al significado del tantra y a las diferencias entre sus tradiciones orientales y su interpretación en Occidente. En definitiva, un viaje con humor y curiosidad por una idea que recorrerá las dos horas del programa: los genitales nunca han significado solamente sexo. Extróbula: Marcos nos hablará del dios Príapo y de la circuncisión masculina entre los dowayo de Camerún. Jesús abordará los llamados «santos fálicos», como san Fiacro, y algunos rituales extravagantes para solicitar su intercesión en cuestiones de fertilidad o incluso exigírsela. Y David nos acercará al síndrome de koro: el temor a que los genitales se encojan o se retraigan hacia el interior del cuerpo.",
+          "publishedAt": "2026-11-06T05:00:00Z",
+          "duration": 7575,
+          "audio": "https://traffic.omny.fm/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/106ca933-40a2-4127-a583-b4ea0127fb93/audio.mp3?utm_source=Podcast&in_playlist=fd25a142-cbf1-4f2b-9146-aead00a0bab7",
+          "fileSize": 121244158,
+          "image": "https://www.omnycontent.com/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/106ca933-40a2-4127-a583-b4ea0127fb93/image.jpg?t=1792754744&size=Large",
+          "link": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/programa-630-entre-chichis-y-pitos-genitales-sagrados"
+        },
         {
           "id": "f34f93b43c7be96d89df",
           "title": "Programa 629: Ajedrez: enemigos íntimos",
