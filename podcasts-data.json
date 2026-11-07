@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-06T06:48:11.915684Z",
+  "updatedAt": "2026-11-07T01:56:12.916911Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "63ab3e2fc0a75536a8f0",
+          "title": "06 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Titulares. Empate entre Sevilla y Alavés. El homenaje a Jesús de Miguel en el Sánchez Pizjuán. Alcaraz jugará las semifinales de París. #OasisDeLibertad. GP de Brasil de Fórmula 1. Previa del Valencia - Real Madrid #Campodelgas.",
+          "publishedAt": "2026-11-07T00:45:00Z",
+          "duration": 7641,
+          "audio": "https://www.cope.es/uploads/2026/11/07/-D7io0p3b_MEBr9e-BQgV.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/06-nov-2026-partidazo-cope-20261107_3470721.html"
+        },
+        {
+          "id": "8663b5de93b7b01e9ffb",
+          "title": "3ª PARTE | 06 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Sigue el #OasisDeLibertad. Actualidad del Real Madrid antes de jugar este sábado contra el Valencia. #Campodelgas.",
+          "publishedAt": "2026-11-07T00:30:00Z",
+          "duration": 3232,
+          "audio": "https://www.cope.es/uploads/2026/11/07/mrpuuV_ZD-swSz7nHxzvD.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-06-nov-2026-partidazo-cope-20261107_3470720.html"
+        },
+        {
+          "id": "26d879846c0e62012ae2",
+          "title": "2ª PARTE | 06 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Los miembros del #OasisDeLibertad repasan su semana.",
+          "publishedAt": "2026-11-06T23:51:14Z",
+          "duration": 1939,
+          "audio": "https://www.cope.es/uploads/2026/11/07/PONsxRX6ZvFFYQzXihe18.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-06-nov-2026-partidazo-cope-20261107_3470718.html"
+        },
+        {
+          "id": "b3c87702319a22fa79a9",
+          "title": "1ª PARTE | 06 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. El empate entre Sevilla y Alavés. El homenaje a Jesús de Miguel en el Sánchez Pizjuán. Carlos Alcaraz jugará las semifinales de París. Entrenamientos libres del GP de Brasil de Fórmula 1.",
+          "publishedAt": "2026-11-06T23:15:15Z",
+          "duration": 2097,
+          "audio": "https://www.cope.es/uploads/2026/11/07/FHzxJrf15HzLH-1w7DPYc.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-06-nov-2026-partidazo-cope-20261107_3470715.html"
+        },
         {
           "id": "f6059c01a4445ed162ac",
           "title": "05 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6565,50 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-04-may-2026-partidazo-cope-20260505_3357574.html"
-        },
-        {
-          "id": "8e2da1286bb3988d7b7a",
-          "title": "03 MAY 2026 | EL TERTULIÓN DE LOS DOMINGOS",
-          "description": "Vinicius retrasa el alirón del Barcelona; ¿Juega mejor Vinicius sin Mbappé?; El Atlético se prepara para la Champions; El Barça, más cerca del título.",
-          "publishedAt": "2026-05-03T23:53:19Z",
-          "duration": 5390,
-          "audio": "https://www.cope.es/uploads/2026/05/04/THWzN7yrVpL5Z_2c2uEVr.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/06/677b2375741e9.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/03-may-2026-tertulion-domingos-20260504_3356777.html"
-        },
-        {
-          "id": "5cd8dfea1833bd5e1dc9",
-          "title": "02 MAY 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
-          "description": "El Barça cumple en Pamplona y podría ya ganar LaLiga. El ‘baby’ Atlético vence en Mestalla. Resto de resultados. Previas. Segunda División. Clasificación F1 de Miami. NBA",
-          "publishedAt": "2026-05-02T23:09:46Z",
-          "duration": 6882,
-          "audio": "https://www.cope.es/uploads/2026/05/03/0aSF4GPqsfVrE1NMm4jSa.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/20/678e8e8da933c.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/02-may-2026-tramo-final-juego-20260503_3356620.html"
-        },
-        {
-          "id": "c33bbc40beebf2da1613",
-          "title": "01 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Titulares. GP de Miami de Fórmula 1. El Real Madrid, a un paso de la Final Four de la Euroliga. El Mallorca aprieta la lucha por la permanencia. El Tenerife asciende a Segunda. Sinner y Zverev jugarán la final en Madrid. #OasisDeLibertad. Previa del Osasuna - Barcelona. #Campodelgas",
-          "publishedAt": "2026-05-01T23:40:00Z",
-          "duration": 7682,
-          "audio": "https://www.cope.es/uploads/2026/05/02/ySpyOcp1Vr-TuQO0Ejlgo.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/01-may-2026-partidazo-cope-20260502_3356473.html"
-        },
-        {
-          "id": "ff1f27ce5c2e3d12a0e7",
-          "title": "3ª PARTE | 01 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Sigue el #OasisDeLibertad. ¿Cómo está la lucha por la permanencia en Primera División?. Previa del Osasuna - Barcelona. Mourinho asegura que el Real Madrid no le ha llamado. #Campodelgas.",
-          "publishedAt": "2026-05-01T23:30:00Z",
-          "duration": 3726,
-          "audio": "https://www.cope.es/uploads/2026/05/02/Q17T96vHs57vRIeQsqOph.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-01-may-2026-partidazo-cope-20260502_3356472.html"
         }
       ]
     },
