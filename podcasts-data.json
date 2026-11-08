@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-07T01:56:12.916911Z",
+  "updatedAt": "2026-11-08T01:27:10.450516Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "f1fedf38f86e2632cdfb",
+          "title": "07 NOV 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
+          "description": "Victoria del Real Madrid en Mestalla en un tenso partido. Previa del Atlético-Barça. Resultados de la jornada. El homenaje a Jesús de Miguel en Tenerife. Marc Márquez puede ser campeón este domingo. GP de Brasil de F1. Alcaraz, final en París. NFL, en Madrid",
+          "publishedAt": "2026-11-08T00:07:19Z",
+          "duration": 6568,
+          "audio": "https://www.cope.es/uploads/2026/11/08/mpdcZvz5fpwmyZ9SxCpWG.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/10/27/6ae0f8a710014.jpg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/07-nov-2026-tramo-final-juego-20261108_3470903.html"
+        },
         {
           "id": "63ab3e2fc0a75536a8f0",
           "title": "06 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-04-may-2026-partidazo-cope-20260505_3357582.html"
-        },
-        {
-          "id": "7bd12b17696c1839f6d3",
-          "title": "1ª PARTE | 04 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Sevilla sale del descenso gracias a un gol de Alexis. Protagonistas. Entrevista a José Ángel Carmona. Tiempo de opinión. El futuro de Marcelino y Bordalás.",
-          "publishedAt": "2026-05-04T22:04:11Z",
-          "duration": 2013,
-          "audio": "https://www.cope.es/uploads/2026/05/05/AHZlUx1iB_-8_52PfWxGA.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-04-may-2026-partidazo-cope-20260505_3357574.html"
         }
       ]
     },
