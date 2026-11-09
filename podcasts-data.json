@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-08T01:27:10.450516Z",
+  "updatedAt": "2026-11-09T01:44:13.360792Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "c144c2a618ba24a8eb79",
+          "title": "08 NOV 2026 | EL TERTULIÓN DE LOS DOMINGOS",
+          "description": "El Barcelona asalta el Metropolitano y es más líder; ¿Se ha echado atrás el Atlético de Madrid?; Fermín, el gran protagonista; El Madrid sigue en racha.",
+          "publishedAt": "2026-11-09T00:52:41Z",
+          "duration": 5419,
+          "audio": "https://www.cope.es/uploads/2026/11/09/Aq1nEuL59bmyv1gmPGd47.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/06/677b2375741e9.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/08-nov-2026-tertulion-domingos-20261109_3471061.html"
+        },
         {
           "id": "f1fedf38f86e2632cdfb",
           "title": "07 NOV 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/05/04/69f90ec60e2fd.png",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/04-may-26-km42-running-chema-martinez-20260504_3357562.html"
-        },
-        {
-          "id": "d6ab36b98f7f1ea73e77",
-          "title": "2ª PARTE | 04 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Previa Arsenal - Atlético de Madrid, vuelta de las semifinales de Champions. Tiempo de opinión. Empate del City, que se aleja de la Premier.",
-          "publishedAt": "2026-05-04T22:36:51Z",
-          "duration": 1771,
-          "audio": "https://www.cope.es/uploads/2026/05/05/kQJ_smHHORhqq7o9N-O1B.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-04-may-2026-partidazo-cope-20260505_3357582.html"
         }
       ]
     },
