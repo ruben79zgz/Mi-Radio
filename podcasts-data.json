@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-09T01:44:13.360792Z",
+  "updatedAt": "2026-11-10T04:07:45.131358Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,61 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "b4db6a041620741ecb6c",
+          "title": "09 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. El Real Oviedo destituye a Calero y ficha a Raúl. Entrevista a Marc Cucurella, lateral del Real Madrid y la selección española. Actualidad de la selección, marcada por la baja de Lamine Yamal. Pau Cubarsí, premio Golden Boy.El Soufflé, con Antonio Lobato. Km42, con Chema Martínez.",
+          "publishedAt": "2026-11-10T00:50:00Z",
+          "duration": 7286,
+          "audio": "https://www.cope.es/uploads/2026/11/10/t8s8wKBWohEHNdnu1HuQF.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/09-nov-2026-partidazo-cope-20261110_3471816.html"
+        },
+        {
+          "id": "a6d7c60b973a15611474",
+          "title": "3ª PARTE | 09 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Pau Cubarsí, premio Golden Boy. El Levante se queja de los horarios. El Soufflé, con Antonio Lobato. Km42, con Chema Martínez.",
+          "publishedAt": "2026-11-10T00:45:00Z",
+          "duration": 3196,
+          "audio": "https://www.cope.es/uploads/2026/11/10/RPflDkVaEv4O0szh1r6kG.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-09-nov-2026-partidazo-cope-20261110_3471815.html"
+        },
+        {
+          "id": "b1d09385a58bfd44d2a6",
+          "title": "09-NOV-26 | #KM42, 'Running' con Chema Martínez",
+          "description": "Entrevista con Javi Guerra tras ganar la Behobia-San Sebastián.",
+          "publishedAt": "2026-11-10T00:40:00Z",
+          "duration": 755,
+          "audio": "https://www.cope.es/uploads/2026/11/10/-FGletArsx6gEF9j3M-xW.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/11/10/6af25ba7a0cd9.png",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/09-nov-26-km42-running-chema-martinez-20261110_3471814.html"
+        },
+        {
+          "id": "d44aba3cbb8743b82ad2",
+          "title": "2ª PARTE | 09 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Entrevista a Marc Cucurella, lateral del Real Madrid y la selección española. Actualidad de la selección, marcada por la baja de Lamine Yamal.",
+          "publishedAt": "2026-11-09T23:45:13Z",
+          "duration": 2265,
+          "audio": "https://www.cope.es/uploads/2026/11/10/KclS1eY_XPy7BrOohY26l.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-09-nov-2026-partidazo-cope-20261110_3471813.html"
+        },
+        {
+          "id": "2e4e278fd3742801d13f",
+          "title": "1ª PARTE | 09 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. El Real Oviedo destituye a Calero y ficha a Raúl. Hablamos con Heri Frade y Marcos López.",
+          "publishedAt": "2026-11-09T23:01:41Z",
+          "duration": 1824,
+          "audio": "https://www.cope.es/uploads/2026/11/10/IV9nY3SkmfTyZ7nz_mhsv.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-09-nov-2026-partidazo-cope-20261110_3471807.html"
+        },
         {
           "id": "c144c2a618ba24a8eb79",
           "title": "08 NOV 2026 | EL TERTULIÓN DE LOS DOMINGOS",
@@ -6554,61 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-05-may-2026-partidazo-cope-20260506_3358455.html"
-        },
-        {
-          "id": "c4823d9881386ebadded",
-          "title": "2ª PARTE | 05 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Continuamos analizando la derrota del Atlético de Madrid ante el Arsenal.",
-          "publishedAt": "2026-05-05T22:39:46Z",
-          "duration": 1339,
-          "audio": "https://www.cope.es/uploads/2026/05/06/r_FP9_Yi2Tyx7oIaSGssn.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-05-may-2026-partidazo-cope-20260506_3358444.html"
-        },
-        {
-          "id": "bac569546681d4c78752",
-          "title": "1ª PARTE | 05 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Atlético de Madrid, eliminado en semifinales de la Champions League. Protagonistas. Tiempo de opinión.",
-          "publishedAt": "2026-05-05T22:15:25Z",
-          "duration": 2688,
-          "audio": "https://www.cope.es/uploads/2026/05/06/KIcuWRCzq924DRKdxUnI_.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-05-may-2026-partidazo-cope-20260506_3358440.html"
-        },
-        {
-          "id": "aff9c1d742f00dcd00be",
-          "title": "04 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Sevilla sale del descenso gracias a un gol de Alexis. Entrevista a José Ángel Carmona. Previa Arsenal - Atlético. Tiempo de opinión. La polémica en Madrid con Mbappé. El Soufflé. Km42, con Chema Martínez.",
-          "publishedAt": "2026-05-04T23:50:00Z",
-          "duration": 7624,
-          "audio": "https://www.cope.es/uploads/2026/05/05/_C55dor-s_0UiowMPqH2a.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/04-may-2026-partidazo-cope-20260505_3357592.html"
-        },
-        {
-          "id": "86fc6dc1f7c30a32b5c2",
-          "title": "3ª PARTE | 04 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Polémica en Madrid por el viaje de Mbappé estando lesionado. El Soufflé. Km42, con Chema Martínez.",
-          "publishedAt": "2026-05-04T23:45:00Z",
-          "duration": 3839,
-          "audio": "https://www.cope.es/uploads/2026/05/05/tf-vMojDAKW8QArL76stl.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-04-may-2026-partidazo-cope-20260505_3357590.html"
-        },
-        {
-          "id": "618f627683692efa2066",
-          "title": "04-MAY-26 | #KM42, 'Running' con Chema Martínez",
-          "description": "¡Las 'Golden Bubbles' en los World Relays de Botsuana!, el reto de Chemita para promocionar la carrera solidaria \"Wings for Life Valencia\", IX Carrera Solidaria de la Fundación Real Madrid by @azulmarinoviaje.",
-          "publishedAt": "2026-05-04T23:40:00Z",
-          "duration": 844,
-          "audio": "https://www.cope.es/uploads/2026/05/04/21u7u6vZmTax2yLtKHqCd.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/05/04/69f90ec60e2fd.png",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/04-may-26-km42-running-chema-martinez-20260504_3357562.html"
         }
       ]
     },
