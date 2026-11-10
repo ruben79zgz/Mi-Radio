@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T04:07:45.131358Z",
+  "updatedAt": "2026-11-10T20:49:41.832594Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -42,6 +42,17 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/11/10/6af25ba7a0cd9.png",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/09-nov-26-km42-running-chema-martinez-20261110_3471814.html"
+        },
+        {
+          "id": "7f57f36be79c698f0e6d",
+          "title": "MARC CUCURELLA | LAS ENTREVISTAS DE JUANMA CASTAÑO",
+          "description": "Juanma Castaño entrevistó al lateral del Real Madrid y de la selección española para hablar de la buena racha de los de Mourinho.",
+          "publishedAt": "2026-11-10T00:20:00Z",
+          "duration": 1572,
+          "audio": "https://www.cope.es/uploads/2026/11/10/A4ZKVqKlg9fRdrQv5YSj0.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/11/10/6af3498dce6cc.png",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/entrevistas-de-juanma-castano/episodios/marc-cucurella-entrevistas-juanma-castano-20261110_3472504.html"
         },
         {
           "id": "d44aba3cbb8743b82ad2",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/05-may-2026-partidazo-cope-20260506_3358456.html"
-        },
-        {
-          "id": "ef6d176290634f412427",
-          "title": "3ª PARTE | 05 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Líos en el Real Madrid: polémica con Mbappé y tortazo de Rüdiger a Carreras. El Athletic ficha a Terzic. Derrota del Real Madrid en la Euroliga. Muere Picolín Ortiz. MundoMaldini.",
-          "publishedAt": "2026-05-05T23:39:02Z",
-          "duration": 3355,
-          "audio": "https://www.cope.es/uploads/2026/05/06/NBRXZT4S2LGTotjgljOb0.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-05-may-2026-partidazo-cope-20260506_3358455.html"
         }
       ]
     },
