@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T20:49:41.832594Z",
+  "updatedAt": "2026-11-11T01:56:29.013746Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "46165d474beca3924218",
+          "title": "10 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Actualidad de la selección española. Entrevistas a David Fernández, director deportivo de Oviedo; y a Marc Bernal. Tiempo de opinión. Endrick y su futuro. Zubimendi suena para el Atlético de Madrid. MundoMaldini.",
+          "publishedAt": "2026-11-11T00:50:00Z",
+          "duration": 7230,
+          "audio": "https://www.cope.es/uploads/2026/11/11/WQ80sXjiezsG5wlaJBRp3.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/10-nov-2026-partidazo-cope-20261111_3472623.html"
+        },
+        {
+          "id": "104573f3587bf447e4f5",
+          "title": "3ª PARTE | 10 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Hablamos de la selección española, que ya se encuentra en Praga. Endrick y su futuro. Zubimendi suena para el Atlético de Madrid. MundoMaldini.",
+          "publishedAt": "2026-11-11T00:45:00Z",
+          "duration": 3274,
+          "audio": "https://www.cope.es/uploads/2026/11/11/jYGWyMk4wNvG37i-dlSNS.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-10-nov-2026-partidazo-cope-20261111_3472622.html"
+        },
+        {
+          "id": "a93b0243515df4c45d08",
+          "title": "2ª PARTE | 10 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Entrevista a Marc Bernal, jugador del Barcelona y de la sub21. Tiempo de opinión.",
+          "publishedAt": "2026-11-10T23:39:50Z",
+          "duration": 1888,
+          "audio": "https://www.cope.es/uploads/2026/11/11/62d1K18z-BuZDHPEufP1d.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-10-nov-2026-partidazo-cope-20261111_3472618.html"
+        },
+        {
+          "id": "fddb6a910e172478bfbb",
+          "title": "1ª PARTE | 10 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Actualidad de la selección española. Entrevista a David Fernández, director deportivo de Oviedo, el día de la presentación de Raúl como nuevo entrenador.",
+          "publishedAt": "2026-11-10T23:05:09Z",
+          "duration": 2070,
+          "audio": "https://www.cope.es/uploads/2026/11/11/w2ZTcYUf3ANOGnq_ubXML.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-10-nov-2026-partidazo-cope-20261111_3472613.html"
+        },
         {
           "id": "b4db6a041620741ecb6c",
           "title": "09 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6565,50 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/06-may-2026-partidazo-cope-20260507_3359329.html"
-        },
-        {
-          "id": "e0e69a4a9f28fcb80274",
-          "title": "3ª PARTE | 06 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Previa Estrasburgo - Rayo Vallecano, vuelta de semifinales de la Conference League. Polémica en la selección mejicana. Dura sanción a la directiva del Andorra.",
-          "publishedAt": "2026-05-06T23:36:46Z",
-          "duration": 2760,
-          "audio": "https://www.cope.es/uploads/2026/05/07/LDQq-SLjecmtQY1xR5Vu_.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-06-may-2026-partidazo-cope-20260507_3359328.html"
-        },
-        {
-          "id": "81b95ee17c318d370531",
-          "title": "2ª PARTE | 06 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Las protestas contra el árbitro del Atlético de Madrid. Bronca entre Valverde y Tchouameni. Tiempo de opinión.",
-          "publishedAt": "2026-05-06T22:48:42Z",
-          "duration": 2194,
-          "audio": "https://www.cope.es/uploads/2026/05/07/RP3-LIa_I8eX2O1IQDwAH.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-06-may-2026-partidazo-cope-20260507_3359322.html"
-        },
-        {
-          "id": "f1cbe13c20942f111f06",
-          "title": "1ª PARTE | 06 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "El PSG elimina al Bayern y jugará la final de la Champions contra el Arsenal. Protagonistas. Tiempo de opinión.",
-          "publishedAt": "2026-05-06T22:10:39Z",
-          "duration": 2373,
-          "audio": "https://www.cope.es/uploads/2026/05/07/wtY6z0BfgsiDpTCQw96dz.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-06-may-2026-partidazo-cope-20260507_3359312.html"
-        },
-        {
-          "id": "3c1ae83149c90be3a90c",
-          "title": "05 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Atlético de Madrid, eliminado en semifinales de la Champions League. Protagonistas. Tiempo de opinión. Líos en el Real Madrid. El Athletic ficha a Terzic. Muere Picolín Ortiz. MundoMaldini.",
-          "publishedAt": "2026-05-05T23:39:56Z",
-          "duration": 7665,
-          "audio": "https://www.cope.es/uploads/2026/05/06/v7INVy9nOn5hPDim93Pgj.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/05-may-2026-partidazo-cope-20260506_3358456.html"
         }
       ]
     },
