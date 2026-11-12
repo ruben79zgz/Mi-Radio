@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T01:56:29.013746Z",
+  "updatedAt": "2026-11-12T00:45:00.486814Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,39 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "9d291e67e064641671b6",
+          "title": "3ª PARTE | 11 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Entrevista a Felipe Miñambres, presidente del Tenerife. Motor. VayaFiesta, con el Grupo RISA.",
+          "publishedAt": "2026-11-12T00:40:00Z",
+          "duration": 2696,
+          "audio": "https://www.cope.es/uploads/2026/11/12/efM6XQ7kYC-7G2eXu3CuO.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-11-nov-2026-partidazo-cope-20261112_3473383.html"
+        },
+        {
+          "id": "c55ea2c80e2c2256e76d",
+          "title": "2ª PARTE | 11 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Previa República Checa - España. Hablamos con Dani Ordóñez, de Radio Praga Internacional; David Guerrero: y el portavoz de la embajada alemana en España.",
+          "publishedAt": "2026-11-11T23:44:32Z",
+          "duration": 2098,
+          "audio": "https://www.cope.es/uploads/2026/11/12/MZNLFWV-0X1XJaSo4S9vd.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-11-nov-2026-partidazo-cope-20261112_3473379.html"
+        },
+        {
+          "id": "e589dd3318c1b0bb221e",
+          "title": "1ª PARTE | 11 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. De la Fuente habla de la baja de Lamine Yamal. Mbappé y Tchouameni, lesionados con Francia. El Barcelona y su defensa.",
+          "publishedAt": "2026-11-11T23:06:13Z",
+          "duration": 2103,
+          "audio": "https://www.cope.es/uploads/2026/11/12/g4ix5z1fy4bBd5AtH7rNe.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-11-nov-2026-partidazo-cope-20261112_3473373.html"
+        },
         {
           "id": "46165d474beca3924218",
           "title": "10 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6576,39 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-07-may-2026-partidazo-cope-20260508_3360198.html"
-        },
-        {
-          "id": "a5670b0dcc453904da05",
-          "title": "2ª PARTE | 07 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Analizamos toda la polémica vivida entre Valverde y Tchouameni.",
-          "publishedAt": "2026-05-07T22:50:32Z",
-          "duration": 2297,
-          "audio": "https://www.cope.es/uploads/2026/05/08/TSWxlNKjTMfnJxt0gh3U-.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-07-may-2026-partidazo-cope-20260508_3360194.html"
-        },
-        {
-          "id": "e824d2e64cec70e38e29",
-          "title": "1ª PARTE | 07 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Rayo Vallecano jugará la final de la Conference League contra el Crystal Palace. Entrevista a Balliu, Yeremy Pino, Unai López y Martín Presa. Tiempo de opinión. Bronca entre Valverde y Tchouameni.",
-          "publishedAt": "2026-05-07T22:08:58Z",
-          "duration": 2296,
-          "audio": "https://www.cope.es/uploads/2026/05/08/MVHgmRPFU7uoSM3zyRqG6.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-07-may-2026-partidazo-cope-20260508_3360186.html"
-        },
-        {
-          "id": "9e6b54f69e0c0f52532a",
-          "title": "06 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "El PSG elimina al Bayern y jugará la final de la Champions contra el Arsenal. Protagonistas. Tiempo de opinión. Las protestas contra el árbitro del Atlético de Madrid. Bronca entre Valverde y Tchouameni. Previa Estrasburgo - Rayo Vallecano.",
-          "publishedAt": "2026-05-06T23:39:03Z",
-          "duration": 7563,
-          "audio": "https://www.cope.es/uploads/2026/05/07/jFoaUK4UVhWee6Drx9VaL.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/06-may-2026-partidazo-cope-20260507_3359329.html"
         }
       ]
     },
