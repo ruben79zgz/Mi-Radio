@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T00:45:00.486814Z",
+  "updatedAt": "2026-11-12T09:51:18.904750Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "84508128ce0fb58a139a",
+          "title": "11 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. De la Fuente habla de la baja de Lamine Yamal. El Barcelona y su defensa. Previa República Checa - España. Hablamos con Dani Ordóñez, de Radio Praga Internacional; David Guerrero: y el portavoz de la embajada alemana en España. Motor. VayaFiesta, con el Grupo RISA.",
+          "publishedAt": "2026-11-12T00:50:00Z",
+          "duration": 6898,
+          "audio": "https://www.cope.es/uploads/2026/11/12/vraAWGWeX0E-AJRc-dPWO.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/11-nov-2026-partidazo-cope-20261112_3473384.html"
+        },
         {
           "id": "9d291e67e064641671b6",
           "title": "3ª PARTE | 11 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/07-may-2026-partidazo-cope-20260508_3360200.html"
-        },
-        {
-          "id": "e1182eca5053d2a65dfb",
-          "title": "3ª PARTE | 07 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Continuamos analizando todos los problemas del Real Madrid, con Abraham Romero y Juan Ignacio García Ochoa. Actualidad del Barcelona. The Americans.",
-          "publishedAt": "2026-05-07T23:31:53Z",
-          "duration": 2834,
-          "audio": "https://www.cope.es/uploads/2026/05/08/QJ6J9YhXGo2LfuRDuifaZ.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-07-may-2026-partidazo-cope-20260508_3360198.html"
         }
       ]
     },
