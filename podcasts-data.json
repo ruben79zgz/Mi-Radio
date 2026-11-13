@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T01:05:24.119674Z",
+  "updatedAt": "2026-11-13T09:32:50.774421Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -6621,6 +6621,17 @@
       "site": "http://www.podiumpodcast.com/la-escobula-de-la-brujula/",
       "feed": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/playlists/podcast.rss",
       "episodes": [
+        {
+          "id": "aaf4232f852bb0a2ee12",
+          "title": "Programa 631: Sondalandia: la Indonesia megalítica",
+          "description": "Conoce el Grado en Historia de CEF.-Udima:  https://landing.udima.es/grados/grado-en-historia?web_origen=Escobula_Podcast_Brand_Escobula_Nov&utm_source=Escobula&utm_medium=Podcast&utm_campaign=Brand_Escobula_Nov   ¿Qué secretos guardan las tierras del sudeste asiático que quedaron sumergidas tras la última glaciación? Con el perito informático e investigador Miguel Ángel García-Sánchez, autor de Altares del diluvio, exploraremos Sondalandia y las hipótesis que sitúan en esta región una posible «civilización madre» hace más de 20.000 años. Nos acompañará también su esposa, Cristina Villanueva, que compartirá sus impresiones del viaje. Conoceremos su hipótesis de las «respuestas culturales convergentes» y nos acercaremos a los antiguos humanos de Java y Flores, a la frontera biogeográfica marcada por la línea de Wallace y a las pinturas rupestres de Sulawesi, con sus enigmáticas figuras que combinan rasgos humanos y animales. Hablaremos de los megalitos de Gunung Padang, de templos de Java tan espectaculares como Candi Sukuh y Candi Cetho, de las tumbas monumentales de Sumba y de las singulares tradiciones funerarias de los toraja. El escritor e investigador José Rafael Gómez, autor de La Atlántida de Gil Gámez, nos acompañará para abordar los relatos sobre una catástrofe ocurrida hace unos 12.000 años y su posible relación con grandes inundaciones del pasado que habrían provocado la desaparición de diversas culturas, algunas de ellas vinculadas a la península ibérica. Miguel Salas nos propondrá un recorrido iniciático por el simbolismo de los templos-montaña en el budismo y el hinduismo, con referencias a Angkor Wat y Borobudur y a la energía que se les atribuye. Toda una teología de la altitud. En definitiva, un viaje entre la arqueología, la tradición y las hipótesis sobre nuestro pasado. Extróbula: Viajaremos hasta Nan Madol, en Micronesia, y la isla indonesia de Sumba para conocer sus grandes estructuras megalíticas. Nos acercaremos también a los megalitos de los valles del entorno de Lore Lindu, en Sulawesi central: estatuas de rasgos humanos, como la célebre Palindo, y grandes recipientes cilíndricos tallados en piedra, conocidos como kalambas. ¿Cómo interpretar las semejanzas entre monumentos, mitos y rituales de lugares tan distantes?",
+          "publishedAt": "2026-11-13T05:00:00Z",
+          "duration": 7532,
+          "audio": "https://traffic.omny.fm/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/5ab96321-fc59-46c1-9dc7-b4ec0084f46a/audio.mp3?utm_source=Podcast&in_playlist=fd25a142-cbf1-4f2b-9146-aead00a0bab7",
+          "fileSize": 120559411,
+          "image": "https://www.omnycontent.com/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/5ab96321-fc59-46c1-9dc7-b4ec0084f46a/image.jpg?t=1793875853&size=Large",
+          "link": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/programa-631-sondalandia-la-indonesia-megal-tica"
+        },
         {
           "id": "c3038a2fb73132b58ab9",
           "title": "Programa 630: Entre chichis y pitos: genitales sagrados",
