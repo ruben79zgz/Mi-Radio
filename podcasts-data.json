@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T09:51:18.904750Z",
+  "updatedAt": "2026-11-13T01:05:24.119674Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "5588bf7d7a77aafd8fc4",
+          "title": "12 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "España gana 0-2 a la República Checa y se jugará el liderato ante Inglaterra. Protagonistas. Tiempo de opinión. Hablamos de las palabras de Sancet y su deseo de jugar un Mundial con Euskadi. Louzán y la RFEF trasladan a la FIFA su condición innegociable: la final del Mundial 2030 debe ser en España. The Americans.",
+          "publishedAt": "2026-11-13T00:45:00Z",
+          "duration": 6723,
+          "audio": "https://www.cope.es/uploads/2026/11/13/A5-579M-bU8IgJyL7258n.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/12-nov-2026-partidazo-cope-20261113_3474274.html"
+        },
+        {
+          "id": "3ec1696cf29fffe3d968",
+          "title": "3ª PARTE | 12 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Louzán y la RFEF trasladan a la FIFA su condición innegociable: la final del Mundial 2030 debe ser en España. Condenan a la RFEF a pagar más de 600.000 euros por un medio creado por Rubiales. The Americans.",
+          "publishedAt": "2026-11-13T00:40:00Z",
+          "duration": 2385,
+          "audio": "https://www.cope.es/uploads/2026/11/13/K-mwG5jzSUvzLE-Q5iU7L.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-12-nov-2026-partidazo-cope-20261113_3474271.html"
+        },
+        {
+          "id": "a901925d6e40232ff8e4",
+          "title": "2ª PARTE | 12 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Hablamos de las palabras de Sancet y su deseo de jugar un Mundial con Euskadi. Así es Inglaterra, la próxima rival de España.",
+          "publishedAt": "2026-11-12T23:47:33Z",
+          "duration": 1772,
+          "audio": "https://www.cope.es/uploads/2026/11/13/FA1VnwzpRgOle5UGYNwzy.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-12-nov-2026-partidazo-cope-20261113_3474266.html"
+        },
+        {
+          "id": "4d359b0fcf2e04588e92",
+          "title": "1ª PARTE | 12 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "España gana 0-2 a la República Checa y se jugará el liderato ante Inglaterra. Protagonistas. Tiempo de opinión.",
+          "publishedAt": "2026-11-12T23:13:32Z",
+          "duration": 2565,
+          "audio": "https://www.cope.es/uploads/2026/11/13/Q_NgpMBYiItyQ0ExrKDwn.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-12-nov-2026-partidazo-cope-20261113_3474254.html"
+        },
         {
           "id": "84508128ce0fb58a139a",
           "title": "11 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6565,50 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/08-may-2026-partidazo-cope-20260509_3361103.html"
-        },
-        {
-          "id": "6604b3555d1cac567cda",
-          "title": "3ª PARTE | 08 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Sigue el #OasisDeLibertad. El Sevilla envía una carta a Integridad de La Liga para que vigile el Betis - Elche. #Campodelgas.",
-          "publishedAt": "2026-05-08T23:30:00Z",
-          "duration": 2966,
-          "audio": "https://www.cope.es/uploads/2026/05/09/7yLpldhHh35ZtwWmS2HpB.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-08-may-2026-partidazo-cope-20260509_3361102.html"
-        },
-        {
-          "id": "1282eefa98aeac2bbcaa",
-          "title": "2ª PARTE | 08 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "#OasisDeLibertad. Analizamos la semana convulsa del Real Madrid. ¿Debería haber apartado el Real Madrid a Valverde y Tchouaméni?.",
-          "publishedAt": "2026-05-08T22:53:40Z",
-          "duration": 2124,
-          "audio": "https://www.cope.es/uploads/2026/05/09/hqemTrhDaRuiPRdWrUruf.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-08-may-2026-partidazo-cope-20260509_3361098.html"
-        },
-        {
-          "id": "327acf5141ac3743f3cb",
-          "title": "1ª PARTE | 08 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. La remontada del Levante. La multa del Real Madrid a Valverde y Tchouaméni. Última hora del Barcelona - Real Madrid de este domingo. Valencia Basket fuerza el quinto partido contra Panathinaikos.",
-          "publishedAt": "2026-05-08T22:33:56Z",
-          "duration": 2116,
-          "audio": "https://www.cope.es/uploads/2026/05/09/AAPR5jIqjqwbtOTB5ZKGQ.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-08-may-2026-partidazo-cope-20260509_3361094.html"
-        },
-        {
-          "id": "232b2e40da763ae9c8df",
-          "title": "07 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Rayo Vallecano jugará la final de la Conference League contra el Crystal Palace. Protagonistas. Tiempo de opinión. Bronca entre Valverde y Tchouameni. The Americans.",
-          "publishedAt": "2026-05-07T23:37:37Z",
-          "duration": 7428,
-          "audio": "https://www.cope.es/uploads/2026/05/08/-mRMfnYocYcQ1TQiClUHy.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/07-may-2026-partidazo-cope-20260508_3360200.html"
         }
       ]
     },
