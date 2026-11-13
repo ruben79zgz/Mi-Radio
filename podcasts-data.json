@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T09:32:50.774421Z",
+  "updatedAt": "2026-11-13T23:35:25.895414Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "8c5f71841094947e3030",
+          "title": "1ª PARTE | 13 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticia del día. La sanción de Owono. Louzán se pronuncia sobre la final del Mundial 2030. Lamine Yamal y Oyarzabal se concentran con España. Primer partido de Argentina sin Messi. Dituro denuncia un robo en su domicilio.",
+          "publishedAt": "2026-11-13T23:28:29Z",
+          "duration": 1959,
+          "audio": "https://www.cope.es/uploads/2026/11/14/I7vxUefbGsoWBa1x4vpmV.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-13-nov-2026-partidazo-cope-20261114_3475237.html"
+        },
         {
           "id": "5588bf7d7a77aafd8fc4",
           "title": "12 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/20/678e8eae3dd99.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/09-may-2026-tramo-final-juego-20260510_3361262.html"
-        },
-        {
-          "id": "070da6bdd48824ce7d11",
-          "title": "08 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Titulares. El Levante remonta a Osasuna. La multa a Valverde y Tchouaméni. Previa del Barcelona - Real Madrid. Victoria de Valencia en Grecia. #OasisDeLibertad. El Sevilla envía una carta a Integridad de La Liga para que vigile el Betis - Elche. #Campodelgas.",
-          "publishedAt": "2026-05-08T23:40:00Z",
-          "duration": 7297,
-          "audio": "https://www.cope.es/uploads/2026/05/09/sgeZhh5ngb5R58Fmq-6e7.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/08-may-2026-partidazo-cope-20260509_3361103.html"
         }
       ]
     },
