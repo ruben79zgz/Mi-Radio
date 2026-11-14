@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T23:35:25.895414Z",
+  "updatedAt": "2026-11-14T06:24:48.613342Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "36adf483e46f8b446eca",
+          "title": "13 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Titulares. La sanción de Owono. Louzán habla de la final del Mundial 2030. Lamine Yamal y Oyarzabal se concentran con España. Primer partido de Argentina sin Messi. #OasisDeLibertad. #Campodelgas.",
+          "publishedAt": "2026-11-14T00:45:00Z",
+          "duration": 7493,
+          "audio": "https://www.cope.es/uploads/2026/11/14/AoANnx2KjvGkZAia9cj2Z.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/13-nov-2026-partidazo-cope-20261114_3475246.html"
+        },
+        {
+          "id": "b5e24903011ba2c2ce59",
+          "title": "3ª PARTE | 13 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Sigue el #OasisDeLibertad. Hablamos con Miguel Ángel, sacerdote de la boda de Carlos Ganga. #Campodelgas.",
+          "publishedAt": "2026-11-14T00:35:00Z",
+          "duration": 3058,
+          "audio": "https://www.cope.es/uploads/2026/11/14/RmuoWliPYl8ISCE9VZ9yE.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-13-nov-2026-partidazo-cope-20261114_3475244.html"
+        },
+        {
+          "id": "7dd53a92e315c5f1753d",
+          "title": "#OasisDeLibertad (13-11-2026)",
+          "description": "Lamine Yamal vuelve con la selección. Hablamos con el pianista Javier Perianes, y con el director de orquesta, Lucas Macías. Hablamos con Don Miguel Ángel, Sacerdote de la boda de Ganga. Preguntas de los oyentes.",
+          "publishedAt": "2026-11-14T00:24:39Z",
+          "duration": 3998,
+          "audio": "https://www.cope.es/uploads/2026/11/14/rUU_02GlfRynip7DyVC7U.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2024/09/06/66db788bb8541.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/oasisdelibertad/audios/oasisdelibertad-13-20261114_3475247.html"
+        },
+        {
+          "id": "60885a2220e28be017d9",
+          "title": "2ª PARTE | 13 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "#OasisDeLibertad. Charlamos con el pianista Javier Perianes y con Lucas Macías, director de orquesta.",
+          "publishedAt": "2026-11-14T00:15:24Z",
+          "duration": 2026,
+          "audio": "https://www.cope.es/uploads/2026/11/14/Ax6yhO8X0a6I6t6wCbnaN.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-13-nov-2026-partidazo-cope-20261114_3475242.html"
+        },
         {
           "id": "8c5f71841094947e3030",
           "title": "1ª PARTE | 13 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6565,50 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/05/12/6a025dd850fca.png",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/entrevistas-de-juanma-castano/episodios/cesc-fabregas-entrevistas-juanma-castano-20260512_3362238.html"
-        },
-        {
-          "id": "3b94bb8ebe2412cd127f",
-          "title": "2ª PARTE | 11 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Entrevista a Cesc Fábregas, entrenador del Como.",
-          "publishedAt": "2026-05-11T22:51:24Z",
-          "duration": 2393,
-          "audio": "https://www.cope.es/uploads/2026/05/12/Gv5vToovRUwH1cp4dKxXY.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-11-may-2026-partidazo-cope-20260512_3362237.html"
-        },
-        {
-          "id": "ad257e1d9404bd5019ce",
-          "title": "1ª PARTE | 11 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. El Barcelona celebra el título de Liga en la rúa. Empate entre Rayo y Girona y descenso del Oviedo. El acuerdo entre Sevilla y Sergio Ramos para la compra del club podría hacerse efectivo este martes.",
-          "publishedAt": "2026-05-11T22:45:04Z",
-          "duration": 2278,
-          "audio": "https://www.cope.es/uploads/2026/05/12/EXmPhFt3zN69WsfkoEsqa.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-11-may-2026-partidazo-cope-20260512_3362230.html"
-        },
-        {
-          "id": "e0d9c5e8b321d474dc42",
-          "title": "10 MAY 2026 | EL TERTULIÓN DE LOS DOMINGOS",
-          "description": "El Barcelona, campeón de Liga; Flick y La Masía, los protagonistas; La crisis del Real Madrid; ¿Mourinho será el próximo entrenador?",
-          "publishedAt": "2026-05-10T23:55:04Z",
-          "duration": 5331,
-          "audio": "https://www.cope.es/uploads/2026/05/11/RsvIw3Ty_j92KJkR505Dr.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/06/677b2375741e9.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/10-may-2026-tertulion-domingos-20260511_3361441.html"
-        },
-        {
-          "id": "323b2917b5e1e720f584",
-          "title": "09 MAY 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
-          "description": "Resultados: Elche 1 – Alavés 1; Sevilla 2 – Espanyol 1; Atlético 0 – Celta 1; R.Sociedad 2 – Betis 2. Previa del Clásico. La rueda de prensa de Arbeloa. Previas. Segunda División. GP de Francia de MotoGP. NBA.",
-          "publishedAt": "2026-05-09T23:08:27Z",
-          "duration": 6988,
-          "audio": "https://www.cope.es/uploads/2026/05/10/YxidAKReTsPh05hNkaJK9.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/20/678e8eae3dd99.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/09-may-2026-tramo-final-juego-20260510_3361262.html"
         }
       ]
     },
