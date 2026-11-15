@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-14T06:24:48.613342Z",
+  "updatedAt": "2026-11-15T01:56:22.363461Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "23cd62a0117975f78968",
+          "title": "14 NOV 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
+          "description": "Titulares. Previa del España - Inglaterra. Tiempo de Opinión. ¿Será titular Lamine Yamal este domingo?. Raphinha, expulsado con Brasil, no vuelve a Barcelona. Zidane habla de su relación con Mbappé. El equipo de Tiempo de Juego gana y recibe la primera Antena de Oro del Público. Analizamos la jornada de Segunda División. Las ATP Finals. La jornada en la NBA.",
+          "publishedAt": "2026-11-15T00:20:00Z",
+          "duration": 5491,
+          "audio": "https://www.cope.es/uploads/2026/11/15/F4vML-HsGK0z4QsW1mg0o.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/10/27/6ae0f8a710014.jpg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/14-nov-2026-tramo-final-juego-20261115_3475378.html"
+        },
         {
           "id": "36adf483e46f8b446eca",
           "title": "13 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-11-may-2026-partidazo-cope-20260512_3362245.html"
-        },
-        {
-          "id": "d339d4537a6d502bd7e8",
-          "title": "CESC FÁBREGAS | LAS ENTREVISTAS DE JUANMA CASTAÑO",
-          "description": "Cesc Fàbregas está completando una temporada de ensueño como entrenador del Como. Tras lograr el ascenso a la Serie A después de 21 años, ahora ha clasificado al equipo para la Europa League, con opciones incluso de llegar a la Champions League. En una entrevista en 'El Partidazo de COPE' con Juanma Castaño, el técnico ha repasado su meteórica carrera en los banquillos y su visión del fútbol actual. El exfutbolista ha explicado que su proyecto en el Como va más allá de entrenar, ya que también es accionista del club. \"Vi un proyecto, vi una oportunidad, no solo para terminar jugando al fútbol, sino para empezar a hacer lo que yo empezaba ya a amar más que jugar, que era entrenar\", ha confesado. Fàbregas se siente muy cómodo en un club que le permite crecer a su manera y donde siente que está \"como en la universidad cada día\". A sus 39 años, Fàbregas no se marca metas a largo plazo, como dirigir al Arsenal o a la selección española, explicando que todo ha sucedido ...",
-          "publishedAt": "2026-05-11T22:59:47Z",
-          "duration": 2244,
-          "audio": "https://www.cope.es/uploads/2026/05/12/eKKpyA5c9VXLL_mjTmNOZ.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/05/12/6a025dd850fca.png",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/entrevistas-de-juanma-castano/episodios/cesc-fabregas-entrevistas-juanma-castano-20260512_3362238.html"
         }
       ]
     },
