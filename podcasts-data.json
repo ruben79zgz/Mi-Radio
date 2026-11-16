@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-15T01:56:22.363461Z",
+  "updatedAt": "2026-11-16T06:31:24.238741Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "84fcb54037ea6592af77",
+          "title": "15 NOV 2026 | EL TERTULIÓN DE LOS DOMINGOS",
+          "description": "Entrevista a Núñez Feijoo; Inglaterra acaba con el récord de España; los errores de la selección española.",
+          "publishedAt": "2026-11-16T00:56:38Z",
+          "duration": 5725,
+          "audio": "https://www.cope.es/uploads/2026/11/16/Vr2Oy6dl5gBZKAcXFM0CC.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/06/677b2375741e9.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/15-nov-2026-tertulion-domingos-20261116_3475515.html"
+        },
         {
           "id": "23cd62a0117975f78968",
           "title": "14 NOV 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/11-may-2026-partidazo-cope-20260512_3362246.html"
-        },
-        {
-          "id": "0dd192363901e0caa044",
-          "title": "3ª PARTE | 11 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Actualidad del Real Madrid, con Mbappé como protagonista. Monchi, nuevo director deportivo del Espanyol. KM42, con Chema Martínez.",
-          "publishedAt": "2026-05-11T23:45:00Z",
-          "duration": 2569,
-          "audio": "https://www.cope.es/uploads/2026/05/12/X05xq1M_ukyomxN6x2r5g.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-11-may-2026-partidazo-cope-20260512_3362245.html"
         }
       ]
     },
