@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-16T06:31:24.238741Z",
+  "updatedAt": "2026-11-17T02:56:05.474944Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,61 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "f1da275f7fb248fe20b0",
+          "title": "16 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Goleada de Alemania a Países Bajos. Posibles rivales de España en cuartos. La resaca de la victoria de Inglaterra. Vinicius hace autocrítica; la polémica en el homenaje a Cristiano. Hablamos con los periodistas Leo Lepri y Luis Filipe Cristovao. Así es JJ Gabriel. Victoria de Alcaraz en el Torneo de Maestros. Feliciano López. Km42.",
+          "publishedAt": "2026-11-17T00:50:00Z",
+          "duration": 6966,
+          "audio": "https://www.cope.es/uploads/2026/11/17/j08l5rL5xfvRXaAso3Fsa.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/16-nov-2026-partidazo-cope-20261117_3476288.html"
+        },
+        {
+          "id": "060a33fe783507602d66",
+          "title": "3ª PARTE | 16 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Bale, detrás de una posible oferta de compra por el Sevilla. Victoria de Alcaraz en el Torneo de Maestros. Hablamos con Feliciano López. Km42, con Chema Martínez.",
+          "publishedAt": "2026-11-17T00:45:00Z",
+          "duration": 2475,
+          "audio": "https://www.cope.es/uploads/2026/11/17/oLOcUVr3CeYop7VrTyZmN.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-16-nov-2026-partidazo-cope-20261117_3476286.html"
+        },
+        {
+          "id": "68b86bb00e2162513d2d",
+          "title": "16-NOV-26 | #KM42, 'Running' con Chema Martínez",
+          "description": "Entrevista a Javier Alberola Rojas, árbitro internacional",
+          "publishedAt": "2026-11-17T00:40:00Z",
+          "duration": 1601,
+          "audio": "https://www.cope.es/uploads/2026/11/17/BGZhSAut9WT9-gS-diD1v.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/11/17/6afb98306f69b.png",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/16-nov-26-km42-running-chema-martinez-20261117_3476285.html"
+        },
+        {
+          "id": "2aa03eb96116007e66ac",
+          "title": "2ª PARTE | 16 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Vinicius se sincera y hace autocrítica; la polémica en el homenaje a Cristiano. Hablamos con los periodistas Leo Lepri y Luis Filipe Cristovao. Así es JJ Gabriel.",
+          "publishedAt": "2026-11-16T23:50:39Z",
+          "duration": 1965,
+          "audio": "https://www.cope.es/uploads/2026/11/17/5slkXLGyezu0F7qSNKwKz.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-16-nov-2026-partidazo-cope-20261117_3476284.html"
+        },
+        {
+          "id": "49cc4a97d2ade259e748",
+          "title": "1ª PARTE | 16 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Goleada de Alemania a Países Bajos. Posibles rivales de España en cuartos. La resaca de la victoria de Inglaterra.",
+          "publishedAt": "2026-11-16T23:40:25Z",
+          "duration": 2525,
+          "audio": "https://www.cope.es/uploads/2026/11/17/SDYzycjZ9CjFRV8OcAkev.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-16-nov-2026-partidazo-cope-20261117_3476282.html"
+        },
         {
           "id": "84fcb54037ea6592af77",
           "title": "15 NOV 2026 | EL TERTULIÓN DE LOS DOMINGOS",
@@ -6554,61 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-13-may-2026-partidazo-cope-20260514_3363965.html"
-        },
-        {
-          "id": "d0254fa170e169a19ebf",
-          "title": "12 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Surrealista rueda de prensa de Florentino Pérez en la que anunció que convoca elecciones. Tiempo de opinión. El Betis jugará la Champions y el Levante sale del descenso. El Sevilla, cerca de venderse.",
-          "publishedAt": "2026-05-12T23:44:01Z",
-          "duration": 6960,
-          "audio": "https://www.cope.es/uploads/2026/05/13/B9hQAmBmadHdxARDknqup.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/12-may-2026-partidazo-cope-20260513_3363126.html"
-        },
-        {
-          "id": "bbd8af6928c91abf6464",
-          "title": "3ª PARTE | 12 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Seguimos hablando de las palabras de Florentino Pérez. El Levante gana al Celta y sale del descenso; El Betis jugará la Champions 20 años después.",
-          "publishedAt": "2026-05-12T23:37:21Z",
-          "duration": 2557,
-          "audio": "https://www.cope.es/uploads/2026/05/13/1cTAWrzYJCoyjd9-J6JRe.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-12-may-2026-partidazo-cope-20260513_3363125.html"
-        },
-        {
-          "id": "96192126bf8eff0249b4",
-          "title": "2ª PARTE | 12 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Continuamos analizando la rueda de prensa de Florentino Pérez.",
-          "publishedAt": "2026-05-12T22:54:03Z",
-          "duration": 1868,
-          "audio": "https://www.cope.es/uploads/2026/05/13/6sCXxyKbIAJ0B_cQVgFKH.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-12-may-2026-partidazo-cope-20260513_3363120.html"
-        },
-        {
-          "id": "3e195e7b0d7ea252bbec",
-          "title": "1ª PARTE | 12 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Surrealista rueda de prensa de Florentino Pérez en la que anunció que convoca elecciones. Tiempo de opinión.",
-          "publishedAt": "2026-05-12T22:17:40Z",
-          "duration": 2536,
-          "audio": "https://www.cope.es/uploads/2026/05/13/cHcPtT2XdtaPqsR4DWHv-.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-12-may-2026-partidazo-cope-20260513_3363109.html"
-        },
-        {
-          "id": "fdb7b5c019c0df5058b5",
-          "title": "11 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Barcelona celebra el título de Liga en la rúa. Empate entre Rayo y Girona y descenso del Oviedo. Acuerdo cercano entre Sevilla y Sergio Ramos para la compra del club. Entrevista a Cesc. Actualidad del Real Madrid. KM42.",
-          "publishedAt": "2026-05-11T23:50:00Z",
-          "duration": 7230,
-          "audio": "https://www.cope.es/uploads/2026/05/12/X1ntHUCFade1b9UjMTbFD.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/11-may-2026-partidazo-cope-20260512_3362246.html"
         }
       ]
     },
