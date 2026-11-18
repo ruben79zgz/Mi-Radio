@@ -95,6 +95,9 @@
   let leagueFavorites = new Set(loadJson(LEAGUE_FAVORITES_KEY, LEAGUES.filter(x => x.pinned).map(x => x.code)));
   let selectedLeague = null;
   let selectedTeam = null;
+  let reconnectPromise = null;
+  let lastWakeAt = 0;
+  let wakeTimer = null;
 
   function loadJson(key, fallback) {
     try {
@@ -1168,13 +1171,67 @@
     els.notify.title = notificationEnabled ? "Notificaciones activadas" : "Activar notificaciones";
   }
 
-  function scheduleLive() {
+  function scheduleLive(delayOverride = null) {
     clearTimeout(liveTimer);
-    const delay = document.hidden ? LIVE_INTERVAL_HIDDEN : LIVE_INTERVAL_VISIBLE;
+    const baseDelay = document.hidden ? LIVE_INTERVAL_HIDDEN : LIVE_INTERVAL_VISIBLE;
+    const offlineDelay = 30000;
+    const delay = delayOverride ?? (!navigator.onLine ? offlineDelay : baseDelay);
     liveTimer = setTimeout(async () => {
-      await loadLive();
-      scheduleLive();
+      try {
+        await loadLive();
+      } catch (err) {
+        console.warn("Ciclo live interrumpido",err);
+      } finally {
+        scheduleLive();
+      }
     },delay);
+  }
+
+  async function refreshAfterWake(reason = "wake") {
+    const now=Date.now();
+
+    // Android puede disparar visibilitychange + focus + pageshow casi juntos.
+    // Unificamos todo en una sola reconexión real.
+    if(reconnectPromise) return reconnectPromise;
+    if(now-lastWakeAt < 1200) return;
+    lastWakeAt=now;
+
+    clearTimeout(liveTimer);
+    clearTimeout(wakeTimer);
+
+    if(!navigator.onLine){
+      els.status.textContent="Sin conexión · esperando Internet…";
+      scheduleLive(30000);
+      return;
+    }
+
+    reconnectPromise=(async()=>{
+      try{
+        els.status.textContent="Reconectando…";
+
+        // Refrescamos primero lo visible. El motor/catálogo solo se fuerza
+        // cuando llevan tiempo cargados para no castigar la red al desbloquear.
+        const tasks=[loadDay(true),loadLive()];
+        const engineAge=engineData?.updatedAt ? Date.now()-new Date(engineData.updatedAt).getTime() : Infinity;
+        if(engineAge>15*60*1000) tasks.push(loadEngine(true));
+        if(!catalogLoaded) tasks.push(loadCatalog(false));
+
+        await Promise.allSettled(tasks);
+
+        if(engineData && selectedDate===todayIso()) render();
+        els.updated.textContent="Reconectado " + new Intl.DateTimeFormat("es-ES",{hour:"2-digit",minute:"2-digit",second:"2-digit"}).format(new Date());
+      } finally {
+        reconnectPromise=null;
+        scheduleLive();
+      }
+    })();
+
+    return reconnectPromise;
+  }
+
+  function queueWake(reason) {
+    clearTimeout(wakeTimer);
+    wakeTimer=setTimeout(()=>refreshAfterWake(reason),180);
   }
 
   function normalizedCatalogTeam(team) {
@@ -1685,17 +1742,40 @@
   });
 
   document.addEventListener("visibilitychange",() => {
-    scheduleLive();
-    if (!document.hidden) loadLive();
+    if(document.hidden){
+      scheduleLive();
+      return;
+    }
+    queueWake("visible");
+  });
+
+  window.addEventListener("focus",() => {
+    if(!document.hidden) queueWake("focus");
+  });
+
+  window.addEventListener("pageshow",event => {
+    if(!document.hidden) queueWake(event.persisted ? "pageshow-cache" : "pageshow");
   });
 
   window.addEventListener("online",() => {
-    loadDay(true);
-    loadLive();
+    queueWake("online");
   });
 
+  window.addEventListener("offline",() => {
+    clearTimeout(liveTimer);
+    els.status.textContent="Sin conexión · los últimos datos siguen disponibles";
+    scheduleLive(30000);
+  });
+
+  const networkConnection=navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  if(networkConnection?.addEventListener){
+    networkConnection.addEventListener("change",() => {
+      if(!document.hidden && navigator.onLine) queueWake("network-change");
+    });
+  }
+
   if ("serviceWorker" in navigator) {
-    window.addEventListener("load",() => navigator.serviceWorker.register("sw.js?v=1.3.1").catch(console.warn));
+    window.addEventListener("load",() => navigator.serviceWorker.register("sw.js?v=1.3.2").catch(console.warn));
   }
 
   updateNotifyButton();
