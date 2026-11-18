@@ -183,6 +183,17 @@
   let lastAudioTime = 0;
   let lastPositionSaveAt = 0;
 
+  let nativeRadioState = {
+    status: 'stopped',
+    wantsPlay: false,
+    stationId: '',
+    stationName: '',
+    stationSubtitle: '',
+    stationLogo: '',
+    stream: '',
+    streams: []
+  };
+
   let sleepTimer = null;
   let toastTimer = null;
   let lastAudibleVolume = 0.85;
@@ -193,6 +204,86 @@
   let applePodcastCache = safeJson(localStorage.getItem(PODCAST_APPLE_CACHE_KEY), {});
   let podcastPlayStates = safeJson(localStorage.getItem(PODCAST_PLAY_STATE_KEY), {});
   let lastPodcastSnapshot = safeJson(localStorage.getItem(LAST_PODCAST_KEY), null);
+
+  function nativeRadioAvailable() {
+    try {
+      return Boolean(window.NativeRadio && window.NativeRadio.isAvailable());
+    } catch {
+      return false;
+    }
+  }
+
+  function nativeRadioIsCurrent() {
+    return nativeRadioAvailable() && mediaKind === 'radio';
+  }
+
+  function isCurrentMediaPlaying() {
+    if (nativeRadioIsCurrent()) {
+      return Boolean(playIntent && !['paused','stopped','error'].includes(nativeRadioState.status));
+    }
+    return Boolean(playIntent && !audio.paused);
+  }
+
+  function nativeRadioPayload(station) {
+    return {
+      id: station.id,
+      name: station.name,
+      subtitle: station.subtitle || '',
+      logo: logoCandidates(station)[0] || '',
+      streams: currentCandidates.slice()
+    };
+  }
+
+  function nativeStatusText(state) {
+    const status = state?.status || '';
+    if (status === 'playing') return streamSourceText(currentStation);
+    if (status === 'buffering') return 'Conectando…';
+    if (status === 'reconnecting') return state?.message || 'Reconectando…';
+    if (status === 'waiting-network') return 'Sin conexión · esperando Internet…';
+    if (status === 'paused') return 'Pausado';
+    if (status === 'stopped') return 'Detenido';
+    if (status === 'error') return state?.message || 'No se pudo reproducir';
+    return state?.message || 'Preparado';
+  }
+
+  window.onNativeRadioState = state => {
+    if (!state || typeof state !== 'object') return;
+    nativeRadioState = { ...nativeRadioState, ...state };
+
+    const station = stations.find(item => String(item.id) === String(state.stationId || ''));
+    const shouldRestore = station && (state.wantsPlay || state.status === 'paused');
+
+    if (shouldRestore) {
+      mediaKind = 'radio';
+      currentStation = station;
+      currentEpisode = null;
+      currentPodcastShow = null;
+      currentCandidates = streamList(station);
+      currentStream = state.stream || currentStream || currentCandidates[0] || '';
+      playIntent = Boolean(state.wantsPlay);
+
+      configurePlayerForRadio(station);
+      playerStatus.textContent = nativeStatusText(state);
+    } else if (mediaKind === 'radio' && currentStation && String(currentStation.id) === String(state.stationId || '')) {
+      playIntent = Boolean(state.wantsPlay);
+      currentStream = state.stream || currentStream;
+      playerStatus.textContent = nativeStatusText(state);
+    }
+
+    syncPlayButtons();
+    renderStations();
+  };
+
+  function restoreNativeRadioState() {
+    if (!nativeRadioAvailable()) return;
+    try {
+      const raw = window.NativeRadio.getState();
+      const state = raw ? JSON.parse(raw) : null;
+      if (state) window.onNativeRadioState(state);
+    } catch (err) {
+      console.warn('No se pudo leer el estado de la radio nativa', err);
+    }
+  }
 
   function safeJson(value, fallback) {
     try { return value ? JSON.parse(value) : fallback; } catch { return fallback; }
@@ -359,7 +450,7 @@
     }
 
     grid.innerHTML = visible.map(station => {
-      const isPlaying = mediaKind === 'radio' && currentStation?.id === station.id && !audio.paused;
+      const isPlaying = mediaKind === 'radio' && currentStation?.id === station.id && isCurrentMediaPlaying();
       const usingFallback = mediaKind === 'radio' && currentStation?.id === station.id && currentStream && !stationStreams(station).includes(currentStream);
       const favorite = isFavorite(station.id);
       const label = usingFallback ? 'respaldo automático' : 'stations.js';
@@ -390,7 +481,7 @@
     grid.querySelectorAll('[data-play]').forEach(btn => btn.addEventListener('click', () => {
       const station = stations.find(s => s.id === btn.dataset.play);
       if (!station) return;
-      if (mediaKind === 'radio' && currentStation?.id === station.id && !audio.paused) pauseMedia();
+      if (mediaKind === 'radio' && currentStation?.id === station.id && isCurrentMediaPlaying()) pauseMedia();
       else playStation(station);
     }));
 
