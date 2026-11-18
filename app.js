@@ -183,6 +183,17 @@
   let lastAudioTime = 0;
   let lastPositionSaveAt = 0;
 
+  let nativeRadioState = {
+    status: 'stopped',
+    wantsPlay: false,
+    stationId: '',
+    stationName: '',
+    stationSubtitle: '',
+    stationLogo: '',
+    stream: '',
+    streams: []
+  };
+
   let sleepTimer = null;
   let toastTimer = null;
   let lastAudibleVolume = 0.85;
@@ -193,6 +204,86 @@
   let applePodcastCache = safeJson(localStorage.getItem(PODCAST_APPLE_CACHE_KEY), {});
   let podcastPlayStates = safeJson(localStorage.getItem(PODCAST_PLAY_STATE_KEY), {});
   let lastPodcastSnapshot = safeJson(localStorage.getItem(LAST_PODCAST_KEY), null);
+
+  function nativeRadioAvailable() {
+    try {
+      return Boolean(window.NativeRadio && window.NativeRadio.isAvailable());
+    } catch {
+      return false;
+    }
+  }
+
+  function nativeRadioIsCurrent() {
+    return nativeRadioAvailable() && mediaKind === 'radio';
+  }
+
+  function isCurrentMediaPlaying() {
+    if (nativeRadioIsCurrent()) {
+      return Boolean(playIntent && !['paused','stopped','error'].includes(nativeRadioState.status));
+    }
+    return Boolean(playIntent && !audio.paused);
+  }
+
+  function nativeRadioPayload(station) {
+    return {
+      id: station.id,
+      name: station.name,
+      subtitle: station.subtitle || '',
+      logo: logoCandidates(station)[0] || '',
+      streams: currentCandidates.slice()
+    };
+  }
+
+  function nativeStatusText(state) {
+    const status = state?.status || '';
+    if (status === 'playing') return streamSourceText(currentStation);
+    if (status === 'buffering') return 'Conectando…';
+    if (status === 'reconnecting') return state?.message || 'Reconectando…';
+    if (status === 'waiting-network') return 'Sin conexión · esperando Internet…';
+    if (status === 'paused') return 'Pausado';
+    if (status === 'stopped') return 'Detenido';
+    if (status === 'error') return state?.message || 'No se pudo reproducir';
+    return state?.message || 'Preparado';
+  }
+
+  window.onNativeRadioState = state => {
+    if (!state || typeof state !== 'object') return;
+    nativeRadioState = { ...nativeRadioState, ...state };
+
+    const station = stations.find(item => String(item.id) === String(state.stationId || ''));
+    const shouldRestore = station && (state.wantsPlay || state.status === 'paused');
+
+    if (shouldRestore) {
+      mediaKind = 'radio';
+      currentStation = station;
+      currentEpisode = null;
+      currentPodcastShow = null;
+      currentCandidates = streamList(station);
+      currentStream = state.stream || currentStream || currentCandidates[0] || '';
+      playIntent = Boolean(state.wantsPlay);
+
+      configurePlayerForRadio(station);
+      playerStatus.textContent = nativeStatusText(state);
+    } else if (mediaKind === 'radio' && currentStation && String(currentStation.id) === String(state.stationId || '')) {
+      playIntent = Boolean(state.wantsPlay);
+      currentStream = state.stream || currentStream;
+      playerStatus.textContent = nativeStatusText(state);
+    }
+
+    syncPlayButtons();
+    renderStations();
+  };
+
+  function restoreNativeRadioState() {
+    if (!nativeRadioAvailable()) return;
+    try {
+      const raw = window.NativeRadio.getState();
+      const state = raw ? JSON.parse(raw) : null;
+      if (state) window.onNativeRadioState(state);
+    } catch (err) {
+      console.warn('No se pudo leer el estado de la radio nativa', err);
+    }
+  }
 
   function safeJson(value, fallback) {
     try { return value ? JSON.parse(value) : fallback; } catch { return fallback; }
@@ -359,7 +450,7 @@
     }
 
     grid.innerHTML = visible.map(station => {
-      const isPlaying = mediaKind === 'radio' && currentStation?.id === station.id && !audio.paused;
+      const isPlaying = mediaKind === 'radio' && currentStation?.id === station.id && isCurrentMediaPlaying();
       const usingFallback = mediaKind === 'radio' && currentStation?.id === station.id && currentStream && !stationStreams(station).includes(currentStream);
       const favorite = isFavorite(station.id);
       const label = usingFallback ? 'respaldo automático' : 'stations.js';
@@ -390,7 +481,7 @@
     grid.querySelectorAll('[data-play]').forEach(btn => btn.addEventListener('click', () => {
       const station = stations.find(s => s.id === btn.dataset.play);
       if (!station) return;
-      if (mediaKind === 'radio' && currentStation?.id === station.id && !audio.paused) pauseMedia();
+      if (mediaKind === 'radio' && currentStation?.id === station.id && isCurrentMediaPlaying()) pauseMedia();
       else playStation(station);
     }));
 
@@ -1226,7 +1317,7 @@
     tvOpenWebBtn.classList.remove('hidden');
     tvVideo.classList.remove('hidden');
 
-    if (mediaKind && !audio.paused) stopMedia();
+    if (mediaKind && isCurrentMediaPlaying()) stopMedia();
     playerBar.classList.add('hidden');
     try { podcastPlayerDialog.close(); } catch {}
     try { radioPlayerDialog.close(); } catch {}
@@ -1948,7 +2039,15 @@
 
   async function playStation(station) {
     if (currentTvChannel) stopTvPlayback(true);
+
+    if (mediaKind === 'podcast') {
+      saveEpisodePosition();
+      try { audio.pause(); } catch {}
+      destroyHls();
+    }
+
     clearReconnect();
+    clearRecoveryChecks();
     mediaKind = 'radio';
     playIntent = true;
     currentStation = station;
@@ -1959,7 +2058,33 @@
     repairAttemptedForPlay = false;
     configurePlayerForRadio(station);
     renderStations();
+
     if (!currentCandidates.length) return tryAutomaticFallback();
+
+    if (nativeRadioAvailable()) {
+      try {
+        currentStream = currentCandidates[0] || '';
+        nativeRadioState = {
+          ...nativeRadioState,
+          status: 'buffering',
+          wantsPlay: true,
+          stationId: station.id,
+          stationName: station.name,
+          stationSubtitle: station.subtitle || '',
+          stationLogo: logoCandidates(station)[0] || '',
+          stream: currentStream,
+          streams: currentCandidates.slice()
+        };
+        playerStatus.textContent = 'Conectando…';
+        window.NativeRadio.play(JSON.stringify(nativeRadioPayload(station)));
+        syncPlayButtons();
+        renderStations();
+        return;
+      } catch (err) {
+        console.warn('No se pudo iniciar la radio nativa; uso reproductor web', err);
+      }
+    }
+
     await tryCandidate();
   }
 
@@ -2106,6 +2231,10 @@
 
   async function playEpisode(show, episode, openPlayer = false) {
     if (currentTvChannel) stopTvPlayback(true);
+    if (nativeRadioIsCurrent()) {
+      try { window.NativeRadio.stop(); } catch {}
+      nativeRadioState = { ...nativeRadioState, status: 'stopped', wantsPlay: false };
+    }
     if (!episode.audio) {
       showToast('Este episodio no tiene un audio reproducible en el RSS.');
       return;
@@ -2241,7 +2370,7 @@
   /* ---------------- Controles comunes ---------------- */
 
   function syncPlayButtons() {
-    const playing = !audio.paused && playIntent;
+    const playing = isCurrentMediaPlaying();
     const icon = playing ? '❚❚' : '▶';
     playPauseBtn.textContent = icon;
     podcastPlayPauseBtn.textContent = icon;
@@ -2253,6 +2382,16 @@
     playIntent = false;
     clearReconnect();
     clearRecoveryChecks();
+
+    if (mediaKind === 'radio' && nativeRadioAvailable()) {
+      try { window.NativeRadio.pause(); } catch {}
+      nativeRadioState = { ...nativeRadioState, status: 'paused', wantsPlay: false };
+      playerStatus.textContent = 'Pausado';
+      syncPlayButtons();
+      renderStations();
+      return;
+    }
+
     saveEpisodePosition();
     audio.pause();
     if (mediaKind === 'radio') playerStatus.textContent = 'Pausado';
@@ -2265,6 +2404,20 @@
   async function resumeMedia() {
     if (!mediaKind) return;
     playIntent = true;
+
+    if (mediaKind === 'radio' && nativeRadioAvailable()) {
+      try {
+        nativeRadioState = { ...nativeRadioState, status: 'buffering', wantsPlay: true };
+        playerStatus.textContent = 'Reanudando…';
+        window.NativeRadio.resume();
+        syncPlayButtons();
+        renderStations();
+      } catch (err) {
+        console.warn('No se pudo reanudar la radio nativa', err);
+      }
+      return;
+    }
+
     try {
       await audio.play();
       reconnectAttempt = 0;
@@ -2281,6 +2434,16 @@
     playIntent = false;
     clearReconnect();
     clearRecoveryChecks();
+
+    if (mediaKind === 'radio' && nativeRadioAvailable()) {
+      try { window.NativeRadio.stop(); } catch {}
+      nativeRadioState = { ...nativeRadioState, status: 'stopped', wantsPlay: false, stream: '' };
+      playerStatus.textContent = 'Detenido';
+      syncPlayButtons();
+      renderStations();
+      return;
+    }
+
     saveEpisodePosition();
     audio.pause();
     destroyHls();
@@ -2379,6 +2542,7 @@
   }
 
   function scheduleNetworkHealthCheck(reason = 'cambio de red', delay = 3500) {
+    if (nativeRadioIsCurrent()) return;
     if (!playIntent || !mediaKind || !navigator.onLine) return;
     clearTimeout(networkCheckTimer);
     networkCheckTimer = setTimeout(() => {
@@ -2397,6 +2561,7 @@
   }
 
   function scheduleReconnect(reason = 'conexión', forcedDelay = null) {
+    if (nativeRadioIsCurrent()) return;
     if (!playIntent || !mediaKind) return;
     clearReconnect();
     if (!navigator.onLine) {
@@ -2410,6 +2575,7 @@
   }
 
   async function performReconnect(reason) {
+    if (nativeRadioIsCurrent()) return;
     if (!playIntent || !mediaKind || !navigator.onLine || sourceLoading) return;
     reconnectAttempt += 1;
     setReconnectStatus(`Reconectando… intento ${reconnectAttempt}`);
@@ -2450,6 +2616,7 @@
   }
 
   function notePossibleStall() {
+    if (nativeRadioIsCurrent()) return;
     if (!playIntent || sourceLoading) return;
     if (!navigator.onLine) {
       setReconnectStatus('Sin conexión · esperando Internet…');
@@ -2586,9 +2753,9 @@
     renderPodcastDetail();
   });
 
-  playPauseBtn.addEventListener('click', () => audio.paused ? resumeMedia() : pauseMedia());
-  podcastPlayPauseBtn.addEventListener('click', () => audio.paused ? resumeMedia() : pauseMedia());
-  podcastBigPlayPauseBtn.addEventListener('click', () => audio.paused ? resumeMedia() : pauseMedia());
+  playPauseBtn.addEventListener('click', () => isCurrentMediaPlaying() ? pauseMedia() : resumeMedia());
+  podcastPlayPauseBtn.addEventListener('click', () => isCurrentMediaPlaying() ? pauseMedia() : resumeMedia());
+  podcastBigPlayPauseBtn.addEventListener('click', () => isCurrentMediaPlaying() ? pauseMedia() : resumeMedia());
   stopBtn.addEventListener('click', stopMedia);
   back30Btn.addEventListener('click', () => seekPodcast(-30));
   forward30Btn.addEventListener('click', () => seekPodcast(30));
@@ -2600,7 +2767,7 @@
   });
   closePodcastPlayerBtn.addEventListener('click', () => podcastPlayerDialog.close());
   closeRadioPlayerBtn.addEventListener('click', () => radioPlayerDialog.close());
-  radioBigPlayPauseBtn.addEventListener('click', () => audio.paused ? resumeMedia() : pauseMedia());
+  radioBigPlayPauseBtn.addEventListener('click', () => isCurrentMediaPlaying() ? pauseMedia() : resumeMedia());
   radioStopBigBtn.addEventListener('click', stopMedia);
   podcastSeekSlider.addEventListener('input', () => setPodcastPosition(podcastSeekSlider.value));
   playbackRateSelect.addEventListener('change', () => {
@@ -2720,11 +2887,19 @@
   });
 
   window.addEventListener('online', () => {
+    if (nativeRadioIsCurrent()) {
+      restoreNativeRadioState();
+      return;
+    }
     if (playIntent && mediaKind) {
       scheduleNetworkHealthCheck('Internet recuperado', 2500);
     }
   });
   window.addEventListener('offline', () => {
+    if (nativeRadioIsCurrent()) {
+      playerStatus.textContent = 'Sin conexión · el servicio seguirá reintentando…';
+      return;
+    }
     clearReconnect();
     clearRecoveryChecks();
     if (playIntent && mediaKind) setReconnectStatus('Sin conexión · esperando Internet…');
@@ -2732,6 +2907,10 @@
 
   if (navigator.connection?.addEventListener) {
     navigator.connection.addEventListener('change', () => {
+      if (nativeRadioIsCurrent()) {
+        restoreNativeRadioState();
+        return;
+      }
       if (playIntent && mediaKind && navigator.onLine) {
         scheduleNetworkHealthCheck('cambio Wi-Fi/datos', 3000);
       }
@@ -2739,11 +2918,20 @@
   }
 
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible' && playIntent && mediaKind && audio.paused) {
+    if (document.visibilityState !== 'visible') return;
+    if (nativeRadioIsCurrent()) {
+      restoreNativeRadioState();
+      return;
+    }
+    if (playIntent && mediaKind && audio.paused) {
       scheduleReconnect('volver a la app', 300);
     }
   });
   window.addEventListener('pageshow', () => {
+    if (nativeRadioAvailable()) {
+      restoreNativeRadioState();
+      return;
+    }
     if (playIntent && mediaKind && audio.paused && navigator.onLine) scheduleReconnect('pageshow', 300);
   });
 
@@ -2755,6 +2943,7 @@
 
   // Vigilante de último recurso. Solo interviene tras una parada real y prolongada.
   setInterval(() => {
+    if (nativeRadioIsCurrent()) return;
     if (!playIntent || !mediaKind || !navigator.onLine || sourceLoading || audio.paused) return;
     if (Date.now() - lastProgressAt > 18000 && !reconnectTimer) {
       scheduleReconnect('sin progreso prolongado', 250);
@@ -2762,7 +2951,7 @@
   }, 5000);
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=19.3.1').catch(console.warn));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=19.4').catch(console.warn));
   }
 
   /* ---------------- Inicio ---------------- */
@@ -2788,4 +2977,5 @@
   if (lastPodcastSnapshot?.episode?.audio) {
     restoreLastPodcastSession();
   }
+  setTimeout(restoreNativeRadioState, 80);
 })();
