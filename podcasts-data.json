@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-17T02:56:05.474944Z",
+  "updatedAt": "2026-11-18T07:29:44.436540Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "255c88ec3e3cb57dbd1e",
+          "title": "17 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Francia, Alemania y Portugal, los posibles rivales de España en los 1/4 de la Liga de las Naciones. Sorpresa por la despedida de JJ Gabriel de Manchester United. Entrevistas a Ibai Gómez, entrenador del Real Zaragoza; Marina Cordobés, exdeportista. MundoMaldini.",
+          "publishedAt": "2026-11-18T00:50:00Z",
+          "duration": 7155,
+          "audio": "https://www.cope.es/uploads/2026/11/18/UsGJUjXU1pipdKN6UJDan.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/17-nov-2026-partidazo-cope-20261118_3477105.html"
+        },
+        {
+          "id": "a13af880828304700390",
+          "title": "3ª PARTE | 17 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Fernando Alonso correrá el Dakar. Entrevistas a Ibai Gómez, entrenador del Real Zaragoza; Marina Cordobés, exdeportista. MundoMaldini.",
+          "publishedAt": "2026-11-18T00:45:00Z",
+          "duration": 2629,
+          "audio": "https://www.cope.es/uploads/2026/11/18/0MNHkbQ5J_PGPxSvTjBGk.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-17-nov-2026-partidazo-cope-20261118_3477104.html"
+        },
+        {
+          "id": "d45ae4aaced3bf557473",
+          "title": "2ª PARTE | 17 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Entrevista a Ibai Gómez, entrenador del Real Zaragoza. Polémica por las palabras de Piqué contra la sanción a Owono.",
+          "publishedAt": "2026-11-17T23:50:44Z",
+          "duration": 2197,
+          "audio": "https://www.cope.es/uploads/2026/11/18/iRyOhRF8puWSSllTlj3LS.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-17-nov-2026-partidazo-cope-20261118_3477102.html"
+        },
+        {
+          "id": "df55e1d23d4e225990d8",
+          "title": "1ª PARTE | 17 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Francia, Alemania y Portugal, los posibles rivales de España en los 1/4 de la Liga de las Naciones. Sorpresa por la despedida de JJ Gabriel de Manchester United. Actualidad del Barcelona y el Atlético de Madrid.",
+          "publishedAt": "2026-11-17T23:10:19Z",
+          "duration": 2328,
+          "audio": "https://www.cope.es/uploads/2026/11/18/3aEV8Bt2Chz-DSXp5M0D_.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-17-nov-2026-partidazo-cope-20261118_3477097.html"
+        },
         {
           "id": "f1da275f7fb248fe20b0",
           "title": "16 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6565,50 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-14-may-2026-partidazo-cope-20260515_3364888.html"
-        },
-        {
-          "id": "f658641942fda1da22fe",
-          "title": "13 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Victorias del Alavés, Espanyol, Sevilla y Getafe. El Valencia Basket se mete en la Final Four. Entrevistas a de Larrea y Quique Sánchez Flores. Florentino vuelve a hablar. Tiempo de opinión. Previa Real Madrid - Oviedo.",
-          "publishedAt": "2026-05-13T23:35:44Z",
-          "duration": 7147,
-          "audio": "https://www.cope.es/uploads/2026/05/14/3Zx-8mZ78BpvT5F79Qqo_.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/13-may-2026-partidazo-cope-20260514_3363982.html"
-        },
-        {
-          "id": "f2a53088a13d91fd187e",
-          "title": "3ª PARTE | 13 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Previa Real Madrid - Oviedo.",
-          "publishedAt": "2026-05-13T23:34:15Z",
-          "duration": 2318,
-          "audio": "https://www.cope.es/uploads/2026/05/14/FEEs5Wamrv_4vnrTyMYXh.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-13-may-2026-partidazo-cope-20260514_3363981.html"
-        },
-        {
-          "id": "50395fbeb93bb3909cb4",
-          "title": "2ª PARTE | 13 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Florentino Pérez vuelve a hablar. Tiempo de opinión.",
-          "publishedAt": "2026-05-13T23:03:58Z",
-          "duration": 2091,
-          "audio": "https://www.cope.es/uploads/2026/05/14/15Tv2ccdadz4cUJoOxfnm.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-13-may-2026-partidazo-cope-20260514_3363977.html"
-        },
-        {
-          "id": "925cce964a10ee9b06a9",
-          "title": "1ª PARTE | 13 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Victorias del Alavés, Espanyol, Sevilla y Getafe. El Valencia Basket se mete en la Final Four. Entrevistas a de Larrea y Quique Sánchez Flores.",
-          "publishedAt": "2026-05-13T22:14:29Z",
-          "duration": 2424,
-          "audio": "https://www.cope.es/uploads/2026/05/14/jfDDUnvAnP7dMxOGgfcxY.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-13-may-2026-partidazo-cope-20260514_3363965.html"
         }
       ]
     },
