@@ -1313,3 +1313,34 @@ main { width: min(100%, 1040px); margin: 0 auto; padding: 18px; }
   font-weight:900;
   letter-spacing:.03em;
 }
+
+.android-update-banner{
+  margin:10px auto 0;
+  width:min(920px,calc(100% - 20px));
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 12px;
+  border:1px solid #2d6cb0;
+  border-radius:14px;
+  background:#10233d;
+  color:#eef6ff
+}
+.android-update-banner.hidden{display:none}
+.android-update-banner div{min-width:0}
+.android-update-banner strong{display:block;font-size:.84rem}
+.android-update-banner span{display:block;margin-top:2px;color:#a9bdd7;font-size:.72rem}
+.android-update-banner a{
+  flex:0 0 auto;
+  padding:9px 12px;
+  border-radius:10px;
+  background:#58a6ff;
+  color:#07111f;
+  font-size:.76rem;
+  font-weight:900;
+  text-decoration:none
+}
+@media(max-width:560px){
+  .android-update-banner{align-items:flex-start}
+}
