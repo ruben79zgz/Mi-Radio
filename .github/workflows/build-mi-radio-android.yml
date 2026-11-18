@@ -39,7 +39,7 @@ jobs:
           fi
           echo "Usando $SDKMANAGER"
           yes | "$SDKMANAGER" --licenses >/dev/null || true
-          "$SDKMANAGER" "platforms;android-37" "build-tools;36.0.0"
+          "$SDKMANAGER" "platforms;android-36" "build-tools;36.0.0"
 
       - name: Recuperar clave de firma de pruebas
         id: signing-cache
