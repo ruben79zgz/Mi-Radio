@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import androidx.annotation.Nullable;
+import androidx.media3.common.AudioAttributes;
 import androidx.media3.common.C;
 import androidx.media3.common.MediaItem;
 import androidx.media3.common.MediaMetadata;
@@ -57,13 +58,24 @@ public class PlaybackService extends MediaSessionService {
     private int retryAttempt = 0;
     private boolean wantsPlay = false;
     private Runnable retryRunnable;
+    private Runnable watchdogRunnable;
+    private long lastPlayingAt = 0L;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        player = new ExoPlayer.Builder(this).build();
-        player.setWakeMode(C.WAKE_MODE_NETWORK);
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+            .setUsage(C.USAGE_MEDIA)
+            .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
+            .build();
+
+        player = new ExoPlayer.Builder(this)
+            .setAudioAttributes(audioAttributes, true)
+            .setHandleAudioBecomingNoisy(true)
+            .setWakeMode(C.WAKE_MODE_NETWORK)
+            .build();
+
         player.addListener(new Player.Listener() {
             @Override
             public void onPlaybackStateChanged(int playbackState) {
@@ -71,6 +83,7 @@ public class PlaybackService extends MediaSessionService {
                 if (playbackState == Player.STATE_BUFFERING) {
                     broadcastState("buffering", "Cargando…");
                 } else if (playbackState == Player.STATE_READY && player.getPlayWhenReady()) {
+                    lastPlayingAt = System.currentTimeMillis();
                     retryAttempt = 0;
                     broadcastState("playing", "Reproduciendo");
                 } else if (playbackState == Player.STATE_ENDED) {
@@ -81,6 +94,7 @@ public class PlaybackService extends MediaSessionService {
             @Override
             public void onIsPlayingChanged(boolean isPlaying) {
                 if (isPlaying) {
+                    lastPlayingAt = System.currentTimeMillis();
                     retryAttempt = 0;
                     broadcastState("playing", "Reproduciendo");
                 }
@@ -107,6 +121,7 @@ public class PlaybackService extends MediaSessionService {
         mediaSession = new MediaSession.Builder(this, player).build();
         registerNetworkCallback();
         restoreState(false);
+        startWatchdog();
     }
 
     @Nullable
@@ -117,41 +132,33 @@ public class PlaybackService extends MediaSessionService {
 
     @Override
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
-        super.onStartCommand(intent, flags, startId);
+        int serviceResult = super.onStartCommand(intent, flags, startId);
 
         if (intent == null) {
-            restoreState(true);
-            return START_STICKY;
+            // No relanzamos una emisora a ciegas tras una recreación del proceso.
+            // Media3 mantiene la reproducción mientras el servicio foreground está vivo.
+            restoreState(false);
+            return serviceResult;
         }
 
-        String action = intent.getAction();
-        if (ACTION_PLAY.equals(action)) {
-            playPayload(intent.getStringExtra(EXTRA_PAYLOAD));
-        } else if (ACTION_PAUSE.equals(action)) {
-            wantsPlay = false;
-            cancelRetry();
-            player.pause();
-            broadcastState("paused", "Pausado");
-        } else if (ACTION_RESUME.equals(action)) {
-            if (streams.isEmpty()) restoreState(false);
-            wantsPlay = true;
-            if (player.getMediaItemCount() > 0 && player.getPlaybackState() != Player.STATE_IDLE) {
-                player.play();
-                broadcastState("buffering", "Reanudando…");
-            } else {
-                startCurrentStream("reanudar");
+        try {
+            String action = intent.getAction();
+            if (ACTION_PLAY.equals(action)) {
+                playPayload(intent.getStringExtra(EXTRA_PAYLOAD));
+            } else if (ACTION_PAUSE.equals(action)) {
+                pausePlayback();
+            } else if (ACTION_RESUME.equals(action)) {
+                resumePlayback();
+            } else if (ACTION_STOP.equals(action)) {
+                stopPlayback();
             }
-        } else if (ACTION_STOP.equals(action)) {
-            wantsPlay = false;
-            cancelRetry();
-            player.stop();
-            player.clearMediaItems();
-            currentStream = "";
-            broadcastState("stopped", "Detenido");
-            stopSelf();
+        } catch (Throwable error) {
+            broadcastState("error", "Error del reproductor · vuelve a pulsar reproducir");
         }
 
-        return START_STICKY;
+        // Importante: no usamos START_STICKY. MediaSessionService gestiona el
+        // foreground service y evitamos bucles de reinicio si Android mata el proceso.
+        return serviceResult;
     }
 
     private void playPayload(String raw) {
@@ -168,7 +175,7 @@ public class PlaybackService extends MediaSessionService {
             JSONArray array = json.optJSONArray("streams");
             if (array != null) {
                 for (int i = 0; i < array.length(); i++) {
-                    String url = array.optString(i, "");
+                    String url = array.optString(i, "").trim();
                     if (!url.isEmpty() && !streams.contains(url)) streams.add(url);
                 }
             }
@@ -176,21 +183,24 @@ public class PlaybackService extends MediaSessionService {
             currentIndex = 0;
             retryAttempt = 0;
             wantsPlay = true;
+            lastPlayingAt = System.currentTimeMillis();
             cancelRetry();
 
             if (streams.isEmpty()) {
+                wantsPlay = false;
                 broadcastState("error", "La emisora no tiene enlace reproducible");
                 return;
             }
 
             startCurrentStream("selección");
         } catch (Exception error) {
+            wantsPlay = false;
             broadcastState("error", "No se pudo preparar la emisora");
         }
     }
 
     private void startCurrentStream(String reason) {
-        if (!wantsPlay || streams.isEmpty()) return;
+        if (!wantsPlay || streams.isEmpty() || player == null) return;
 
         if (!isOnline()) {
             broadcastState("waiting-network", "Sin conexión · esperando Internet…");
@@ -219,18 +229,62 @@ public class PlaybackService extends MediaSessionService {
         }
 
         try {
+            player.stop();
+            player.clearMediaItems();
             player.setMediaItem(item.build());
             player.prepare();
             player.play();
-            broadcastState(retryAttempt > 0 ? "reconnecting" : "buffering",
-                retryAttempt > 0 ? "Reconectando…" : "Conectando…");
-        } catch (Exception error) {
+            broadcastState(
+                retryAttempt > 0 ? "reconnecting" : "buffering",
+                retryAttempt > 0 ? "Reconectando…" : "Conectando…"
+            );
+        } catch (Throwable error) {
             scheduleRetry(reason + ": " + error.getClass().getSimpleName());
         }
     }
 
+    private void pausePlayback() {
+        wantsPlay = false;
+        cancelRetry();
+        if (player != null) player.pause();
+        broadcastState("paused", "Pausado");
+    }
+
+    private void resumePlayback() {
+        if (streams.isEmpty()) restoreState(false);
+        if (streams.isEmpty()) return;
+
+        wantsPlay = true;
+        if (!isOnline()) {
+            broadcastState("waiting-network", "Sin conexión · esperando Internet…");
+            return;
+        }
+
+        if (player != null
+                && player.getMediaItemCount() > 0
+                && player.getPlaybackState() != Player.STATE_IDLE
+                && player.getPlayerError() == null) {
+            player.play();
+            broadcastState("buffering", "Reanudando…");
+        } else {
+            startCurrentStream("reanudar");
+        }
+    }
+
+    private void stopPlayback() {
+        wantsPlay = false;
+        cancelRetry();
+        if (player != null) {
+            player.stop();
+            player.clearMediaItems();
+        }
+        currentStream = "";
+        broadcastState("stopped", "Detenido");
+        stopSelf();
+    }
+
     private void scheduleRetry(String reason) {
-        if (!wantsPlay) return;
+        if (!wantsPlay || player == null) return;
         cancelRetry();
 
         if (!isOnline()) {
@@ -238,11 +292,12 @@ public class PlaybackService extends MediaSessionService {
             return;
         }
 
-        int[] delays = {800, 1500, 3000, 5000, 9000, 15000, 30000};
+        int[] delays = {1000, 2500, 5000, 9000, 15000, 30000, 30000};
         int delay = delays[Math.min(retryAttempt, delays.length - 1)];
         retryAttempt++;
 
-        if (streams.size() > 1 && retryAttempt >= 2) {
+        // Probamos varias veces el enlace actual antes de pasar al siguiente.
+        if (streams.size() > 1 && retryAttempt >= 4 && retryAttempt % 2 == 0) {
             currentIndex = (currentIndex + 1) % streams.size();
         }
 
@@ -255,13 +310,14 @@ public class PlaybackService extends MediaSessionService {
     }
 
     private void retryNow(String reason) {
-        if (!wantsPlay) return;
+        if (!wantsPlay || player == null) return;
         cancelRetry();
         handler.postDelayed(() -> {
-            if (!wantsPlay) return;
+            if (!wantsPlay || player == null) return;
             if (player.isPlaying()) return;
+            retryAttempt = 0;
             startCurrentStream(reason);
-        }, 700);
+        }, 1000);
     }
 
     private void cancelRetry() {
@@ -271,12 +327,46 @@ public class PlaybackService extends MediaSessionService {
         }
     }
 
+    private void startWatchdog() {
+        watchdogRunnable = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (wantsPlay && player != null && isOnline()) {
+                        int state = player.getPlaybackState();
+                        boolean shouldBePlaying = player.getPlayWhenReady()
+                            && player.getPlaybackSuppressionReason() == Player.PLAYBACK_SUPPRESSION_REASON_NONE;
+
+                        if (player.isPlaying()) {
+                            lastPlayingAt = System.currentTimeMillis();
+                        } else if (shouldBePlaying
+                                && (state == Player.STATE_IDLE || state == Player.STATE_ENDED)) {
+                            scheduleRetry("watchdog");
+                        } else if (shouldBePlaying
+                                && state == Player.STATE_BUFFERING
+                                && System.currentTimeMillis() - lastPlayingAt > 45000L) {
+                            scheduleRetry("buffering prolongado");
+                        }
+                    }
+                } catch (Throwable ignored) {}
+
+                handler.postDelayed(this, 15000L);
+            }
+        };
+        handler.postDelayed(watchdogRunnable, 15000L);
+    }
+
     private boolean isOnline() {
         if (connectivityManager == null) return true;
-        Network network = connectivityManager.getActiveNetwork();
-        if (network == null) return false;
-        NetworkCapabilities caps = connectivityManager.getNetworkCapabilities(network);
-        return caps != null && caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
+        try {
+            Network network = connectivityManager.getActiveNetwork();
+            if (network == null) return false;
+            NetworkCapabilities caps = connectivityManager.getNetworkCapabilities(network);
+            return caps != null
+                && caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
+        } catch (Throwable ignored) {
+            return true;
+        }
     }
 
     private void registerNetworkCallback() {
@@ -299,7 +389,9 @@ public class PlaybackService extends MediaSessionService {
 
             @Override
             public void onCapabilitiesChanged(Network network, NetworkCapabilities caps) {
-                if (wantsPlay && caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                if (wantsPlay
+                        && caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                        && player != null
                         && !player.isPlaying()) {
                     retryNow("cambio de red");
                 }
@@ -308,7 +400,7 @@ public class PlaybackService extends MediaSessionService {
 
         try {
             connectivityManager.registerDefaultNetworkCallback(networkCallback);
-        } catch (Exception ignored) {}
+        } catch (Throwable ignored) {}
     }
 
     private void restoreState(boolean resumeIfNeeded) {
@@ -324,21 +416,23 @@ public class PlaybackService extends MediaSessionService {
             stationLogo = json.optString("stationLogo", "");
             currentStream = json.optString("stream", "");
             currentIndex = json.optInt("streamIndex", 0);
-            wantsPlay = json.optBoolean("wantsPlay", false);
 
             streams.clear();
             JSONArray list = json.optJSONArray("streams");
             if (list != null) {
                 for (int i = 0; i < list.length(); i++) {
-                    String url = list.optString(i, "");
-                    if (!url.isEmpty()) streams.add(url);
+                    String url = list.optString(i, "").trim();
+                    if (!url.isEmpty() && !streams.contains(url)) streams.add(url);
                 }
             }
 
-            if (resumeIfNeeded && wantsPlay && !streams.isEmpty()) {
-                retryNow("servicio restaurado");
-            }
-        } catch (Exception ignored) {}
+            // Solo restauramos el deseo de reproducir si se solicita de forma
+            // explícita. Evita resurrecciones automáticas tras un crash.
+            wantsPlay = resumeIfNeeded && json.optBoolean("wantsPlay", false);
+            if (wantsPlay && !streams.isEmpty()) retryNow("restaurado");
+        } catch (Throwable ignored) {
+            wantsPlay = false;
+        }
     }
 
     private void broadcastState(String status, String message) {
@@ -369,21 +463,18 @@ public class PlaybackService extends MediaSessionService {
             intent.setPackage(getPackageName());
             intent.putExtra(EXTRA_STATE, raw);
             sendBroadcast(intent);
-        } catch (Exception ignored) {}
-    }
-
-    @Override
-    public void onTaskRemoved(Intent rootIntent) {
-        // No detenemos la radio al cerrar la interfaz. El servicio sigue controlado
-        // por la sesión multimedia y la notificación de Android.
-        super.onTaskRemoved(rootIntent);
+        } catch (Throwable ignored) {}
     }
 
     @Override
     public void onDestroy() {
         cancelRetry();
+        if (watchdogRunnable != null) {
+            handler.removeCallbacks(watchdogRunnable);
+            watchdogRunnable = null;
+        }
         if (connectivityManager != null && networkCallback != null) {
-            try { connectivityManager.unregisterNetworkCallback(networkCallback); } catch (Exception ignored) {}
+            try { connectivityManager.unregisterNetworkCallback(networkCallback); } catch (Throwable ignored) {}
         }
         if (mediaSession != null) {
             mediaSession.release();
