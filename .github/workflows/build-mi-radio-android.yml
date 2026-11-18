@@ -86,7 +86,7 @@ jobs:
       - name: Publicar APK en GitHub Pages
         if: github.ref == 'refs/heads/main'
         run: |
-          if git diff --quiet -- downloads/Mi-Radio.apk downloads/Mi-Radio.apk.sha256; then
+          if [ -z "$(git status --porcelain -- downloads/Mi-Radio.apk downloads/Mi-Radio.apk.sha256)" ]; then
             echo "APK sin cambios"
             exit 0
           fi
