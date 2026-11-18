@@ -1317,7 +1317,7 @@
     tvOpenWebBtn.classList.remove('hidden');
     tvVideo.classList.remove('hidden');
 
-    if (mediaKind && !audio.paused) stopMedia();
+    if (mediaKind && isCurrentMediaPlaying()) stopMedia();
     playerBar.classList.add('hidden');
     try { podcastPlayerDialog.close(); } catch {}
     try { radioPlayerDialog.close(); } catch {}
@@ -2039,7 +2039,15 @@
 
   async function playStation(station) {
     if (currentTvChannel) stopTvPlayback(true);
+
+    if (mediaKind === 'podcast') {
+      saveEpisodePosition();
+      try { audio.pause(); } catch {}
+      destroyHls();
+    }
+
     clearReconnect();
+    clearRecoveryChecks();
     mediaKind = 'radio';
     playIntent = true;
     currentStation = station;
@@ -2050,7 +2058,33 @@
     repairAttemptedForPlay = false;
     configurePlayerForRadio(station);
     renderStations();
+
     if (!currentCandidates.length) return tryAutomaticFallback();
+
+    if (nativeRadioAvailable()) {
+      try {
+        currentStream = currentCandidates[0] || '';
+        nativeRadioState = {
+          ...nativeRadioState,
+          status: 'buffering',
+          wantsPlay: true,
+          stationId: station.id,
+          stationName: station.name,
+          stationSubtitle: station.subtitle || '',
+          stationLogo: logoCandidates(station)[0] || '',
+          stream: currentStream,
+          streams: currentCandidates.slice()
+        };
+        playerStatus.textContent = 'Conectando…';
+        window.NativeRadio.play(JSON.stringify(nativeRadioPayload(station)));
+        syncPlayButtons();
+        renderStations();
+        return;
+      } catch (err) {
+        console.warn('No se pudo iniciar la radio nativa; uso reproductor web', err);
+      }
+    }
+
     await tryCandidate();
   }
 
@@ -2197,6 +2231,10 @@
 
   async function playEpisode(show, episode, openPlayer = false) {
     if (currentTvChannel) stopTvPlayback(true);
+    if (nativeRadioIsCurrent()) {
+      try { window.NativeRadio.stop(); } catch {}
+      nativeRadioState = { ...nativeRadioState, status: 'stopped', wantsPlay: false };
+    }
     if (!episode.audio) {
       showToast('Este episodio no tiene un audio reproducible en el RSS.');
       return;
@@ -2332,7 +2370,7 @@
   /* ---------------- Controles comunes ---------------- */
 
   function syncPlayButtons() {
-    const playing = !audio.paused && playIntent;
+    const playing = isCurrentMediaPlaying();
     const icon = playing ? '❚❚' : '▶';
     playPauseBtn.textContent = icon;
     podcastPlayPauseBtn.textContent = icon;
@@ -2344,6 +2382,16 @@
     playIntent = false;
     clearReconnect();
     clearRecoveryChecks();
+
+    if (mediaKind === 'radio' && nativeRadioAvailable()) {
+      try { window.NativeRadio.pause(); } catch {}
+      nativeRadioState = { ...nativeRadioState, status: 'paused', wantsPlay: false };
+      playerStatus.textContent = 'Pausado';
+      syncPlayButtons();
+      renderStations();
+      return;
+    }
+
     saveEpisodePosition();
     audio.pause();
     if (mediaKind === 'radio') playerStatus.textContent = 'Pausado';
@@ -2356,6 +2404,20 @@
   async function resumeMedia() {
     if (!mediaKind) return;
     playIntent = true;
+
+    if (mediaKind === 'radio' && nativeRadioAvailable()) {
+      try {
+        nativeRadioState = { ...nativeRadioState, status: 'buffering', wantsPlay: true };
+        playerStatus.textContent = 'Reanudando…';
+        window.NativeRadio.resume();
+        syncPlayButtons();
+        renderStations();
+      } catch (err) {
+        console.warn('No se pudo reanudar la radio nativa', err);
+      }
+      return;
+    }
+
     try {
       await audio.play();
       reconnectAttempt = 0;
@@ -2372,6 +2434,16 @@
     playIntent = false;
     clearReconnect();
     clearRecoveryChecks();
+
+    if (mediaKind === 'radio' && nativeRadioAvailable()) {
+      try { window.NativeRadio.stop(); } catch {}
+      nativeRadioState = { ...nativeRadioState, status: 'stopped', wantsPlay: false, stream: '' };
+      playerStatus.textContent = 'Detenido';
+      syncPlayButtons();
+      renderStations();
+      return;
+    }
+
     saveEpisodePosition();
     audio.pause();
     destroyHls();
