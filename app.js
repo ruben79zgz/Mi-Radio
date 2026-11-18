@@ -2542,6 +2542,7 @@
   }
 
   function scheduleNetworkHealthCheck(reason = 'cambio de red', delay = 3500) {
+    if (nativeRadioIsCurrent()) return;
     if (!playIntent || !mediaKind || !navigator.onLine) return;
     clearTimeout(networkCheckTimer);
     networkCheckTimer = setTimeout(() => {
@@ -2560,6 +2561,7 @@
   }
 
   function scheduleReconnect(reason = 'conexión', forcedDelay = null) {
+    if (nativeRadioIsCurrent()) return;
     if (!playIntent || !mediaKind) return;
     clearReconnect();
     if (!navigator.onLine) {
@@ -2573,6 +2575,7 @@
   }
 
   async function performReconnect(reason) {
+    if (nativeRadioIsCurrent()) return;
     if (!playIntent || !mediaKind || !navigator.onLine || sourceLoading) return;
     reconnectAttempt += 1;
     setReconnectStatus(`Reconectando… intento ${reconnectAttempt}`);
@@ -2613,6 +2616,7 @@
   }
 
   function notePossibleStall() {
+    if (nativeRadioIsCurrent()) return;
     if (!playIntent || sourceLoading) return;
     if (!navigator.onLine) {
       setReconnectStatus('Sin conexión · esperando Internet…');
@@ -2749,9 +2753,9 @@
     renderPodcastDetail();
   });
 
-  playPauseBtn.addEventListener('click', () => audio.paused ? resumeMedia() : pauseMedia());
-  podcastPlayPauseBtn.addEventListener('click', () => audio.paused ? resumeMedia() : pauseMedia());
-  podcastBigPlayPauseBtn.addEventListener('click', () => audio.paused ? resumeMedia() : pauseMedia());
+  playPauseBtn.addEventListener('click', () => isCurrentMediaPlaying() ? pauseMedia() : resumeMedia());
+  podcastPlayPauseBtn.addEventListener('click', () => isCurrentMediaPlaying() ? pauseMedia() : resumeMedia());
+  podcastBigPlayPauseBtn.addEventListener('click', () => isCurrentMediaPlaying() ? pauseMedia() : resumeMedia());
   stopBtn.addEventListener('click', stopMedia);
   back30Btn.addEventListener('click', () => seekPodcast(-30));
   forward30Btn.addEventListener('click', () => seekPodcast(30));
@@ -2763,7 +2767,7 @@
   });
   closePodcastPlayerBtn.addEventListener('click', () => podcastPlayerDialog.close());
   closeRadioPlayerBtn.addEventListener('click', () => radioPlayerDialog.close());
-  radioBigPlayPauseBtn.addEventListener('click', () => audio.paused ? resumeMedia() : pauseMedia());
+  radioBigPlayPauseBtn.addEventListener('click', () => isCurrentMediaPlaying() ? pauseMedia() : resumeMedia());
   radioStopBigBtn.addEventListener('click', stopMedia);
   podcastSeekSlider.addEventListener('input', () => setPodcastPosition(podcastSeekSlider.value));
   playbackRateSelect.addEventListener('change', () => {
@@ -2883,11 +2887,19 @@
   });
 
   window.addEventListener('online', () => {
+    if (nativeRadioIsCurrent()) {
+      restoreNativeRadioState();
+      return;
+    }
     if (playIntent && mediaKind) {
       scheduleNetworkHealthCheck('Internet recuperado', 2500);
     }
   });
   window.addEventListener('offline', () => {
+    if (nativeRadioIsCurrent()) {
+      playerStatus.textContent = 'Sin conexión · el servicio seguirá reintentando…';
+      return;
+    }
     clearReconnect();
     clearRecoveryChecks();
     if (playIntent && mediaKind) setReconnectStatus('Sin conexión · esperando Internet…');
@@ -2895,6 +2907,10 @@
 
   if (navigator.connection?.addEventListener) {
     navigator.connection.addEventListener('change', () => {
+      if (nativeRadioIsCurrent()) {
+        restoreNativeRadioState();
+        return;
+      }
       if (playIntent && mediaKind && navigator.onLine) {
         scheduleNetworkHealthCheck('cambio Wi-Fi/datos', 3000);
       }
@@ -2902,11 +2918,20 @@
   }
 
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible' && playIntent && mediaKind && audio.paused) {
+    if (document.visibilityState !== 'visible') return;
+    if (nativeRadioIsCurrent()) {
+      restoreNativeRadioState();
+      return;
+    }
+    if (playIntent && mediaKind && audio.paused) {
       scheduleReconnect('volver a la app', 300);
     }
   });
   window.addEventListener('pageshow', () => {
+    if (nativeRadioAvailable()) {
+      restoreNativeRadioState();
+      return;
+    }
     if (playIntent && mediaKind && audio.paused && navigator.onLine) scheduleReconnect('pageshow', 300);
   });
 
@@ -2918,6 +2943,7 @@
 
   // Vigilante de último recurso. Solo interviene tras una parada real y prolongada.
   setInterval(() => {
+    if (nativeRadioIsCurrent()) return;
     if (!playIntent || !mediaKind || !navigator.onLine || sourceLoading || audio.paused) return;
     if (Date.now() - lastProgressAt > 18000 && !reconnectTimer) {
       scheduleReconnect('sin progreso prolongado', 250);
@@ -2925,7 +2951,7 @@
   }, 5000);
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=19.3.1').catch(console.warn));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=19.4').catch(console.warn));
   }
 
   /* ---------------- Inicio ---------------- */
@@ -2951,4 +2977,5 @@
   if (lastPodcastSnapshot?.episode?.audio) {
     restoreLastPodcastSession();
   }
+  setTimeout(restoreNativeRadioState, 80);
 })();
