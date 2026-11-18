@@ -3,7 +3,7 @@ name: Build Mi Radio Android APK
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [main, mi-radio-android-native-v1]
     paths:
       - 'android-app/**'
       - '.github/workflows/build-mi-radio-android.yml'
@@ -79,6 +79,7 @@ jobs:
           retention-days: 90
 
       - name: Publicar APK en GitHub Pages
+        if: github.ref == 'refs/heads/main'
         run: |
           if git diff --quiet -- downloads/Mi-Radio.apk downloads/Mi-Radio.apk.sha256; then
             echo "APK sin cambios"
