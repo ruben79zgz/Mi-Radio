@@ -3,7 +3,7 @@ name: Build Mi Radio Android APK
 on:
   workflow_dispatch:
   push:
-    branches: [main, mi-radio-android-v11-stable]
+    branches: [main]
     paths:
       - 'android-app/**'
       - '.github/workflows/build-mi-radio-android.yml'
