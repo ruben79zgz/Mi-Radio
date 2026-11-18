@@ -1,16 +1,16 @@
-const CACHE = 'mi-radio-shell-v19.4';
+const CACHE = 'mi-radio-shell-v19.5';
 const SHELL = [
   './',
   './index.html',
-  './styles.css?v=19.3',
-  './app.js?v=19.3',
-  './stations.js?v=19.3',
-  './podcasts.js?v=19.3',
-  './podcast-feed.js?v=19.3',
-  './tv.js?v=19.3',
-  './navigation.js?v=19.3',
-  './manifest.webmanifest?v=19.3',
-  './icons/mi-radio.svg?v=19.3'
+  './styles.css?v=19.5',
+  './app.js?v=19.5',
+  './stations.js?v=19.5',
+  './podcasts.js?v=19.5',
+  './podcast-feed.js?v=19.5',
+  './tv.js?v=19.5',
+  './navigation.js?v=19.5',
+  './manifest.webmanifest?v=19.5',
+  './icons/mi-radio.svg?v=19.5'
 ];
 
 self.addEventListener('install', event => {
@@ -88,7 +88,18 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // HTML, JS, CSS, iconos y resto del shell: abrir inmediatamente desde caché
-  // y refrescar silenciosamente en segundo plano.
+  // Archivos críticos de la app: red primero para evitar mezclar una interfaz
+  // nueva con JavaScript antiguo dentro del APK.
+  if (
+    event.request.mode === 'navigate' ||
+    path.endsWith('/index.html') ||
+    path.endsWith('/app.js') ||
+    path.endsWith('/styles.css') ||
+    path.endsWith('/navigation.js')
+  ) {
+    event.respondWith(boundedNetworkFirst(event.request, 2500));
+    return;
+  }
+
   event.respondWith(staleWhileRevalidate(event.request));
 });

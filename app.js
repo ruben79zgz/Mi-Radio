@@ -213,6 +213,32 @@
     }
   }
 
+  function initAndroidUpdateBanner() {
+    const banner = document.getElementById('androidUpdateBanner');
+    if (!banner || !nativeRadioAvailable()) return;
+
+    let versionCode = 1;
+    try {
+      if (window.NativeRadio && typeof window.NativeRadio.getVersionCode === 'function') {
+        versionCode = Number(window.NativeRadio.getVersionCode()) || 1;
+      }
+    } catch {}
+
+    banner.classList.toggle('hidden', versionCode >= 2);
+
+    const link = document.getElementById('androidUpdateLink');
+    if (link && versionCode >= 2) {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        try {
+          if (window.NativeRadio && typeof window.NativeRadio.checkForUpdates === 'function') {
+            window.NativeRadio.checkForUpdates();
+          }
+        } catch {}
+      });
+    }
+  }
+
   function nativeRadioIsCurrent() {
     return nativeRadioAvailable() && mediaKind === 'radio';
   }
@@ -2951,7 +2977,7 @@
   }, 5000);
 
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=19.4').catch(console.warn));
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=19.5').catch(console.warn));
   }
 
   /* ---------------- Inicio ---------------- */
@@ -2978,4 +3004,5 @@
     restoreLastPodcastSession();
   }
   setTimeout(restoreNativeRadioState, 80);
+  setTimeout(initAndroidUpdateBanner, 120);
 })();
