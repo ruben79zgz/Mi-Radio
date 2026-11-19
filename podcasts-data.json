@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-18T07:29:44.436540Z",
+  "updatedAt": "2026-11-19T00:23:49.900575Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "4483c78604faecc4e79c",
+          "title": "2ª PARTE | 18 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Entrevista a Rüdiger en The Athletics. Hablamos con un socio compromisario del Real Madrid, tres días antes de la Asamblea.",
+          "publishedAt": "2026-11-18T23:45:34Z",
+          "duration": 1572,
+          "audio": "https://www.cope.es/uploads/2026/11/19/2FB0zCgA-cXh4B_StROvf.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-18-nov-2026-partidazo-cope-20261119_3477927.html"
+        },
+        {
+          "id": "be7368bfb059958198ba",
+          "title": "1ª PARTE | 18 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Argentina golea con un gran Nico Paz. JJ Gabriel, cerca de fichar por el Real Madrid. Tiempo de opinión.",
+          "publishedAt": "2026-11-18T23:15:03Z",
+          "duration": 2667,
+          "audio": "https://www.cope.es/uploads/2026/11/19/FcLwck5qheLOXuMvQ9BZo.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-18-nov-2026-partidazo-cope-20261119_3477921.html"
+        },
         {
           "id": "255c88ec3e3cb57dbd1e",
           "title": "17 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-14-may-2026-partidazo-cope-20260515_3364905.html"
-        },
-        {
-          "id": "4915cdbcbcb9095873a2",
-          "title": "2ª PARTE | 14 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Continuamos analizando la polémica entre Mbappé y Arbeloa.",
-          "publishedAt": "2026-05-14T22:56:50Z",
-          "duration": 2027,
-          "audio": "https://www.cope.es/uploads/2026/05/15/b1c_na5cAcisXtDTRCPIf.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-14-may-2026-partidazo-cope-20260515_3364899.html"
-        },
-        {
-          "id": "1709db67e275682d8e33",
-          "title": "1ª PARTE | 14 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Victoria del Real Madrid contra el Oviedo y fuerte pitada del Bernabéu a Mbappé. Escuchamos el enfrentamiento de Mbappé y Arbeloa. Tiempo de opinión.",
-          "publishedAt": "2026-05-14T22:19:16Z",
-          "duration": 2887,
-          "audio": "https://www.cope.es/uploads/2026/05/15/osNZNlnouNK9boa2bPK26.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-14-may-2026-partidazo-cope-20260515_3364888.html"
         }
       ]
     },
