@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-19T00:23:49.900575Z",
+  "updatedAt": "2026-11-19T10:21:50.709985Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "c6e2f9671ba71324e84e",
+          "title": "18 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Argentina golea con un gran Nico Paz. JJ Gabriel, cerca de fichar por el Real Madrid. Tiempo de opinión. Entrevista a Rüdiger en The Athletics. Hablamos con un socio compromisario del Real Madrid, tres días antes de la Asamblea. Revuelo mundial por el estreno del GTA VI. Alcaraz, a semifinales de la ATP Finals. VayaFiesta.",
+          "publishedAt": "2026-11-19T00:50:00Z",
+          "duration": 6868,
+          "audio": "https://www.cope.es/uploads/2026/11/19/2sxYcYs0W_tVU3gL_uH3A.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/18-nov-2026-partidazo-cope-20261119_3477930.html"
+        },
+        {
+          "id": "7c779bf16296fd017746",
+          "title": "3ª PARTE | 18 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Revuelo mundial por el estreno del GTA VI. Alcaraz, a semifinales de la ATP Finals. VayaFiesta.",
+          "publishedAt": "2026-11-19T00:45:00Z",
+          "duration": 2628,
+          "audio": "https://www.cope.es/uploads/2026/11/19/8iGXrkvaOdDqvtJCHfafa.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-18-nov-2026-partidazo-cope-20261119_3477929.html"
+        },
         {
           "id": "4483c78604faecc4e79c",
           "title": "2ª PARTE | 18 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-15-may-2026-partidazo-cope-20260516_3365724.html"
-        },
-        {
-          "id": "c71f0b84fb0c9f97216f",
-          "title": "14 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Victoria del Real Madrid contra el Oviedo y fuerte pitada del Bernabéu a Mbappé. Escuchamos el enfrentamiento de Mbappé y Arbeloa. Tiempo de opinión. The Americans.",
-          "publishedAt": "2026-05-14T23:36:49Z",
-          "duration": 7455,
-          "audio": "https://www.cope.es/uploads/2026/05/15/8xKV-DQz7Tj1ugkxGvU9d.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/14-may-2026-partidazo-cope-20260515_3364906.html"
-        },
-        {
-          "id": "51cbffc2e38b045a59b1",
-          "title": "3ª PARTE | 14 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Críticas de Israel a Lamine Yamal. Madonna, Shakira y BTS cantarán en el Mundial. The Americans.",
-          "publishedAt": "2026-05-14T23:35:29Z",
-          "duration": 2255,
-          "audio": "https://www.cope.es/uploads/2026/05/15/V9XO1H00SOXFkLUJLTrwZ.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-14-may-2026-partidazo-cope-20260515_3364905.html"
         }
       ]
     },
