@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-20T03:17:03.410202Z",
+  "updatedAt": "2026-11-20T12:54:14.354611Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -6621,6 +6621,17 @@
       "site": "http://www.podiumpodcast.com/la-escobula-de-la-brujula/",
       "feed": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/playlists/podcast.rss",
       "episodes": [
+        {
+          "id": "a2a2631ed25ae93ac825",
+          "title": "Programa 632: 800 años del legado franciscano",
+          "description": "Desde la Sala de Cultura del Ayuntamiento de Crevillent (Alicante), un programa muy especial dedicado a la vida, milagros y legado de san Francisco de Asís, aquel joven que cambió los privilegios de la riqueza por la libertad de la pobreza y encontró en la fraternidad, la paz y el amor a todas las criaturas una manera revolucionaria de entender la existencia.  Nos acompañarán Lourdes Aznar Miralles, alcaldesa de Crevillent, y Joaquín Mas Belso, director general del Grupo Enercoop, con quienes conversaremos sobre la importancia de esta localidad en sus propuestas culturales. Nuestro invitado principal será Juan Antonio Bru Galipieno, historiador, profesor de Geografía e Historia y cronista oficial de las fiestas de Moros y Cristianos de Crevillent. De su mano viajaremos a la Italia medieval para conocer al joven Francesco, su sorprendente conversión, la fundación de la orden franciscana y los episodios que lo convirtieron en uno de los personajes más queridos del cristianismo. Descubriremos también al Francisco más humano, místico y universal, el que predicaba a los pájaros, llamaba hermano al lobo y hermana a la muerte y el que se atrevió a encontrarse con el sultán de Egipto en plena cruzada. Seguiremos sus huellas por España y nos detendremos en los símbolos que identifican su legado: la cruz tau, el cordón de tres nudos, el crucifijo de San Damián o el hábito. Nuestro recorrido nos llevará también al continente americano, donde los franciscanos desempeñaron un papel fundamental en la evangelización y el establecimiento de misiones en Nueva España, Florida, Nuevo México y California. Y, por supuesto, visitaremos la entrañable Porciúncula, evocaremos la belleza del Cántico de las criaturas y exploraremos las afinidades y diferencias entre el pensamiento franciscano y otras tradiciones espirituales, como el sufismo y el budismo. Algunos de sus ideales de paz, fraternidad y comunión con la naturaleza encontraron nuevos ecos en la contracultura, el pacifismo y el ecologismo que florecieron en la ciudad de San Francisco durante los años sesenta.",
+          "publishedAt": "2026-11-20T05:00:00Z",
+          "duration": 7957,
+          "audio": "https://traffic.omny.fm/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/3bab1cfa-913a-4be5-b60c-b50200d680f4/audio.mp3?utm_source=Podcast&in_playlist=fd25a142-cbf1-4f2b-9146-aead00a0bab7",
+          "fileSize": 127366467,
+          "image": "https://www.omnycontent.com/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/3bab1cfa-913a-4be5-b60c-b50200d680f4/image.jpg?t=1795017704&size=Large",
+          "link": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/programa-632-800-a-os-del-legado-franciscano"
+        },
         {
           "id": "aaf4232f852bb0a2ee12",
           "title": "Programa 631: Sondalandia: la Indonesia megalítica",
