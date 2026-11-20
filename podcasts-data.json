@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-19T10:21:50.709985Z",
+  "updatedAt": "2026-11-20T03:17:03.410202Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "710d88a2e1574f72b985",
+          "title": "19 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Alcaraz continuará en el Torneo de Maestros pese a estar tocado y Jódar cae eliminado. La última hora de Real Madrid y Barça. La previa del derbi sevillano. Entramos en la sala VAR con Prieto Iglesias y Fran Soto",
+          "publishedAt": "2026-11-20T01:00:00Z",
+          "duration": 3610,
+          "audio": "https://www.cope.es/uploads/2026/11/20/f9BRZevcD__4bYFM4GbmA.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/19-nov-2026-partidazo-cope-20261120_3478734.html"
+        },
         {
           "id": "c6e2f9671ba71324e84e",
           "title": "18 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-15-may-2026-partidazo-cope-20260516_3365727.html"
-        },
-        {
-          "id": "df501be0d231c678a282",
-          "title": "1ª PARTE | 15 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. Empieza la jornada de Segunda División con el Castellón-Cádiz y el Córdoba-Albacete. La 'guerra de Mbappé y Arbeloa tras la victoria del Real Madrid al Oviedo.",
-          "publishedAt": "2026-05-15T22:20:13Z",
-          "duration": 2222,
-          "audio": "https://www.cope.es/uploads/2026/05/16/9SXEc20-AQ7YoN9goaoFL.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-15-may-2026-partidazo-cope-20260516_3365724.html"
         }
       ]
     },
