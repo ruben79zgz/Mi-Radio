@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-20T12:54:14.354611Z",
+  "updatedAt": "2026-11-21T03:13:35.873287Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "a43a2cc978fd3c51ed8b",
+          "title": "3ª PARTE | 20 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Carlos Alcaraz juega las semifinales de las ATP Finals contra Shelton. GP Portimao de Motogp. GP Vegas de Fórmula 1. #Campodelgas.",
+          "publishedAt": "2026-11-21T00:30:00Z",
+          "duration": 2392,
+          "audio": "https://www.cope.es/uploads/2026/11/21/DZXp9rD-zZkfTk3DNjrbk.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-20-nov-2026-partidazo-cope-20261121_3479557.html"
+        },
+        {
+          "id": "8a0ea46c33f6b248118b",
+          "title": "20 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Titulares del día. El Espanyol vence al Athletic. Owono reaparece tras ser sancionado. ¿Jugará Vinícius contra el Celta? Rafa Nadal entrará en la Junta Directiva del Real Madrid este sábado. Alcaraz juega las ATP Finals contra Sheldon #Campodelgas",
+          "publishedAt": "2026-11-21T00:26:58Z",
+          "duration": 7197,
+          "audio": "https://www.cope.es/uploads/2026/11/21/JDdGk6j8G30Uf1cImvGK2.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/20-nov-2026-partidazo-cope-20261121_3479559.html"
+        },
+        {
+          "id": "f37d02696b45aac5c837",
+          "title": "2ª PARTE | 20 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Sigue el Tiempo de Opinión. Las renovaciones sigue en el Real Madrid. ¿Jugará Vinicius contra el Celta?. Rafa Nadal entrará en la Junta Directiva del Real Madrid este sábado. Última hora del Sevilla - Betis. Actualidad del Barcelona.",
+          "publishedAt": "2026-11-20T23:52:47Z",
+          "duration": 2454,
+          "audio": "https://www.cope.es/uploads/2026/11/21/Fl3VLZ2U1UUMCb4cZRMwf.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-20-nov-2026-partidazo-cope-20261121_3479556.html"
+        },
+        {
+          "id": "a16bd76bea44762ae678",
+          "title": "1ª PARTE | 20 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. El triunfo del Espanyol contra el Athletic. Owono reaparece tras ser sancionado para presenciar el partido el Andorra. Tiempo de Opinión.",
+          "publishedAt": "2026-11-20T23:31:29Z",
+          "duration": 2094,
+          "audio": "https://www.cope.es/uploads/2026/11/21/G4aRWpb-kJfgwyC75z168.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-20-nov-2026-partidazo-cope-20261121_3479552.html"
+        },
         {
           "id": "710d88a2e1574f72b985",
           "title": "19 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6565,50 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-18-may-2026-partidazo-cope-20260519_3366853.html"
-        },
-        {
-          "id": "aa63523a30ac2167793a",
-          "title": "17 MAY 2026 | EL TERTULIÓN DE LOS DOMINGOS",
-          "description": "La pelea por la salvación se jugará en la última jornada; Griezmann y Lewandowski se despiden de sus aficiones; Las elecciones en el Real Madrid.",
-          "publishedAt": "2026-05-17T23:57:44Z",
-          "duration": 5674,
-          "audio": "https://www.cope.es/uploads/2026/05/18/MYhfC2Yx9E353nG3OzEB4.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/06/677b2375741e9.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/17-may-2026-tertulion-domingos-20260518_3366069.html"
-        },
-        {
-          "id": "c46b450e27221327d065",
-          "title": "15 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Titulares. Nueva jornada de Segunda División. Mourinho rechaza una oferta de renovación del Benfica. La 'guerra' entre Mbappé y Arbeloa. #OasisDeLibertad. La rueda de prensa de Florentino Pérez y la denuncia de los árbitros. Una lesión muscular aleja a Barrenetxea del Mundial. #Campodelgas.",
-          "publishedAt": "2026-05-16T09:41:38Z",
-          "duration": 7927,
-          "audio": "https://www.cope.es/uploads/2026/05/16/nng0wx7KPLwkLkE5FXqGU.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/15-may-2026-partidazo-cope-20260516_3365731.html"
-        },
-        {
-          "id": "f0c95de1dd1a4b6f6979",
-          "title": "3ª PARTE | 15 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Sigue el #OasisDeLibertad. Una lesión muscular aleja a Barrenetxea del Mundial. ¿Fichará Mourinho por el Real Madrid? #Campodelgas.",
-          "publishedAt": "2026-05-15T23:30:00Z",
-          "duration": 3297,
-          "audio": "https://www.cope.es/uploads/2026/05/16/uBikul-OvVr1csWBPvMUP.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-15-may-2026-partidazo-cope-20260516_3365730.html"
-        },
-        {
-          "id": "ef0561b8639898c9edf5",
-          "title": "2ª PARTE | 15 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "#OasisDeLibertad. La Asociación de Árbitros pide medidas disciplinarias contra Florentino Pérez. Sergio Ramos cierra el acuerdo para la compra del Sevilla.",
-          "publishedAt": "2026-05-15T22:59:57Z",
-          "duration": 2109,
-          "audio": "https://www.cope.es/uploads/2026/05/16/ohTamJQQZcUVPhO0dYuXs.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-15-may-2026-partidazo-cope-20260516_3365727.html"
         }
       ]
     },
