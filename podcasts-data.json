@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-21T03:13:35.873287Z",
+  "updatedAt": "2026-11-21T20:31:57.768032Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -11,6 +11,17 @@
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
         {
+          "id": "8a0ea46c33f6b248118b",
+          "title": "20 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Titulares del día. El Espanyol vence al Athletic. Owono reaparece tras ser sancionado. ¿Jugará Vinícius contra el Celta? Rafa Nadal entrará en la Junta Directiva del Real Madrid este sábado. Alcaraz juega las ATP Finals contra Sheldon #Campodelgas",
+          "publishedAt": "2026-11-21T00:40:00Z",
+          "duration": 7197,
+          "audio": "https://www.cope.es/uploads/2026/11/21/JDdGk6j8G30Uf1cImvGK2.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/20-nov-2026-partidazo-cope-20261121_3479559.html"
+        },
+        {
           "id": "a43a2cc978fd3c51ed8b",
           "title": "3ª PARTE | 20 NOV 2026 | EL PARTIDAZO DE COPE",
           "description": "Carlos Alcaraz juega las semifinales de las ATP Finals contra Shelton. GP Portimao de Motogp. GP Vegas de Fórmula 1. #Campodelgas.",
@@ -20,17 +31,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-20-nov-2026-partidazo-cope-20261121_3479557.html"
-        },
-        {
-          "id": "8a0ea46c33f6b248118b",
-          "title": "20 NOV 2026 | EL PARTIDAZO DE COPE",
-          "description": "Titulares del día. El Espanyol vence al Athletic. Owono reaparece tras ser sancionado. ¿Jugará Vinícius contra el Celta? Rafa Nadal entrará en la Junta Directiva del Real Madrid este sábado. Alcaraz juega las ATP Finals contra Sheldon #Campodelgas",
-          "publishedAt": "2026-11-21T00:26:58Z",
-          "duration": 7197,
-          "audio": "https://www.cope.es/uploads/2026/11/21/JDdGk6j8G30Uf1cImvGK2.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/20-nov-2026-partidazo-cope-20261121_3479559.html"
         },
         {
           "id": "f37d02696b45aac5c837",
