@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-21T20:31:57.768032Z",
+  "updatedAt": "2026-11-22T02:14:38.836680Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "1e3df3472a8a46907180",
+          "title": "21 NOV 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
+          "description": "Titulares. La remontada del Real Madrid. La rueda de prensa de Mourinho. Tiempo de Opinión. La Asamblea del Real Madrid y el nombramiento de Rafa Nadal. Analizamos el derbi entre Sevilla y Betis. Previa del Barcelona - Villarreal y del Getafe - Atlético. Alcaraz - Zverez, final de las ATP Finals. GP de Portimao de MotoGP. GP de Las Vegas de Fórmula 1.",
+          "publishedAt": "2026-11-22T00:15:00Z",
+          "duration": 6391,
+          "audio": "https://www.cope.es/uploads/2026/11/22/CJQyudTr4-PphvjkBaM47.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/10/27/6ae0f8a710014.jpg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/21-nov-2026-tramo-final-juego-20261122_3479717.html"
+        },
         {
           "id": "8a0ea46c33f6b248118b",
           "title": "20 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-18-may-2026-partidazo-cope-20260519_3366861.html"
-        },
-        {
-          "id": "7f0bda8c3d7ec7d0775c",
-          "title": "1ª PARTE | 18 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Programa especial desde Santander para celebrar el ascenso del Racing. Enrique Riquelme confirma que tiene el aval para presentarse a las elecciones del Real Madrid. Fermín, baja para el Mundial.",
-          "publishedAt": "2026-05-18T22:05:52Z",
-          "duration": 2111,
-          "audio": "https://www.cope.es/uploads/2026/05/19/4NHwAz6Q99kve51rRbYEJ.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-18-may-2026-partidazo-cope-20260519_3366853.html"
         }
       ]
     },
