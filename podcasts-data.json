@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-22T02:14:38.836680Z",
+  "updatedAt": "2026-11-23T07:40:29.286826Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,17 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "51b3db4cbe37d7310707",
+          "title": "22 NOV 2026 | EL TERTULIÓN DE LOS DOMINGOS",
+          "description": "Alcaraz y Márquez, grandes protagonistas; Remontadas del Barcelona y el Real Madrid; ¿Debe tirar Raphinha todos los penaltis en el Barça?",
+          "publishedAt": "2026-11-23T00:56:26Z",
+          "duration": 5370,
+          "audio": "https://www.cope.es/uploads/2026/11/23/AvQKttSB_QYJUGp_rIlPE.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/01/06/677b2375741e9.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/22-nov-2026-tertulion-domingos-20261123_3479885.html"
+        },
         {
           "id": "1e3df3472a8a46907180",
           "title": "21 NOV 2026 | TRAMO FINAL DE TIEMPO DE JUEGO",
@@ -6598,17 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/05/19/6a0b9614af68d.png",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/18-may-26-km42-running-chema-martinez-20260519_3366859.html"
-        },
-        {
-          "id": "86a79c31db6efea3c20a",
-          "title": "2ª PARTE | 18 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Entrevistas a José Alberto y Manuel Higuera, entrenador y presidente del Racing de Santander.",
-          "publishedAt": "2026-05-18T22:53:56Z",
-          "duration": 2740,
-          "audio": "https://www.cope.es/uploads/2026/05/19/GiHo5Tq2xytAQhiRpsnOw.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-18-may-2026-partidazo-cope-20260519_3366861.html"
         }
       ]
     },
