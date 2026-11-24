@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-23T07:40:29.286826Z",
+  "updatedAt": "2026-11-24T04:49:57.922651Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,61 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "6110a22da88d62e32bc9",
+          "title": "23 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Entrevista a Marc Márquez, campeón del mundo de MotoGP. Primera gala del Comité Técnico de Árbitros. Empate entre Levante y Elche. Previa Real Madrid - PSV y rueda de prensa de Mourinho. Tiempo de opinión. Lamine, baja contra el Sabah. Previa del Slovan Bratislava - Betis. El Soufflé. Km42, con Chema Martínez.",
+          "publishedAt": "2026-11-24T00:50:00Z",
+          "duration": 7232,
+          "audio": "https://www.cope.es/uploads/2026/11/24/HYpxxHbtnQoG03W6kk2CU.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/23-nov-2026-partidazo-cope-20261124_3480654.html"
+        },
+        {
+          "id": "78148b3937a7d4f06a14",
+          "title": "23-NOV-26 | #KM42, 'Running' con Chema Martínez",
+          "description": "Con Chema Martínez, preparamos la maratón de Valencia de la próxima semana.",
+          "publishedAt": "2026-11-24T00:45:00Z",
+          "duration": 823,
+          "audio": "https://www.cope.es/uploads/2026/11/24/P8qPYtSe3XtGvrOZuf_CH.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/11/24/6b04d417721e7.png",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/23-nov-26-km42-running-chema-martinez-20261124_3480651.html"
+        },
+        {
+          "id": "77451f75a9d374ee25e9",
+          "title": "2ª PARTE | 23 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Lamine, baja contra el Sabah. Previa del Slovan Bratislava - Betis. El Soufflé. Km42, con Chema Martínez.",
+          "publishedAt": "2026-11-24T00:45:00Z",
+          "duration": 3291,
+          "audio": "https://www.cope.es/uploads/2026/11/24/tDTo_iMndkrCypkvXXOb6.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-23-nov-2026-partidazo-cope-20261124_3480652.html"
+        },
+        {
+          "id": "2d2301fc58fbd41e907d",
+          "title": "2ª PARTE | 23 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Previa Real Madrid - PSV y rueda de prensa de Mourinho. Tiempo de opinión.",
+          "publishedAt": "2026-11-23T23:41:43Z",
+          "duration": 1839,
+          "audio": "https://www.cope.es/uploads/2026/11/24/xa8spVjI8o1qBAGAI8TyY.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-23-nov-2026-partidazo-cope-20261124_3480648.html"
+        },
+        {
+          "id": "6695ffcd4d376ca3c593",
+          "title": "1ª PARTE | 23 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Entrevista a Marc Márquez, campeón del mundo de MotoGP. Primera gala del Comité Técnico de Árbitros. Empate entre Levante y Elche.",
+          "publishedAt": "2026-11-23T23:05:39Z",
+          "duration": 2101,
+          "audio": "https://www.cope.es/uploads/2026/11/24/HE_oUPNbWEVf94amqz6-F.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-23-nov-2026-partidazo-cope-20261124_3480640.html"
+        },
         {
           "id": "51b3db4cbe37d7310707",
           "title": "22 NOV 2026 | EL TERTULIÓN DE LOS DOMINGOS",
@@ -6554,61 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-19-may-2026-partidazo-cope-20260520_3367687.html"
-        },
-        {
-          "id": "d1cc7a20bdade6ce75bd",
-          "title": "2ª PARTE | 19 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "¿Habrá elecciones en el Real Madrid? Tiempo de opinión sobre la actualidad del equipo blanco y la próxima llegada de Mourinho.",
-          "publishedAt": "2026-05-19T22:47:25Z",
-          "duration": 1801,
-          "audio": "https://www.cope.es/uploads/2026/05/20/E6XszkivjtwOJpf9pAKjf.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-19-may-2026-partidazo-cope-20260520_3367682.html"
-        },
-        {
-          "id": "2dff4be39301c6b174c1",
-          "title": "1ª PARTE | 19 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. El Arsenal, campeón de la Premier League 22 años después. Alcaraz, baja para Wimbledon. Entrevistas a Damiá Vidagany, jefe operaciones del Aston Villa en la previa de la final de la Europa League, y al Dr. Fernando Polo.",
-          "publishedAt": "2026-05-19T22:14:30Z",
-          "duration": 2600,
-          "audio": "https://www.cope.es/uploads/2026/05/20/XSoMDxYJqqMVuIIYjPSsk.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-19-may-2026-partidazo-cope-20260520_3367672.html"
-        },
-        {
-          "id": "75c919c368b51cc3c348",
-          "title": "18 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Programa especial desde Santander para celebrar el ascenso del Racing. Riquelme confirma que tiene el aval. Fermín, baja para el Mundial. Entrevistas a José Alberto, Manuel Higuera, Villalibre e Iñigo Sáinz-Maza. Km42.",
-          "publishedAt": "2026-05-18T23:50:00Z",
-          "duration": 7863,
-          "audio": "https://www.cope.es/uploads/2026/05/19/VorQGDn-_clblXbmjJu3j.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/18-may-2026-partidazo-cope-20260519_3366864.html"
-        },
-        {
-          "id": "a4cc4ba1b1ab196a518d",
-          "title": "3ª PARTE | 18 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Entrevistas a Asier Villalibre e Iñigo Sáinz-Maza, jugadores del Racing de Santander; y a Mauricio Gómez, socio número 1. Km42.",
-          "publishedAt": "2026-05-18T23:45:00Z",
-          "duration": 3011,
-          "audio": "https://www.cope.es/uploads/2026/05/19/udEHm1VCv2lfCsueLC7iQ.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-18-may-2026-partidazo-cope-20260519_3366863.html"
-        },
-        {
-          "id": "c499b8e8b3d587b4d8f2",
-          "title": "18-MAY-26 | #KM42, 'Running' con Chema Martínez",
-          "description": "¿Cómo podemos saber que unas zapatillas de running están desgastadas y no se pueden usar más?",
-          "publishedAt": "2026-05-18T23:40:00Z",
-          "duration": 1080,
-          "audio": "https://www.cope.es/uploads/2026/05/19/sjZ2-wTnrGi9zJ8giZJDR.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/05/19/6a0b9614af68d.png",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/18-may-26-km42-running-chema-martinez-20260519_3366859.html"
         }
       ]
     },
