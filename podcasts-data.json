@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T04:49:57.922651Z",
+  "updatedAt": "2026-11-24T17:46:36.322123Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -13,13 +13,24 @@
         {
           "id": "6110a22da88d62e32bc9",
           "title": "23 NOV 2026 | EL PARTIDAZO DE COPE",
-          "description": "Entrevista a Marc Márquez, campeón del mundo de MotoGP. Primera gala del Comité Técnico de Árbitros. Empate entre Levante y Elche. Previa Real Madrid - PSV y rueda de prensa de Mourinho. Tiempo de opinión. Lamine, baja contra el Sabah. Previa del Slovan Bratislava - Betis. El Soufflé. Km42, con Chema Martínez.",
-          "publishedAt": "2026-11-24T00:50:00Z",
+          "description": "Entrevista a Marc Márquez, campeón del mundo de MotoGP. Primera gala del Comité Técnico de Árbitros. Empate entre Levante y Elche. Previa Real Madrid - PSV y rueda de prensa de Mourinho. Tiempo de opinión. Lamine, baja contra el Sabah. Previa del Slovan Bratislava - Betis. El Soufflé. Km42, con Chema Martínez",
+          "publishedAt": "2026-11-24T08:52:42Z",
           "duration": 7232,
           "audio": "https://www.cope.es/uploads/2026/11/24/HYpxxHbtnQoG03W6kk2CU.mp3",
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/23-nov-2026-partidazo-cope-20261124_3480654.html"
+        },
+        {
+          "id": "77451f75a9d374ee25e9",
+          "title": "3ª PARTE | 23 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Lamine, baja contra el Sabah. Previa del Slovan Bratislava - Betis. El Soufflé. Km42, con Chema Martínez.",
+          "publishedAt": "2026-11-24T08:47:37Z",
+          "duration": 3291,
+          "audio": "https://www.cope.es/uploads/2026/11/24/tDTo_iMndkrCypkvXXOb6.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-23-nov-2026-partidazo-cope-20261124_3480652.html"
         },
         {
           "id": "78148b3937a7d4f06a14",
@@ -31,17 +42,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/11/24/6b04d417721e7.png",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/km42/episodios/23-nov-26-km42-running-chema-martinez-20261124_3480651.html"
-        },
-        {
-          "id": "77451f75a9d374ee25e9",
-          "title": "2ª PARTE | 23 NOV 2026 | EL PARTIDAZO DE COPE",
-          "description": "Lamine, baja contra el Sabah. Previa del Slovan Bratislava - Betis. El Soufflé. Km42, con Chema Martínez.",
-          "publishedAt": "2026-11-24T00:45:00Z",
-          "duration": 3291,
-          "audio": "https://www.cope.es/uploads/2026/11/24/tDTo_iMndkrCypkvXXOb6.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-23-nov-2026-partidazo-cope-20261124_3480652.html"
         },
         {
           "id": "2d2301fc58fbd41e907d",
