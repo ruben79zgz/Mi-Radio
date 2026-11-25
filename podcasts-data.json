@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T17:46:36.322123Z",
+  "updatedAt": "2026-11-25T02:30:12.476018Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,50 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "44d69ebfc3447a4cf260",
+          "title": "24 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "5ª jornada de Champions: 'Manita' del Real Madrid al PSV (5-1) y victoria del Betis ante el Slovan (0-2). Protagonistas. Entrevista a Fran García. Tiempo de opinión. Previa Sabah-Barcelona, Atleti-Viking y Slavia Praga-Villarreal. El TAS proclama campeón de la Copa de África a Senegal. Tenis. MundoMaldini.",
+          "publishedAt": "2026-11-25T00:35:30Z",
+          "duration": 7372,
+          "audio": "https://www.cope.es/uploads/2026/11/25/QJLqFjrjJDl8AvTvsOZw9.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/24-nov-2026-partidazo-cope-20261125_3481466.html"
+        },
+        {
+          "id": "be189ad846c7f785a162",
+          "title": "3ª PARTE | 24 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Previa Sabah-Barcelona, Atleti-Viking y Slavia Praga-Villarreal. El TAS proclama campeón de la Copa de África a Senegal. Tenis. MundoMaldini.",
+          "publishedAt": "2026-11-25T00:33:50Z",
+          "duration": 2568,
+          "audio": "https://www.cope.es/uploads/2026/11/25/O7bkx_cIraa-c9VUd_siN.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-24-nov-2026-partidazo-cope-20261125_3481465.html"
+        },
+        {
+          "id": "d5db236a1229ebe97196",
+          "title": "2ª PARTE | 24 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Continuamos analizando la remontada del Real Madrid y la victoria del Betis que le acerca a la clasificación. Resto de resultados.",
+          "publishedAt": "2026-11-24T23:47:29Z",
+          "duration": 1979,
+          "audio": "https://www.cope.es/uploads/2026/11/25/2j-9M0wvJ2xDOsMounvo8.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-24-nov-2026-partidazo-cope-20261125_3481464.html"
+        },
+        {
+          "id": "bedfb193f5e7cf991464",
+          "title": "1ª PARTE | 24 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "5ª jornada de Champions: 'Manita' del Real Madrid al PSV (5-1) y victoria del Betis ante el Slovan (0-2). Protagonistas. Entrevista a Fran García. Tiempo de opinión.",
+          "publishedAt": "2026-11-24T23:12:49Z",
+          "duration": 2506,
+          "audio": "https://www.cope.es/uploads/2026/11/25/H-2QBMFnYdhrjcQGiYSaR.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-24-nov-2026-partidazo-cope-20261125_3481457.html"
+        },
         {
           "id": "6110a22da88d62e32bc9",
           "title": "23 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6565,50 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-20-may-2026-partidazo-cope-20260521_3368563.html"
-        },
-        {
-          "id": "ebdddbb59637b44d3cc6",
-          "title": "2ª PARTE | 20 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "La carrera para las elecciones en el Real Madrid. El nuevo informe forense concluye que Negreira ha empeorado de su demencia y no puede ser juzgado. Hablamos con Emilio Cortés.",
-          "publishedAt": "2026-05-20T22:41:59Z",
-          "duration": 1713,
-          "audio": "https://www.cope.es/uploads/2026/05/21/o5_v9T9jVnv7sL6mPceZ5.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-20-may-2026-partidazo-cope-20260521_3368557.html"
-        },
-        {
-          "id": "002b39e7bb0b15841727",
-          "title": "1ª PARTE | 20 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Aston Villa, campeón de la Europa League, la quinta de Unai Emery. Entrevista a Enrique Riquelme. Tiempo de opinión. 'Media Day' del Rayo Vallecano a una semana de la final de la Conference.",
-          "publishedAt": "2026-05-20T22:09:43Z",
-          "duration": 2336,
-          "audio": "https://www.cope.es/uploads/2026/05/21/juHvj-cLrVNJ_x4gVrVZp.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-20-may-2026-partidazo-cope-20260521_3368550.html"
-        },
-        {
-          "id": "9421ecf2217969e37353",
-          "title": "19 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Arsenal, campeón de la Premier League. Alcaraz, baja para Wimbledon. Entrevistas a Damiá Vidagany y al Dr. Fernando Polo. ¿Habrá elecciones en el Real Madrid? MundoMaldini.",
-          "publishedAt": "2026-05-19T23:39:21Z",
-          "duration": 7277,
-          "audio": "https://www.cope.es/uploads/2026/05/20/fDMNGEQhPhYRyqsfvrsef.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/19-may-2026-partidazo-cope-20260520_3367688.html"
-        },
-        {
-          "id": "30b0a5956afc103b7267",
-          "title": "3ª PARTE | 19 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Entrevista a Juan Pedro Martínez, director editorial de Panini. Fermín, operado. Antonio Cordón deja el Sevilla. MundoMaldini.",
-          "publishedAt": "2026-05-19T23:38:19Z",
-          "duration": 2875,
-          "audio": "https://www.cope.es/uploads/2026/05/20/7Je9CrCOcPb9BTidOh840.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-19-may-2026-partidazo-cope-20260520_3367687.html"
         }
       ]
     },
