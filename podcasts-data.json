@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T00:21:37.282027Z",
+  "updatedAt": "2026-11-26T10:55:36.174964Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "ce87ecfa23a8c80e9cd2",
+          "title": "25 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "5ª jornada Champions: victorias del Barcelona contra el Sabah (1-4), del Atlético contra el Viking (2-0) y del Villarreal contra el Slavia de Praga. Rueda de prensa de Simeone. Tiempo de opinión. La gran racha del Real Madrid, con Rubén Cañizares. Entrevista de Romario a Guardiola. VayaFiesta, con el Grupo RISA.",
+          "publishedAt": "2026-11-26T00:38:14Z",
+          "duration": 7583,
+          "audio": "https://www.cope.es/uploads/2026/11/26/0Al_1KdPqplsn8Be2plFy.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/25-nov-2026-partidazo-cope-20261126_3482325.html"
+        },
+        {
+          "id": "56a78e4e2eba58f82efe",
+          "title": "3ª PARTE | 25 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "La gran racha del Real Madrid, con Rubén Cañizares. Entrevista de Romario a Guardiola. VayaFiesta, con el Grupo RISA.",
+          "publishedAt": "2026-11-26T00:37:05Z",
+          "duration": 3035,
+          "audio": "https://www.cope.es/uploads/2026/11/26/HZZ5ElFZCJUNJBNw-kCWc.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-25-nov-2026-partidazo-cope-20261126_3482324.html"
+        },
         {
           "id": "f67ecbfbd241675ece50",
           "title": "2ª PARTE | 25 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2026/05/22/6a0f95c470c8d.png",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/entrevistas-de-juanma-castano/episodios/marcos-llorente-entrevistas-juanma-castano-20260522_3369399.html"
-        },
-        {
-          "id": "29cbf0c487348fecf46d",
-          "title": "2ª PARTE | 21 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Entrevista a Marcos Llorente, futbolista del Atlético de Madrid y de la selección española.",
-          "publishedAt": "2026-05-21T23:13:22Z",
-          "duration": 3058,
-          "audio": "https://www.cope.es/uploads/2026/05/22/_vs14g1OWWINT5Ta20vX7.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-21-may-2026-partidazo-cope-20260522_3369395.html"
-        },
-        {
-          "id": "7252e41674ea8e6a538e",
-          "title": "1ª PARTE | 21 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Enrique Riquelme anuncia oficialmente que pretende presentarse a las elecciones del Real Madrid. Tiempo de opinión.",
-          "publishedAt": "2026-05-21T22:02:59Z",
-          "duration": 1937,
-          "audio": "https://www.cope.es/uploads/2026/05/22/y4bPhirct-kAIsE14TMO9.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-21-may-2026-partidazo-cope-20260522_3369380.html"
         }
       ]
     },
