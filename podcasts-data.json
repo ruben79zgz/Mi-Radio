@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T02:30:12.476018Z",
+  "updatedAt": "2026-11-26T00:21:37.282027Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,28 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "f67ecbfbd241675ece50",
+          "title": "2ª PARTE | 25 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Análisis de los partidos del Barcelona y del Villarreal. El PSG empata y busca reforzar la plantilla.",
+          "publishedAt": "2026-11-25T23:41:56Z",
+          "duration": 1571,
+          "audio": "https://www.cope.es/uploads/2026/11/26/OoSrjgYdVsS5NiMREoK6g.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-25-nov-2026-partidazo-cope-20261126_3482311.html"
+        },
+        {
+          "id": "88ca8a1bf0ff8d70b907",
+          "title": "1ª PARTE | 25 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "5ª jornada Champions: victorias del Barcelona contra el Sabah (1-4), del Atlético contra el Viking (2-0) y del Villarreal contra el Slavia de Praga. Rueda de prensa de Simeone. Tiempo de opinión.",
+          "publishedAt": "2026-11-25T23:11:40Z",
+          "duration": 2456,
+          "audio": "https://www.cope.es/uploads/2026/11/26/sbcAwFouceOsKkLvpoUqu.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-25-nov-2026-partidazo-cope-20261126_3482300.html"
+        },
         {
           "id": "44d69ebfc3447a4cf260",
           "title": "24 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6587,28 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-21-may-2026-partidazo-cope-20260522_3369380.html"
-        },
-        {
-          "id": "58ba7247e05c1b98cbdc",
-          "title": "20 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "El Aston Villa, campeón de la Europa League, la quinta de Unai Emery. Entrevistas a Unai Emery Enrique Riquelme. La carrera para las elecciones en el Real Madrid. El Caso Negreira. Tiempo de opinión. VayaFiesta.",
-          "publishedAt": "2026-05-20T23:33:27Z",
-          "duration": 7258,
-          "audio": "https://www.cope.es/uploads/2026/05/21/ViAbnTBxolROtcxVRT4Oe.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/20-may-2026-partidazo-cope-20260521_3368565.html"
-        },
-        {
-          "id": "6bc0bc40e1ee6e3c7247",
-          "title": "3ª PARTE | 20 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Entrevista a Unai Emery. Hablamos con Mario Suárez sobre su entrevista a Luis de la Fuente. Rafa Nadal presenta su documental. VayaFiesta.",
-          "publishedAt": "2026-05-20T23:31:57Z",
-          "duration": 2864,
-          "audio": "https://www.cope.es/uploads/2026/05/21/72KD0khrqZq0z-y_9pSrE.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-20-may-2026-partidazo-cope-20260521_3368563.html"
         }
       ]
     },
