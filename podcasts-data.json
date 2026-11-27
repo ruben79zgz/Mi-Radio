@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T04:15:32.738247Z",
+  "updatedAt": "2026-11-27T13:57:34.209323Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -6621,6 +6621,17 @@
       "site": "http://www.podiumpodcast.com/la-escobula-de-la-brujula/",
       "feed": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/playlists/podcast.rss",
       "episodes": [
+        {
+          "id": "113430418d24dc15498b",
+          "title": "Programa 633: Entre héroes, dioses, brujas y hechiceras",
+          "description": "De las murallas de Troya a los oscuros tribunales de la Inquisición valenciana, emprendemos un fascinante viaje por los mitos, las supersticiones y los miedos que han acompañado a la humanidad a lo largo de los siglos. Dos épocas aparentemente alejadas, pero unidas por el poder de las creencias y del miedoy esa eterna necesidad humana de buscar explicaciones a lo desconocido. Con Carlos Jesús Pérez Simancas, autor de Troya y la ira de Aquiles, galardonado con el XIV Premio Internacional de Divulgación Histórica Juan Antonio Cebrián-Villa de Crevillent, viajaremos más de tres mil años atrás para conocer a Aquiles, Héctor, Helena y Ulises, y descubrir qué hay de realidad histórica detrás de la legendaria guerra de Troya y de La Ilíada de Homero. Analizaremos el misterioso colapso de la Edad del Bronce, cuando grandes civilizaciones como la micénica y la hitita se desmoronaron entre guerras, incendios, migraciones y catástrofes. ¿Existió realmente el caballo de Troya? ¿Qué papel desempeñaron los enigmáticos Pueblos del Mar? Con Raúl Ferrero, autor de Las últimas brujas, finalista del mismo premio, nos adentraremos en los procesos inquisitoriales del antiguo Reino de Valencia para rescatar las historias de mujeres acusadas de hechicería, conjuros, pactos diabólicos y prácticas mágicas. Descubriremos sus rituales, sus remedios y sus supuestos poderes. ¿Quiénes fueron las últimas hechiceras valencianas? ¿Dónde terminaba la medicina popular y comenzaba la brujería? ¿Fue la Inquisición tan crédula y despiadada como suele imaginarse? Extróbula: Con Carlos Jesús Pérez Simancas seguiremos desgranando algunos misterios de los héroes de Troya que desafiaron a los dioses. Porque los imperios desaparecen, los templos se derrumban y las hogueras se apagan, pero los mitos permanecen vivos en nuestra memoria.",
+          "publishedAt": "2026-11-27T05:00:00Z",
+          "duration": 7324,
+          "audio": "https://traffic.omny.fm/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/68558503-4df1-43d9-9c53-b50200d68507/audio.mp3?utm_source=Podcast&in_playlist=fd25a142-cbf1-4f2b-9146-aead00a0bab7",
+          "fileSize": 117233491,
+          "image": "https://www.omnycontent.com/d/clips/2446592a-b80e-4d28-a4fd-ae4c0140ac11/9afe58f0-d402-4e05-a5ce-aead00a0ba96/68558503-4df1-43d9-9c53-b50200d68507/image.jpg?t=1795426609&size=Large",
+          "link": "https://omny.fm/shows/la-esc-bula-de-la-br-jula/programa-633-entre-h-roes-dioses-brujas-y-hechiceras"
+        },
         {
           "id": "a2a2631ed25ae93ac825",
           "title": "Programa 632: 800 años del legado franciscano",
