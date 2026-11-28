@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T13:57:34.209323Z",
+  "updatedAt": "2026-11-28T07:50:33.504887Z",
   "podcasts": [
     {
       "id": "partidazo-cope",
@@ -10,6 +10,39 @@
       "site": "https://www.cope.es/programas/el-partidazo-de-cope",
       "feed": "https://www.cope.es/api/es/programas/el-partidazo-de-cope/audios/rss.xml",
       "episodes": [
+        {
+          "id": "2f190c10ce87bddd2496",
+          "title": "27 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Titulares. La remontada del Racing. Marc Márquez anuncia su retirada. Italia espera rival en la final de la Copa Davis. España se mide a Gran Bretaña en semifinales. GP de Catar de Fórmula 1. #OasisDeLibertad. Previa del Real Madrid - Alavés. La clasificación para el Mundial de baloncesto. #Campodelgas.",
+          "publishedAt": "2026-11-28T00:40:00Z",
+          "duration": 7812,
+          "audio": "https://www.cope.es/uploads/2026/11/28/5ciQ7NjSaZT6A5uf8eMkD.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/27-nov-2026-partidazo-cope-20261128_3484168.html"
+        },
+        {
+          "id": "6afd89ba913b455dbdc1",
+          "title": "3ª PARTE | 27 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Sigue el #OasisDeLibertad. Previa del Real Madrid - Alavés. La clasificación para el Mundial de baloncesto. #Campodelgas",
+          "publishedAt": "2026-11-28T00:30:00Z",
+          "duration": 3201,
+          "audio": "https://www.cope.es/uploads/2026/11/28/Ia4TMYIaYJ5712JSkRKI_.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-27-nov-2026-partidazo-cope-20261128_3484167.html"
+        },
+        {
+          "id": "171ae973ca77a607f89b",
+          "title": "1ª PARTE | 27 NOV 2026 | EL PARTIDAZO DE COPE",
+          "description": "Noticias del día. Marc Márquez anuncia su retirada por sorpresa. La remontada del Racing. Italia espera rival en la final de la Copa Davis.",
+          "publishedAt": "2026-11-27T23:32:25Z",
+          "duration": 2329,
+          "audio": "https://www.cope.es/uploads/2026/11/28/5wJxX-kwsAVPDnLvsj5hw.mp3",
+          "fileSize": 44822,
+          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
+          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-27-nov-2026-partidazo-cope-20261128_3484164.html"
+        },
         {
           "id": "0e38f4c3c1bd4f497925",
           "title": "26 NOV 2026 | EL PARTIDAZO DE COPE",
@@ -6576,39 +6609,6 @@
           "fileSize": 44822,
           "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
           "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/2a-parte-22-may-2026-partidazo-cope-20260523_3370300.html"
-        },
-        {
-          "id": "639b992f6ce762eade5c",
-          "title": "1ª PARTE | 22 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Noticias del día. Arbeloa anuncia que no seguirá en el Real Madrid. Pep Guardiola deja el Manchester City. El Real Madrid jugará la final de la Euroliga. Hablamos con Campazzo. GP Canadá de Fórmula 1. Enrique Riquelme intenta conseguir el aval.",
-          "publishedAt": "2026-05-22T22:18:41Z",
-          "duration": 2223,
-          "audio": "https://www.cope.es/uploads/2026/05/23/GfOWUCgo5Sy6HR0u1_lGX.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/1a-parte-22-may-2026-juego-20260523_3370296.html"
-        },
-        {
-          "id": "92e8776ea71d60dd0513",
-          "title": "21 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Enrique Riquelme anuncia oficialmente que pretende presentarse a las elecciones del Real Madrid. Entrevista a Marcos Llorente. Mikel Merino vuelve a entrenar con el Arsenal. The Americans.",
-          "publishedAt": "2026-05-21T23:40:00Z",
-          "duration": 7123,
-          "audio": "https://www.cope.es/uploads/2026/05/22/95oZ6aH_x5EXRB52U9yoe.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/21-may-2026-partidazo-cope-20260522_3369398.html"
-        },
-        {
-          "id": "281253375f343ad8d0f7",
-          "title": "3ª PARTE | 21 MAY 2026 | EL PARTIDAZO DE COPE",
-          "description": "Mikel Merino vuelve a entrenar con el Arsenal. The Americans.",
-          "publishedAt": "2026-05-21T23:35:00Z",
-          "duration": 2127,
-          "audio": "https://www.cope.es/uploads/2026/05/22/a0kzONkXyVLfb_spaT9hp.mp3",
-          "fileSize": 44822,
-          "image": "https://imagenes.cope.es/files/image_984_984/uploads/2025/06/10/684828a972448.jpeg",
-          "link": "https://www.cope.es/programas/el-partidazo-de-cope/horas-completas/3a-parte-21-may-2026-partidazo-cope-20260522_3369397.html"
         }
       ]
     },
